@@ -1,4 +1,50 @@
 
+.pad-15{
+  padding: 15px !important;
+}
+.image-head{
+  width: 45px;
+  height: 45px;
+}
+
+.question-btn{
+  display: inline-block;
+  padding: 3px 13px;
+  border-radius: 15px;
+  background-color: red;
+  color: white;
+}
+
+.ques-des{
+  padding-left: 10px;
+  width: calc(100% - 45px);
+}
+
+.padding-clear{
+  padding: 0 !important;
+}
+
+.search-card h2 {
+  font-size: 16px;
+}
+
+.search-card a{
+  display: inline-block;
+  padding: 14px;
+}
+
+.search-bar{
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 20px;
+  width: 300px;
+  height: 32px;
+}
+
+.search-bar img{
+  height: 20px;
+}
+
 /* banner */
 
 .index-banner-wrap {
@@ -42,6 +88,9 @@
   margin-top: 10px;
 }
 
+.ques-des-p{
+  margin-top: 10px;
+}
 
 /*  content  */
 

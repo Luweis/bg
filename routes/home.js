@@ -3,9 +3,58 @@ const koaBody = require('koa-body')();
 const fetch = require('isomorphic-fetch');
 const helpers = require('../helpers');
 
-router.get('/', (ctx) => {
-  return ctx.render('index', { helpers });
+//主页
+router.get('/',(ctx) => {
+ return fetch('https://www.drbugu.com/drbugu/mainSite/door/api/index/getBannerResources', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(response => response.json()).then(banners => {
+
+   return fetch('https://www.drbugu.com/drbugu/mainSite/door/api/consultDoctor/getRecommendDoctor',{
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+     },
+   }).then(response => response.json()).then(docs => {
+
+     return ctx.render('consultDoctor', { helpers, banners:banners['resultBodyObject'], docs: docs['resultBodyObject']['row'] });
+   })
+  });
+
 });
+
+//医生列表页面
+router.get('/doctor', (ctx) => {
+  return ctx.render('consultDoctor')
+});
+
+//医生详情页
+router.get('/doctor/:id', koaBody,(ctx) => {
+  const id = ctx.url.toString().split('/')[3];
+
+  return fetch('https://www.drbugu.com/drbugu/mainSite/door/api/doctorHomePageController/initDoctorData',{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "docId": id
+    })
+  }).then(response => response.json()).then((doc) =>{
+    console.log(doc);
+    return ctx.render('doctorHomePage', { doctorDetail: doc.doctorDetail, relatedDocotrs: doc.relatedDocotrs });
+  })
+
+});
+
+
+//预约列表页面
+router.get('/doctor-yy', (ctx) => {
+  return ctx.render('operationOrder')
+});
+
 
 // router.post('/confirm_phone', koaBody, (ctx) => {
 //   return fetch('https://www.ikcrm.com/supplier_applies/confirm_phone.json', {

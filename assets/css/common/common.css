@@ -337,3 +337,28 @@ a{
 		margin-top: 40px;
 	}
 }
+
+.tip-btn{
+	display: inline-block;
+	background-color: red;
+	height: 40px;
+	width: 20px;
+}
+
+.tip h2{
+	font-size: 16px;
+	font-weight: 800;
+}
+.tip p{
+	max-width: 280px;
+}
+
+.tip .more{
+	position: absolute;
+	right: 10px;
+	top: 12px;
+}
+
+.color-red{
+	color: red;
+}

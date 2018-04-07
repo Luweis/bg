@@ -6,55 +6,14 @@
     <meta name="Keywords" content="三甲医院手术预约_专家_主任医生手术_床位预约_布谷鸟_布骨医生网">
     <meta name="Description" content="做骨科手术就找布骨医生，权威专家主刀，为您提供疾病咨询、病床预约，手术预约，术后康复等健康服务，只要是骨骼问题，在这里轻松解决！">
     <meta http-equiv="cache-control" content="no-cache">
-    <!--<link rel="icon" href="/assets/images/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">-->
-    <!--<link rel="shortcut icon" href="/assets/images/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">-->
-    <!--<link rel="stylesheet" type="text/css" href="/assets/public/css/bootstrap.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="/assets/public/css/swiper-3.4.1.min.css">-->
-    <!--<link rel="stylesheet" href="/assets/public/css/common.css">-->
-    <!--<link rel="stylesheet" href="/css/index.css">-->
+    <link rel="icon" href="/assets/images/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/images/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
     <%- helpers.cssIncludeTag('main') %>
 </head>
 
 <body>
 <!--header-->
-<header class="container-fluid common-wrap header-wrap">
-    <div class="common-container header row">
-        <div class="col-sm-4 col-md-5 row header-left">
-            <a href="javascript:;" class="header-a-logo col-xs-8 col-sm-5" data-url="index.html">
-                <h1 class="header-h1-logo">
-                    <img class="img-responsive logo" src="/assets/images/bone.png" alt="布骨医生">
-                </h1>
-            </a>
-            <div class="col-xs-4 visible-xs-block">
-                <div class="header-menu center-block"></div>
-            </div>
-        </div>
-        <nav class="header-nav col-sm-8 col-md-7">
-            <div class="col-sm-7-1 nav-item nav-item-active" data-url="index.html">
-                <span class="nav-div-text">首页</span>
-            </div>
-            <div class="col-sm-7-1 nav-item" data-url="view/consultDoctor.html">
-                <span class="nav-div-text">咨询医生</span>
-            </div>
-            <div class="col-sm-7-1 nav-item" data-url="view/operationOrder.html">
-                <span class="nav-div-text">预约手术</span>
-            </div>
-            <div class="col-sm-7-1 nav-item" data-url="view/download.html">
-                <span class="nav-div-text">经典问答</span>
-            </div>
-            <div class="col-sm-7-1 nav-item" data-url="view/aboutUs.html">
-                <span class="nav-div-text">布骨健康</span>
-            </div>
-            <div class="col-sm-7-1 nav-item" data-url="view/aboutUs.html">
-                <span class="nav-div-text">疾病库</span>
-            </div>
-            <div class="col-sm-7-1 nav-item" data-url="view/aboutUs.html">
-                <span class="nav-div-text">健康商城</span>
-            </div>
-        </nav>
-    </div>
-
-</header>
+<%- include("./head.html") %>
 
 <!--main-->
 <div class="common-main container">
@@ -63,9 +22,11 @@
         <div class="col-sm-7 index-banner-left">
             <div class="swiper-container index-banner-swiper">
                 <div class="swiper-wrapper" id="indexSwiperWrapper">
-                    <!-- <div class="swiper-slide">
-                        <img src="" alt="">
-                    </div> -->
+                    <% banners.forEach(function(banner){ %>
+                    <div class="swiper-slide">
+                        <img src="<%= banner.resourceUrl %>" alt="">
+                    </div>
+                    <% }); %>
                 </div>
                 <div class="swiper-pagination index-swiper-pagination"></div>
             </div>
@@ -95,6 +56,90 @@
             </div>
         </div>
     </div>
+
+    <!--问医生-->
+    <div class="col-sm-7 margin-top-40">
+        <div class="row">
+            <div class="col-sm-12 col-md-6" >
+                <div class="row">
+                    <img src="/assets/images/question-head.png"  class="left image-head" alt="">
+                    <div class="left ques-des">
+                        <span class="question-btn">免费问医生</span>
+                        <p class="ques-des-p">免费向全国近2000家医院的几万名医生咨询</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 md-mt-40">
+                <div class="row">
+                    <img src="/assets/images/question-head.png"  class="left image-head" alt="">
+                    <div class="left ques-des">
+                        <span class="question-btn">快速预约手术</span>
+                        <p class="ques-des-p">全国近1000家三甲医院副主任医师以上名医主</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--more-->
+    <div class="col-sm-7 margin-top-40">
+        <div class="row tip">
+            <span class="tip-btn left"></span>
+            <div class="left padding-lr-10">
+                <h2>咨询医生</h2>
+                <p>汇聚全国权威医生,只要是骨健康问题，在这儿轻松解决!</p>
+            </div>
+            <span class="more">更多>></span>
+        </div>
+    </div>
+
+    <!--搜索卡片-->
+    <div class="col-sm-7 search-card">
+        <div class="consultDoctor-search center-block row">
+            <label class="consultDoctor-search-input-wrap" style="height: 40px">
+                <input id="consultDoctorSearch" class="consultDoctor-search-input" type="text" placeholder="搜索医院、医生、科室">
+            </label>
+        </div>
+        <div class="consultDoctor-search-button-wrap" style="margin: 0 15%;">
+            <div class="consultDoctor-search-button" style="height: 40px; margin-top: 25px">搜索</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="margin-top-40 col-sm-7">
+            <div class="row">
+                <% docs.forEach(function(doc){) %>
+                <div class="consultDoctor-recommend-doctor-item col-lg-6 pad-15">
+                    <div class="row pad-15">
+                        <div class="consultDoctor-recommend-doctor-head-wrap col-xs-3">
+                            <img class="consultDoctor-recommend-doctor-head img-responsive center-block"
+                                 src="<%= docs.docs %>">
+                            <div class="consultDoctor-recommend-doctor-appointment-button center-block">预约手术</div>
+                        </div>
+                        <div class="consultDoctor-recommend-doctor-info col-xs-9">
+                            <div class="row">
+                                <span class="consultDoctor-recommend-doctor-name"><%= doc.realName %></span>
+                                <span class="consultDoctor-recommend-doctor-info-title"><%= doc.title %></span>
+                            </div>
+                            <div class="consultDoctor-recommend-doctor-hospital-wrap row">
+                                <span class="consultDoctor-recommend-doctor-department"><%= doc.departmentName %></span>
+                                <span class="consultDoctor-recommend-doctor-hospital"><%= doc.hospitalName %></span>
+                            </div>
+                            <div class="consultDoctor-recommend-doctor-expert-wrap row">
+                                <span>擅长：</span>
+                                <span class="consultDoctor-recommend-doctor-expert">
+                                  <%= doc.expertDisease %>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+
+        </div>
+    </div>
+
     <!--  content  -->
     <div class="index-content row">
         <div class="index-article-list-wrap col-sm-7">
@@ -305,133 +350,8 @@
 </div>
 
 <!--footer-->
-<footer class="container-fluid common-wrap footer-wrap text-white text-center">
-    <div class="common-container container">
-        <div class="margin-top-40 font-size-base">
-            <span>布骨康复医疗中</span>
-            <span class="padding-lr-10">加入我们</span>
-        </div>
-        <div class="company">
+<%- include("./footer.html") %>
 
-            <div class="other-company margin-top-40 row">
-                <div class="col-xs-10 col-md-4 text-left md-mt-40">
-                    <img src="/assets/images/boneService.png" class="left">
-                    <div class="left footer-card padding-lr-10">
-                        <h3 class="font-size-base padd-bottom-4">如果您是用户</h3>
-                        <p>微信扫描二维码，立即向全国近2000家医院的数万名专业医生进行咨询。 您也可以在医院就诊后向您的医生索要 二维码添加。</p>
-                    </div>
-                </div>
-
-                <div class="col-xs-10 col-md-4 text-left md-mt-40">
-                    <img src="/assets/images/timg.png" class="left">
-                    <div class="left footer-card padding-lr-10">
-                        <h3 class="padd-bottom-4" style="height: 19px"> </h3>
-                        <p>您也可以下载“喜马拉雅”app，在线收听我们的语音类节目“布骨健康”，30多种常见疾病，专业科普文章每天发送</p>
-                    </div>
-                </div>
-
-                <div class="col-xs-10 col-md-4 text-left md-mt-40">
-                    <img src="/assets/images/boneService.png" class="left">
-                    <div class="left footer-card padding-lr-10">
-                        <h3 class="font-size-base padd-bottom-4">如果您是医生</h3>
-                        <p>微信扫描二维码，立即下载布骨医生APP，随时随地管理患者，为患者提供全程医疗服务，打造个人IP。</p>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="margin-top-40">
-                <div class="padding-2">上海灵蛇信息科技有限公司</div>
-                <div class="padding-2">
-                    <span>www.drbugu.com</span>
-                    <span class="padding-lr-10">Tel: 400 6882 120</span>
-                    <span>E-mail:</span>
-                </div>
-                <div class="padding-2">
-                    bugu@drbugu.com
-                </div>
-            </div>
-        </div>
-        <!--<div class="row footer-info">-->
-            <!--<div class="col-sm-7 row footer-attentionUs">-->
-                <!--<div class="row">-->
-                    <!--<div class="col-sm-6">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-6 footer-attention-item">-->
-                                <!--<div class="footer-attention-item-title"></div>-->
-                                <!--<img class="img-responsive footer-attention-item-pic" src="img/footer/boneSubscription.png"-->
-                                     <!--alt="布骨医生订阅号二维码" title="布骨医生订阅号二维码">-->
-                                <!--<div class="footer-attention-item-desc">布骨医生订阅号</div>-->
-                                <!--<div class="footer-attention-item-desc">(微信 医生专用)</div>-->
-                            <!--</div>-->
-
-                            <!--<div class="col-xs-6 footer-attention-item">-->
-                                <!--<div class="footer-attention-item-title"></div>-->
-                                <!--<img class="img-responsive footer-attention-item-pic" src="img/footer/boneService.png" alt="布骨健康服务号"-->
-                                     <!--title="布骨健康服务号">-->
-                                <!--<div class="footer-attention-item-desc">布骨健康服务号</div>-->
-                                <!--<div class="footer-attention-item-desc">(微信)</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                    <!--<div class="col-sm-6">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-6 footer-attention-item">-->
-                                <!--<div class="footer-attention-item-title"></div>-->
-                                <!--<img class="img-responsive footer-attention-item-pic" src="img/footer/boneSina.png" alt="布骨医生官方微博"-->
-                                     <!--title="布骨医生官方微博">-->
-                                <!--<div class="footer-attention-item-desc">布骨医生官微</div>-->
-                                <!--<div class="footer-attention-item-desc">(新浪微博)</div>-->
-                            <!--</div>-->
-
-                            <!--<div class="col-xs-6 footer-attention-item">-->
-                                <!--<div class="footer-attention-item-title"></div>-->
-                                <!--<img class="img-responsive footer-attention-item-pic" src="img/footer/timg.png" alt="布骨健康-喜马拉雅"-->
-                                     <!--title="布骨健康-喜马拉雅">-->
-                                <!--<div class="footer-attention-item-desc">布骨健康</div>-->
-                                <!--<div class="footer-attention-item-desc">(喜马拉雅)</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-            <!--</div>-->
-
-            <!--<div class="col-sm-4 col-sm-offset-1 footer-contactUs">-->
-                <!--<div class="footer-contactUs-title">联系我们</div>-->
-                <!--<div class="footer-contactUs-companyName">上海灵蛇信息科技有限公司</div>-->
-                <!--<div class="footer-contactUs-contactInfo">-->
-                    <!--<div class="footer-contactUs-contactInfo-icon icon-recruitment"></div>-->
-                    <!--招聘：vickie@drbugu.com-->
-                <!--</div>-->
-                <!--<div class="footer-contactUs-contactInfo">-->
-                    <!--<div class="footer-contactUs-contactInfo-icon icon-cooperation"></div>-->
-                    <!--合作：bugu@drbugu.com-->
-                <!--</div>-->
-                <!--<div class="footer-contactUs-contactInfo">-->
-                    <!--<div class="footer-contactUs-contactInfo-icon icon-address"></div>-->
-                    <!--地址：上海市新龙路1333弄万科七宝国际69号-->
-                <!--</div>-->
-                <!--<div class="footer-contactUs-contactInfo">-->
-                    <!--<div class="footer-contactUs-contactInfo-icon icon-phone"></div>-->
-                    <!--电话：<a href="tel:021-33555120">021-33555120</a><a class="margin-left-10" href="tel:400-6882-120">400 6882 120</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <div class="row footer-copyright">
-            copyright © 2016 bugu Doctor 沪ICP备 16027624号 沪公网安备 31011202002283号
-        </div>
-    </div>
-</footer>
 <%- helpers.jsIncludeTag('main') %>
-<!--<script src="../assets/public/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="../assets/public/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="../assets/public/js/swiper-3.4.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="../assets/config/env.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="../assets/public/js/common.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>-->
 </body>
 </html>

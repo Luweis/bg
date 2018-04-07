@@ -11,42 +11,13 @@
     <link rel="stylesheet" type="text/css" href="../assets/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/common/common.css">
     <link rel="stylesheet" href="../css/doctorHomePage.css">
+    <link rel="stylesheet" href="/assets/main.css">
 </head>
 
 <body>
+<div><%= doctorDetail %></div>
 <!--header-->
-<header class="container-fluid common-wrap header-wrap">
-    <div class="common-container header row">
-        <div class="col-sm-2 col-md-5 row header-left">
-            <a href="javascript:;" class="header-a-logo col-xs-8 col-sm-5" data-url="index.html">
-                <h1 class="header-h1-logo">
-                    <img class="img-responsive logo" src="./../img/header/bone.png" alt="布骨医生">
-                </h1>
-            </a>
-            <div class="col-xs-4 visible-xs-block">
-                <div class="header-menu center-block"></div>
-            </div>
-        </div>
-        <nav class="header-nav col-sm-10 col-md-7">
-            <div class="col-sm-2 col-sm-offset-2 nav-item" data-url="index.html">
-                <span class="nav-div-text">首页</span>
-            </div>
-            <div class="col-sm-2 nav-item" data-url="view/consultDoctor.html">
-                <span class="nav-div-text">咨询医生</span>
-            </div>
-            <div class="col-sm-2 nav-item" data-url="view/operationOrder.html">
-                <span class="nav-div-text">预约手术</span>
-            </div>
-            <div class="col-sm-2 nav-item" data-url="view/download.html">
-                <span class="nav-div-text">App下载</span>
-            </div>
-            <div class="col-sm-2 nav-item" data-url="view/aboutUs.html">
-                <span class="nav-div-text">关于我们</span>
-            </div>
-        </nav>
-    </div>
-
-</header>
+<%- include("./head.html") %>
 
 <!--main-->
 <div class="common-main container doctorHomePage-container">
@@ -104,81 +75,8 @@
 </div>
 
 <!--footer-->
-<footer class="container-fluid common-wrap footer-wrap">
-    <div class="common-container container">
-        <div class="row footer-info">
-            <div class="col-sm-7 row footer-attentionUs">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-xs-6 footer-attention-item">
-                                <div class="footer-attention-item-title"></div>
-                                <img class="img-responsive footer-attention-item-pic" src="./../img/footer/boneSubscription.png"
-                                     alt="布骨医生订阅号二维码" title="布骨医生订阅号二维码">
-                                <div class="footer-attention-item-desc">布骨医生订阅号</div>
-                                <div class="footer-attention-item-desc">(微信 医生专用)</div>
-                            </div>
+<%- include("./footer.html") %>
 
-                            <div class="col-xs-6 footer-attention-item">
-                                <div class="footer-attention-item-title"></div>
-                                <img class="img-responsive footer-attention-item-pic" src="./../img/footer/boneService.png" alt="布骨健康服务号"
-                                     title="布骨健康服务号">
-                                <div class="footer-attention-item-desc">布骨健康服务号</div>
-                                <div class="footer-attention-item-desc">(微信)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-xs-6 footer-attention-item">
-                                <div class="footer-attention-item-title"></div>
-                                <img class="img-responsive footer-attention-item-pic" src="./../img/footer/boneSina.png" alt="布骨医生官方微博"
-                                     title="布骨医生官方微博">
-                                <div class="footer-attention-item-desc">布骨医生官微</div>
-                                <div class="footer-attention-item-desc">(新浪微博)</div>
-                            </div>
-
-                            <div class="col-xs-6 footer-attention-item">
-                                <div class="footer-attention-item-title"></div>
-                                <img class="img-responsive footer-attention-item-pic" src="./../img/footer/timg.png" alt="布骨健康-喜马拉雅"
-                                     title="布骨健康-喜马拉雅">
-                                <div class="footer-attention-item-desc">布骨健康</div>
-                                <div class="footer-attention-item-desc">(喜马拉雅)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-sm-4 col-sm-offset-1 footer-contactUs">
-                <div class="footer-contactUs-title">联系我们</div>
-                <div class="footer-contactUs-companyName">上海灵蛇信息科技有限公司</div>
-                <div class="footer-contactUs-contactInfo">
-                    <div class="footer-contactUs-contactInfo-icon icon-recruitment"></div>
-                    招聘：vickie@drbugu.com
-                </div>
-                <div class="footer-contactUs-contactInfo">
-                    <div class="footer-contactUs-contactInfo-icon icon-cooperation"></div>
-                    合作：bugu@drbugu.com
-                </div>
-                <div class="footer-contactUs-contactInfo">
-                    <div class="footer-contactUs-contactInfo-icon icon-address"></div>
-                    地址：上海市新龙路1333弄万科七宝国际69号
-                </div>
-                <div class="footer-contactUs-contactInfo">
-                    <div class="footer-contactUs-contactInfo-icon icon-phone"></div>
-                    电话：<a href="tel:021-33555120">021-33555120</a><a class="margin-left-10" href="tel:400-6882-120">400 6882 120</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row footer-copyright">
-            copyright © 2016 bugu Doctor 沪ICP备 16027624号 沪公网安备 31011202002283号
-        </div>
-    </div>
-</footer>
 
 <script src="../assets/public/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../assets/public/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>

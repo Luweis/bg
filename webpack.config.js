@@ -11,7 +11,9 @@ const filename = env === 'development' ? '[name]' : '[name].[hash]';
 
 module.exports = {
   mode: env,
+  devtool: 'cheap-module-eval-source-map',
   entry: [
+    "webpack-hot-middleware/client?noInfo=true&reload=true",
     path.resolve('./assets/js/index'),
     'jquery/dist/jquery.min',
   ],
@@ -75,6 +77,7 @@ module.exports = {
   },
   plugins: [
     new ManifestPlugin({ publicPath }),
+    new webpack.HotModuleReplacementPlugin(),
     new CopyWebpackPlugin([
       { from: path.resolve('./assets/images/*.*'), to: './images/', flatten: true },
     ]),
@@ -86,5 +89,11 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
     }),
-  ]
+  ],
+  devServer: {
+    hot: true,
+    host: 'localhost',
+    port: 3200,
+    contentBase: path.resolve(__dirname, 'views')
+  }
 };

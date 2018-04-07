@@ -1,9 +1,13 @@
 import '../css/index.css';
 import '../public/css/bootstrap.min.css';
-import '../css/common/swiper-3.4.1.min.css'
+import '../css/common/swiper-3.4.1.min.css';
+import '../css/consultDoctor.css';
+import '../css/operationOrder.css';
+import '../css/searchDoctor.css';
 import '../css/common/common.css';
 
 import commonContainer from '../public/js/common';
+import 'jquery';
 import '../public/js/bootstrap.min';
 import '../public/js/swiper-3.4.1.jquery.min';
 import env from '../config/env';
@@ -46,7 +50,7 @@ function getBannerResource() {
             for (var i = 0; i < data.length; i++) {
                 eleStr += generateSwiperItem(data[i]);
             }
-            $('#indexSwiperWrapper').html(eleStr);
+            // $('#indexSwiperWrapper').html(eleStr);
             var indexSwiper = new Swiper('.index-banner-swiper', {
                 autoplay: 5000, //可选选项，自动滑动
                 pagination: '.index-swiper-pagination',
