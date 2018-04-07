@@ -121,7 +121,7 @@ a{
 .header-menu{
 	width:28px;
 	height:28px;
-	background:url(../../images/header/menu.png) no-repeat center center;
+	background:url(../../images/menu.png) no-repeat center center;
 	background-size:100% auto;
 	cursor:pointer;
 }
@@ -213,27 +213,27 @@ a{
 	width:9px;
 	height:11px;
 	margin-right:11px;
-	background:url(../../images/footer/zhaopin_icon.png) no-repeat left top;
+	background:url(../../images/zhaopin_icon.png) no-repeat left top;
 	background-size: cover;
 }
 .icon-cooperation{
 	width:12px;
 	height:10px;
-	background:url(../../images/footer/hezuo_icon.png) no-repeat left top;
+	background:url(../../images/hezuo_icon.png) no-repeat left top;
 	background-size: cover;
 }
 .icon-address{
 	width:9px;
 	height:11px;
 	margin-right:11px;
-	background:url(../../images/footer/dizhi_icon.png) no-repeat left top;
+	background:url(../../images/dizhi_icon.png) no-repeat left top;
 	background-size: cover;
 }
 .icon-phone{
 	width:11px;
 	height:9px;
 	margin-right:10px;
-	background:url(../../images/footer/dianhua_icon.png) no-repeat left top;
+	background:url(../../images/dianhua_icon.png) no-repeat left top;
 	background-size: cover;
 }
 .footer-copyright{

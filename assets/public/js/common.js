@@ -1,3 +1,4 @@
+import env from '../../config/env';
 var _hmt = _hmt || [];
 (function() {
     var hm = document.createElement("script");
@@ -35,7 +36,7 @@ $(function () {
     })
 });
 
-var commonContainer = {
+ const commonContainer = {
     http: function (param) { //{method:'',data:{},url:'',success:function,error:function}
         $.ajax({
             type: param.method ? param.method : 'POST',
@@ -106,3 +107,5 @@ var commonContainer = {
         $('#' + containerId).stop().animate({scrollTop: $("#"+id).offset().top}, 1000);
     }
 };
+
+ export default commonContainer;

@@ -53,6 +53,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|png)$/,
+        include: [path.resolve('./assets')],
         use: {
           loader: 'file-loader',
           options: {

@@ -1,12 +1,12 @@
 import '../css/index.css';
-import '../css/common/common.css';
 import '../public/css/bootstrap.min.css';
 import '../css/common/swiper-3.4.1.min.css'
+import '../css/common/common.css';
 
-import '../public/js/common';
+import commonContainer from '../public/js/common';
 import '../public/js/bootstrap.min';
 import '../public/js/swiper-3.4.1.jquery.min';
-import '../config/env';
+import env from '../config/env';
 
 
 var lastArticleCreateTimestamp = 0;
