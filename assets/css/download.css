@@ -1,0 +1,49 @@
+.download-container{
+    padding:0 60px 60px;
+}
+
+.download-show-img{
+    width:440px;
+    height:280px;
+    margin:0 auto;
+    background:#2e6da4;
+}
+
+.download-right-title{
+    font:28px/40px "微软雅黑";
+    color:#3e3e3e;
+}
+
+.download-right-intro{
+    font:14px/20px "微软雅黑";
+    color:#a6a6a6;
+    margin:24px 0 40px;
+}
+
+.download-right-qrCode-img{
+    max-width:120px;
+}
+
+.download-right-qrCode-desc{
+    display:block;
+    width:60%;
+    font:16px/34px "微软雅黑";
+    color:#ffffff;
+    border:0;
+    border-radius:4px;
+    margin:0 auto;
+    background:#db4754;
+}
+
+@media (max-width: 768px) {
+    .download-container{
+        min-height:0;
+        padding:64px 40px 40px;
+    }
+    .download-right-title{
+        margin-top:40px;
+    }
+    .download-right-qrCode-img{
+        max-width:100%;
+    }
+}

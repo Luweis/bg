@@ -1,0 +1,159 @@
+.consultDoctor-content{
+    padding-bottom:100px;
+}
+.consultDoctor-title {
+    font: 28px/40px "微软雅黑";
+    color: #3e3e3e;
+    margin-top: 67px;
+}
+
+.consultDoctor-title-small {
+    font: 14px/20px "微软雅黑";
+    color: #a6a6a6;
+    margin-top: 10px;
+}
+
+.consultDoctor-search {
+    width: 70%;
+    height: 40px;
+    margin-top: 48px;
+}
+
+.consultDoctor-search-input-wrap {
+    display:block;
+    height: 100%;
+    margin: 0 auto;
+    padding-left: 50px;
+    border:1px solid #e9e9e9;
+    border-radius:4px;
+    background: url(../images/consultDoctor/icon-search.png) no-repeat 20px center;
+    background-size: 20px 20px;
+}
+
+.consultDoctor-search-input {
+    display: block;
+    font: 16px/38px "微软雅黑";
+    color: #a6a6a6;
+    width: 100%;
+    height: 38px;
+    border: 0;
+    margin: 0;
+}
+
+::-moz-placeholder {
+    color: #a6a6a6;
+}
+
+::-webkit-input-placeholder {
+    color: #a6a6a6;
+}
+
+:-ms-input-placeholder {
+    color: #a6a6a6;
+}
+
+.consultDoctor-search-button{
+    height:100%;
+    font:18px/40px "微软雅黑";
+    color:#ffffff;
+    text-align: center;
+    border-radius:4px;
+    margin:0 20px;
+    background:#db4754;
+    cursor:pointer;
+}
+/*recommend-doctor*/
+.consultDoctor-recommend-doctor-wrap{
+    margin-top:100px;
+}
+.consultDoctor-recommend-doctor-title{
+    font:28px/40px "微软雅黑";
+    color:#3e3e3e;
+}
+.consultDoctor-recommend-doctor{
+    padding-bottom:34px;
+    margin-top:77px;
+    box-shadow: 0 0 5px 1px rgba(102,102,102,0.7);
+}
+.consultDoctor-recommend-doctor-item{
+    min-height:148px;
+    padding:34px 50px;
+}
+.consultDoctor-recommend-doctor-head-wrap{
+    padding:0;
+}
+.consultDoctor-recommend-doctor-head{
+    max-width:78px;
+}
+.consultDoctor-recommend-doctor-appointment-button{
+    max-width:78px;
+    height:25px;
+    font:14px/25px "微软雅黑";
+    color:#db4754;
+    text-align:center;
+    border:1px solid #db4754;
+    border-radius:4px;
+    margin-top:11px;
+    cursor:pointer;
+}
+.consultDoctor-recommend-doctor-info{
+    padding-left:45px;
+}
+.consultDoctor-recommend-doctor-name{
+    font:24px/33px "微软雅黑";
+    color:#3e3e3e;
+}
+.consultDoctor-recommend-doctor-item:hover{
+    box-shadow:0 0 4px 0 rgba(190,190,190,0.50);
+}
+.consultDoctor-recommend-doctor-item:hover .consultDoctor-recommend-doctor-name, .consultDoctor-recommend-doctor-item:hover .consultDoctor-recommend-doctor-info-title{
+    color:#db4754;
+}
+.consultDoctor-recommend-doctor-info-title{
+    font:16px/40px "微软雅黑";
+    margin-left:12px;
+}
+.consultDoctor-recommend-doctor-hospital-wrap{
+    font:16px/22px "微软雅黑";
+    color:#3e3e3e;
+    margin-top:4px;
+}
+.consultDoctor-recommend-doctor-hospital{
+    margin-left:20px;
+}
+.consultDoctor-recommend-doctor-expert-wrap{
+    font:14px/20px "微软雅黑";
+    color:#7f7f7f;
+    margin-top:15px;
+}
+.consultDoctor-recommend-doctor .swiper-slide, .consultDoctor-recommend-doctor .swiper-wrapper{
+    height:auto;
+}
+
+
+
+/*media*/
+@media (max-width: 768px) {
+    .consultDoctor-recommend-doctor .swiper-slide{
+        padding:0 20px;
+    }
+    .consultDoctor-search-button{
+        margin-top:20px;
+    }
+    .consultDoctor-title, .consultDoctor-recommend-doctor-title{
+        font-size:22px;
+    }
+    .consultDoctor-recommend-doctor{
+        margin-top:37px;
+    }
+    .consultDoctor-recommend-doctor-item{
+        padding-left:25px;
+        padding-right:25px;
+    }
+    .consultDoctor-recommend-doctor-head{
+        max-width:100%;
+    }
+}
+
+
+

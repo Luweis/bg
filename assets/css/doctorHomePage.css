@@ -1,0 +1,187 @@
+.margin-top-block {
+    margin-top: 80px;
+}
+
+.doctorHomePage-details-headImg {
+    display: block;
+    width: 92px;
+    height: 92px;
+}
+
+.doctorHomePage-details-button-operation {
+    width: 92px;
+    height: 28px;
+    margin: 14px 0;
+    text-align: center;
+    line-height: 28px;
+    color: #eeeeee;
+    background-color: #db4754;
+    border-radius: 5px;
+    cursor:pointer;
+}
+
+.doctorHomePage-details-title {
+    width: 100%;
+    height: 33px;
+}
+
+.doctorHomePage-details-name {
+    width: 22%;
+    height: 33px;
+    line-height: 33px;
+    font-size: 24px;
+    color: #3e3e3e;
+}
+
+.doctorHomePage-details-tech-title {
+    margin-top: 8px;
+    width: 78%;
+    line-height: 22px;
+    font-size: 16px;
+    color: #686868;
+}
+
+.doctorHomePage-details-introduce {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.doctorHomePage-details-dep {
+    width: 22%;
+    margin-top: 5px;
+    line-height: 22px;
+    font-size: 16px;
+    color: #686868;
+}
+
+.doctorHomePage-details-hos {
+    width: 78%;
+    margin-top: 5px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 16px;
+    color: #686868;
+}
+
+.doctorHomePage-details-consulting {
+    width: 22%;
+    margin-top: 5px;
+    line-height: 22px;
+    font-size: 16px;
+    color: #686868;
+}
+
+.doctorHomePage-details-consulting-content {
+    width: 78%;
+    margin-top: 5px;
+    line-height: 22px;
+    font-size: 16px;
+    color: #686868;
+}
+
+.doctorHomePage-qrcode-wrap{
+    display: none;
+}
+
+.doctorHomePage-details-qrcode-desc {
+    font-size: 12px;
+    color: #db4754;
+    width: 92px;
+    margin: 14px auto;
+    text-align: center;
+    line-height: 28px;
+}
+
+.text-introduce {
+    height: 33px;
+    margin-top: 40px;
+    font-size: 24px;
+    line-height: 33px;
+    color: #3e3e3e;
+}
+
+.text-introduce-content {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 28px;
+    color: #888888;
+    text-align: justify;
+}
+ a:hover{
+     color: red;
+ }
+
+.related-doctor {
+    width: 100%;
+    line-height: 25px;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.doctorHomePage-container{
+    padding-bottom:100px;
+}
+
+.doctorHomePage-related-doctor-list {
+    width: 100%;
+    margin:20px auto;
+    cursor:pointer;
+}
+
+.doctorHomePage-related-doctor-list:hover{
+    color:#db4754!important;
+}
+
+.doctorHomePage-related-doctor-list-img {
+    float: left;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+.doctorHomePage-list-doctor-name {
+    margin-top: 3px;
+    line-height: 16px;
+    font-size: 16px;
+    color: #686868;
+}
+
+.doctorHomePage-list-doctor-title {
+    margin-left: 5px;
+    margin-top: 5px;
+    line-height: 16px;
+    font-size: 14px;
+    color: #686868;
+}
+
+.doctorHomePage-list-doctor-dep {
+    margin-left: 5px;
+    margin-top: 10px;
+    line-height: 16px;
+    font-size: 14px;
+    color: #686868;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.margin-left-5{
+    margin-left:5px;
+}
+
+/*media*/
+@media (max-width: 768px) {
+    .related-doctor{
+        margin-top:20px;
+    }
+    .doctorHomePage-details-headImg {
+        margin:10px auto;
+    }
+    .doctorHomePage-padding-xs-0{
+        padding:0;
+    }
+    .doctorHomePage-details-button-operation {
+        margin: 14px auto;
+    }
+}

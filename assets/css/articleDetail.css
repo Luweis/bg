@@ -1,0 +1,142 @@
+.articleDetail-container {
+    padding-bottom: 270px;
+}
+
+.articleDetail-row {
+    margin-top: 24px;
+}
+
+.articleDetail-label {
+    float: left;
+    line-height: 28px;
+    border: 1px solid #db4754;
+    border-radius: 100px;
+    /*width: 78px;*/
+    height: 28px;
+    font-size: 14px;
+    color: #db4754;
+    text-align: center;
+    padding:0 20px;
+    margin:0 10px;
+}
+
+.articleDetail-title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 27px;
+    color: #3e3e3e;
+    text-align: justify;
+}
+
+.articleDetail-introduce {
+    font-size: 14px;
+    color: #7f7f7f;
+    letter-spacing: 0;
+    text-align: justify;
+    margin-bottom: 60px;
+}
+
+.articleDetail-line {
+    background: #fafafa;
+    height: 4px;
+}
+
+.articleDetail-text {
+    margin-top: 41px;
+    font-size: 17px;
+    color: #333333;
+    text-align: justify;
+}
+
+.articleDetail-doctor-wrap{
+    display:none;
+}
+
+.articleDetail-doctor {
+    display:none;
+    border: 1px solid #d2d2d2;
+    /*height: 519px;*/
+    margin-top: 61px;
+}
+
+.articleDetail-doctor-img-wrap {
+    width: 70px;
+    height: 70px;
+    margin-left: 25px;
+    margin-top: -30px;
+}
+
+.articleDetail-doctor-img {
+    border: 1px solid #d2d2d2;
+    border-radius: 100%;
+}
+
+.articleDetail-doctor-massage {
+    margin: 30px 25px 0;
+}
+
+.articleDetail-doctor-name {
+    font-size: 16px;
+    color: #4e4141;
+    text-align: justify;
+}
+
+.articleDetail-doctor-title {
+    font-size: 14px;
+    color: #4e4141;
+    text-align: justify;
+}
+
+.articleDetail-doctor-hospital {
+    font-size: 14px;
+    color: #7f7f7f;
+    text-align: justify;
+}
+
+.articleDetail-doctor-QRCode-wrap {
+    width: 88px;
+    margin-top: 23px;
+    text-align: center;
+    font-size: 12px;
+    color: #383838;
+}
+
+.articleDetail-doctor-excel-title {
+    margin-top: 40px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #333333;
+    text-align: justify;
+}
+
+.articleDetail-doctor-excel {
+    font-size: 14px;
+    color: #7f7f7f;
+    text-align: justify;
+}
+
+.articleDetail-doctor-more {
+    margin: 40px auto;
+}
+.articleDetail-doctor-more a {
+    font-size: 14px;
+    color: #db4754;
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    .articleDetail-container {
+        padding-bottom: 30px;
+    }
+
+    .articleDetail-text {
+        margin-top: 21px;
+        margin-bottom: 20px;
+    }
+    .articleDetail-title{
+        margin:10px 0 20px;
+    }
+    .articleDetail-introduce{
+        margin-bottom:20px;
+    }
+}

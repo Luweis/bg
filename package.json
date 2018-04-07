@@ -1,0 +1,31 @@
+{
+  "scripts": {
+    "start": "NODE_ENV=development nodemon ./server.js",
+    "build": "rm -rf ./public/assets/* && NODE_ENV=production webpack --progress"
+  },
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jquery": "^3.3.1",
+    "koa": "^2.5.0",
+    "koa-body": "^2.5.0",
+    "koa-ejs": "^4.1.1",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "babel-loader": "^8.0.0-beta",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "koa-webpack": "^3.0.2",
+    "mini-css-extract-plugin": "^0.2.0",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.17.2",
+    "sass-loader": "^6.0.7",
+    "webpack": "^4.1.1",
+    "file-loader": "^1.1.11",
+    "webpack-cli": "^2.0.12",
+    "webpack-manifest-plugin": "^2.0.0-rc.2"
+  }
+}

@@ -1,0 +1,23 @@
+.aboutUs-container{
+    padding:67px 60px 100px;
+}
+
+.aboutUs-title{
+    font:28px/28px "微软雅黑";
+    color:#3e3e3e;
+}
+.aboutUs-text{
+    font:17px/30px "微软雅黑";
+    color:#686868;
+    margin-top:40px;
+}
+.aboutUs-text p{
+    margin:10px 0;
+}
+
+/*media*/
+@media (max-width: 768px) {
+    .aboutUs-container{
+        padding:67px 30px 100px;
+    }
+}
