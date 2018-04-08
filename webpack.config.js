@@ -13,7 +13,6 @@ module.exports = {
   mode: env,
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    "webpack-hot-middleware/client?noInfo=true&reload=true",
     path.resolve('./assets/js/index'),
     'jquery/dist/jquery.min',
   ],
@@ -46,7 +45,6 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        include: [path.resolve('./assets')],
         use: [
           MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { minimize: env === 'production' } },

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "NODE_ENV=development nodemon ./server.js",
-    "test": "webpack-dev-server --progress --compress",
+    "pro": "nodemon ./server.js",
     "build": "rm -rf ./public/assets/* && NODE_ENV=production webpack --progress"
   },
   "dependencies": {
@@ -11,7 +11,9 @@
     "koa": "^2.5.0",
     "koa-body": "^2.5.0",
     "koa-ejs": "^4.1.1",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "babel-polyfill": "^6.26.0",
+    "swiper": "^4.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.42",

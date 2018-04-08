@@ -270,6 +270,7 @@ a{
 	}
 	.nav-item{
 		margin:15px 0;
+		color: black;
 	}
 	.nav-item-active .nav-div-text{
 		padding-bottom:5px;

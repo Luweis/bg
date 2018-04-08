@@ -4,6 +4,7 @@ const render = require('koa-ejs');
 const koaWebpack = require('koa-webpack');
 const webpackConfig = require('./webpack.config.js');
 const homeRouter = require('./routes/home');
+require('babel-polyfill');
 
 const app = new Koa();
 

@@ -1,52 +1,115 @@
 const router = require('koa-router')();
-const koaBody = require('koa-body')();
-const fetch = require('isomorphic-fetch');
-const helpers = require('../helpers');
+const process = require('process');
+const http = require('../assets/utils');
+const utils = require('../utils');
+
+function activeItem(index, current) {
+  index !== current? 'test': '';
+}
+
+function check(data, tip='暂无' ) {
+ return data? data : tip;
+}
+
+const currentEnv = process.env.NODE_ENV === 'development'? 'pro' : 'dev'
+
+const env = {
+  dev: {
+    controllerBaseUrl: 'http://wechat.test.drbugu.com/test/drbugu/mainSite/door/api/',
+    siteBaseUrl: 'http://wechat.test.drbugu.com/'
+  },
+  pro: {
+    controllerBaseUrl: 'https://www.drbugu.com/drbugu/mainSite/door/api/',
+    siteBaseUrl: 'https://www.drbugu.com/'
+  }
+}
+
+const baseApi = env[currentEnv].controllerBaseUrl;
+
 
 //主页
-router.get('/',(ctx) => {
- return fetch('https://www.drbugu.com/drbugu/mainSite/door/api/index/getBannerResources', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then(response => response.json()).then(banners => {
+router.get('/', async (ctx) => {
 
-   return fetch('https://www.drbugu.com/drbugu/mainSite/door/api/consultDoctor/getRecommendDoctor',{
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/json',
-     },
-   }).then(response => response.json()).then(docs => {
+ const banners = await http({
+   url: `${baseApi}index/getBannerResources`
+ });
 
-     return ctx.render('consultDoctor', { helpers, banners:banners['resultBodyObject'], docs: docs['resultBodyObject']['row'] });
-   })
+  const docs = await http({
+    url: `${baseApi}consultDoctor/getRecommendDoctor`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 20
+      })
+    }
   });
-
+  console.log(docs['resultBodyObject']['rows']);
+ return ctx.render('index', {
+   helpers: utils,
+   banners: banners['resultBodyObject'],
+   docs: docs['resultBodyObject']['rows']
+ });
 });
 
 //医生列表页面
-router.get('/doctor', (ctx) => {
-  return ctx.render('consultDoctor')
+router.get('/doctor', async (ctx) => {
+  const data = await http({
+    url: `${baseApi}consultDoctor/getRecommendDoctor`,
+    config:{
+      body: JSON.stringify({
+        pageSize: 30
+      })
+    }
+  });
+
+  return ctx.render('consultDoctor', {
+    helpers: utils,
+    doctors: data['resultBodyObject']['rows'],
+    current: 1,
+    activeItem
+  })
 });
 
+// 医生搜索页面结果页面
+ router.get('/doctor/search', async (ctx) =>{
+   const params = ctx.query || {};
+   const doctors = await http({
+     url: `${baseApi}/SearchDoctorController/queryDoctor`,
+     config:{
+       body: JSON.stringify({
+         doctorTypeList:[2,3],
+         pageIndex: params.page || 1,
+         pageSize: 10,
+         query: params.query
+       })
+     }
+   });
+
+   console.log(doctors);
+   return ctx.render('searchDoctor', {
+     doctors: doctors['resultBodyObject']['rows'],
+     total: doctors['resultBodyObject'].total
+   });
+ });
+
 //医生详情页
-router.get('/doctor/:id', koaBody,(ctx) => {
-  const id = ctx.url.toString().split('/')[3];
+router.get('/doctor/:id',async (ctx) => {
+  const id = ctx.url.split('/')[2];
 
-  return fetch('https://www.drbugu.com/drbugu/mainSite/door/api/doctorHomePageController/initDoctorData',{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      "docId": id
-    })
-  }).then(response => response.json()).then((doc) =>{
-    console.log(doc);
-    return ctx.render('doctorHomePage', { doctorDetail: doc.doctorDetail, relatedDocotrs: doc.relatedDocotrs });
-  })
+  const doc = await http({
+    url: `${baseApi}doctorHomePageController/initDoctorData`,
+    config: {
+      body: JSON.stringify({
+        docId: id
+      })
+    }
+  });
 
+  console.log(doc);
+  return ctx.render('doctorHomePage', {
+    doctorDetail: doc['resultBodyObject']['doctorDetail'],
+    relatedDocotrs: doc['resultBodyObject']['relatedDocotrs'],
+    check
+  });
 });
 
 
@@ -55,51 +118,5 @@ router.get('/doctor-yy', (ctx) => {
   return ctx.render('operationOrder')
 });
 
-
-// router.post('/confirm_phone', koaBody, (ctx) => {
-//   return fetch('https://www.ikcrm.com/supplier_applies/confirm_phone.json', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       supplier_apply: {
-//         phone: ctx.request.body.phone,
-//       }
-//     }),
-//   }).then(response => response.json()).then(stories => {
-//     ctx.body = stories;
-//   });
-// });
-//
-// router.post('/verify_code', koaBody, (ctx) => {
-//   return fetch('https://www.ikcrm.com/api/supplier_applies/verify_want_otp_code', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       supplier_apply: {
-//         phone: ctx.request.body.phone,
-//         want_otp_code: ctx.request.body.code,
-//       }
-//     }),
-//   }).then(response => response.json()).then(stories => {
-//     ctx.body = stories;
-//   });
-// });
-//
-// router.post('/create_lead', koaBody, (ctx) => {
-//   return fetch('http://cms.ikcrm.com/api/soukebao/create_lead', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/x-www-form-urlencoded',
-//       'ACCESS-TOKEN': '856eb07524822909d0f9712d3a3a80fa3697cd4c2400d985934618d681b9f6e0485f134f0f37e0c2f442222d18d9e343884da22c8b3a410479899de4fa6f7479',
-//     },
-//     body: `phone=${ctx.request.body.phone}&source=15&product_type=10&request_ip=${ctx.request.ip}`,
-//   }).then(response => response.json()).then(stories => {
-//     ctx.body = stories;
-//   });
-// });
 
 module.exports = router;

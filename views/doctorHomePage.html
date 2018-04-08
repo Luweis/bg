@@ -1,21 +1,7 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>医生主页</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="Keywords" content="三甲医院手术预约_专家_主任医生手术_床位预约_布谷鸟_布骨医生网">
-    <meta name="Description" content="做骨科手术就找布骨医生，权威专家主刀，为您提供疾病咨询、病床预约，手术预约，术后康复等健康服务，只要是骨骼问题，在这里轻松解决！">
-    <meta http-equiv="cache-control" content="no-cache">
-    <link rel="icon" href="../img/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="../img/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="../assets/public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/common/common.css">
-    <link rel="stylesheet" href="../css/doctorHomePage.css">
-    <link rel="stylesheet" href="/assets/main.css">
-</head>
+<%- include('./link.html') %>
 
 <body>
-<div><%= doctorDetail %></div>
 <!--header-->
 <%- include("./head.html") %>
 
@@ -26,62 +12,88 @@
     <div class="col-sm-7">
         <div class="row">
             <div class="col-sm-3">
-                <img src="" class="doctorHomePage-details-headImg" id="doc_iconUrl"/>
+                <img src="<%= doctorDetail.iconUrl %>" class="doctorHomePage-details-headImg" id="doc_iconUrl"/>
             </div>
             <div class="col-sm-7">
                 <div class="doctorHomePage-details-title">
-                    <span class="doctorHomePage-details-name" id="docName"></span>
-                    <span class="doctorHomePage-details-tech-title margin-left-5" id="docTitle">主任医师</span>
+                    <span class="doctorHomePage-details-name" id="docName"><%= doctorDetail.realName %></span>
+                    <span class="doctorHomePage-details-tech-title margin-left-5" id="docTitle"><%= doctorDetail.title %></span>
                 </div>
                 <div class="doctorHomePage-details-introduce">
-                    <span class="doctorHomePage-details-dep" id="doc_departmentName"></span>
-                    <span class="doctorHomePage-details-hos margin-left-5" id="doc_hospitalName"></span>
+                    <span class="doctorHomePage-details-dep" id="doc_departmentName">
+                           <%= check(doctorDetail.departmentName) %>
+                    </span>
+                    <span class="doctorHomePage-details-hos margin-left-5" id="doc_hospitalName">
+                           <%= check(doctorDetail.hospitalName) %>
+                    </span>
                 </div>
                 <div class="doctorHomePage-details-introduce">
                     <span class="doctorHomePage-details-consulting">门诊时间:</span>
-                    <span class="doctorHomePage-details-consulting-content margin-left-5" id="doc_hospitalSchedule"></span>
+                    <span class="doctorHomePage-details-consulting-content margin-left-5" id="doc_hospitalSchedule">
+                        <%= check(doctorDetail.hospitalSchedule) %>
+                    </span>
                 </div>
 
                 <div class="doctorHomePage-details-introduce">
                     <span class="doctorHomePage-details-consulting">网上应诊:</span>
                     <span class="doctorHomePage-details-consulting-content margin-left-5" id="doc_netSchedule">
+                          <%= check(doctorDetail.netSchedule) %>
                     </span>
                 </div>
             </div>
-            <div class="col-sm-2 doctorHomePage-qrcode-wrap">
-                <img src="./../img/footer/boneService.png" class="doctorHomePage-details-headImg"
+            <% if (doctorDetail.doctorType === "咨询医生" && doctorDetail.binaryCodeUrl){ %>
+            <div class="col-sm-2 doctorHomePage-qrcode-wrap" >
+                <img src="/assets/images/boneService.png" class="doctorHomePage-details-headImg"
                      id="doc_binaryCodeUrl">
                 <div class="doctorHomePage-details-qrcode-desc">微信扫描二维码立即咨询</div>
                 <div></div>
             </div>
+            <% } %>
         </div>
         <div class="row">
             <div class="col-sm-12 text-introduce">简介</div>
-            <div class="col-sm-12 text-introduce-content" id="doc_desc"></div>
+            <div class="col-sm-12 text-introduce-content" id="doc_desc">
+                <%= check(doctorDetail.desc) %>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-12 text-introduce">擅长</div>
-            <div class="col-sm-12 text-introduce-content" id="doc_expertDisease"></div>
+            <div class="col-sm-12 text-introduce-content" id="doc_expertDisease">
+                <%= check(doctorDetail.expertDisease) %>
+            </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 text-introduce">文章</div>
+            <!--<div class="col-sm-12 text-introduce">文章</div>-->
+            <!--<a href='articleDetail.html?id=" + item.id + "' class='col-sm-12 text-introduce-content'>.《" + item.title + "》</a>-->
         </div>
     </div>
 
     <div class="col-sm-5">
         <div class="col-sm-11 col-sm-offset-3 related-doctor doctorHomePage-padding-xs-0">相关医生</div>
+        <% relatedDocotrs.forEach(function(doc){ %>
+        <div class="col-sm-9 col-sm-offset-3 doctorHomePage-padding-xs-0 " data-id="<%= doc.id %>">
+           <div><%= doc.id %></div>
+            <a href="./<%= encodeURIComponent(doc.id) %>">
+                <div class="doctorHomePage-related-doctor-list clearfix">
+                    <img src="<%= doc.iconUrl %>" class="doctorHomePage-related-doctor-list-img">
+                    <div class="col-xs-9">
+                        <div class="row margin-left-5">
+                            <span class="doctorHomePage-list-doctor-name"><%= doc.realName %></span>
+                            <span class="doctorHomePage-list-doctor-title"><%= doc.title %></span>
+                        </div>
+                        <div class="row doctorHomePage-list-doctor-dep">
+                            <span><%= doc.departmentName %></span>
+                            <span class="margin-left-5"><%= doc.hospitalName %></span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <% }) %>
     </div>
     <div id="orderForm"></div>
 </div>
 
-<!--footer-->
 <%- include("./footer.html") %>
-
-
-<script src="../assets/public/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="../assets/public/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="../assets/config/env.js" type="text/javascript" charset="utf-8"></script>
-<script src="../assets/public/js/common.js" type="text/javascript" charset="utf-8"></script>
-<script src=".././js/doctorHomePage.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

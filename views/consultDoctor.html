@@ -1,20 +1,10 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>在线咨询医生，快速预约手术，骨健康问题就找布骨医生</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="Keywords" content="三甲医院手术预约_专家_主任医生手术_床位预约_布谷鸟_布骨医生网">
-    <meta name="Description" content="做骨科手术就找布骨医生，权威专家主刀，为您提供疾病咨询、病床预约，手术预约，术后康复等健康服务，只要是骨骼问题，在这里轻松解决！">
-    <meta http-equiv="cache-control" content="no-cache">
-    <link rel="icon" href="/assets/images/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/assets/images/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/assets/main.css">
-</head>
+
+<%- include('./link.html') %>
 
 <body>
 <!--header-->
 <%- include("./head.html") %>
-
 <!--main-->
 <div class="common-main container consultDoctor-content">
     <div class="consultDoctor-title row text-center">查找您要咨询的医生</div>
@@ -31,81 +21,34 @@
         <div class="consultDoctor-recommend-doctor-title row text-center">
             汇聚骨健康领域的专业医生
         </div>
-        <div class="consultDoctor-recommend-doctor swiper-container container">
-
+        <div class="swiper-container consultDoctor-recommend-doctor container">
             <div class="swiper-wrapper" id="consultDoctorSwiperWrapper">
-                <!--<div class="swiper-slide">
-                    <div class="consultDoctor-recommend-doctor-row row">
 
-                        <div class="consultDoctor-recommend-doctor-item col-sm-6">
-                            <div class="row">
-                                <div class="consultDoctor-recommend-doctor-head-wrap col-xs-3">
-                                    <img class="consultDoctor-recommend-doctor-head img-responsive center-block"
-                                         src="http://cdn.drbugu.com/8c3c9ddf-4be9-4328-b645-80f3bcb4bdda.jpg">
-                                    <div class="consultDoctor-recommend-doctor-appointment-button center-block">预约手术</div>
-                                </div>
-                                <div class="consultDoctor-recommend-doctor-info col-xs-9">
-                                    <div class="row">
-                                        <span class="consultDoctor-recommend-doctor-name">李建国</span>
-                                        <span class="consultDoctor-recommend-doctor-info-title">主任医师</span>
-                                    </div>
-                                    <div class="consultDoctor-recommend-doctor-hospital-wrap row">
-                                        <span class="consultDoctor-recommend-doctor-department">骨科</span>
-                                        <span class="consultDoctor-recommend-doctor-hospital">交通大学附属医院上海第六人民医院</span>
-                                    </div>
-                                    <div class="consultDoctor-recommend-doctor-expert-wrap row">
-                                        <span>擅长：</span>
-                                        <span class="consultDoctor-recommend-doctor-expert">
-                                    用户体验设计首先应该是理性的，其次才是感性的人只要你的反感能够解决用户的实际问题，又能带给我他好…
-                                </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="consultDoctor-recommend-doctor-item col-sm-6">
-                            <div class="row">
-                                <div class="consultDoctor-recommend-doctor-head-wrap col-xs-3">
-                                    <img class="consultDoctor-recommend-doctor-head img-responsive center-block"
-                                         src="http://cdn.drbugu.com/8c3c9ddf-4be9-4328-b645-80f3bcb4bdda.jpg">
-                                </div>
-                                <div class="consultDoctor-recommend-doctor-info col-xs-9">
-                                    <div class="row">
-                                        <span class="consultDoctor-recommend-doctor-name">李建国</span>
-                                        <span class="consultDoctor-recommend-doctor-info-title">主任医师</span>
-                                    </div>
-                                    <div class="consultDoctor-recommend-doctor-hospital-wrap row">
-                                        <span class="consultDoctor-recommend-doctor-department">骨科</span>
-                                        <span class="consultDoctor-recommend-doctor-hospital">交通大学附属医院上海第六人民医院</span>
-                                    </div>
-                                    <div class="consultDoctor-recommend-doctor-expert-wrap row">
-                                        <span>擅长：</span>
-                                        <span class="consultDoctor-recommend-doctor-expert">
-                                    用户体验设计首先应该是理性的，其次才是感性的人只要你的反感能够解决用户的实际问题，又能带给我他好…
-                                </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>-->
             </div>
             <div class="swiper-pagination consultDoctor-swiper-pagination"></div>
-
+        </div>
+        <div style="display: none">
+            <% doctors.forEach(function(doctor){ %>
+            <div>
+                <div>
+                    <span><%= doctor.realName %></span>
+                </div>
+                <div>
+                    <span><%= doctor.hospitalName %></span>
+                </div>
+                <p>
+                    <%= doctor.departmentName %>
+                </p>
+                <div>
+                    <%= doctor.title %>
+                </div>
+            </div>
+            <% }) %>
         </div>
     </div>
 </div>
 
 <!--footer-->
 <%- include("./footer.html") %>
-
-
-<!--<script src="../assets/public/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="../assets/public/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="../assets/public/js/swiper-3.4.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="../assets/config/env.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="../assets/public/js/common.js" type="text/javascript" charset="utf-8"></script>-->
-<script src="./../js/consultDoctor.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

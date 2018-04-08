@@ -1,16 +1,18 @@
 import '../css/index.css';
 import '../public/css/bootstrap.min.css';
-import '../css/common/swiper-3.4.1.min.css';
 import '../css/consultDoctor.css';
 import '../css/operationOrder.css';
 import '../css/searchDoctor.css';
+import '../css/doctorHomePage.css'
 import '../css/common/common.css';
+import Swiper from 'swiper';
+import '../../node_modules/swiper/dist/css/swiper.css';
 
 import commonContainer from '../public/js/common';
-import 'jquery';
 import '../public/js/bootstrap.min';
-import '../public/js/swiper-3.4.1.jquery.min';
 import env from '../config/env';
+import './consultDoctor';
+import './searchDoctor'
 
 
 var lastArticleCreateTimestamp = 0;
@@ -51,11 +53,11 @@ function getBannerResource() {
                 eleStr += generateSwiperItem(data[i]);
             }
             // $('#indexSwiperWrapper').html(eleStr);
-            var indexSwiper = new Swiper('.index-banner-swiper', {
-                autoplay: 5000, //可选选项，自动滑动
-                pagination: '.index-swiper-pagination',
-                paginationClickable: true,
-            });
+            // var indexSwiper = new Swiper('.index-banner-swiper', {
+            //     autoplay: 5000, //可选选项，自动滑动
+            //     pagination: '.index-swiper-pagination',
+            //     paginationClickable: true,
+            // });
         }
     })
 }
