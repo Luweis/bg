@@ -23,7 +23,7 @@
             <!--医生列表页-->
             <% doctors.forEach(function(doctor){%>
             <div class="searchDoctor-doctor-item col-sm-6">
-                <div class="row">
+                <a class="row" href="./<%= doctor.id %>">
                     <div class="searchDoctor-doctor-head-wrap col-xs-3 center-block">
                         <img class="searchDoctor-doctor-head img-responsive" src="<%= doctor.iconUrl %>">
                     </div>
@@ -37,7 +37,7 @@
                             <span class="searchDoctor-doctor-hospitalName"><%= doctor.hospitalName%></span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <% }) %>
         </div>
@@ -47,7 +47,7 @@
         <div class="searchDoctor-pagination">
             <div class="searchDoctor-pagination-button searchDoctor-pagination-button-prev">上一页</div>
             <div class="searchDoctor-pagination-pageNumberList">
-                <span class="pageNumber-active">12</span>
+                <span class="pageNumber-active"></span>
             </div>
             <div class="searchDoctor-pagination-button searchDoctor-pagination-button-next">下一页</div>
         </div>
