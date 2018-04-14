@@ -32,7 +32,7 @@ function getAppointmentRecommendDoctor() {
         return;
       }
       appendDoctorList(doctorList);
-     const s = new Swiper('.swiper-container', {
+      new Swiper('.swiper-container', {
         pagination: {
           el: '.swiper-pagination',
         },

@@ -1,23 +1,100 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>手术预约</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="Keywords" content="三甲医院手术预约_专家_主任医生手术_床位预约_布谷鸟_布骨医生网">
-    <meta name="Description" content="做骨科手术就找布骨医生，权威专家主刀，为您提供疾病咨询、病床预约，手术预约，术后康复等健康服务，只要是骨骼问题，在这里轻松解决！">
-    <meta http-equiv="cache-control" content="no-cache">
-    <link rel="icon" href="../img/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="../img/bone_favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="../assets/public/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/common/swiper-3.4.1.min.css">
-    <link rel="stylesheet" href="../assets/css/common/common.css">
-    <link rel="stylesheet" href="./../css/operationOrder.css">
-    <link rel="stylesheet" href="/assets/main.css">
-</head>
-
+<%- include("./link.html") %>
 <body>
 <!--header-->
 <%- include('./head.html') %>
+<style>
+    .row-margin {
+        margin: 10px 10px;
+    }
+
+    .operationOrder-form-label {
+        height: 28px;
+        text-align: left;
+        margin-left: 50px;
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .operationOrder-form-label-img {
+        height: 28px;
+        margin-left: 50px;
+        text-align: left;
+        font-size: 16px;
+        line-height: 28px;
+        background: url("/assets/images/bitian@3x.png") no-repeat left center;
+        background-size: 10px 10px;
+    }
+
+    .qrcode-desc {
+        font-size: 12px;
+        color: #db4754;
+        text-align: center;
+        line-height: 28px;
+    }
+
+    .qrcode-img {
+        display: block;
+        margin: 0 auto;
+        width: 92px;
+        height: 92px;
+    }
+
+    .img-preview {
+        display: block;
+        width: 80px;
+        height: 80px;
+    }
+
+    .img-preview-div {
+        float: left;
+        width: 80px;
+        height: 80px;
+        position: relative;
+        margin: 10px 10px;
+    }
+
+    .uploadButton {
+        margin: 0 40px;
+    }
+
+    .no-empty {
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 30px;
+        color: red;
+        right: -25px;
+        top: 10px;
+    }
+
+    .operationOrder-form-warn{
+        border-color:#db4754;
+    }
+
+    @media (max-width: 991px) {
+        .operationOrder-form-label-img, .operationOrder-form-label {
+            margin-left: 30px;
+        }
+
+        .operationOrderForm-btn-wrap {
+            width: 100%;
+            padding-top: 10px;
+        }
+
+        .uploadButton {
+            display: block;
+            margin: 10px auto;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .operationOrder-form-label-img, .operationOrder-form-label {
+            margin-left: 10px;
+            font-size: 14px;
+        }
+    }
+</style>
 
 <!--main-->
 <div class="common-main container operationOrder-content">
@@ -61,16 +138,217 @@
             <p>患者在线或电话预约手术——了解患者病情——专家面诊——预约病床——本地或异地手术</p>
         </div>
     </div>
-    <div id="operationOrderForm"></div>
+
+    <div id="operationOrderForm">
+        <style>
+            .row-margin {
+                margin: 10px 10px;
+            }
+
+            .operationOrder-form-label {
+                height: 28px;
+                text-align: left;
+                margin-left: 50px;
+                font-size: 16px;
+                line-height: 28px;
+            }
+
+            .operationOrder-form-label-img {
+                height: 28px;
+                margin-left: 50px;
+                text-align: left;
+                font-size: 16px;
+                line-height: 28px;
+                background: url("/assets/images/bitian@3x.png") no-repeat left center;
+                background-size: 10px 10px;
+            }
+
+            .qrcode-desc {
+                font-size: 12px;
+                color: #db4754;
+                text-align: center;
+                line-height: 28px;
+            }
+
+            .qrcode-img {
+                display: block;
+                margin: 0 auto;
+                width: 92px;
+                height: 92px;
+            }
+
+            .img-preview {
+                display: block;
+                width: 80px;
+                height: 80px;
+            }
+
+            .img-preview-div {
+                float: left;
+                width: 80px;
+                height: 80px;
+                position: relative;
+                margin: 10px 10px;
+            }
+
+            .uploadButton {
+                margin: 0 40px;
+            }
+
+            .no-empty {
+                position: absolute;
+                display: block;
+                width: 30px;
+                height: 30px;
+                color: red;
+                right: -25px;
+                top: 10px;
+            }
+
+            .operationOrder-form-warn{
+                border-color:#db4754;
+            }
+
+            @media (max-width: 991px) {
+                .operationOrder-form-label-img, .operationOrder-form-label {
+                    margin-left: 30px;
+                }
+
+                .operationOrderForm-btn-wrap {
+                    width: 100%;
+                    padding-top: 10px;
+                }
+
+                .uploadButton {
+                    display: block;
+                    margin: 10px auto;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .operationOrder-form-label-img, .operationOrder-form-label {
+                    margin-left: 10px;
+                    font-size: 14px;
+                }
+            }
+
+
+        </style>
+        <div class="modal  fade" id="operationModal" tabindex="-1" role="dialog" aria-labelledby="operationModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title operationOrder-form-title" id="operationModalLabel">填写手术预约单</h4>
+                    </div>
+                    <div class="modal-body container-fluid">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <form class="form-horizontal">
+                                    <div class="form-group row-margin">
+                                        <label for="patientName"
+                                               class="col-xs-4 col-md-2 operationOrder-form-label-img">姓名：</label>
+                                        <div class="col-xs-6 col-md-6">
+                                            <input type="text" class="form-control yy-must"  id="patientName" placeholder="请填写真实姓名"
+                                                   required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row-margin">
+                                        <label for="phoneNo"
+                                               class="col-xs-4 col-md-2 operationOrder-form-label-img">手机号码：</label>
+                                        <div class="col-xs-6 col-md-6">
+                                            <input type="text" class="form-control" id="phoneNo" placeholder="请填写手机号码"
+                                                   required="required" />
+                                        </div>
+                                        <div class="col-xs-2 col-md-2 operationOrderForm-btn-wrap"><input id="getVerifyNoButton"
+                                                                                                          type="button"
+                                                                                                          class="btn btn-danger center-block"
+                                                                                                          value="获取验证码">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row-margin">
+                                        <label for="verifyNo" class="col-xs-4 col-md-2 operationOrder-form-label">验证码：</label>
+                                        <div class="col-xs-6 col-md-6">
+                                            <input type="text" class="form-control" id="verifyNo" placeholder="请填写验证码"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row-margin">
+                                        <label for="doctorName"
+                                               class="col-xs-4 col-md-2 operationOrder-form-label">医生名称：</label>
+                                        <div class="col-xs-6 col-md-6">
+                                            <input type="text" class="form-control" id="doctorName" placeholder="请填写医生名称"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row-margin">
+                                        <label for="hospitalName"
+                                               class="col-xs-4 col-md-2 operationOrder-form-label">医院名称：</label>
+                                        <div class="col-xs-6 col-md-6">
+                                            <input type="text" class="form-control" id="hospitalName" placeholder="请填写医院名称"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row-margin">
+                                        <label for="depName" class="col-xs-4 col-md-2 operationOrder-form-label">科室名称：</label>
+                                        <div class="col-xs-6 col-md-6">
+                                            <input type="text" class="form-control" id="depName" placeholder="请填写科室名称"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row-margin">
+                                        <label for="diseaseDiagnosis"
+                                               class="col-xs-4 col-md-2 operationOrder-form-label-img">疾病诊断：</label>
+                                        <div class="col-xs-6 col-md-6">
+                                            <input type="text" class="form-control yy-must" id="diseaseDiagnosis" placeholder="请填写疾病诊断"
+                                                   required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row-margin">
+                                        <label for="diseaseDesc"
+                                               class="col-xs-4 col-md-2 operationOrder-form-label">病情描述：</label>
+                                        <div class="col-xs-6 col-md-6">
+                                    <textarea class="form-control yy-must" id="diseaseDesc"
+                                              placeholder="请详细描述您的需求，最多1000字"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form class="form-horizontal" method="post" id="imageForm">
+                                    <div class="form-group row-margin">
+
+                                        <div class="col-sm-12">
+                                            <input type="button" id="yy-upload-btn" class="btn btn-danger uploadButton"
+                                                   value="上传图片">
+                                            <input id="picBaseUrl_art" type="file" multiple
+                                                   name="uploadedFileBig"
+                                                   style="display: none"
+                                            >
+                                            <label>上传疼痛部位、检查报告、其他病情资料，方便医生为您确诊</label>
+                                        </div>
+
+                                        <div id="preview_big_art" class="col-sm-12"
+                                             style="display: none;margin: 0px 50px"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="qrcode-img"><img src="/assets/images/boneService.png"></div>
+                                <div class="qrcode-desc">扫一扫关注布骨健康在手机端预约</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="yy-cancel-btn" class="btn btn-default" >取消</button>
+                        <button type="button" id="submitButton" class="btn btn-primary">提交预约
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <!--footer-->
 <%- include('./footer.html') %>
+<script type="text/javascript">
 
-<script src="../assets/public/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="../assets/public/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="../assets/public/js/swiper-3.4.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="../assets/config/env.js" type="text/javascript" charset="utf-8"></script>
-<script src="../assets/public/js/common.js" type="text/javascript" charset="utf-8"></script>
-<script src="./../js/operationOrder.js" type="text/javascript" charset="utf-8"></script>
+</script>
 </body>
 </html>

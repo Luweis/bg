@@ -1,9 +1,5 @@
-/**
- * Created by duyilun on 2017/7/25.
- */
-/**
- * Created by lenovo on 2017/7/24.
- */
+import commonContainer from '../../assets/public/js/common'
+import Swiper from 'swiper';
 var operationOrderData = {
     PAGE_SIZE: 30,
     ONE_PAGE_COUNT: 6,
@@ -13,14 +9,10 @@ var operationOrderData = {
 
 $(function () {
     getAppointmentRecommendDoctor();
-    commonContainer.initModelDlg("#operationOrderForm", 400, 400, 'operationOrderForm.html');
 
     $('.operationOrder-search-button').on('click', function () {
         var searchWord = operationOrderData.$operationOrderSearch.val();
-        /*if (!searchWord) {
-         return;
-         }*/
-        window.location.href = env.siteBaseUrl + 'view/searchDoctor.html?query=' + encodeURIComponent(searchWord) + '&searchType=surgery';
+        window.location.href = `./doctor/search?query=${encodeURIComponent(searchWord)}&searchType=surgery`
     });
     $('.operationOrder-book-button').on('click', function () {
         showModal();
@@ -28,7 +20,7 @@ $(function () {
 
     $('.swiper-wrapper').on('click', '.operationOrder-recommend-doctor-item', function () {
         var id = $(this).attr('data-id');
-        window.open(env.siteBaseUrl + 'view/doctorHomePage.html?id=' + id);
+        window.location.href = `./doctor/${id}`;
     })
 });
 
@@ -43,13 +35,15 @@ function getAppointmentRecommendDoctor() {
             }
             appendDoctorList(doctorList);
             var operationOrderSwiper = new Swiper('.operationOrder-recommend-doctor', {
-                pagination: '.operationOrder-swiper-pagination',
+                pagination: {
+                    el: '.operationOrder-swiper-pagination',
+                },
+                autoplay: true,
                 paginationClickable: true
             })
         }
     })
 }
-
 function appendDoctorList(doctorList) {
     var allPageStr = '';
 
@@ -119,7 +113,7 @@ function generateDoctorItem(doctorItem) {
 function showModal(realName, department, hospitalName, e) {
     var evt = e?e:window.event;
     evt.stopPropagation();
-    clearForm();
+    // clearForm();
     $('#doctorName').val(realName);
     $('#depName').val(department);
     $('#hospitalName').val(hospitalName);

@@ -1,3 +1,4 @@
+import '../../node_modules/swiper/dist/css/swiper.min.css'
 import '../css/index.css';
 import '../public/css/bootstrap.min.css';
 import '../css/consultDoctor.css';
@@ -5,14 +6,16 @@ import '../css/operationOrder.css';
 import '../css/searchDoctor.css';
 import '../css/doctorHomePage.css'
 import '../css/common/common.css';
+import '../public/js/bootstrap.min';
+import '../public/js/jquery.form';
 import Swiper from 'swiper';
-import '../../node_modules/swiper/dist/css/swiper.css';
 
 import commonContainer from '../public/js/common';
-import '../public/js/bootstrap.min';
 import env from '../config/env';
 import './consultDoctor';
-import './searchDoctor'
+import './searchDoctor';
+import './operationOrder';
+import './form';
 
 
 var lastArticleCreateTimestamp = 0;

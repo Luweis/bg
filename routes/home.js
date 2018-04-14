@@ -72,11 +72,18 @@ router.get('/doctor', async (ctx) => {
 // 医生搜索页面结果页面
  router.get('/doctor/search', async (ctx) =>{
    const params = ctx.query || {};
+   let doctorTypeList;
+   if (params.searchType === 'surgery'){
+     doctorTypeList = [1,3];
+   }else {
+     doctorTypeList = [2,3];
+   }
+
    const doctors = await http({
      url: `${baseApi}/SearchDoctorController/queryDoctor`,
      config:{
        body: JSON.stringify({
-         doctorTypeList:[2,3],
+         doctorTypeList,
          pageIndex: params.page || 1,
          pageSize: 10,
          query: params.query
@@ -84,7 +91,6 @@ router.get('/doctor', async (ctx) => {
      }
    });
 
-   console.log(doctors);
    return ctx.render('searchDoctor', {
      doctors: doctors['resultBodyObject']['rows'],
      total: doctors['resultBodyObject'].total
