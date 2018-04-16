@@ -8,7 +8,7 @@
 <div class="common-main container searchDoctor-content">
     <div class="searchDoctor-search-wrap row">
         <label class="searchDoctor-search-input-wrap col-sm-9 col-md-6 col-lg-7">
-            <input id="searchDoctorInput" class="searchDoctor-search-input" type="text" onkeydown="onEnterKeyDown()" placeholder="搜索医院、医生、科室">
+            <input id="searchDoctorInput" class="searchDoctor-search-input" type="text"  placeholder="搜索医院、医生、科室">
         </label>
         <div class="col-sm-3 col-md-3 col-lg-2">
             <div class="searchDoctor-search-button">搜索</div>
@@ -56,5 +56,6 @@
 
 <!--footer-->
 <%- include("./footer.html") %>
+<%- help.jsIncludeTag('search') %>
 </body>
 </html>

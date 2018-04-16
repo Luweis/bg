@@ -1,4 +1,4 @@
-const fetch = require('isomorphic-fetch')  ;
+const fetch = require('isomorphic-fetch');
 
 const config = {
   method: "POST",
@@ -11,5 +11,8 @@ function http(opt) {
   return fetch(opt.url, Object.assign({ },config, opt.config))
     .then(response => response.json());
 }
+
+
+
 
 module.exports = http

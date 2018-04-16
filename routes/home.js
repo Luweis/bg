@@ -2,6 +2,7 @@ const router = require('koa-router')();
 const process = require('process');
 const http = require('../assets/utils');
 const utils = require('../utils');
+const help = require('../utils/help.js');
 
 function activeItem(index, current) {
   index !== current? 'test': '';
@@ -46,7 +47,8 @@ router.get('/', async (ctx) => {
  return ctx.render('index', {
    helpers: utils,
    banners: banners['resultBodyObject'],
-   docs: docs['resultBodyObject']['rows']
+   docs: docs['resultBodyObject']['rows'],
+   help
  });
 });
 
@@ -65,7 +67,8 @@ router.get('/doctor', async (ctx) => {
     helpers: utils,
     doctors: data['resultBodyObject']['rows'],
     current: 1,
-    activeItem
+    activeItem,
+    help
   })
 });
 
@@ -93,7 +96,8 @@ router.get('/doctor', async (ctx) => {
 
    return ctx.render('searchDoctor', {
      doctors: doctors['resultBodyObject']['rows'],
-     total: doctors['resultBodyObject'].total
+     total: doctors['resultBodyObject'].total,
+     help
    });
  });
 
@@ -114,14 +118,15 @@ router.get('/doctor/:id',async (ctx) => {
   return ctx.render('doctorHomePage', {
     doctorDetail: doc['resultBodyObject']['doctorDetail'],
     relatedDocotrs: doc['resultBodyObject']['relatedDocotrs'],
-    check
+    check,
+    help
   });
 });
 
 
 //预约列表页面
 router.get('/doctor-yy', (ctx) => {
-  return ctx.render('operationOrder')
+  return ctx.render('operationOrder', { help })
 });
 
 

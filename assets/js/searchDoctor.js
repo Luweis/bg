@@ -11,6 +11,10 @@ var doctorTypeEnum = {
 
 
 const block = $(function () {
+
+   $('#searchDoctorInput').on('keydown', function () {
+   });
+
     const params = getParams(location.search);
     if (params.page === undefined){
       params.page = 1;

@@ -1,5 +1,7 @@
 import commonContainer from '../../assets/public/js/common'
 import Swiper from 'swiper';
+import './form';
+
 var operationOrderData = {
     PAGE_SIZE: 30,
     ONE_PAGE_COUNT: 6,
@@ -14,6 +16,7 @@ $(function () {
         var searchWord = operationOrderData.$operationOrderSearch.val();
         window.location.href = `./doctor/search?query=${encodeURIComponent(searchWord)}&searchType=surgery`
     });
+
     $('.operationOrder-book-button').on('click', function () {
         showModal();
     });

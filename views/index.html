@@ -98,33 +98,7 @@
     <div class="row">
         <div class="margin-top-40 col-sm-7">
             <div class="row">
-                <% docs.forEach(function(doc){) %>
-                <div class="consultDoctor-recommend-doctor-item col-lg-6 pad-15">
-                    <div class="row pad-15">
-                        <div class="consultDoctor-recommend-doctor-head-wrap col-xs-3">
-                            <img class="consultDoctor-recommend-doctor-head img-responsive center-block"
-                                 src="<%= docs.doc %>">
-                            <div class="consultDoctor-recommend-doctor-appointment-button center-block">预约手术</div>
-                        </div>
-                        <div class="consultDoctor-recommend-doctor-info col-xs-9">
-                            <div class="row">
-                                <span class="consultDoctor-recommend-doctor-name"><%= doc.realName %></span>
-                                <span class="consultDoctor-recommend-doctor-info-title"><%= doc.title %></span>
-                            </div>
-                            <div class="consultDoctor-recommend-doctor-hospital-wrap row">
-                                <span class="consultDoctor-recommend-doctor-department"><%= doc.departmentName %></span>
-                                <span class="consultDoctor-recommend-doctor-hospital"><%= doc.hospitalName %></span>
-                            </div>
-                            <div class="consultDoctor-recommend-doctor-expert-wrap row">
-                                <span>擅长：</span>
-                                <span class="consultDoctor-recommend-doctor-expert">
-                                  <%= doc.expertDisease %>
-                              </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <% } %>
+
             </div>
 
         </div>
@@ -138,29 +112,6 @@
             </div>
             <div class="index-article-list container-fuild">
 
-                <!--<div class="index-article row">
-                    <div class="index-article-pic-wrap col-xs-4">
-                        <img class="index-article-pic img-responsive" src="./img/index/test-article-left.png">
-                        <div class="index-article-tag">
-                            骨质疏松
-                        </div>
-                    </div>
-                    <div class="index-article-text col-xs-8">
-                        <div class="index-article-title">
-                            如果你无法简洁的表达你的想我大娃大王法，那只说明你还不够了解它。
-                        </div>
-                        <div class="index-article-desc">
-                            用户体验设计首先应该是理性的，其次才是感性的。只要你的反感能够解决用户的实际问题，又能带给他好的感受，用户就很容易感动满足。用户体验设计首
-                        </div>
-                        <div class="index-article-info">
-                            <span>来源：布骨医生</span>
-                            <div class="index-article-readCount">
-                                <span>阅读：</span>
-                                <span>33</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
 
             </div>
             <div class="index-article-loadMore row text-center">
@@ -176,21 +127,6 @@
                         推荐医生
                     </div>
                     <div class="index-recommend-doctor-list container-fuild">
-                        <!--<div class="index-recommend-doctor row">
-                            <div class="index-recommend-doctor-head-wrap col-xs-2">
-                                <img class="index-recommend-doctor-head img-responsive" src="./img/index/test-doctor-head.jpg">
-                            </div>
-                            <div class="index-recommend-doctor-info col-xs-10">
-                                <p class="index-recommend-doctor-title">
-                                    <span class="index-recommend-doctor-name">张忠景</span>
-                                    <span class="margin-left-10">主任医师</span>
-                                </p>
-                                <p class="index-recommend-doctor-form">
-                                    <span>骨科</span>
-                                    <span class="margin-left-10">交通大学附属医院上海第六人民医院fdsafdsfdsafdsfdsfas</span>
-                                </p>
-                            </div>
-                        </div>-->
                     </div>
                 </div>
 
@@ -208,10 +144,6 @@
                                 <p class="index-recommend-hospital-name">
                                     中国人民解放军总医院
                                 </p>
-                                <!--<p class="index-recommend-hospital-rank">
-                                    <span>全国排名：</span>
-                                    <span>3</span>
-                                </p>-->
                             </div>
                         </div>
 
@@ -341,5 +273,6 @@
 
 <!--footer-->
 <%- include("./footer.html") %>
+<%- help.jsIncludeTag('main') %>
 </body>
 </html>

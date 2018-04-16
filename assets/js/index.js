@@ -8,14 +8,10 @@ import '../css/doctorHomePage.css'
 import '../css/common/common.css';
 import '../public/js/bootstrap.min';
 import '../public/js/jquery.form';
-import Swiper from 'swiper';
 
 import commonContainer from '../public/js/common';
 import env from '../config/env';
-import './consultDoctor';
-import './searchDoctor';
-import './operationOrder';
-import './form';
+
 
 
 var lastArticleCreateTimestamp = 0;
@@ -55,12 +51,6 @@ function getBannerResource() {
             for (var i = 0; i < data.length; i++) {
                 eleStr += generateSwiperItem(data[i]);
             }
-            // $('#indexSwiperWrapper').html(eleStr);
-            // var indexSwiper = new Swiper('.index-banner-swiper', {
-            //     autoplay: 5000, //可选选项，自动滑动
-            //     pagination: '.index-swiper-pagination',
-            //     paginationClickable: true,
-            // });
         }
     })
 }

@@ -20,6 +20,11 @@ const block = $(function () {
     window.location.href =  `./doctor/search?query=${encodeURIComponent(searchWord)}`
   });
 
+  $('.consultDoctor-search-button').on('click', function () {
+    const search = $('#consultDoctorSearch').val();
+    window.location.href = `./doctor/search?query=${encodeURIComponent(search)}`
+  });
+
 });
 
 function getAppointmentRecommendDoctor() {

@@ -12,12 +12,13 @@ const filename = env === 'development' ? '[name]' : '[name].[hash]';
 module.exports = {
   mode: env,
   devtool: 'cheap-module-eval-source-map',
-  entry: [
-    path.resolve('./assets/js/index'),
-    path.resolve('./assets/js/consultDoctor'),
-    path.resolve('./assets/js/searchDoctor'),
-    'jquery/dist/jquery.min',
-  ],
+  entry: {
+    main: path.resolve('./assets/js/index'),
+    doctors: path.resolve('./assets/js/consultDoctor'),
+    doctor: path.resolve('./assets/js/doctorHomePage'),
+    operation: path.resolve('./assets/js/operationOrder'),
+    search: path.resolve('./assets/js/searchDoctor'),
+  },
   output: {
     filename: `${filename}.js`,
     chunkFilename: `${filename}.js`,
