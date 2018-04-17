@@ -12,7 +12,6 @@
             </ul>
         </div>
     </div>
-
     <div class="bg-header-nav">
         <div class="container">
             <div class="row relative">
@@ -20,12 +19,12 @@
                     <img src="/assets/images/logo.png" alt="" class="header-logo">
                 </div>
                 <nav class="flex col-md-9 flex-end nav-hide">
-                    <li class="active"><a href="">首页</a></li>
-                    <li><a href="./doctor">咨询医生</a></li>
-                    <li><a href="./doctor-yy">预约手术</a></li>
+                    <li class="<%= index === 0? 'active': null %>"><a href="/">首页</a></li>
+                    <li class="<%= index === 1? 'active': null %>"><a href="./doctor">咨询医生</a></li>
+                    <li class="<%= index === 2? 'active': null %>"><a href="./doctor-yy">预约手术</a></li>
                     <li><a href="">经典问答</a></li>
-                    <li><a href="">布骨健康</a></li>
-                    <li><a href="">疾病库</a></li>
+                    <li class="<%= index === 5? 'active': null %>"><a href="">布骨健康</a></li>
+                    <li class="<%= index === 0? 'active': null %>"><a href="./disease">疾病库</a></li>
                     <li><a href="">健康商城</a></li>
                 </nav>
                 <img id="open-menu" class="head-menu" src="/assets/images/head-menu.png" alt="" />

@@ -1,0 +1,306 @@
+<html lang="en">
+
+<%- include('./link.html') %>
+<body>
+<!--header-->
+<%- include("./head.html") %>
+
+<!--main-->
+<main class="bg-main">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-7">
+
+                <!-- 疾病库-->
+                <div class="bg-ques-doctor margin-top-40">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">查找疾病 <a href="./doctor-yy"><span>更多></span></a></h1>
+                        <p>通过关键词查找，查找相关的疾病。</p>
+                    </div>
+
+                    <div class="bg-search-bar">
+                        <input id="yy-search-value" class="search" type="text" placeholder="搜索常见病"/>
+                        <img id="yy-search-btn" class="search-btn" src="/assets/images/bg-search-btn.png" alt="">
+                    </div>
+
+                    <div class="bg-ques-card row">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-5">
+
+                <div class="bg-ques-doctor" style="margin: 40px 0">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">布谷健康<span>更多></span></h1>
+                        <p>骨健康领域医学资讯、科普</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<style>
+
+    .normal-a{
+        color: black;
+    }
+    .normal-a:hover{
+        color: black;
+    }
+    .margin-top-40{
+        margin-top: 40px;
+    }
+    .mobile-bar{
+        position: absolute;
+        display: flex;
+        width: 100%;
+        z-index: 100;
+        background-color: #222;
+        flex-wrap: wrap;
+    }
+
+    .mobile-bar li {
+        flex: 0 0 25%;
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #2E2E2E;
+    }
+
+    .mobile-bar li > a {
+        font-size: 14px;
+        color: white;
+    }
+
+    .mobile-bar li > a:hover{
+        text-decoration: none;
+    }
+
+    @media (max-width: 996px) {
+        .md-mt-40:not(:first-child){
+            margin-top: 40px;
+        }
+    }
+
+    .padd-lf-15px{
+        padding-left: 15px;
+    }
+
+    .mg-top-10{
+        padding-top: 10px;
+    }
+    .bg-main{
+        margin-top: 30px;
+    }
+
+    .bg-line{
+        position: relative;
+        height: 1px;
+        background-color: #E7E7E7;
+    }
+    .bg-line:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        background-color: #A11715;
+        height: 100%;
+        width: 95px;
+    }
+    .bg-swiper img{
+        width: 100%;
+    }
+
+    .bg-convenience-way{
+        padding: 50px 0;
+    }
+    .bg-convenience-way img{
+        width: 60px;
+    }
+
+    .bg-convenience-way .title{
+        font-size: 14px;
+        color: #545454;
+    }
+
+    .bg-convenience-way .desc{
+        width: calc(100% - 60px);
+        padding-left: 16px;
+    }
+
+    .bg-ques-btn{
+        display: inline-block;
+        background-color: #A11715;
+        color: white;
+        padding: 6px 20px;
+        border-radius: 2px;
+    }
+
+    .bg-ques-search-btn{
+        display: inline-block;
+        border: 1px solid #A11715;
+        padding: 3px 5px;
+        color: #A11715;
+        border-radius: 2px;
+    }
+    .bg-ques-search-btn:hover{
+        text-decoration: none;
+        color: #A11715;
+    }
+
+    .bg-ques-btn:hover{
+        color: white;
+        text-decoration: none;
+    }
+
+    .bg-mt-16{
+        margin-top: 16px;
+    }
+
+    .bg-ques-card-content{
+        padding-left: 15px;
+        width: calc(100% - 60px);
+    }
+
+    .bg-ques-card-content .has-line{
+        border-bottom: 1px solid #E7E7E7;
+    }
+
+    .bg-ques-doctor .title{
+        position: relative;
+        font-size: 24px;
+        color: black;
+        padding: 10px 0;
+        font-family: 'PingFangSC-Medium';
+    }
+    .bg-ques-doctor .title span{
+        font-size: 14px;
+        color: #B8B8B8;
+        position: absolute;
+        right: 0;
+    }
+
+    .bg-ques-doctor p {
+        color: #B8B8B8;
+        font-size: 14px;
+    }
+
+    .bg-search-bar{
+        padding: 20px 0;
+    }
+
+    .bg-search-bar .search{
+        width: 70%;
+        height: 34px;
+        padding: 0 10px;
+    }
+    .bg-search-bar .search-btn{
+        height: 34px;
+    }
+
+    .border-card, .bg-ques-card .card {
+        background-color: #F8F8F8;
+        padding: 16px;
+        border-radius: 4px;
+        border: 1px solid #E7E7E7;
+        margin-bottom: 16px;
+    }
+    .bg-ques-card-head img{
+        display: block;
+        width: 60px;
+        height: 60px;
+    }
+    .bg-ques-card-content{
+        color: #8C8C8C;
+    }
+
+    .padd-tb-10 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .bg-ques-card-content span.name{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+        text-align: center;
+    }
+
+    .bg-ques-card-content span{
+        padding-right: 10px;
+    }
+
+    .ques-tip{
+        position: relative;
+        display: inline-block;
+        background-color: #A11715;
+        padding: 0px 4px;
+        color: white;
+        border-radius: 2px;
+    }
+
+    .ques-tip:before{
+        content: '';
+        display: inline-block;
+        position: absolute;
+        bottom: -10px;
+        right: 5px;
+        border: 5px solid;
+        border-color: #A11715 transparent transparent transparent;
+    }
+    .bg-answer{
+        padding: 20px 0;
+    }
+    .card + .bg-answer-ques-detail{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+    }
+
+    .answer-card{
+        padding-bottom: 20px;
+    }
+
+    .bg-jbk{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+        line-height: 28px;
+        margin-right: 12px;
+    }
+
+    .bg-shop-price{
+        font-size: 16px;
+        color: #A11715;
+        padding-right: 10px;
+    }
+
+    .bg-shop-price-old{
+        text-decoration: line-through;
+        font-size: 13px;
+        color: #B8B8B8;
+    }
+
+    .bg-news{
+        width: calc(100% - 90px);
+    }
+</style>
+
+<!--footer-->
+<%- include("./footer.html") %>
+
+</body>
+</html>

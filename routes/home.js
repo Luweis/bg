@@ -12,7 +12,7 @@ function check(data, tip='暂无' ) {
  return data? data : tip;
 }
 
-const currentEnv = process.env.NODE_ENV === 'development'? 'pro' : 'dev'
+const currentEnv = process.env.NODE_ENV === 'development'? 'dev' : 'pro';
 
 const env = {
   dev: {
@@ -67,14 +67,14 @@ router.get('/', async (ctx) => {
   // const jb = await http({
   //   url: `${baseApi}diseaseController/getDataById`,
   // })
-  console.log('%o', health['resultBodyObject'].rows);
  return ctx.render('index', {
    helpers: utils,
    banners: banners['resultBodyObject'],
    docs: docs['resultBodyObject']['rows'],
    yy: docyy['resultBodyObject'].rows,
    hl: health['resultBodyObject'].rows,
-   help
+   help,
+   index: 0,
  });
 });
 
@@ -94,7 +94,8 @@ router.get('/doctor', async (ctx) => {
     doctors: data['resultBodyObject']['rows'],
     current: 1,
     activeItem,
-    help
+    help,
+    index: 1,
   })
 });
 
@@ -140,7 +141,6 @@ router.get('/doctor/:id',async (ctx) => {
     }
   });
 
-  console.log(doc);
   return ctx.render('doctorHomePage', {
     doctorDetail: doc['resultBodyObject']['doctorDetail'],
     relatedDocotrs: doc['resultBodyObject']['relatedDocotrs'],
@@ -152,14 +152,13 @@ router.get('/doctor/:id',async (ctx) => {
 
 //预约列表页面
 router.get('/doctor-yy', (ctx) => {
-  return ctx.render('operationOrder', { help })
+  return ctx.render('operationOrder', { help, index: 2 })
 });
 
 
 //文章详情
 router.get('/article/:id',async (ctx) =>{
   const id = ctx.url.split('/')[2];
-  console.log(id);
   const article = await http({
     url: `${baseApi}articleDetail/getArticleDetail`,
     config: {
@@ -167,11 +166,17 @@ router.get('/article/:id',async (ctx) =>{
         id: id,
       }),
     }
-  })
+  });
 
-  console.log(article);
   return ctx.render('articleDetail', {
     ats: article['resultBodyObject']
+  });
+});
+
+//疾病库
+router.get('/disease',async (ctx) =>{
+
+  return ctx.render('jibinku', {
   });
 });
 
