@@ -6,270 +6,534 @@
 <%- include("./head.html") %>
 
 <!--main-->
-<div class="common-main container">
-    <!--  banner  -->
-    <div class="row index-banner-wrap">
-        <div class="col-sm-7 index-banner-left">
-            <div class="swiper-container index-banner-swiper">
-                <div class="swiper-wrapper" id="indexSwiperWrapper">
-                    <% banners.forEach(function(banner){ %>
-                    <div class="swiper-slide">
-                        <img src="<%= banner.resourceUrl %>" alt="">
-                    </div>
-                    <% }); %>
-                </div>
-                <div class="swiper-pagination index-swiper-pagination"></div>
-            </div>
-        </div>
-        <div class="col-sm-5 index-banner-right-wrap">
-            <div class="col-sm-offset-1 index-banner-right">
-                <div class="clearfix index-banner-right-item" data-url="view/consultDoctor.html">
-                    <div class="col-sm-4">
-                        <img class="img-responsive index-banner-right-icon" src="/assets/images/consult_doctor.png"
-                             alt="咨询医生">
-                    </div>
-                    <div class="col-sm-8 index-banner-right-text">
-                        <div>在线咨询医生</div>
-                        <div class="index-banner-right-text-small">向平台专业医生咨询</div>
-                    </div>
-                </div>
-                <div class="clearfix index-banner-right-item margin-top-20" data-url="view/operationOrder.html">
-                    <div class="col-sm-4">
-                        <img class="img-responsive index-banner-right-icon" src="/assets/images/surgery_%20appointment.png"
-                             alt="预约手术">
-                    </div>
-                    <div class="col-sm-8 index-banner-right-text">
-                        <div>快速预约手术</div>
-                        <div class="index-banner-right-text-small">帮你快速预约专家</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--问医生-->
-    <div class="col-sm-7 margin-top-40">
+<main class="bg-main">
+    <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-6" >
-                <div class="row">
-                    <img src="/assets/images/question-head.png"  class="left image-head" alt="">
-                    <div class="left ques-des">
-                        <span class="question-btn">免费问医生</span>
-                        <p class="ques-des-p">免费向全国近2000家医院的几万名医生咨询</p>
+
+            <div class="col-md-7">
+
+                <div class="bg-swiper">
+                    <img src=/assets/images/banner.png" alt="">
+                </div>
+
+                <div class="bg-convenience-way row">
+                    <div class="col-md-6 md-mt-40">
+                        <div class="clearfix">
+                            <img src="/assets/images/bg-question.png" alt="" class="left">
+                            <div class="left desc">
+                                <h3 class="title">免费向全国近2000家医院的⼏万名医⽣生咨询</h3>
+                                <a href="./doctor" class="bg-ques-btn bg-mt-16">免费问医生</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 md-mt-40 clearfix">
+                        <img src="/assets/images/bg-yysh.png" alt="" class="left">
+                        <div class="left desc">
+                            <h3 class="title">全国近1000家三甲医院副主任医师以上名医主⼑</h3>
+                            <a href="./doctor-yy" class="bg-ques-btn bg-mt-16">快速预约手术</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--医生推荐页-->
+                <div class="bg-ques-doctor">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">咨询医生 <a href="./doctor"><span>更多></span></a></h1>
+                        <p>汇聚全国权威医⽣生，只要是⻣骨健康问题，在这⾥里里轻松解决！</p>
+                    </div>
+
+                    <div class="bg-search-bar">
+                        <input id="doc-search-value" class="search" type="text" placeholder="搜索医院、医⽣生、科室、城市、疾病"/>
+                        <img id="doc-search-btn" class="search-btn" src="/assets/images/bg-search-btn.png" alt="">
+                    </div>
+
+                    <div class="bg-ques-card row">
+
+                        <% docs.forEach(function(y){ %>
+                        <div class="col-md-6 ">
+                            <div class="clearfix card">
+                                <div class="bg-ques-card-head left">
+                                    <img src="<%= y.iconUrl %>" alt="">
+                                    <a href="./doctor/<%= y.id %>" class="bg-ques-search-btn bg-mt-16 ">点我咨询</a>
+                                </div>
+                                <div class="bg-ques-card-content left">
+                                    <div>
+                                        <span class="name"><%= y.realName %></span>
+                                        <span><%= y.departmentName %></span>
+                                        <span><%= y.title %></span>
+                                    </div>
+                                    <div class="padd-tb-10 has-line">
+                                        <%= y.hospitalName %>
+                                    </div>
+                                    <div class="mg-top-10">
+                                        <%= y.expertDisease %>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+
+                </div>
+
+                <!--预约手术-->
+                <div class="bg-ques-doctor margin-top-40">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">预约手术 <a href="./doctor-yy"><span>更多></span></a></h1>
+                        <p>全国近1000家三甲医院，副主任医师以上名医主⼑刀</p>
+                    </div>
+
+                    <div class="bg-search-bar">
+                        <input id="yy-search-value" class="search" type="text" placeholder="搜索医院、医⽣生、科室、城市、疾病"/>
+                        <img id="yy-search-btn" class="search-btn" src="/assets/images/bg-search-btn.png" alt="">
+                    </div>
+
+                    <div class="bg-ques-card row">
+
+                        <% yy.forEach(function(y){ %>
+                        <div class="col-md-6 ">
+                            <div class="clearfix card">
+                                <div class="bg-ques-card-head left">
+                                    <img src="<%= y.iconUrl %>" alt="">
+                                    <a href="./doctor/<%= y.id %>" class="bg-ques-search-btn bg-mt-16 ">点我咨询</a>
+                                </div>
+                                <div class="bg-ques-card-content left">
+                                    <div>
+                                        <span class="name"><%= y.realName %></span>
+                                        <span><%= y.departmentName %></span>
+                                        <span><%= y.title %></span>
+                                    </div>
+                                    <div class="padd-tb-10 has-line">
+                                        <%= y.hospitalName %>
+                                    </div>
+                                    <div class="mg-top-10">
+                                        <%= y.expertDisease %>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+
+                </div>
+
+                <div class="bg-ques-doctor margin-top-40">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">经典问答 <span>更多></span></h1>
+                        <p>专家答疑，从专业角度解决您的困扰。</p>
+                    </div>
+
+                    <div class="bg-answer-ques">
+                        <div class="bg-classic-ques">
+                            <div class="bg-answer">
+                                <span class="ques-tip">问</span>
+                                <span class="font-size-base padd-lf-15px">健康# 青枝骨折会自己恢复吗？</span>
+                            </div>
+
+                            <div class="clearfix answer-card">
+                                <span class="ques-tip left">答</span>
+                                <div class="col-xs-10 col-md-7 ">
+                                    <div class="clearfix card border-card">
+                                        <div class="bg-ques-card-head left">
+                                            <img src="/assets/images/head.png" alt="">
+                                        </div>
+                                        <div class="bg-ques-card-content left">
+                                            <div>
+                                                <span class="name">程春夏</span>
+                                                <span>骨科综合</span>
+                                                <span>主任医师</span>
+                                            </div>
+                                            <div class="padd-tb-10 ">
+                                                上海交通大学医学院附属第九人民医院北部院区
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="bg-answer-ques-detail">青枝骨折，对于大多数人来说都是很陌生的。顾名思义，就是像细嫩的树枝一样 “折而不断”，里面断了，外面还连着…               </p>
+                                </div>
+                            </div>
+
+                            <div class="clearfix answer-card">
+                                <span class="ques-tip left">答</span>
+                                <div class="col-xs-10 col-md-7 ">
+                                    <div class="clearfix card border-card">
+                                        <div class="bg-ques-card-head left">
+                                            <img src="/assets/images/head.png" alt="">
+                                        </div>
+                                        <div class="bg-ques-card-content left">
+                                            <div>
+                                                <span class="name">程春夏</span>
+                                                <span>骨科综合</span>
+                                                <span>主任医师</span>
+                                            </div>
+                                            <div class="padd-tb-10 ">
+                                                上海交通大学医学院附属第九人民医院北部院区
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="bg-answer-ques-detail">青枝骨折，对于大多数人来说都是很陌生的。顾名思义，就是像细嫩的树枝一样 “折而不断”，里面断了，外面还连着…               </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-ques-doctor margin-top-40">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">疾病库 <span>更多></span></h1>
+                        <p>⻣骨健康垂直领域疾病库多达1000多种。</p>
+                    </div>
+                    <div style="margin: 20px 0">
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <span class="bg-jbk"> 髌⻣骨软化症</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-6 md-mt-40">
-                <div class="row">
-                    <img src="/assets/images/question-head.png"  class="left image-head" alt="">
-                    <div class="left ques-des">
-                        <span class="question-btn">快速预约手术</span>
-                        <p class="ques-des-p">全国近1000家三甲医院副主任医师以上名医主</p>
+            <div class="col-md-5">
+                <div class="bg-ques-doctor">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">布骨商城<span>更多></span></h1>
+                        <p>专业⻣骨科⽀支具、康复器器材商城</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--more-->
-    <div class="col-sm-7 margin-top-40">
-        <div class="row tip">
-            <span class="tip-btn left"></span>
-            <div class="left padding-lr-10">
-                <h2>咨询医生</h2>
-                <p>汇聚全国权威医生,只要是骨健康问题，在这儿轻松解决!</p>
-            </div>
-            <span class="more">更多>></span>
-        </div>
-    </div>
-
-    <!--搜索卡片-->
-    <div class="col-sm-7 search-card">
-        <div class="consultDoctor-search center-block row">
-            <label class="consultDoctor-search-input-wrap" style="height: 40px">
-                <input id="consultDoctorSearch" class="consultDoctor-search-input" type="text" placeholder="搜索医院、医生、科室">
-            </label>
-        </div>
-        <div class="consultDoctor-search-button-wrap" style="margin: 0 15%;">
-            <div class="consultDoctor-search-button" style="height: 40px; margin-top: 25px">搜索</div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="margin-top-40 col-sm-7">
-            <div class="row">
-
-            </div>
-
-        </div>
-    </div>
-
-    <!--  content  -->
-    <div class="index-content row">
-        <div class="index-article-list-wrap col-sm-7">
-            <div class="index-content-title">
-                布骨健康
-            </div>
-            <div class="index-article-list container-fuild">
-
-
-            </div>
-            <div class="index-article-loadMore row text-center">
-                <div class="index-article-loadMore-button btn btn-default">
-                    浏览更多
-                </div>
-            </div>
-        </div>
-        <div class="index-recommend-wrap col-sm-5">
-            <div class="index-recommend col-sm-offset-1">
-                <div class="index-recommend-doctor-list-wrap">
-                    <div class="index-content-title index-recommend-title">
-                        推荐医生
+                    <div class="clearfix margin-top-20">
+                        <img src="/assets/images/banner.png" alt="" class="left" style="height: 90px;width: 90px">
+                        <div class="left padd-lf-15px">
+                            <div class="font-size-base">硅胶冰古代家宴高级珍贵保护套</div>
+                            <div class="padd-tb-10">
+                                <span class="bg-shop-price">¥1800.00</span>
+                                <span class="bg-shop-price-old">¥1800.00</span>
+                            </div>
+                            <a href="" class="bg-ques-btn">立即购买</a>
+                        </div>
                     </div>
-                    <div class="index-recommend-doctor-list container-fuild">
+
+                    <div class="clearfix margin-top-20">
+                        <img src="/assets/images/banner.png" alt="" class="left" style="height: 90px;width: 90px">
+                        <div class="left padd-lf-15px">
+                            <div class="font-size-base">硅胶冰古代家宴高级珍贵保护套</div>
+                            <div class="padd-tb-10">
+                                <span class="bg-shop-price">¥1800.00</span>
+                                <span class="bg-shop-price-old">¥1800.00</span>
+                            </div>
+                            <a href="" class="bg-ques-btn">立即购买</a>
+                        </div>
                     </div>
+
+                    <div class="clearfix margin-top-20">
+                        <img src="/assets/images/banner.png" alt="" class="left" style="height: 90px;width: 90px">
+                        <div class="left padd-lf-15px">
+                            <div class="font-size-base">硅胶冰古代家宴高级珍贵保护套</div>
+                            <div class="padd-tb-10">
+                                <span class="bg-shop-price">¥1800.00</span>
+                                <span class="bg-shop-price-old">¥1800.00</span>
+                            </div>
+                            <a href="" class="bg-ques-btn">立即购买</a>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="index-recommend-hospital-list-wrap">
-                    <div class="index-content-title index-recommend-title">
-                        合作医院
+                <div class="bg-ques-doctor" style="margin: 40px 0">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">布谷健康<span>更多></span></h1>
+                        <p>骨健康领域医学资讯、科普</p>
                     </div>
-                    <div class="index-recommend-hospital-list container-fuild">
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_1.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    中国人民解放军总医院
-                                </p>
-                            </div>
-                        </div>
 
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_2.png">
+                    <% hl.forEach(function(h){ %>
+                    <div class="clearfix margin-top-20">
+                        <a href="./article/<%= h.id %>" class="normal-a">
+                            <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
+                            <div class="left padd-lf-15px bg-news">
+                                <div class="font-size-base"><%= h.title %></div>
+                                <div class="padd-tb-10">
+                                    <%= h.desc%>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <img src="/assets/images/keshi.png" alt="" style="height: 12px; margin-top: 3px;">
+                                        <span>骨科</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <img src="/assets/images/ear.png" alt="" style="height: 12px; margin-top: 3px">
+                                        <span><%= h.readCount %></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    北京积水潭医院
-                                </p>
-                            </div>
-                        </div>
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_3.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    北京协和医院
-                                </p>
-                            </div>
-                        </div>
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_4.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    上海市第六人民医院
-                                </p>
-                            </div>
-                        </div>
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_5.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    第四军医大学西京医院
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_6.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    四川大学华西医院
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_7.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    第二军医大学长征医院
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_8.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    北京大学人民医院
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_9.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    南京鼓楼医院
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_10.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    西安红会医院
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="index-recommend-hospital row">
-                            <div class="index-recommend-hospital-head-wrap col-xs-2">
-                                <img class="index-recommend-hospital-head img-responsive"
-                                     src="/assets/images/hospital_11.png">
-                            </div>
-                            <div class="index-recommend-hospital-info col-xs-10">
-                                <p class="index-recommend-hospital-name">
-                                    中南大学湘雅医院
-                                </p>
-                            </div>
-                        </div>
-
+                        </a>
                     </div>
+                    <% }) %>
                 </div>
+
             </div>
         </div>
     </div>
-</div>
+</main>
+
+<style>
+
+    .normal-a{
+        color: black;
+    }
+    .normal-a:hover{
+        color: black;
+    }
+     .margin-top-40{
+         margin-top: 40px;
+     }
+    .mobile-bar{
+        position: absolute;
+        display: flex;
+        width: 100%;
+        z-index: 100;
+        background-color: #222;
+        flex-wrap: wrap;
+    }
+
+    .mobile-bar li {
+        flex: 0 0 25%;
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #2E2E2E;
+    }
+
+    .mobile-bar li > a {
+        font-size: 14px;
+        color: white;
+    }
+
+    .mobile-bar li > a:hover{
+        text-decoration: none;
+    }
+
+    @media (max-width: 996px) {
+        .md-mt-40:not(:first-child){
+            margin-top: 40px;
+        }
+    }
+
+    .padd-lf-15px{
+        padding-left: 15px;
+    }
+
+    .mg-top-10{
+        padding-top: 10px;
+    }
+    .bg-main{
+        margin-top: 30px;
+    }
+
+    .bg-line{
+        position: relative;
+        height: 1px;
+        background-color: #E7E7E7;
+    }
+    .bg-line:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        background-color: #A11715;
+        height: 100%;
+        width: 95px;
+    }
+    .bg-swiper img{
+        width: 100%;
+    }
+
+    .bg-convenience-way{
+        padding: 50px 0;
+    }
+    .bg-convenience-way img{
+        width: 60px;
+    }
+
+    .bg-convenience-way .title{
+        font-size: 14px;
+        color: #545454;
+    }
+
+    .bg-convenience-way .desc{
+        width: calc(100% - 60px);
+        padding-left: 16px;
+    }
+
+    .bg-ques-btn{
+        display: inline-block;
+        background-color: #A11715;
+        color: white;
+        padding: 6px 20px;
+        border-radius: 2px;
+    }
+
+    .bg-ques-search-btn{
+        display: inline-block;
+        border: 1px solid #A11715;
+        padding: 3px 5px;
+        color: #A11715;
+        border-radius: 2px;
+    }
+    .bg-ques-search-btn:hover{
+        text-decoration: none;
+        color: #A11715;
+    }
+
+    .bg-ques-btn:hover{
+        color: white;
+        text-decoration: none;
+    }
+
+    .bg-mt-16{
+        margin-top: 16px;
+    }
+
+    .bg-ques-card-content{
+        padding-left: 15px;
+        width: calc(100% - 60px);
+    }
+
+    .bg-ques-card-content .has-line{
+        border-bottom: 1px solid #E7E7E7;
+    }
+
+    .bg-ques-doctor .title{
+        position: relative;
+        font-size: 24px;
+        color: black;
+        padding: 10px 0;
+        font-family: 'PingFangSC-Medium';
+    }
+    .bg-ques-doctor .title span{
+        font-size: 14px;
+        color: #B8B8B8;
+        position: absolute;
+        right: 0;
+    }
+
+    .bg-ques-doctor p {
+        color: #B8B8B8;
+        font-size: 14px;
+    }
+
+    .bg-search-bar{
+        padding: 20px 0;
+    }
+
+    .bg-search-bar .search{
+        width: 70%;
+        height: 34px;
+        padding: 0 10px;
+    }
+    .bg-search-bar .search-btn{
+        height: 34px;
+    }
+
+    .border-card, .bg-ques-card .card {
+        background-color: #F8F8F8;
+        padding: 16px;
+        border-radius: 4px;
+        border: 1px solid #E7E7E7;
+        margin-bottom: 16px;
+    }
+    .bg-ques-card-head img{
+        display: block;
+        width: 60px;
+        height: 60px;
+    }
+    .bg-ques-card-content{
+        color: #8C8C8C;
+    }
+
+    .padd-tb-10 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .bg-ques-card-content span.name{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+        text-align: center;
+    }
+
+    .bg-ques-card-content span{
+        padding-right: 10px;
+    }
+
+    .ques-tip{
+        position: relative;
+        display: inline-block;
+        background-color: #A11715;
+        padding: 0px 4px;
+        color: white;
+        border-radius: 2px;
+    }
+
+    .ques-tip:before{
+        content: '';
+        display: inline-block;
+        position: absolute;
+        bottom: -10px;
+        right: 5px;
+        border: 5px solid;
+        border-color: #A11715 transparent transparent transparent;
+    }
+    .bg-answer{
+        padding: 20px 0;
+    }
+    .card + .bg-answer-ques-detail{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+    }
+
+    .answer-card{
+        padding-bottom: 20px;
+    }
+
+    .bg-jbk{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+        line-height: 28px;
+        margin-right: 12px;
+    }
+
+    .bg-shop-price{
+        font-size: 16px;
+        color: #A11715;
+        padding-right: 10px;
+    }
+
+    .bg-shop-price-old{
+        text-decoration: line-through;
+        font-size: 13px;
+        color: #B8B8B8;
+    }
+
+    .bg-news{
+        width: calc(100% - 90px);
+    }
+</style>
 
 <!--footer-->
 <%- include("./footer.html") %>

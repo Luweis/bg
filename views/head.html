@@ -1,39 +1,178 @@
-<header class="container-fluid common-wrap header-wrap">
-    <div class="common-container header row">
-        <div class="col-sm-4 col-md-5 row header-left">
-            <a href="javascript:;" class="header-a-logo col-xs-8 col-sm-5" data-url="index.html">
-                <h1 class="header-h1-logo">
-                    <img class="img-responsive logo" src="/assets/images/bone.png" alt="布骨医生">
-                </h1>
-            </a>
-            <div class="col-xs-4 visible-xs-block">
-                <div class="header-menu center-block"></div>
-            </div>
+<header class="bg-header">
+    <div class="container header-top">
+        <div class="row">
+            <span class="col-xs-4 col-md-6 header-top-content">Hi,欢迎访问布骨医生官方网站</span>
+            <ul class="col-xs-8 col-md-6">
+                <div class="flex">
+                    <li class=" header-top-content"><a href="">布骨康复医疗中心</a></li>
+                    <li class=" header-top-content"><a href="">加入我们</a></li>
+                    <li class=" header-top-content"><a href="">联系我们</a></li>
+                    <li class=" header-top-content"><a href="">布谷医生App</a></li>
+                </div>
+            </ul>
         </div>
-
-        <nav class="header-nav col-sm-8 col-md-7">
-            <a href="/" class="col-sm-7-1 nav-item" >
-                <span class="nav-div-text">首页</span>
-            </a>
-            <a href="/doctor" class="col-sm-7-1 nav-item text-black" >
-                <span class="nav-div-text">咨询医生</span>
-            </a>
-            <a href="/doctor-yy" class="col-sm-7-1 nav-item text-black">
-                <span class="nav-div-text">预约手术</span>
-            </a>
-            <div class="col-sm-7-1 nav-item text-black">
-                <span class="nav-div-text">经典问答</span>
-            </div>
-            <div class="col-sm-7-1 nav-item text-black" >
-                <span class="nav-div-text ">布骨健康</span>
-            </div>
-            <div class="col-sm-7-1 nav-item text-black" >
-                <span class="nav-div-text">疾病库</span>
-            </div>
-            <div class="col-sm-7-1 nav-item text-black">
-                <span class="nav-div-text ">健康商城</span>
-            </div>
-        </nav>
     </div>
 
+    <div class="bg-header-nav">
+        <div class="container">
+            <div class="row relative">
+                <div class="col-md-12 col-lg-3 head-log-content">
+                    <img src="/assets/images/logo.png" alt="" class="header-logo">
+                </div>
+                <nav class="flex col-md-9 flex-end nav-hide">
+                    <li class="active"><a href="">首页</a></li>
+                    <li><a href="./doctor">咨询医生</a></li>
+                    <li><a href="./doctor-yy">预约手术</a></li>
+                    <li><a href="">经典问答</a></li>
+                    <li><a href="">布骨健康</a></li>
+                    <li><a href="">疾病库</a></li>
+                    <li><a href="">健康商城</a></li>
+                </nav>
+                <img id="open-menu" class="head-menu" src="/assets/images/head-menu.png" alt="" />
+                <img id="close-menu" class="head-menu " src="/assets/images/close.png" style="display: none"/>
+            </div>
+        </div>
+    </div>
+    <div >
+        <ul class="mobile-bar" style="display: none">
+            <li class="active"><a href="">首页</a></li>
+            <li><a href="">咨询医生</a></li>
+            <li><a href="">预约手术</a></li>
+            <li><a href="">经典问答</a></li>
+            <li><a href="">布骨健康</a></li>
+            <li><a href="">疾病库</a></li>
+            <li><a href="">健康商城</a></li>
+        </ul>
+    </div>
 </header>
+<style>
+    .relative{
+        position: relative;
+    }
+    .header-top-content{
+        padding: 12px 15px;
+        font-size: 13px;
+        color: #B8B8B8;
+    }
+    .header-top-content a {
+        color: #B8B8B8;
+    }
+    .header-top-content a:hover{
+        text-decoration: none;
+    }
+    .bg-header .flex{
+        display: flex;
+        justify-content: space-around
+    }
+    .bg-header-nav .flex-end{
+        justify-content: flex-end;
+    }
+    .bg-header-nav{
+        background-color: #A11715;
+        color: white;
+        font-size: 18px;
+        padding: 0;
+        font-family: 'PingFangSC-Regular';
+    }
+
+    @media (max-width: 1200px) {
+        .bg-header-nav .nav-hide{
+            display: none;
+        }
+
+        .head-log-content{
+            text-align: center;
+        }
+
+    }
+    .bg-header-nav a {
+        display: inline-block;
+        color: white;
+        padding: 23px 25px;
+    }
+    .bg-header-nav li.active{
+        background-color: #000;
+    }
+    .bg-header-nav a:hover{
+        text-decoration: none;
+    }
+    .header-logo{
+        height: 72px;
+    }
+
+
+    @media (max-width: 993px) {
+        .header-top{
+            display: none;
+        }
+
+        .head-menu {
+            position: absolute;
+            left: 15px;
+            top: 21px;
+            display: inline-block;
+        }
+    }
+
+    /*.close #open-menu{*/
+        /*display: inline-block;*/
+    /*}*/
+
+    @media (min-width: 992px) {
+        .head-menu{
+            display: none;
+        }
+    }
+
+    .mobile-bar{
+        position: absolute;
+        display: flex;
+        width: 100%;
+        z-index: 100;
+        background-color: #222;
+        flex-wrap: wrap;
+        transition: .4s all linear;
+    }
+
+    .mobile-bar li {
+        flex: 0 0 25%;
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #2E2E2E;
+    }
+
+    .mobile-bar li > a {
+        font-size: 14px;
+        color: white;
+    }
+
+    .mobile-bar li > a:hover{
+        text-decoration: none;
+    }
+</style>
+
+<script>
+   const openMenu = document.querySelector('#open-menu');
+   const closeMenu = document.querySelector('#close-menu');
+   const bar = document.querySelector('.mobile-bar');
+   const navBar = document.querySelector('.bg-header-nav');
+
+   openMenu.addEventListener('click', function () {
+     const cn = navBar.className;
+     navBar.className = cn.replace(/close/, ' ' ).replace('open', '') + ' open';
+     // closeMenu.style.display = 'inline-block';
+     // openMenu.style.display = 'none';
+     // bar.style.display = 'flex';
+   });
+   closeMenu.addEventListener('click', function () {
+
+     const cn = navBar.className;
+     navBar.className = cn.replace(/open/, ' ' ).replace('close', '') + ' close';
+     // openMenu.style.display = 'inline-block';
+     // closeMenu.style.display = 'none';
+     // bar.style.display = 'none';
+   });
+
+</script>

@@ -39,15 +39,41 @@ router.get('/', async (ctx) => {
     url: `${baseApi}consultDoctor/getRecommendDoctor`,
     config: {
       body: JSON.stringify({
-        pageSize: 20
+        pageSize: 4
       })
     }
   });
-  console.log(docs['resultBodyObject']['rows']);
+
+  const docyy = await http({
+    url: `${baseApi}operationOrderController/getConsultDoctor`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 4,
+      })
+    }
+  });
+
+  const health = await http({
+    url: `${baseApi}index/queryArticleList`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 4,
+        lastArticleCreateTimestamp: 0,
+      })
+    }
+
+  })
+
+  // const jb = await http({
+  //   url: `${baseApi}diseaseController/getDataById`,
+  // })
+  console.log('%o', health['resultBodyObject'].rows);
  return ctx.render('index', {
    helpers: utils,
    banners: banners['resultBodyObject'],
    docs: docs['resultBodyObject']['rows'],
+   yy: docyy['resultBodyObject'].rows,
+   hl: health['resultBodyObject'].rows,
    help
  });
 });
@@ -127,6 +153,26 @@ router.get('/doctor/:id',async (ctx) => {
 //预约列表页面
 router.get('/doctor-yy', (ctx) => {
   return ctx.render('operationOrder', { help })
+});
+
+
+//文章详情
+router.get('/article/:id',async (ctx) =>{
+  const id = ctx.url.split('/')[2];
+  console.log(id);
+  const article = await http({
+    url: `${baseApi}articleDetail/getArticleDetail`,
+    config: {
+      body: JSON.stringify({
+        id: id,
+      }),
+    }
+  })
+
+  console.log(article);
+  return ctx.render('articleDetail', {
+    ats: article['resultBodyObject']
+  });
 });
 
 
