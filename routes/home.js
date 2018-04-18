@@ -175,17 +175,30 @@ router.get('/article/:id',async (ctx) =>{
 
 //疾病库
 router.get('/disease',async (ctx) =>{
-
   return ctx.render('jibinku', {
+    helpers: utils,
+    index: 3,
+    help,
   });
 });
 
 //经典问答
 router.get('/interlocution',async (ctx) =>{
+  //?query='2' 
+  const keyWord = ctx.url.split('query=')[1] || '';
+  const qa = await http({
+    url: `${baseApi}questionController/queryRelatedQuestionList`,
+    config: {
+      body: JSON.stringify({
+        keyWord: keyWord,
+      }),
+    }
+  });
   return ctx.render('interlocution', {
-    index: 3,
     helpers: utils,
+    index: 3,
     help,
+    qa:qa['resultBodyObject'] || [],
   });
 });
 
