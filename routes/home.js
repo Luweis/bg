@@ -180,5 +180,13 @@ router.get('/disease',async (ctx) =>{
   });
 });
 
+//经典问答
+router.get('/interlocution',async (ctx) =>{
+  return ctx.render('interlocution', {
+    index: 3,
+    helpers: utils,
+    help,
+  });
+});
 
 module.exports = router;

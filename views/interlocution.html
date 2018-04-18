@@ -1,0 +1,395 @@
+<html lang="en">
+<%- include('./link.html') %>
+
+    <body>
+        <%- include("./head.html") %>
+            <div class="bg-main">
+                <div class="container">
+                    <div class="bg-ques-doctor margin-top-30 col-md-7">
+                        <!-- 搜索 -->
+                        <div>
+                            <div class="bg-line"></div>
+                            <h1 class="title">筛选问答</h1>
+                            <p class="item-des">通过筛选，查找相似的病情。</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control search-input" placeholder="搜索问题关键词">
+                                    <span class="input-group-btn">
+                                        <button class="search-button" type="button">
+                                            <img src="/assets/images/search.png" style="width: 20;height: 20;" alt="搜索">
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 常见疾病 -->
+                        <div>
+                            <div>
+                                <span class="title" style="color: #A11715;font-size: 16px;">常见疾病</span>
+                            </div>
+                            <div style="margin: 20px 0">
+                                    <% [{},{},{},{},{},{},{},{},{},{},{},{}].forEach(function(h){ %>
+                                        <a class="bg-jbk"> 髌⻣骨软化症</a>
+                                     <% }) %>
+                            </div>
+                        </div>
+                        <!-- 经典问答 -->
+                        <div class="margin-top-30">
+                            <div>
+                                <div class="bg-line"></div>
+                                <h1 class="title">经典问答
+                                    <span class="item-more">更多></span>
+                                </h1>
+                                <p>专家答疑，从专业角度解决您的困扰。</p>
+                            </div>
+                            <div class="bg-answer-ques">
+                                <div class="bg-classic-ques">
+                                    <div class="bg-answer">
+                                        <span class="ques-tip">问</span>
+                                        <span class="font-size-base padd-lf-15px">健康# 青枝骨折会自己恢复吗？</span>
+                                    </div>
+
+                                    <div class="clearfix answer-card">
+                                        <span class="ques-tip left">答</span>
+                                        <div class="col-xs-10 col-md-7 ">
+                                            <div class="clearfix card border-card">
+                                                <div class="bg-ques-card-head left">
+                                                    <img src="/assets/images/head.png" alt="">
+                                                </div>
+                                                <div class="bg-ques-card-content left">
+                                                    <div>
+                                                        <span class="name">程春夏</span>
+                                                        <span>骨科综合</span>
+                                                        <span>主任医师</span>
+                                                    </div>
+                                                    <div class="padd-tb-10 ">
+                                                        上海交通大学医学院附属第九人民医院北部院区
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="bg-answer-ques-detail">青枝骨折，对于大多数人来说都是很陌生的。顾名思义，就是像细嫩的树枝一样 “折而不断”，里面断了，外面还连着… </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix answer-card">
+                                        <span class="ques-tip left">答</span>
+                                        <div class="col-xs-10 col-md-7 ">
+                                            <div class="clearfix card border-card">
+                                                <div class="bg-ques-card-head left">
+                                                    <img src="/assets/images/head.png" alt="">
+                                                </div>
+                                                <div class="bg-ques-card-content left">
+                                                    <div>
+                                                        <span class="name">程春夏</span>
+                                                        <span>骨科综合</span>
+                                                        <span>主任医师</span>
+                                                    </div>
+                                                    <div class="padd-tb-10 ">
+                                                        上海交通大学医学院附属第九人民医院北部院区
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="bg-answer-ques-detail">青枝骨折，对于大多数人来说都是很陌生的。顾名思义，就是像细嫩的树枝一样 “折而不断”，里面断了，外面还连着… </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- 推荐医生 -->
+                    <div class="col-md-5 re-doctor">
+                        <div class="bg-ques-doctor">
+                            <div>
+                                <div class="bg-line"></div>
+                                <h1 class="title">推荐医生
+                                    <span>更多></span>
+                                </h1>
+                                <p>为您推荐骨科手术领域的专家</p>
+                            </div>
+                            <% [{},{},{}].forEach(function(h){ %>
+                                <div class="clearfix margin-top-20">
+                                    <a href="./article/<%= h.id %>" class="normal-a">
+                                        <img src="<%= h.thumbnailUrl %>" alt="" class="left img-circle" style="height: 60px;width: 60px">
+                                        <div class="left padd-lf-15px bg-news">
+                                            <div class="doctor-name">
+                                                sliu
+                                            </div>
+                                            <div class="doctor-des">
+                                                骨科综合 主任医师
+                                            </div>
+                                            <div class="doctor-des">
+                                                上海交通大学医学院附属第九人民医院北部院区
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            <style>
+                .normal-a {
+                    color: black;
+                }
+
+                .normal-a:hover {
+                    color: black;
+                }
+
+                .margin-top-40 {
+                    margin-top: 40px;
+                }
+
+                .mobile-bar {
+                    position: absolute;
+                    display: flex;
+                    width: 100%;
+                    z-index: 100;
+                    background-color: #222;
+                    flex-wrap: wrap;
+                }
+
+                .mobile-bar li {
+                    flex: 0 0 25%;
+                    display: flex;
+                    height: 60px;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid #2E2E2E;
+                }
+
+                .mobile-bar li>a {
+                    font-size: 14px;
+                    color: white;
+                }
+
+                .mobile-bar li>a:hover {
+                    text-decoration: none;
+                }
+
+                .padd-lf-15px {
+                    padding-left: 15px;
+                }
+
+                .mg-top-10 {
+                    padding-top: 10px;
+                }
+
+                .bg-main {
+                    margin-top: 30px;
+                }
+
+                .bg-line {
+                    position: relative;
+                    height: 1px;
+                    background-color: #E7E7E7;
+                }
+
+                .bg-line:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    display: inline-block;
+                    background-color: #A11715;
+                    height: 100%;
+                    width: 95px;
+                }
+
+
+                .bg-ques-search-btn {
+                    display: inline-block;
+                    border: 1px solid #A11715;
+                    padding: 3px 5px;
+                    color: #A11715;
+                    border-radius: 2px;
+                }
+
+                .bg-ques-search-btn:hover {
+                    text-decoration: none;
+                    color: #A11715;
+                }
+
+                .bg-ques-card-content {
+                    padding-left: 15px;
+                    width: calc(100% - 60px);
+                }
+
+                .bg-ques-card-content .has-line {
+                    border-bottom: 1px solid #E7E7E7;
+                }
+
+                .bg-ques-doctor .title {
+                    position: relative;
+                    font-size: 24px;
+                    color: black;
+                    padding: 10px 0;
+                    font-family: 'PingFangSC-Medium';
+                }
+
+                .bg-ques-doctor .title span {
+                    font-size: 14px;
+                    color: #B8B8B8;
+                    position: absolute;
+                    right: 0;
+                }
+
+                .bg-ques-doctor p {
+                    color: #B8B8B8;
+                    font-size: 14px;
+                }
+
+                .bg-search-bar {
+                    padding: 20px 0;
+                }
+
+                .bg-search-bar .search {
+                    width: 70%;
+                    height: 34px;
+                    padding: 0 10px;
+                }
+
+                .bg-search-bar .search-btn {
+                    height: 34px;
+                }
+
+                .border-card,
+                .bg-ques-card .card {
+                    background-color: #F8F8F8;
+                    padding: 16px;
+                    border-radius: 4px;
+                    border: 1px solid #E7E7E7;
+                    margin-bottom: 16px;
+                }
+
+                .bg-ques-card-head img {
+                    display: block;
+                    width: 60px;
+                    height: 60px;
+                }
+
+                .bg-ques-card-content {
+                    color: #8C8C8C;
+                }
+
+                .padd-tb-10 {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+
+                .bg-ques-card-content span.name {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #545454;
+                    text-align: center;
+                }
+
+                .bg-ques-card-content span {
+                    padding-right: 10px;
+                }
+
+                .ques-tip {
+                    position: relative;
+                    display: inline-block;
+                    background-color: #A11715;
+                    padding: 0px 4px;
+                    color: white;
+                    border-radius: 2px;
+                }
+
+                .ques-tip:before {
+                    content: '';
+                    display: inline-block;
+                    position: absolute;
+                    bottom: -10px;
+                    right: 5px;
+                    border: 5px solid;
+                    border-color: #A11715 transparent transparent transparent;
+                }
+
+                .bg-answer {
+                    padding: 20px 0;
+                }
+
+                .card+.bg-answer-ques-detail {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #545454;
+                }
+
+                .answer-card {
+                    padding-bottom: 20px;
+                }
+
+                .bg-jbk {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #545454;
+                    line-height: 28px;
+                    margin-right: 12px;
+                }
+
+                .doctor-name {
+                    font-family: PingFangSC-Regular;
+                    font-size: 16px;
+                    color: #000000;
+                }
+
+                .doctor-des {
+                    font-family: PingFangSC-Regular;
+                    font-size: 12px;
+                    color: #999999;
+                }
+
+                .search-input {
+                    background: #FFFFFF;
+                    border: 1px solid #E7E7E7;
+                    border-radius: 5px;
+                    height: 34px;
+                    display: inline-block;
+                    margin: 20px auto
+                }
+
+                .search-button {
+                    height: 34px;
+                    width: 44px;
+                    background: #A11715;
+                    background-image: url('asss');
+                    margin: 20px auto
+                }
+
+                .item-des {
+                    font-family: PingFangSC-Regular;
+                    font-size: 13px;
+                    color: #999999;
+                }
+
+                .item-more {
+                    font-family: PingFangSC-Regular;
+                    font-size: 13px;
+                    color: #999999;
+                    text-align: center;
+                }
+
+                @media (max-width: 996px) {
+                    .md-mt-40:not(:first-child) {
+                        margin-top: 40px;
+                    }
+                    .re-doctor {
+                        display: none;
+                    }
+                }
+            </style>
+            <!--footer-->
+            <%- include("./footer.html") %>
+                <%- help.jsIncludeTag('main') %>
+    </body>
+
+</html>
