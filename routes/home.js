@@ -131,7 +131,6 @@ router.get('/doctor', async (ctx) => {
 //医生详情页
 router.get('/doctor/:id',async (ctx) => {
   const id = ctx.url.split('/')[2];
-
   const doc = await http({
     url: `${baseApi}doctorHomePageController/initDoctorData`,
     config: {
@@ -173,14 +172,7 @@ router.get('/article/:id',async (ctx) =>{
   });
 });
 
-//疾病库
-router.get('/disease',async (ctx) =>{
-  return ctx.render('jibinku', {
-    helpers: utils,
-    index: 3,
-    help,
-  });
-});
+
 
 //经典问答
 router.get('/interlocution',async (ctx) =>{
@@ -199,6 +191,44 @@ router.get('/interlocution',async (ctx) =>{
     index: 3,
     help,
     qa:qa['resultBodyObject'] || [],
+  });
+});
+
+//疾病库
+router.get('/disease',async (ctx) =>{
+  return ctx.render('jibinku', {
+    helpers: utils,
+    index: 3,
+    help,
+  });
+});
+
+//健康商城
+router.get('/mall',async (ctx) =>{
+  return ctx.render('mall', {
+    helpers: utils,
+    index: 4,
+    help,
+  });
+});
+
+//商品详情
+router.get('/mall/:id',async (ctx) =>{
+  const id = ctx.url.split('/').pop() || '';
+  return ctx.render('mallDetail', {
+    helpers: utils,
+    index: 3,
+    help,
+  });
+});
+
+//购买商品
+router.get('/buy/:id',async (ctx) =>{
+  const id = ctx.url.split('/').pop() || '';
+  return ctx.render('buy', {
+    helpers: utils,
+    index: 3,
+    help,
   });
 });
 
