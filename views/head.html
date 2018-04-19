@@ -20,12 +20,13 @@
                 </div>
                 <nav class="flex col-md-9 flex-end nav-hide">
                     <li class="<%= index === 0? 'active': null %>"><a href="/">首页</a></li>
-                    <li class="<%= index === 1? 'active': null %>"><a href="./doctor">咨询医生</a></li>
-                    <li class="<%= index === 2? 'active': null %>"><a href="./doctor-yy">预约手术</a></li>
-                    <li><a href="./interlocution">经典问答</a></li>
-                    <li class="<%= index === 5? 'active': null %>"><a href="">布骨健康</a></li>
-                    <li class="<%= index === 0? 'active': null %>"><a href="./disease">疾病库</a></li>
+                    <li class="<%= index === 1? 'active': null %>"><a href="/doctor">咨询医生</a></li>
+                    <li class="<%= index === 2? 'active': null %>"><a href="/doctor-yy">预约手术</a></li>
+                    <li><a href="">经典问答</a></li>
+                    <li class="<%= index === 5? 'active': null %>"><a href="/health">布骨健康</a></li>
+                    <li class="<%= index === 6? 'active': null %>"><a href="/disease">疾病库</a></li>
                     <li><a href="./mall">健康商城</a></li>
+
                 </nav>
                 <img id="open-menu" class="head-menu" src="/assets/images/head-menu.png" alt="" />
                 <img id="close-menu" class="head-menu " src="/assets/images/close.png" style="display: none"/>
@@ -45,6 +46,13 @@
     </div>
 </header>
 <style>
+    a{
+        color: black;
+    }
+    a:hover{
+        color: black;
+    }
+
     .relative{
         position: relative;
     }

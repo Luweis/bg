@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./link.html') %>
+<body>
+<%- include('./head.html') %>
+<div class="bg-main">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-7">
+
+                <div class="bg-ques-doctor">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">咨询医生</h1>
+                        <p>汇聚全国权威医⽣生，只要是⻣骨健康问题，在这⾥里里轻松解决！</p>
+                    </div>
+
+                    <div class="bg-search-bar">
+                        <input class="search" type="text" placeholder="搜索医院、医⽣生、科室、城市、疾病"/>
+                        <img class="search-btn" src="assets/images/bg-search-btn.png" alt="">
+                    </div>
+
+                    <div>
+                        <div class="bg-usually-bin">常见疾病</div>
+                        <div class="bg-jb-class">
+                            <span>颈椎病</span>
+                            <span>颈椎病</span>
+                            <span>颈椎病</span>
+                            <span>颈椎病</span>
+                            <span>颈椎病</span>
+                            <span>颈椎病</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-ques-doctor" >
+                        <div>
+                            <div class="bg-line"></div>
+                            <h1 class="title">布谷健康</h1>
+                            <p>骨健康领域医学资讯、科普</p>
+                        </div>
+
+                        <% hl.forEach(function(h){ %>
+                        <div class="clearfix box">
+                            <a href="./article/<%= h.id %>" class="normal-a">
+                                <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
+                                <div class="left padd-lf-15px bg-news">
+                                    <div class="font-size-base"><%= h.title %></div>
+                                    <div class="padd-tb-10">
+                                        <%= h.desc%>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <img src="/assets/images/keshi.png" alt="" style="height: 12px; margin-top: 3px;">
+                                            <span>骨科</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <img src="/assets/images/ear.png" alt="" style="height: 12px; margin-top: 3px">
+                                            <span><%= h.readCount %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <% }) %>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="bg-ques-doctor">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">合作医院</h1>
+                        <p>与布骨健康合作的知名医院，帮您恢复健康。</p>
+                    </div>
+
+                    <% hos.forEach(function(h, index){%>
+                    <div class="bg-coop-hospital ">
+                        <div >
+                            <img src="./assets/images/hospital_<%= index+1 %>.png" alt="">
+                            <%= h %>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body{
+        height: 100%;
+        width: 100%;
+    }
+    .padd-lf-15px{
+        padding-left: 15px;
+    }
+    .bg-main{
+        margin-top: 30px;
+    }
+
+    .bg-line{
+        position: relative;
+        height: 1px;
+        background-color: #E7E7E7;
+    }
+    .bg-line:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        background-color: #A11715;
+        height: 100%;
+        width: 95px;
+    }
+    .bg-swiper img{
+        width: 100%;
+    }
+
+    .bg-convenience-way img{
+        width: 60px;
+    }
+
+    .bg-convenience-way .title{
+        font-size: 14px;
+        color: #545454;
+    }
+
+    .bg-convenience-way .desc{
+        width: calc(100% - 60px);
+        padding-left: 16px;
+    }
+
+
+    .bg-ques-card-content .has-line{
+        border-bottom: 1px solid #E7E7E7;
+    }
+
+    .bg-ques-doctor .title{
+        position: relative;
+        font-size: 24px;
+        color: black;
+        padding: 10px 0;
+        font-family: 'PingFangSC-Medium';
+    }
+    .bg-ques-doctor .title span{
+        font-size: 14px;
+        color: #B8B8B8;
+        position: absolute;
+        right: 0;
+    }
+
+    .bg-ques-doctor p {
+        color: #B8B8B8;
+        font-size: 14px;
+    }
+
+    .bg-search-bar{
+        padding: 20px 0;
+    }
+
+    .bg-search-bar .search{
+        width: 70%;
+        height: 34px;
+        padding: 0 10px;
+    }
+    .bg-search-bar .search-btn{
+        height: 34px;
+    }
+
+    .bg-ques-card-head img{
+        display: block;
+        width: 60px;
+        height: 60px;
+    }
+
+    .padd-tb-10 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .bg-ques-card-content span.name{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+        text-align: center;
+    }
+
+    .bg-ques-card-content span{
+        padding-right: 10px;
+    }
+
+    .bg-news{
+        width: calc(100% - 90px);
+    }
+
+    .bg-coop-hospital{
+        margin-top: 30px;
+    }
+
+    .bg-coop-hospital  img{
+        height: 50px;
+        vertical-align: middle;
+    }
+
+    .bg-coop-hospital > div{
+        font-family: PingFangSC-Regular;
+        font-size: 16px;
+        color: #000000;
+    }
+
+    .box{
+        padding: 40px 0;
+        border-bottom: 1px solid #E7E7E7;
+    }
+
+    .box:first-child{
+        border-top: 1px solid #E7E7E7;
+    }
+    .bg-usually-bin{
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: #A11715;
+    }
+    .bg-jb-class  span{
+        display: inline-block;
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #333;
+        padding: 10px;
+    }
+</style>
+<script>
+    const el = document.documentElement;
+    document.addEventListener('scroll', function () {
+
+      if ((el.scrollTop + el.clientHeight) === el.scrollHeight){
+        const currentPage = location.search? location.search.split('?')[1].split('=')[1] : 1;
+        location.href = `./health?page=${+currentPage+1}`
+      }
+    })
+</script>
+</body>
+</html>

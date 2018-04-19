@@ -59,6 +59,15 @@ router.get('/', async (ctx) => {
       })
     }
 
+  });
+
+  const ques = await http({
+    url: `${baseApi}questionController/queryRelatedQuestionList`,
+    config: {
+      body:JSON.stringify({
+        size: 4
+      })
+    }
   })
 
   // const jb = await http({
@@ -70,6 +79,7 @@ router.get('/', async (ctx) => {
    docs: docs['resultBodyObject']['rows'],
    yy: docyy['resultBodyObject'].rows,
    hl: health['resultBodyObject'].rows,
+   ques,
    help,
    index: 0,
  });
@@ -121,7 +131,8 @@ router.get('/doctor', async (ctx) => {
    return ctx.render('searchDoctor', {
      doctors: doctors['resultBodyObject']['rows'],
      total: doctors['resultBodyObject'].total,
-     help
+     help,
+     index: -1,
    });
  });
 
@@ -141,7 +152,8 @@ router.get('/doctor/:id',async (ctx) => {
     doctorDetail: doc['resultBodyObject']['doctorDetail'],
     relatedDocotrs: doc['resultBodyObject']['relatedDocotrs'],
     check,
-    help
+    help,
+    index: -1,
   });
 });
 
@@ -164,7 +176,8 @@ router.get('/article/:id',async (ctx) =>{
     }
   });
   return ctx.render('articleDetail', {
-    ats: article['resultBodyObject']
+    ats: article['resultBodyObject'],
+    index: -1,
   });
 });
 
@@ -227,6 +240,37 @@ router.get('/mall',async (ctx) =>{
     help,
     insurances,
     equipments,
+  });
+});
+
+//布骨健康
+
+router.get('/health', async (ctx) => {
+  const pages = ctx.search.split('?');
+  if (pages && pages.length>1){
+    var p = pages[1].split('=')[1];
+  }
+  const health = await http({
+    url: `${baseApi}index/queryArticleList`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 5,
+        page: p || 1,
+        lastArticleCreateTimestamp: 0,
+      })
+    }
+
+  });
+  console.log(p);
+
+  console.log(health);
+  return ctx.render('health', {
+    hos: [
+      '北京人民解放军总医院', '北京积水潭医院', '北京协和医院',
+      '上海市第六人民医院', '第四军医大学西京医院', '四川大学华西医院',
+      '第二军医大学长征医院', '北京大学人民医院', '西京鼓楼医院'],
+    index: 5,
+    hl: health['resultBodyObject'].rows
   });
 });
 
