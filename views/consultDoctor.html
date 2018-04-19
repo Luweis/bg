@@ -2,54 +2,59 @@
 
 <%- include('./link.html') %>
 
-<body>
-<!--header-->
-<%- include("./head.html") %>
-<!--main-->
-<div class="common-main container consultDoctor-content">
-    <div class="consultDoctor-title row text-center">查找您要咨询的医生</div>
-    <div class="consultDoctor-title-small row text-center">汇聚全国权威医生，只要是骨健康问题，在这里轻松解决</div>
-    <div class="consultDoctor-search center-block row">
-        <label class="consultDoctor-search-input-wrap col-sm-9 col-md-9 col-lg-10">
-            <input id="consultDoctorSearch" class="consultDoctor-search-input" type="text" placeholder="搜索医院、医生、科室">
-        </label>
-        <div class="consultDoctor-search-button-wrap col-sm-3 col-md-3 col-lg-2">
-            <div class="consultDoctor-search-button">搜索</div>
-        </div>
-    </div>
-    <div class="consultDoctor-recommend-doctor-wrap row">
-        <div class="consultDoctor-recommend-doctor-title row text-center">
-            汇聚骨健康领域的专业医生
-        </div>
-        <div class="swiper-container consultDoctor-recommend-doctor container">
-            <div class="swiper-wrapper" id="consultDoctorSwiperWrapper">
+    <body>
+        <!--header-->
+        <%- include("./head.html") %>
+            <!--main-->
+            <div class="common-main container consultDoctor-content">
+                <div class="consultDoctor-title row text-center">查找您要咨询的医生</div>
+                <div class="consultDoctor-title-small row text-center">汇聚全国权威医生，只要是骨健康问题，在这里轻松解决</div>
+                <div class="consultDoctor-search center-block row">
+                    <label class="consultDoctor-search-input-wrap col-sm-9 col-md-9 col-lg-10">
+                        <input id="consultDoctorSearch" class="consultDoctor-search-input" type="text" placeholder="搜索医院、医生、科室">
+                    </label>
+                    <div class="consultDoctor-search-button-wrap col-sm-3 col-md-3 col-lg-2">
+                        <div class="consultDoctor-search-button">搜索</div>
+                    </div>
+                </div>
+                <div class="consultDoctor-recommend-doctor-wrap row">
+                    <div class="consultDoctor-recommend-doctor-title row text-center">
+                        汇聚骨健康领域的专业医生
+                    </div>
+                    <div class="swiper-container consultDoctor-recommend-doctor container">
+                        <div class="swiper-wrapper" id="consultDoctorSwiperWrapper">
 
+                        </div>
+                        <div class="swiper-pagination consultDoctor-swiper-pagination"></div>
+                    </div>
+                    <div style="display: none">
+                        <% doctors.forEach(function(doctor){ %>
+                            <div>
+                                <div>
+                                    <span>
+                                        <%= doctor.realName %>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>
+                                        <%= doctor.hospitalName %>
+                                    </span>
+                                </div>
+                                <p>
+                                    <%= doctor.departmentName %>
+                                </p>
+                                <div>
+                                    <%= doctor.title %>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
             </div>
-            <div class="swiper-pagination consultDoctor-swiper-pagination"></div>
-        </div>
-        <div style="display: none">
-            <% doctors.forEach(function(doctor){ %>
-            <div>
-                <div>
-                    <span><%= doctor.realName %></span>
-                </div>
-                <div>
-                    <span><%= doctor.hospitalName %></span>
-                </div>
-                <p>
-                    <%= doctor.departmentName %>
-                </p>
-                <div>
-                    <%= doctor.title %>
-                </div>
-            </div>
-            <% }) %>
-        </div>
-    </div>
-</div>
 
-<!--footer-->
-<%- include("./footer.html") %>
-<%- help.jsIncludeTag('doctors') %>
-</body>
+            <!--footer-->
+            <%- include("./footer.html") %>
+                <%- help.jsIncludeTag('doctors') %>
+    </body>
+
 </html>

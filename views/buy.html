@@ -1,0 +1,33 @@
+<html lang="en">
+<%- include('./link.html') %>
+
+    <body>
+        <%- include("./head.html") %>
+            <div class="content">
+                <img src="/assets/images/service.png" alt="二维码" style="height: 100px;width: 100px;margin-bottom: 20px">
+                <div class="tip-text">网页版商城建设中</div>
+                <div class="tip-text">请⽤⼿机微信扫描二维码，在⼿机端购买。</div>
+            </div>
+            <style>
+                .tip-text {
+                    font-family: PingFangSC-Regular;
+                    font-size: 16px;
+                    color: #A11715;
+                    margin-bottom: 20px;
+                }
+                .content {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    padding-top: 40px;
+                    padding-bottom: 40px;
+                }
+            </style>
+            <!--footer-->
+            <%- include("./footer.html") %>
+                <%- help.jsIncludeTag('main') %>
+    </body>
+
+</html>
