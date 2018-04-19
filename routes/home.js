@@ -3,7 +3,6 @@ const process = require('process');
 const http = require('../assets/utils');
 const utils = require('../utils');
 const help = require('../utils/help.js');
-
 function activeItem(index, current) {
   index !== current? 'test': '';
 }
@@ -30,11 +29,9 @@ const baseApi = env[currentEnv].controllerBaseUrl;
 
 //主页
 router.get('/', async (ctx) => {
-
  const banners = await http({
    url: `${baseApi}index/getBannerResources`
  });
-
   const docs = await http({
     url: `${baseApi}consultDoctor/getRecommendDoctor`,
     config: {
@@ -166,7 +163,6 @@ router.get('/article/:id',async (ctx) =>{
       }),
     }
   });
-
   return ctx.render('articleDetail', {
     ats: article['resultBodyObject']
   });
@@ -196,38 +192,72 @@ router.get('/interlocution',async (ctx) =>{
 
 //疾病库
 router.get('/disease',async (ctx) =>{
+  //?query='2' 
+  const param = utils.getParam(ctx.url)
+  const resp = await http({
+    url: `${baseApi}diseaseController/getDataById`,
+    config: {
+      body: JSON.stringify({
+        
+      }),
+    }
+  });
   return ctx.render('jibinku', {
     helpers: utils,
-    index: 3,
+    index: 5,
     help,
   });
 });
 
 //健康商城
 router.get('/mall',async (ctx) =>{
+  const param = utils.getParam(ctx.url)
+  const resp = await http({
+    url: `${baseApi}healthyMallController/getInitPageData`,
+    config: {
+      body: JSON.stringify({}),
+    }
+  });
+  const insurances = resp['resultBodyObject']['surgeryInsuranceList'] || []
+  const equipments  = resp['resultBodyObject']['equipmentList'] || []
+  console.log(insurances)
   return ctx.render('mall', {
     helpers: utils,
-    index: 4,
+    index: 6,
     help,
+    insurances,
+    equipments,
   });
 });
 
 //商品详情
-router.get('/mall/:id',async (ctx) =>{
-  const id = ctx.url.split('/').pop() || '';
+router.get('/mall/:type/:id',async (ctx) =>{
+  const id = ctx.url.split('/')[3] || '';
+  const type = ctx.url.split('/')[2] || '';
+  const url = type == 'insurance' ? 'healthyMallDetailController/getInsuranceDetail' : 'healthyMallDetailController/getEquipmentDetail'
+  const resp = await http({
+    url: `${baseApi}${url}`,
+    config: {
+      body: JSON.stringify({
+        id:id
+      }),
+    }
+  });
+  console.log(resp['resultBodyObject'])
   return ctx.render('mallDetail', {
     helpers: utils,
-    index: 3,
+    index: 6,
     help,
+    model:resp['resultBodyObject']
   });
 });
 
 //购买商品
-router.get('/buy/:id',async (ctx) =>{
+router.get('/buy',async (ctx) =>{
   const id = ctx.url.split('/').pop() || '';
   return ctx.render('buy', {
     helpers: utils,
-    index: 3,
+    index: 6,
     help,
   });
 });

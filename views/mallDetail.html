@@ -4,29 +4,32 @@
         <%- include("./head.html") %>
             <div class="bg-main">
                 <div class="container">
-                    <div class="pc-content">
-                            <img class="shop_banner" src="/assets/images/shop_banner.png" alt="">
-                            <div class="col-md-5 clearfix margin-top-40" style="margin-bottom: 20px">
-                                    <img src="/assets/images/banner.png" alt="保险图片" class=" item-1-price-image left" style="height: 120px;width: 150px">
-                                    <div class="left padding-lr-10">
-                                        <div class="item-1-title">硅胶冰古代家宴高级珍贵保护套</div>
-                                        <h3 class="item-1-price">¥1800.00
-                                            <small class="item-1-small"> 元起</small>
-                                        </h3>
-                                        <div class="item-1-count">已售1200份</div>
-                                        <a href="" class="buy-btn">立即购买</a>
-                                    </div>
-                                </div>
-                    </div>
-                    <div class="app-content">
-                        <img src="/assets/images/banner.png" alt="二维码"  style="height: 100px;width: 100px">
-                        <div>网页版商城建设中</div>
-                        <div>网页版商城建设中</div>
-                    </div>
-                </div>
+                        <img class="shop_banner" src="/assets/images/shop_banner.png" alt="">
+                        <div class="content">
+                                <div class="col-xs-12 col-sm-8 col-md-6" style="margin: 20px auto">
+                                        <img src="<%= model.imgUrl %>" alt="保险图片"  class="shop_des_image">
+                                        <div class="padding-lr-10" style="margin-bottom:20px">
+                                            <div class="item-1-title"><%= model.title %></div>
+                                            <h3 class="item-1-price">¥<%= model.price %>
+                                                <small class="item-1-small"> 元起</small>
+                                            </h3>
+                                            <div class="item-1-count">已售<%= model.sales %>份</div>
+                                            <a href="../../buy" class="buy-btn">立即购买</a>
+                                        </div>
+                                        <% model.detailResourceList.forEach(function(item){ %>
+                                            <div>
+                                                <img class="shop_des_image" src="<%= item.resourceUrl %>" alt="">
+                                            </div>
+                                         <% }) %>
+                            </div>
+                        </div>
             </div>
             <style>
                 .shop_banner {
+                    width: 100%;
+                    height: auto;
+                }
+                .shop_des_image{
                     width: 100%;
                     height: auto;
                 }
@@ -34,6 +37,15 @@
                 .bg-main {
                     margin-top: 30px;
                     margin-bottom: 30px;
+                }
+                .content {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    padding-top: 40px;
+                    padding-bottom: 40px;
                 }
 
                 .bg-line {
@@ -95,30 +107,6 @@
                     color: #999999;
                     line-height: 25px;
                     margin-bottom: 10px;
-                }
-
-                .item-2-price {
-                    font-family: PingFangSC-Semibold;
-                    font-size: 16px;
-                    color: #A11715;
-                }
-
-                .item-2-price-image {
-                    width: 180px;
-                    height: 180px;
-                }
-
-                @media (max-width: 996px) {
-                    .md-mt-40:not(:first-child) {
-                        margin-top: 40px;
-                    }
-                    .re-doctor {
-                        display: none;
-                    }
-                    .item-2-price-image {
-                        width: 160px;
-                        height: 160px;
-                    }
                 }
             </style>
             <!--footer-->

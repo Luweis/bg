@@ -1,6 +1,5 @@
 <html lang="en">
 <%- include('./link.html') %>
-
     <body>
         <%- include("./head.html") %>
             <div class="bg-main">
@@ -13,18 +12,24 @@
                             <h1 class="item-title">健康保险</h1>
                         </div>
                         <div class="margin-top-20 row">
-                            <% [{},{},{}].forEach(function(h){ %>
-                                <div class="col-md-5 col-xs-10 clearfix" style="margin-bottom: 20px">
-                                    <img src="/assets/images/banner.png" alt="保险图片" class=" item-1-price-image left" style="height: 120px;width: 150px">
-                                    <div class="left padding-lr-10">
-                                        <div class="item-1-title">硅胶冰古代家宴高级珍贵保护套</div>
-                                        <h3 class="item-1-price">¥1800.00
-                                            <small class="item-1-small"> 元起</small>
-                                        </h3>
-                                        <div class="item-1-count">已售1200份</div>
-                                        <a href="" class="buy-btn">立即购买</a>
+                            <% insurances.forEach(function(item){ %>
+                                <a href="./mall/insurance/<%= item.id %>" class="normal-a">
+                                    <div class="col-md-5 col-xs-10 clearfix" style="margin-bottom: 20px">
+                                        <img src="<%= item.imgUrl %>" alt="保险图片" class=" item-1-price-image left" style="height: 120px;width: 150px">
+                                        <div class="left padding-lr-10">
+                                            <div class="item-1-title">
+                                                <%= item.title %>
+                                            </div>
+                                            <h3 class="item-1-price">￥
+                                                <%= item.price %>
+                                                    <small class="item-1-small"> 元起</small>
+                                            </h3>
+                                            <div class="item-1-count">已售
+                                                <%= item.sales %>份</div>
+                                            <a href="./buy" class="buy-btn">立即购买</a>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                                 <% }) %>
                         </div>
                         <!-- 健康保险 -->
@@ -32,26 +37,46 @@
                             <div class="bg-line"></div>
                             <h1 class="item-title">康复器材</h1>
                         </div>
-                        <div class="margin-top-20 row">
-                            <% [{},{},{},{},{}].forEach(function(h){ %>
-                                <div class="col-md-2 col-sm-3 col-xs-5 clearfix" style="margin-bottom: 20px">
-                                    <img src="/assets/images/banner.png" alt="保险图片" class="item-2-price-image">
-                                    <div style="margin-top: 10px">
-                                        <div class="item-1-title">硅胶冰古代家宴高级珍贵保护套</div>
-                                        <del class="item-1-count">1150 元</del>
-                                        <div>
-                                           <span class="item-2-price ">¥1800.00</span>
-                                           <span class="item-1-count right">已售1200份</span>
+                        <a class="margin-top-20 row">
+                            <% equipments.forEach(function(item){ %>
+                                <a href="./mall/equipment/<%= item.id %>" class="normal-a">
+                                    <div class="col-md-2 col-sm-3 col-xs-5 clearfix" style="margin-bottom: 20px">
+                                        <img src="<%= item.imgUrl %>" alt="保险图片" class="item-2-price-image">
+                                        <div style="margin-top: 10px">
+                                            <div class="item-1-title">
+                                                <%= item.title %>
+                                            </div>
+                                            <del class="item-1-count">
+                                                <%= item.purchasingPrice %> 元</del>
+                                            <div>
+                                                <span class="item-2-price ">¥
+                                                    <%= item.price %>
+                                                </span>
+                                                <span class="item-1-count right">已售
+                                                    <%= item.sales %>份</span>
+                                            </div>
+                                            <a href="" class="buy-btn">立即购买</a>
                                         </div>
-                                        <a href="" class="buy-btn">立即购买</a>
                                     </div>
-                                </div>
-                                <% }) %>
-                        </div>
+                                </a>
+                             <% }) %>
                     </div>
                 </div>
             </div>
+            </div>
             <style>
+                a:hover{
+                    text-decoration: none;
+                }
+                .normal-a {
+                    color: black;
+                }
+
+                .normal-a:hover {
+                    text-decoration: none;
+                    color: black;
+                }
+
                 .shop_banner {
                     width: 100%;
                     height: auto;
@@ -142,15 +167,15 @@
                     .re-doctor {
                         display: none;
                     }
-                 .item-2-price-image {
-                    width: 160px;
-                    height: 160px;
-                }
+                    .item-2-price-image {
+                        width: 160px;
+                        height: 160px;
+                    }
                 }
             </style>
             <!--footer-->
             <%- include("./footer.html") %>
-                <%- help.jsIncludeTag('main') %>
+            <%- help.jsIncludeTag('main') %>
     </body>
 
 </html>
