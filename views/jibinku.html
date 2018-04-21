@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control search-input" placeholder="搜索问题关键词">
+                                    <input type="text" class="form-control search-input" value="<%= keyWord %>" placeholder="搜索问题关键词">
                                     <span class="input-group-btn">
                                         <button class="search-button" type="button">
                                             <img src="/assets/images/search.png" style="width: 20px;height: 20px;" alt="搜索">
@@ -27,15 +27,14 @@
 
                         <!-- 搜索结果 -->
                         <div>
-                            <div class="result-title">为你找到6种疾病，点击疾病名称查看详情：</div>
+                            <div class="result-title">为你找到<%= diseases.count || 0%>种疾病，点击疾病名称查看详情：</div>
                             <div class="result-item">
-                                <% [{},{},{},{},{},{},{}].forEach(function(h){ %>
-                                    <a class="result-item bg-jbk"> 髌⻣骨软化症</a>
-                                    <% }) %>
+                                <% diseases.forEach(function(item){ %>
+                                    <a class="result-item bg-jbk"> <%= item.illnessName%></a>
+                                 <% }) %>
                             </div>
                         </div>
                     </div>
-
                     <!-- 推荐医生 -->
                     <div class="col-md-5 re-doctor">
                         <div class="bg-ques-doctor">
@@ -63,7 +62,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                <% }) %>
+                            <% }) %>
                         </div>
                     </div>
                 </div>
