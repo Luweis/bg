@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="bg-search-bar">
-                        <input class="search" type="text" placeholder="搜索医院、医⽣生、科室、城市、疾病"/>
+                        <input id="search-doc" class="search" type="text" placeholder="搜索医院、医⽣生、科室、城市、疾病"/>
                         <img class="search-btn" src="assets/images/bg-search-btn.png" alt="">
                     </div>
 
@@ -234,6 +234,14 @@
     }
 </style>
 <script>
+
+    const search = document.querySelector('#search-doc');
+    const btn = document.querySelector('.search-btn');
+    btn.addEventListener('click', function () {
+      const url = '/doctor/search?query='+ encodeURIComponent(search.value);
+      location.href = url;
+    });
+
     const el = document.documentElement;
     document.addEventListener('scroll', function () {
 

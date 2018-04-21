@@ -108,6 +108,7 @@ router.get('/doctor', async (ctx) => {
 
 // 医生搜索页面结果页面
  router.get('/doctor/search', async (ctx) =>{
+
    const params = ctx.query || {};
    let doctorTypeList;
    if (params.searchType === 'surgery'){
@@ -115,9 +116,9 @@ router.get('/doctor', async (ctx) => {
    }else {
      doctorTypeList = [2,3];
    }
-
+   
    const doctors = await http({
-     url: `${baseApi}/SearchDoctorController/queryDoctor`,
+     url: `${baseApi}SearchDoctorController/queryDoctor`,
      config:{
        body: JSON.stringify({
          doctorTypeList,
@@ -185,7 +186,7 @@ router.get('/article/:id',async (ctx) =>{
 
 //经典问答
 router.get('/interlocution',async (ctx) =>{
-  //?query='2' 
+  //?query='2'
   const keyWord = ctx.url.split('query=')[1] || '';
   const qa = await http({
     url: `${baseApi}questionController/queryRelatedQuestionList`,
@@ -205,19 +206,19 @@ router.get('/interlocution',async (ctx) =>{
 
 //疾病库
 router.get('/disease',async (ctx) =>{
-  //?query='2' 
+  //?query='2'
   const param = utils.getParam(ctx.url)
   const resp = await http({
     url: `${baseApi}diseaseController/getDataById`,
     config: {
       body: JSON.stringify({
-        
+
       }),
     }
   });
   return ctx.render('jibinku', {
     helpers: utils,
-    index: 5,
+    index: 6,
     help,
   });
 });
@@ -236,7 +237,7 @@ router.get('/mall',async (ctx) =>{
   console.log(insurances)
   return ctx.render('mall', {
     helpers: utils,
-    index: 6,
+    index: 7,
     help,
     insurances,
     equipments,
@@ -250,6 +251,7 @@ router.get('/health', async (ctx) => {
   if (pages && pages.length>1){
     var p = pages[1].split('=')[1];
   }
+
   const health = await http({
     url: `${baseApi}index/queryArticleList`,
     config: {
@@ -261,9 +263,7 @@ router.get('/health', async (ctx) => {
     }
 
   });
-  console.log(p);
 
-  console.log(health);
   return ctx.render('health', {
     hos: [
       '北京人民解放军总医院', '北京积水潭医院', '北京协和医院',
@@ -290,7 +290,7 @@ router.get('/mall/:type/:id',async (ctx) =>{
   console.log(resp['resultBodyObject'])
   return ctx.render('mallDetail', {
     helpers: utils,
-    index: 6,
+    index: 7,
     help,
     model:resp['resultBodyObject']
   });

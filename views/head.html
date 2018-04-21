@@ -12,7 +12,7 @@
             </ul>
         </div>
     </div>
-    <div class="bg-header-nav">
+    <div class="bg-header-nav close-modal">
         <div class="container">
             <div class="row relative">
                 <div class="col-md-12 col-lg-3 head-log-content">
@@ -22,19 +22,19 @@
                     <li class="<%= index === 0? 'active': null %>"><a href="/">首页</a></li>
                     <li class="<%= index === 1? 'active': null %>"><a href="/doctor">咨询医生</a></li>
                     <li class="<%= index === 2? 'active': null %>"><a href="/doctor-yy">预约手术</a></li>
-                    <li><a href="">经典问答</a></li>
+                    <li class="<%= index === 3? 'active': null %>"><a href="/interlocution">经典问答</a></li>
                     <li class="<%= index === 5? 'active': null %>"><a href="/health">布骨健康</a></li>
                     <li class="<%= index === 6? 'active': null %>"><a href="/disease">疾病库</a></li>
-                    <li><a href="./mall">健康商城</a></li>
+                    <li class="<%= index === 7? 'active': null %>"><a href="./mall">健康商城</a></li>
 
                 </nav>
                 <img id="open-menu" class="head-menu" src="/assets/images/head-menu.png" alt="" />
-                <img id="close-menu" class="head-menu " src="/assets/images/close.png" style="display: none"/>
+                <img id="close-menu" class="head-menu " src="/assets/images/close.png"/>
             </div>
         </div>
     </div>
-    <div >
-        <ul class="mobile-bar" style="display: none">
+    <div class="mobile-bar-wrap">
+        <ul class="mobile-bar">
             <li class="active"><a href="">首页</a></li>
             <li><a href="">咨询医生</a></li>
             <li><a href="">预约手术</a></li>
@@ -104,7 +104,7 @@
         text-decoration: none;
     }
     .header-logo{
-        margin-top: 19px;
+        margin: 19px 0;
         height: 34px;
     }
 
@@ -128,7 +128,10 @@
 
     @media (min-width: 992px) {
         .head-menu{
-            display: none;
+            display: none !important;
+        }
+        .mobile-bar-wrap > .mobile-bar{
+            display: none !important;
         }
     }
 
@@ -159,6 +162,31 @@
     .mobile-bar li > a:hover{
         text-decoration: none;
     }
+
+    /*打开遮罩层*/
+
+
+        .open-modal #open-menu{
+            display: none;
+        }
+        .open-modal #close-menu{
+            display: inline-block ;
+        }
+
+        .close-modal #open-menu{
+            display: inline-block;
+        }
+        .close-modal #close-menu{
+            display: none;
+        }
+
+    .open-modal + .mobile-bar-wrap > .mobile-bar{
+        display: flex;
+    }
+
+    .close-modal + .mobile-bar-wrap > .mobile-bar{
+        display: none;
+    }
 </style>
 
 <script>
@@ -169,18 +197,12 @@
 
    openMenu.addEventListener('click', function () {
      const cn = navBar.className;
-     navBar.className = cn.replace(/close/, ' ' ).replace('open', '') + ' open';
-     // closeMenu.style.display = 'inline-block';
-     // openMenu.style.display = 'none';
-     // bar.style.display = 'flex';
+     navBar.className = cn.replace(/close-modal/, '' ).replace('open-modal', '') + 'open-modal';
    });
    closeMenu.addEventListener('click', function () {
 
      const cn = navBar.className;
-     navBar.className = cn.replace(/open/, ' ' ).replace('close', '') + ' close';
-     // openMenu.style.display = 'inline-block';
-     // closeMenu.style.display = 'none';
-     // bar.style.display = 'none';
+     navBar.className = cn.replace(/open-modal/, '' ).replace('close-modal', '') + 'close-modal';
    });
 
 </script>
