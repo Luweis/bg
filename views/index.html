@@ -50,7 +50,7 @@
 
                     <div class="bg-ques-card row">
 
-                        <% docs.forEach(function(y){ %> 
+                        <% docs.forEach(function(y){ %>
                         <div class="col-md-6 ">
                             <div class="clearfix card">
                                 <div class="bg-ques-card-head left">
@@ -190,16 +190,9 @@
                         <p>⻣骨健康垂直领域疾病库多达1000多种。</p>
                     </div>
                     <div style="margin: 20px 0">
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
-                        <span class="bg-jbk"> 髌⻣骨软化症</span>
+                        <% dis.forEach(function(d){%>
+                        <span class="bg-jbk"><%= d.illnessName %></span>
+                      <% }) %>
                     </div>
                 </div>
             </div>
@@ -208,51 +201,50 @@
                 <div class="bg-ques-doctor">
                     <div>
                         <div class="bg-line"></div>
-                        <h1 class="title">布骨商城<span>更多></span></h1>
+                        <h1 class="title">布骨商城<span><a href="/mall">更多></a></span></h1>
                         <p>专业⻣骨科⽀支具、康复器器材商城</p>
                     </div>
+                    <!--保险-->
+                    <% surgeryInsuranceList.forEach(function(sur, index){ %>
+                    <% if (index>4) return %>
                     <div class="clearfix margin-top-20">
-                        <img src="/assets/images/banner.png" alt="" class="left" style="height: 90px;width: 90px">
+                        <a href="/mall/insurance/<%= sur.id %>">
+                        <img src="<%= sur.imgUrl %>" alt="" class="left" style="height: 90px;width: 90px">
                         <div class="left padd-lf-15px">
-                            <div class="font-size-base">硅胶冰古代家宴高级珍贵保护套</div>
+                            <div class="font-size-base"><%= sur.title %></div>
                             <div class="padd-tb-10">
-                                <span class="bg-shop-price">¥1800.00</span>
-                                <span class="bg-shop-price-old">¥1800.00</span>
+                                <span class="bg-shop-price">¥<%= sur.purchasingPrice  %></span>
+                                <span class="bg-shop-price-old">¥<%= sur.price %></span>
                             </div>
-                            <a href="" class="bg-ques-btn">立即购买</a>
+                            <a href="/buy %>" class="bg-ques-btn">立即购买</a>
                         </div>
+                        </a>
                     </div>
+                    <% }) %>
 
+                    <!--护具-->
+                    <% gds.forEach(function(g, index){ %>
+                    <% if (index>4) return %>
                     <div class="clearfix margin-top-20">
-                        <img src="/assets/images/banner.png" alt="" class="left" style="height: 90px;width: 90px">
-                        <div class="left padd-lf-15px">
-                            <div class="font-size-base">硅胶冰古代家宴高级珍贵保护套</div>
-                            <div class="padd-tb-10">
-                                <span class="bg-shop-price">¥1800.00</span>
-                                <span class="bg-shop-price-old">¥1800.00</span>
+                        <a href="/mall/equipment/<%= g.id %>">
+                            <img src="<%= g.imgUrl %>" alt="" class="left" style="height: 90px;width: 90px">
+                            <div class="left padd-lf-15px">
+                                <div class="font-size-base"><%= g.title %></div>
+                                <div class="padd-tb-10">
+                                    <span class="bg-shop-price">¥<%= g.purchasingPrice %></span>
+                                    <span class="bg-shop-price-old">¥<%= g.price %></span>
+                                </div>
+                                <a href="/buy" class="bg-ques-btn">立即购买</a>
                             </div>
-                            <a href="" class="bg-ques-btn">立即购买</a>
-                        </div>
+                        </a>
                     </div>
-
-                    <div class="clearfix margin-top-20">
-                        <img src="/assets/images/banner.png" alt="" class="left" style="height: 90px;width: 90px">
-                        <div class="left padd-lf-15px">
-                            <div class="font-size-base">硅胶冰古代家宴高级珍贵保护套</div>
-                            <div class="padd-tb-10">
-                                <span class="bg-shop-price">¥1800.00</span>
-                                <span class="bg-shop-price-old">¥1800.00</span>
-                            </div>
-                            <a href="" class="bg-ques-btn">立即购买</a>
-                        </div>
-                    </div>
-
+                    <% }) %>
                 </div>
 
                 <div class="bg-ques-doctor" style="margin: 40px 0">
                     <div>
                         <div class="bg-line"></div>
-                        <h1 class="title">布谷健康<span>更多></span></h1>
+                        <h1 class="title">布谷健康<span><a href="/mall">更多></a></span></h1>
                         <p>骨健康领域医学资讯、科普</p>
                     </div>
 
@@ -286,7 +278,9 @@
 </main>
 
 <style>
-
+    a:hover{
+        text-decoration: none;
+    }
     .normal-a{
         color: black;
     }

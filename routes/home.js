@@ -70,16 +70,46 @@ router.get('/', async (ctx) => {
     }
   })
 
-  // const jb = await http({
-  //   url: `${baseApi}diseaseController/getDataById`,
-  // })
+  const goods = await http({
+    url: `${baseApi}healthyMallController/getInitPageData`,
+    config: {
+      body: JSON.stringify({
+        size: 4,
+      })
+    }
+  });
+
+  const disa = await http({
+    url: `${baseApi}diseaseController/getIllnessList`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 4,
+      }),
+    }
+  });
+
+  //经典问答
+  const answer = await http({
+    url: `${baseApi}questionController/getQuestionList`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 4,
+      })
+    }
+  });
+  
+
  return ctx.render('index', {
    helpers: utils,
    banners: banners['resultBodyObject'],
    docs: docs['resultBodyObject']['rows'],
    yy: docyy['resultBodyObject'].rows,
    hl: health['resultBodyObject'].rows,
-   ques,
+   gds: goods['resultBodyObject']['equipmentList'], // 商品
+   surgeryInsuranceList: goods['resultBodyObject']['surgeryInsuranceList'] , //保险
+   ques, // 问答
+   dis: disa['resultBodyObject'],
+   ans: answer['resultBodyObject'],
    help,
    index: 0,
  });
@@ -116,9 +146,9 @@ router.get('/doctor', async (ctx) => {
    }else {
      doctorTypeList = [2,3];
    }
-   
+
    const doctors = await http({
-     url: `${baseApi}SearchDoctorController/queryDoctor`,
+     url: `${baseApi}operationOrderController/getConsultDoctor`,
      config:{
        body: JSON.stringify({
          doctorTypeList,
@@ -183,7 +213,6 @@ router.get('/article/:id',async (ctx) =>{
 });
 
 
-
 //经典问答
 router.get('/interlocution',async (ctx) =>{
   //?query='2'
@@ -234,7 +263,7 @@ router.get('/mall',async (ctx) =>{
   });
   const insurances = resp['resultBodyObject']['surgeryInsuranceList'] || []
   const equipments  = resp['resultBodyObject']['equipmentList'] || []
-  console.log(insurances)
+
   return ctx.render('mall', {
     helpers: utils,
     index: 7,
@@ -301,7 +330,7 @@ router.get('/buy',async (ctx) =>{
   const id = ctx.url.split('/').pop() || '';
   return ctx.render('buy', {
     helpers: utils,
-    index: 6,
+    index: -1,
     help,
   });
 });
