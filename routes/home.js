@@ -216,13 +216,14 @@ router.get('/interlocution',async (ctx) =>{
 
 //疾病库
 router.get('/disease',async (ctx) =>{
-  //?query='2' 
+  let keyWord = ctx.url.split('query=')[1] || '';
+  keyWord = decodeURIComponent(keyWord)
   const param = utils.getParam(ctx.url)
   const resp = await http({
-    url: `${baseApi}diseaseController/getDataById`,
+    url: `${baseApi}diseaseController/searchIllness`,
     config: {
       body: JSON.stringify({
-        
+        keyWord:keyWord
       }),
     }
   });
@@ -230,6 +231,8 @@ router.get('/disease',async (ctx) =>{
     helpers: utils,
     index: 5,
     help,
+    diseases: resp['resultBodyObject'],
+    keyWord,
   });
 });
 

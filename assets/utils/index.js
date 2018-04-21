@@ -12,7 +12,4 @@ function http(opt) {
     .then(response => response.json());
 }
 
-
-
-
 module.exports = http
