@@ -216,8 +216,8 @@ router.get('/article/:id',async (ctx) =>{
 
 //经典问答
 router.get('/interlocution',async (ctx) =>{
-  //?query='2'
-  const keyWord = ctx.url.split('query=')[1] || '';
+  let keyWord = ctx.url.split('query=')[1] || '';
+  keyWord = decodeURIComponent(keyWord)
   const qa = await http({
     url: `${baseApi}questionController/getQuestionList`,
     config: {
@@ -366,7 +366,7 @@ router.get('/health', async (ctx) => {
       '北京人民解放军总医院', '北京积水潭医院', '北京协和医院',
       '上海市第六人民医院', '第四军医大学西京医院', '四川大学华西医院',
       '第二军医大学长征医院', '北京大学人民医院', '西京鼓楼医院'],
-    index: 5,
+    index: 4,
     hl: health['resultBodyObject'].rows
   });
 });
