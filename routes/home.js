@@ -246,6 +246,7 @@ router.get('/interlocution',async (ctx) =>{
   });
 });
 
+
 //疾病库
 router.get('/disease',async (ctx) =>{
 
@@ -262,36 +263,60 @@ router.get('/disease',async (ctx) =>{
       }),
     }
   });
+
   return ctx.render('jibinku', {
     helpers: utils,
     index: 6,
     help,
-    resp: resp['resultBodyObject'].rows || [],
+    keyWord,
+    diseases: resp['resultBodyObject'],
   });
 });
 
 // 疾病详情
 router.get('/disease/:id',async (ctx) =>{
-  //?query='2'
-  const param = utils.getParam(ctx.url)
+
+  const id = ctx.url.split('/')[2] || 1;
   const resp = await http({
     url: `${baseApi}diseaseController/getDataById`,
     config: {
       body: JSON.stringify({
-
+        id
       }),
     }
   });
+
+  const doctor = await http({
+    url: `${baseApi}operationOrderController/getConsultDoctor`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 4,
+      })
+    }
+  });
+
+  //经典问答
+  const answer = await http({
+    url: `${baseApi}questionController/getQuestionList`,
+    config: {
+      body: JSON.stringify({
+        keyWord: '',
+        pageCount:1
+      })
+    }
+  });
+
+
+  // 推荐医生
+  console.log(resp['resultBodyObject']);
+
   return ctx.render('illnessDetail', {
     helpers: utils,
-    index: 6,
+    index: -1,
     help,
-<<<<<<< HEAD
-    resp: resp['resultBodyObject']|| [],
-=======
-    diseases: resp['resultBodyObject'],
-    keyWord,
->>>>>>> 165843afd1e294d6b41c90e44231d822abfc6690
+    diseases: resp['resultBodyObject'] || [],
+    doctor: doctor['resultBodyObject'] && doctor['resultBodyObject'].rows || [],
+    qa: answer['resultBodyObject'].rows || [],
   });
 });
 
