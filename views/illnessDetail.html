@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./link.html') %>
+<body>
+<%- include('./head.html') %>
+<div class="bg-main">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-7">
+
+                <div class="bg-ques-doctor">
+
+
+
+                    <div class="bg-ques-doctor" >
+                        <div>
+                            <div class="bg-line"></div>
+                            <h1 class="title">推荐医生</h1>
+                            <p>为您推荐骨科手术领域的专家</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="bg-ques-doctor">
+                    <div>
+                        <div class="bg-line"></div>
+                        <h1 class="title">合作医院 <a href="/doctor"><span class="">更多></span></a></h1>
+                        <p>为您推荐骨科手术领域的专家</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body{
+        height: 100%;
+        width: 100%;
+    }
+    .padd-lf-15px{
+        padding-left: 15px;
+    }
+    .bg-main{
+        margin-top: 30px;
+    }
+
+    .bg-line{
+        position: relative;
+        height: 1px;
+        background-color: #E7E7E7;
+    }
+    .bg-line:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        background-color: #A11715;
+        height: 100%;
+        width: 95px;
+    }
+    .bg-swiper img{
+        width: 100%;
+    }
+
+    .bg-convenience-way img{
+        width: 60px;
+    }
+
+    .bg-convenience-way .title{
+        font-size: 14px;
+        color: #545454;
+    }
+
+    .bg-convenience-way .desc{
+        width: calc(100% - 60px);
+        padding-left: 16px;
+    }
+
+
+    .bg-ques-card-content .has-line{
+        border-bottom: 1px solid #E7E7E7;
+    }
+
+    .bg-ques-doctor .title{
+        position: relative;
+        font-size: 24px;
+        color: black;
+        padding: 10px 0;
+        font-family: 'PingFangSC-Medium';
+    }
+    .bg-ques-doctor .title span{
+        font-size: 14px;
+        color: #B8B8B8;
+        position: absolute;
+        right: 0;
+    }
+
+    .bg-ques-doctor p {
+        color: #B8B8B8;
+        font-size: 14px;
+    }
+
+    .bg-search-bar{
+        padding: 20px 0;
+    }
+
+    .bg-search-bar .search{
+        width: 70%;
+        height: 34px;
+        padding: 0 10px;
+    }
+    .bg-search-bar .search-btn{
+        height: 34px;
+    }
+
+    .bg-ques-card-head img{
+        display: block;
+        width: 60px;
+        height: 60px;
+    }
+
+    .padd-tb-10 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .bg-ques-card-content span.name{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+        text-align: center;
+    }
+
+    .bg-ques-card-content span{
+        padding-right: 10px;
+    }
+
+    .bg-news{
+        width: calc(100% - 90px);
+    }
+
+    .bg-coop-hospital{
+        margin-top: 30px;
+    }
+
+    .bg-coop-hospital  img{
+        height: 50px;
+        vertical-align: middle;
+    }
+
+    .bg-coop-hospital > div{
+        font-family: PingFangSC-Regular;
+        font-size: 16px;
+        color: #000000;
+    }
+
+    .box{
+        padding: 40px 0;
+        border-bottom: 1px solid #E7E7E7;
+    }
+
+    .box:first-child{
+        border-top: 1px solid #E7E7E7;
+    }
+    .bg-usually-bin{
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: #A11715;
+    }
+    .bg-jb-class  span{
+        display: inline-block;
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #333;
+        padding: 10px;
+    }
+</style>
+<script>
+
+  const search = document.querySelector('#search-doc');
+  const btn = document.querySelector('.search-btn');
+  btn.addEventListener('click', function () {
+    const url = '/doctor/search?query='+ encodeURIComponent(search.value);
+    location.href = url;
+  });
+
+  const el = document.documentElement;
+  document.addEventListener('scroll', function () {
+
+    if ((el.scrollTop + el.clientHeight) === el.scrollHeight){
+      const currentPage = location.search? location.search.split('?')[1].split('=')[1] : 1;
+      location.href = `./health?page=${+currentPage+1}`
+    }
+  })
+</script>
+</body>
+</html>

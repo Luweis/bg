@@ -93,12 +93,13 @@ router.get('/', async (ctx) => {
     url: `${baseApi}questionController/getQuestionList`,
     config: {
       body: JSON.stringify({
-        pageSize: 4,
+        keyWord: '',
+        pageCount:1
       })
     }
   });
-  
 
+console.log(answer['resultBodyObject'].rows);
  return ctx.render('index', {
    helpers: utils,
    banners: banners['resultBodyObject'],
@@ -109,7 +110,7 @@ router.get('/', async (ctx) => {
    surgeryInsuranceList: goods['resultBodyObject']['surgeryInsuranceList'] , //保险
    ques, // 问答
    dis: disa['resultBodyObject'],
-   ans: answer['resultBodyObject'],
+   qa: answer['resultBodyObject'].rows || [],
    help,
    index: 0,
  });
@@ -226,6 +227,7 @@ router.get('/interlocution',async (ctx) =>{
       }),
     }
   });
+
   const diseases = await http({
     url: `${baseApi}diseaseController/searchIllness`,
     config: {
@@ -260,6 +262,27 @@ router.get('/disease',async (ctx) =>{
     helpers: utils,
     index: 6,
     help,
+    resp: resp['resultBodyObject'].rows || [],
+  });
+});
+
+// 疾病详情
+router.get('/disease/:id',async (ctx) =>{
+  //?query='2'
+  const param = utils.getParam(ctx.url)
+  const resp = await http({
+    url: `${baseApi}diseaseController/getDataById`,
+    config: {
+      body: JSON.stringify({
+
+      }),
+    }
+  });
+  return ctx.render('illnessDetail', {
+    helpers: utils,
+    index: 6,
+    help,
+    resp: resp['resultBodyObject']|| [],
   });
 });
 
