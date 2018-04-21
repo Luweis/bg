@@ -188,7 +188,16 @@ router.get('/interlocution',async (ctx) =>{
   //?query='2' 
   const keyWord = ctx.url.split('query=')[1] || '';
   const qa = await http({
-    url: `${baseApi}questionController/queryRelatedQuestionList`,
+    url: `${baseApi}questionController/getQuestionList`,
+    config: {
+      body: JSON.stringify({
+        keyWord: keyWord,
+        pageCount:1
+      }),
+    }
+  });
+  const diseases = await http({
+    url: `${baseApi}diseaseController/searchIllness`,
     config: {
       body: JSON.stringify({
         keyWord: keyWord,
@@ -199,7 +208,9 @@ router.get('/interlocution',async (ctx) =>{
     helpers: utils,
     index: 3,
     help,
-    qa:qa['resultBodyObject'] || [],
+    qa: qa['resultBodyObject']["rows"] || [],
+    diseases: diseases['resultBodyObject'] || [],
+    keyWord,
   });
 });
 
@@ -302,6 +313,24 @@ router.get('/buy',async (ctx) =>{
   return ctx.render('buy', {
     helpers: utils,
     index: 6,
+    help,
+  });
+});
+
+//关于我们
+router.get('/about-us',async (ctx) =>{
+  return ctx.render('aboutUs', {
+    helpers: utils,
+    index: 8,
+    help,
+  });
+});
+
+//App下载
+router.get('/download',async (ctx) =>{
+  return ctx.render('download', {
+    helpers: utils,
+    index: 9,
     help,
   });
 });
