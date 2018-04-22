@@ -1,0 +1,18 @@
+<% doctor.forEach(function(d){ %>
+<div class="clearfix margin-top-20">
+    <a href="/doctor/<%= d.id%>" class="normal-a">
+        <img src="<%= d.iconUrl %>" alt="" class="left img-circle" style="height: 60px;width: 60px">
+        <div class="left padd-lf-15px bg-news">
+            <div class="doctor-name">
+                <%= d.realName%>
+            </div>
+            <div class="doctor-des">
+                <%=d.departmentName%> <%=d.title%>
+            </div>
+            <div class="doctor-des">
+                <%= d.hospitalName%>
+            </div>
+        </div>
+    </a>
+</div>
+<% }) %>

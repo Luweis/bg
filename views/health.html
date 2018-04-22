@@ -235,8 +235,20 @@
 </style>
 <script>
 
+    function getParams() {
+     var search = location.search.replace(/^\?/, '');
+      search = decodeURIComponent(search).replace(/&&/g, '&').split('&');
+      const params = {}
+      for (var i = 0, len = search.length; i < len; i++) {
+        const item = search[i].split('=');
+        params[item[0]] = item[1]
+        return params;
+      }
+    }
+
     const search = document.querySelector('#search-doc');
     const btn = document.querySelector('.search-btn');
+
     btn.addEventListener('click', function () {
       const url = '/doctor/search?query='+ encodeURIComponent(search.value);
       location.href = url;
@@ -246,10 +258,14 @@
     document.addEventListener('scroll', function () {
 
       if ((el.scrollTop + el.clientHeight) === el.scrollHeight){
-        const currentPage = location.search? location.search.split('?')[1].split('=')[1] : 1;
+        const currentPage = getParams().page || 1;
         location.href = `./health?page=${+currentPage+1}`
       }
-    })
+    });
+
+    const currentPage = getParams().page || 1;
+
+    document.documentElement.scrollTo(0, 171*10*(currentPage-1));
 </script>
 </body>
 </html>

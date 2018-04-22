@@ -11,6 +11,7 @@ function check(data, tip='暂无' ) {
  return data? data : tip;
 }
 
+
 const currentEnv = process.env.NODE_ENV === 'development'? 'dev' : 'pro';
 
 const env = {
@@ -26,6 +27,17 @@ const env = {
 
 const baseApi = env[currentEnv].controllerBaseUrl;
 
+// 获取推荐医生
+function doctors(keyWord) {
+  return http({
+    url: `${baseApi}operationOrderController/getConsultDoctor`,
+    config: {
+      body: JSON.stringify({
+        keyWord
+      }),
+    }
+  })
+}
 
 //主页
 router.get('/', async (ctx) => {
@@ -99,10 +111,9 @@ router.get('/', async (ctx) => {
     }
   });
 
-console.log(answer['resultBodyObject'].rows);
  return ctx.render('index', {
    helpers: utils,
-   banners: banners['resultBodyObject'],
+   banners: banners['resultBodyObject'] || [],
    docs: docs['resultBodyObject']['rows'],
    yy: docyy['resultBodyObject'].rows,
    hl: health['resultBodyObject'].rows,
@@ -129,7 +140,7 @@ router.get('/doctor', async (ctx) => {
 
   return ctx.render('consultDoctor', {
     helpers: utils,
-    doctors: data['resultBodyObject']['rows'],
+    doctors: data['resultBodyObject']['rows'] || [],
     current: 1,
     activeItem,
     help,
@@ -170,7 +181,9 @@ router.get('/doctor', async (ctx) => {
 
 //医生详情页
 router.get('/doctor/:id',async (ctx) => {
+
   const id = ctx.url.split('/')[2];
+
   const doc = await http({
     url: `${baseApi}doctorHomePageController/initDoctorData`,
     config: {
@@ -187,12 +200,26 @@ router.get('/doctor/:id',async (ctx) => {
     help,
     index: -1,
   });
+
 });
 
 
 //预约列表页面
-router.get('/doctor-yy', (ctx) => {
-  return ctx.render('operationOrder', { help, index: 2 })
+router.get('/doctor-yy', async (ctx) => {
+
+  const doctors = await http({
+    url: `${baseApi}operationOrderController/getConsultDoctor`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 20,
+      })
+    }
+  });
+  return ctx.render('operationOrder', {
+    help,
+    index: 2,
+    doctors: doctors['resultBodyObject'].rows
+  })
 });
 
 
@@ -216,8 +243,10 @@ router.get('/article/:id',async (ctx) =>{
 
 //经典问答
 router.get('/interlocution',async (ctx) =>{
-  let keyWord = ctx.url.split('query=')[1] || '';
+
+  let keyWord = ctx.query.keyWord || '';
   keyWord = decodeURIComponent(keyWord)
+
   const qa = await http({
     url: `${baseApi}questionController/getQuestionList`,
     config: {
@@ -236,25 +265,29 @@ router.get('/interlocution',async (ctx) =>{
       }),
     }
   });
+
+  const doctor = doctors(keyWord);
+
   return ctx.render('interlocution', {
     helpers: utils,
     index: 3,
     help,
     qa: qa['resultBodyObject']["rows"] || [],
+    doctor:  doctor['resultBodyObject'] && doctor['resultBodyObject'].rows || [],
     diseases: diseases['resultBodyObject'] || [],
     keyWord,
   });
 });
 
-
 //疾病库
 router.get('/disease',async (ctx) =>{
 
-  let keyWord = ctx.url.split('query=')[1] || '';
+  let keyWord = ctx.query.keyWord || '';
 
   keyWord = decodeURIComponent(keyWord);
 
   const param = utils.getParam(ctx.url);
+
   const resp = await http({
     url: `${baseApi}diseaseController/searchIllness`,
     config: {
@@ -264,12 +297,23 @@ router.get('/disease',async (ctx) =>{
     }
   });
 
+  //  推荐医生
+  const doctor = await http({
+    url: `${baseApi}operationOrderController/getConsultDoctor`,
+    config: {
+      body: JSON.stringify({
+        keyWord
+      }),
+    }
+  })
+
   return ctx.render('jibinku', {
     helpers: utils,
-    index: 6,
+    index: 5,
     help,
     keyWord,
     diseases: resp['resultBodyObject'],
+    doctor: doctor['resultBodyObject'] && doctor['resultBodyObject'].rows || []
   });
 });
 
@@ -306,10 +350,6 @@ router.get('/disease/:id',async (ctx) =>{
     }
   });
 
-
-  // 推荐医生
-  console.log(resp['resultBodyObject']);
-
   return ctx.render('illnessDetail', {
     helpers: utils,
     index: -1,
@@ -343,23 +383,29 @@ router.get('/mall',async (ctx) =>{
 
 //布骨健康
 
+let healthAll = [];
 router.get('/health', async (ctx) => {
-  const pages = ctx.search.split('?');
-  if (pages && pages.length>1){
-    var p = pages[1].split('=')[1];
-  }
+  const page = ctx.query.page || 1;
 
-  const health = await http({
+  let health = await http({
     url: `${baseApi}index/queryArticleList`,
     config: {
       body: JSON.stringify({
-        pageSize: 5,
-        page: p || 1,
-        lastArticleCreateTimestamp: 0,
+        pageSize: 10,
+        lastArticleCreateTimestamp: new Date().valueOf(),
+        page
       })
     }
-
   });
+
+  health = health['resultBodyObject'].rows;
+  if (page === 1){
+    healthAll = health;
+  }else {
+    if (health.length > 0){
+      healthAll = [...healthAll, ...health];
+    }
+  }
 
   return ctx.render('health', {
     hos: [
@@ -367,7 +413,7 @@ router.get('/health', async (ctx) => {
       '上海市第六人民医院', '第四军医大学西京医院', '四川大学华西医院',
       '第二军医大学长征医院', '北京大学人民医院', '西京鼓楼医院'],
     index: 4,
-    hl: health['resultBodyObject'].rows
+    hl: healthAll
   });
 });
 
@@ -384,7 +430,6 @@ router.get('/mall/:type/:id',async (ctx) =>{
       }),
     }
   });
-  console.log(resp['resultBodyObject'])
   return ctx.render('mallDetail', {
     helpers: utils,
     index: 7,
@@ -418,6 +463,12 @@ router.get('/download',async (ctx) =>{
     helpers: utils,
     index: 9,
     help,
+  });
+});
+
+router.get('/sorry', async (ctx) => {
+  return ctx.render('sorry', {
+    index: -1,
   });
 });
 

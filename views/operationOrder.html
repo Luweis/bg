@@ -115,14 +115,10 @@
         <div class="operationOrder-recommend-doctor-title row text-center">
             全国三甲医院名医主刀
         </div>
-        <div class="operationOrder-recommend-doctor swiper-container container">
 
-            <div class="swiper-wrapper" id="operationOrderSwiperWrapper">
+         <!--图片轮播banner-->
+        <%- include('./bannerDoctor')%>
 
-            </div>
-            <div class="swiper-pagination operationOrder-swiper-pagination"></div>
-
-        </div>
     </div>
     <div class="operationOrder-intro row">
         <div class="operationOrder-intro-title row text-center">业务介绍</div>
@@ -347,6 +343,17 @@
 
 <!--footer-->
 <%- include('./footer.html') %>
+<%- help.jsIncludeTag('swiper') %>
 <%- help.jsIncludeTag('operation') %>
+
+<script>
+  var mySwiper = new Swiper('.swiper-container', {
+    autoplay: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  })
+</script>
 </body>
 </html>

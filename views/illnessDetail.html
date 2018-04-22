@@ -402,18 +402,35 @@
 <!--footer-->
 <%- include("./footer.html") %>
 <script>
-const btns = document.querySelectorAll('.bg-na-dis a');
-const content = document.querySelectorAll('.bg-dis-content  > div');
+
+    function attr (el, attr) {
+      return el.getAttribute(attr);
+    }
+
+var btns = document.querySelectorAll('.bg-na-dis a');
+var content = document.querySelectorAll('.bg-dis-content  > div');
 document.querySelector('.bg-na-dis').addEventListener('click', function (e) {
+  var currentIndex = 0;
+
   if (e.target.nodeName === 'A') {
-    btns.forEach(function (a, index) {
-      if (a.dataset.index === e.target.dataset.index) {
+    btns.forEach(function (a, idx) {
+      if (attr(a,'data-index') === attr(e.target, 'data-index')) {
+
+        currentIndex = idx;
+
        if ( a.className.indexOf('active') === -1) {
          a.className += ' active';
-         // content[index].className += 'show';
        }
       } else {
-        a.className = a.className.replace('active', '');
+        a.className = a.className.replace('active', '')
+      }
+    });
+
+    content.forEach(function (item, idx) {
+      if (idx === currentIndex) {
+        item.className = item.className.replace('hide', 'show');
+      }else {
+        item.className = item.className.replace('show', 'hide');
       }
     });
   }

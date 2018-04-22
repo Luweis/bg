@@ -1,5 +1,7 @@
+import $ from 'jquery';
 import commonContainer from '../public/js/common'
 import env from '../config/env';
+
 var secondCount = 300;
 var activeCountDownTimerHandler;
 var isCountDown = false;

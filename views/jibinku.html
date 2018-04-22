@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control search-input" value="<%= keyWord %>" placeholder="搜索问题关键词">
+                                    <input id="bg-search" type="text" class="form-control search-input" value="<%= keyWord %>" placeholder="搜索问题关键词">
                                     <span class="input-group-btn">
                                         <button class="search-button" type="button">
                                             <img src="/assets/images/search.png" style="width: 20px;height: 20px;" alt="搜索">
@@ -27,10 +27,10 @@
 
                         <!-- 搜索结果 -->
                         <div>
-                            <div class="result-title">为你找到<%= diseases.count || 0%>种疾病，点击疾病名称查看详情：</div>
-                            <div class="result-item">
+                            <div class="result-title">为你找到<%= diseases.length || 0%>种疾病，点击疾病名称查看详情：</div>
+                            <div id="search-result" class="result-item">
                                 <% diseases.forEach(function(item){ %>
-                                    <a class="result-item bg-jbk"> <%= item.illnessName%></a>
+                                    <a href="/disease/<%= item.id %>" class="result-item bg-jbk"> <%= item.illnessName%></a>
                                  <% }) %>
                             </div>
                         </div>
@@ -41,28 +41,12 @@
                             <div>
                                 <div class="bg-line"></div>
                                 <h1 class="title">推荐医生
-                                    <span class="item-more">更多></span>
+                                    <span class="item-more"><a href="/doctor">更多></a></span>
                                 </h1>
                                 <p>为您推荐骨科手术领域的专家</p>
                             </div>
-                            <% [{},{},{}].forEach(function(h){ %>
-                                <div class="clearfix margin-top-20">
-                                    <a href="./article/<%= h.id %>" class="normal-a">
-                                        <img src="<%= h.thumbnailUrl %>" alt="" class="left img-circle" style="height: 60px;width: 60px">
-                                        <div class="left padd-lf-15px bg-news">
-                                            <div class="doctor-name">
-                                                sliu
-                                            </div>
-                                            <div class="doctor-des">
-                                                骨科综合 主任医师
-                                            </div>
-                                            <div class="doctor-des">
-                                                上海交通大学医学院附属第九人民医院北部院区
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            <% }) %>
+
+                            <%- include('./recommend-doctor')%>
                         </div>
                     </div>
                 </div>
@@ -334,6 +318,13 @@
             </style>
             <!--footer-->
             <%- include("./footer.html") %>
+    <script>
+        var btn = document.querySelector('.search-button');
+        var  search = document.querySelector('#bg-search');
+        btn.addEventListener('click', function () {
+          location.href = '/disease?query=' + decodeURIComponent(search.value);
+        });
+    </script>
     </body>
 
 </html>

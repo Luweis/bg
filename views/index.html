@@ -4,16 +4,27 @@
 <body>
 <!--header-->
 <%- include("./head.html") %>
-
 <!--main-->
 <main class="bg-main">
     <div class="container">
         <div class="row">
 
             <div class="col-md-7">
+                <div class="bg-swiper" style="position: relative">
+                    <img src="<%= banners[0].resourceUrl %>" alt="">
+                    <div style="position: absolute;height: 100%; width: 100%; top: 0;left: 0">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <% banners.forEach(function(b){ %>
+                                <div class="swiper-slide">
+                                    <img class="swiper-img" src="<%= b.resourceUrl %>" alt="">
+                                </div>
+                                <% }) %>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
 
-                <div class="bg-swiper">
-                    <img src=/assets/images/banner.png" alt="">
                 </div>
 
                 <div class="bg-convenience-way row">
@@ -171,7 +182,9 @@
                     </div>
                     <div style="margin: 20px 0">
                         <% dis.forEach(function(d){%>
-                        <span class="bg-jbk"><%= d.illnessName %></span>
+                        <a href="/disease/<%= d.id %>">
+                            <span class="bg-jbk"><%= d.illnessName %></span>
+                        </a>
                       <% }) %>
                     </div>
                 </div>
@@ -270,32 +283,6 @@
      .margin-top-40{
          margin-top: 40px;
      }
-    .mobile-bar{
-        position: absolute;
-        display: flex;
-        width: 100%;
-        z-index: 100;
-        background-color: #222;
-        flex-wrap: wrap;
-    }
-
-    .mobile-bar li {
-        flex: 0 0 25%;
-        display: flex;
-        height: 60px;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #2E2E2E;
-    }
-
-    .mobile-bar li > a {
-        font-size: 14px;
-        color: white;
-    }
-
-    .mobile-bar li > a:hover{
-        text-decoration: none;
-    }
 
     @media (max-width: 996px) {
         .md-mt-40:not(:first-child){
@@ -313,7 +300,6 @@
     .bg-main{
         margin-top: 30px;
     }
-
     .bg-line{
         position: relative;
         height: 1px;
@@ -510,6 +496,29 @@
 
 <!--footer-->
 <%- include("./footer.html") %>
-<%- help.jsIncludeTag('main') %>
+<%- help.jsIncludeTag('swiper') %>
+
+<script>
+  const search = document.querySelector('#doc-search-value');
+  const btn = document.querySelector('#doc-search-btn');
+  btn.addEventListener('click', function () {
+    location.href = '/doctor/search?query=' + search.value;
+  });
+
+  const searchYY = document.querySelector('#yy-search-value');
+  const btnYY = document.querySelector('#yy-search-btn');
+  btnYY.addEventListener('click', function () {
+    location.href = '/doctor/search?searchType=surgery&query=' + searchYY.value;
+  });
+
+  var mySwiper = new Swiper('.swiper-container', {
+    autoplay: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  })
+    
+</script>
 </body>
 </html>

@@ -363,3 +363,7 @@ a{
 .color-red{
 	color: red;
 }
+
+a:hover{
+	text-decoration: none;
+}
