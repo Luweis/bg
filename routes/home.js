@@ -139,7 +139,7 @@ router.get('/doctor', async (ctx) => {
   });
 
   return ctx.render('consultDoctor', {
-    helpers: utils,
+    // helpers: utils,
     doctors: data['resultBodyObject']['rows'] || [],
     current: 1,
     activeItem,
@@ -237,6 +237,7 @@ router.get('/article/:id',async (ctx) =>{
   return ctx.render('articleDetail', {
     ats: article['resultBodyObject'],
     index: -1,
+    help
   });
 });
 
@@ -415,7 +416,8 @@ router.get('/health', async (ctx) => {
       '上海市第六人民医院', '第四军医大学西京医院', '四川大学华西医院',
       '第二军医大学长征医院', '北京大学人民医院', '西京鼓楼医院'],
     index: 4,
-    hl: healthAll
+    hl: healthAll,
+    help
   });
 });
 
@@ -471,6 +473,7 @@ router.get('/download',async (ctx) =>{
 router.get('/sorry', async (ctx) => {
   return ctx.render('sorry', {
     index: -1,
+    help
   });
 });
 

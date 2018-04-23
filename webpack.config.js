@@ -91,11 +91,5 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
     }),
-  ],
-  devServer: {
-    hot: true,
-    host: 'localhost',
-    port: 3200,
-    contentBase: path.resolve(__dirname, 'views')
-  }
+  ]
 };
