@@ -6,7 +6,8 @@
 
                 <% for(var j = 0; j < 4; j++ ){ %>
                 <% if (i * 4 + j  < doctors.length) { %>
-                <a class="consultDoctor-recommend-doctor-item col-md-6" href="./doctor/<%= doctors[i*4+j].id%>" target="_blank">
+                <a class="consultDoctor-recommend-doctor-item col-md-5"
+                   href="./doctor/<%= doctors[i*4+j].id%>" target="_blank" >
                     <div class="row">
                         <div class="consultDoctor-recommend-doctor-head-wrap col-xs-3">
                             <img src="<%=  doctors[i*4+j].iconUrl %>" class="consultDoctor-recommend-doctor-head img-responsive center-block">

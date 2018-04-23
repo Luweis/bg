@@ -363,18 +363,20 @@ router.get('/disease/:id',async (ctx) =>{
 //健康商城
 router.get('/mall',async (ctx) =>{
   const param = utils.getParam(ctx.url)
+
   const resp = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
     config: {
       body: JSON.stringify({}),
     }
   });
+
   const insurances = resp['resultBodyObject']['surgeryInsuranceList'] || []
   const equipments  = resp['resultBodyObject']['equipmentList'] || []
 
   return ctx.render('mall', {
     helpers: utils,
-    index: 7,
+    index: 6,
     help,
     insurances,
     equipments,
