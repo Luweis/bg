@@ -18,18 +18,16 @@
 
                     <div class="bg-search-bar">
                         <input id="search-doc" class="search" type="text" placeholder="搜索医院、医⽣生、科室、城市、疾病"/>
-                        <img class="search-btn" src="assets/images/bg-search-btn.png" alt="">
+                        <img class="search-btn" src="assets/images/bg-search-btn.png" alt="" style="margin-left: -4px">
                     </div>
 
                     <div>
                         <div class="bg-usually-bin">常见疾病</div>
                         <div class="bg-jb-class">
-                            <span>颈椎病</span>
-                            <span>颈椎病</span>
-                            <span>颈椎病</span>
-                            <span>颈椎病</span>
-                            <span>颈椎病</span>
-                            <span>颈椎病</span>
+
+                            <% dis.forEach(function(item){ %>
+                            <a href="/disease/<%=item.id %>"><span><%= item.illnessName %></span></a>
+                            <% }) %>
                         </div>
                     </div>
 
@@ -166,6 +164,8 @@
         width: 70%;
         height: 34px;
         padding: 0 10px;
+        border: 1px solid #E7E7E7;
+        border-radius: 0;
     }
     .bg-search-bar .search-btn{
         height: 34px;

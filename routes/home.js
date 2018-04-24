@@ -388,6 +388,7 @@ router.get('/mall',async (ctx) =>{
 
 let healthAll = [];
 router.get('/health', async (ctx) => {
+
   const page = ctx.query.page || 1;
 
   let health = await http({
@@ -401,6 +402,16 @@ router.get('/health', async (ctx) => {
     }
   });
 
+
+  const resp = await http({
+    url: `${baseApi}diseaseController/getIllnessList`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 20
+      }),
+    }
+  });
+
   health = health['resultBodyObject'].rows;
   if (page === 1){
     healthAll = health;
@@ -409,7 +420,7 @@ router.get('/health', async (ctx) => {
       healthAll = [...healthAll, ...health];
     }
   }
-
+  
   return ctx.render('health', {
     hos: [
       '北京人民解放军总医院', '北京积水潭医院', '北京协和医院',
@@ -417,6 +428,7 @@ router.get('/health', async (ctx) => {
       '第二军医大学长征医院', '北京大学人民医院', '西京鼓楼医院'],
     index: 4,
     hl: healthAll,
+    dis: resp['resultBodyObject'] || [],
     help
   });
 });
