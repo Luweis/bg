@@ -11,7 +11,6 @@ const filename = env === 'development' ? '[name]' : '[name].[hash]';
 
 module.exports = {
   mode: env,
-  devtool: 'cheap-module-eval-source-map',
   entry: {
     main: path.resolve('./assets/js/index'),
     doctors: path.resolve('./assets/js/consultDoctor'),
@@ -87,15 +86,5 @@ module.exports = {
       filename: `${filename}.css`,
       chunkFilename: `${filename}.css`,
     }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-    }),
-  ],
-  devServer: {
-    hot: true,
-    host: 'localhost',
-    port: 3200,
-    contentBase: path.resolve(__dirname, 'views')
-  }
+  ]
 };

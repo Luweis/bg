@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "NODE_ENV=development nodemon ./server.js",
-    "pro": "nodemon ./server.js",
+    "pro": "NODE_ENV=production nodemon ./server.js",
     "build": "rm -rf ./public/assets/* && NODE_ENV=production webpack --progress"
   },
   "dependencies": {

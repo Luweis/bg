@@ -1,181 +1,200 @@
 <html lang="en">
 <%- include('./link.html') %>
-    <body>
-        <%- include("./head.html") %>
-            <div class="bg-main">
-                <div class="container">
-                    <img class="shop_banner" src="/assets/images/shop_banner.png" alt="">
-                    <div>
-                        <!-- 健康保险 -->
-                        <div class="margin-top-20">
-                            <div class="bg-line"></div>
-                            <h1 class="item-title">健康保险</h1>
+<body>
+<%- include("./head.html") %>
+<div class="bg-main">
+    <div class="container">
+        <img class="shop_banner" src="/assets/images/shop_banner.png" alt="">
+        <div>
+            <!-- 健康保险 -->
+            <div class="margin-top-20">
+                <div class="bg-line"></div>
+                <h1 class="item-title">健康保险</h1>
+            </div>
+            <div class="margin-top-20 row">
+                <% insurances.forEach(function(item){ %>
+                <a href="./mall/insurance/<%= item.id %>" class="normal-a">
+                    <div class="col-md-6 col-xs-12 clearfix" style="margin-bottom: 20px">
+                        <img src="<%= item.imgUrl %>" alt="保险图片" class=" item-1-price-image left"
+                             style="height: 120px;width: 150px">
+                        <div class="left padding-lr-10">
+                            <div class="item-1-title">
+                                <%= item.title %>
+                            </div>
+                            <h3 class="item-1-price">￥
+                                <%= item.price %>
+                                <small class="item-1-small"> 元起</small>
+                            </h3>
+                            <div class="item-1-count">已售
+                                <%= item.sales %>份
+                            </div>
+                            <a href="./buy" class="buy-btn">立即购买</a>
                         </div>
-                        <div class="margin-top-20 row">
-                            <% insurances.forEach(function(item){ %>
-                                <a href="./mall/insurance/<%= item.id %>" class="normal-a">
-                                    <div class="col-md-5 col-xs-10 clearfix" style="margin-bottom: 20px">
-                                        <img src="<%= item.imgUrl %>" alt="保险图片" class=" item-1-price-image left" style="height: 120px;width: 150px">
-                                        <div class="left padding-lr-10">
-                                            <div class="item-1-title">
-                                                <%= item.title %>
-                                            </div>
-                                            <h3 class="item-1-price">￥
-                                                <%= item.price %>
-                                                    <small class="item-1-small"> 元起</small>
-                                            </h3>
-                                            <div class="item-1-count">已售
-                                                <%= item.sales %>份</div>
-                                            <a href="./buy" class="buy-btn">立即购买</a>
-                                        </div>
-                                    </div>
-                                </a>
-                                <% }) %>
+                    </div>
+                </a>
+                <% }) %>
+            </div>
+            <!-- 健康保险 -->
+            <div class="margin-top-40">
+                <div class="bg-line"></div>
+                <h1 class="item-title">康复器材</h1>
+            </div>
+            <div class="margin-top-20">
+                <% equipments.forEach(function(item){ %>
+                <div class="col-md-3 col-sm-4 col-xs-6 " style="margin-bottom: 56px">
+                    <a href="./mall/equipment/55" class="normal-a">
+                    <img  src="<%= item.imgUrl %>" alt="保险图片"
+                         class="item-2-price-image">
+                    </a>
+
+                    <div style="margin-top: 10px; width: 180px">
+                        <a href="./mall/equipment/55" class="normal-a">
+                        <div class="item-1-title text-ellipsis">
+                            <%= item.title %>
                         </div>
-                        <!-- 健康保险 -->
-                        <div class="margin-top-20">
-                            <div class="bg-line"></div>
-                            <h1 class="item-title">康复器材</h1>
+                        <span class="item-1-count"><%= item.purchasingPrice %>元</span>
+                        <div class="clearfix">
+                            <span class="item-2-price left">¥<%= item.price %></span>
+                            <span class="item-1-count right" style="text-decoration: none">已售<%= item.sales %>份</span>
                         </div>
-                        <a class="margin-top-20 row">
-                            <% equipments.forEach(function(item){ %>
-                                <a href="./mall/equipment/<%= item.id %>" class="normal-a">
-                                    <div class="col-md-3 col-sm-4 col-xs-5 clearfix" style="margin-bottom: 20px">
-                                        <img src="<%= item.imgUrl %>" alt="保险图片" class="item-2-price-image">
-                                        <div style="margin-top: 10px">
-                                            <div class="item-1-title">
-                                                <%= item.title %>
-                                            </div>
-                                            <del class="item-1-count">
-                                                <%= item.purchasingPrice %> 元</del>
-                                            <div>
-                                                <span class="item-2-price ">¥
-                                                    <%= item.price %>
-                                                </span>
-                                                <span class="item-1-count right">已售
-                                                    <%= item.sales %>份</span>
-                                            </div>
-                                            <a href="" class="buy-btn">立即购买</a>
-                                        </div>
-                                    </div>
-                                </a>
-                             <% }) %>
+                    </a>
+                        <a href="" class="buy-btn">立即购买</a>
                     </div>
                 </div>
+                <% }) %>
             </div>
-            </div>
-            <style>
-                a:hover{
-                    text-decoration: none;
-                }
-                .normal-a {
-                    color: black;
-                }
-
-                .normal-a:hover {
-                    text-decoration: none;
-                    color: black;
-                }
-
-                .shop_banner {
-                    width: 100%;
-                    height: auto;
-                }
-
-                .bg-main {
-                    margin-top: 30px;
-                    margin-bottom: 30px;
-                }
-
-                .bg-line {
-                    position: relative;
-                    height: 1px;
-                    background-color: #E7E7E7;
-                }
-
-                .bg-line:before {
-                    content: '';
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    display: inline-block;
-                    background-color: #A11715;
-                    height: 100%;
-                    width: 95px;
-                }
-
-                .item-title {
-                    font-family: PingFangSC-Medium;
-                    font-size: 24px;
-                    color: #000000;
-                    padding: 10px 0;
-                }
-
-                .buy-btn {
-                    display: inline-block;
-                    background-color: #A11715;
-                    color: white;
-                    padding: 6px 20px;
-                    border-radius: 2px;
-                }
-
-                .item-1-title {
-                    font-family: PingFangSC-Medium;
-                    font-size: 16px;
-                    color: #000000;
-                    line-height: 22px;
-                }
-
-                .item-1-price {
-                    font-family: PingFangSC-Medium;
-                    font-size: 24px;
-                    color: #A11715;
-                    line-height: 33px;
-                }
-
-                .item-1-small {
-                    font-family: PingFangSC-Medium;
-                    font-size: 12px;
-                    color: #A11715;
-                    line-height: 30px;
-                }
-
-                .item-1-count {
-                    font-family: PingFangSC-Regular;
-                    font-size: 13px;
-                    color: #999999;
-                    line-height: 25px;
-                    margin-bottom: 10px;
-                }
+        </div>
+    </div>
+</div>
+<style>
 
 
-                .item-2-price {
-                    font-family: PingFangSC-Semibold;
-                    font-size: 16px;
-                    color: #A11715;
-                }
+    .right{
+        float: right;
+    }
+    .left{
+        float: left;
+    }
 
-                .item-2-price-image {
-                    width: 180px;
-                    height: 180px;
-                }
+    a:hover {
+        text-decoration: none;
+    }
 
-                @media (max-width: 996px) {
-                    .md-mt-40:not(:first-child) {
-                        margin-top: 40px;
-                    }
-                    .re-doctor {
-                        display: none;
-                    }
-                    .item-2-price-image {
-                        width: 160px;
-                        height: 160px;
-                    }
-                }
-            </style>
-            <!--footer-->
-            <%- include("./footer.html") %>
-            <%- help.jsIncludeTag('main') %>
-    </body>
+    .normal-a {
+        color: black;
+    }
+
+    .normal-a:hover {
+        text-decoration: none;
+        color: black;
+    }
+
+    .shop_banner {
+        width: 100%;
+        height: auto;
+    }
+
+    .bg-main {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .bg-line {
+        position: relative;
+        height: 1px;
+        background-color: #E7E7E7;
+    }
+
+    .bg-line:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        background-color: #A11715;
+        height: 100%;
+        width: 95px;
+    }
+
+    .item-title {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #000000;
+        padding: 10px 0;
+    }
+
+    .buy-btn {
+        display: inline-block;
+        background-color: #A11715;
+        color: white;
+        padding: 6px 20px;
+        border-radius: 2px;
+    }
+
+    .item-1-title {
+        font-family: PingFangSC-Medium;
+        font-size: 16px;
+        color: #000000;
+        line-height: 22px;
+    }
+
+    .item-1-price {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #A11715;
+        line-height: 33px;
+    }
+
+    .item-1-small {
+        font-family: PingFangSC-Medium;
+        font-size: 12px;
+        color: #A11715;
+        line-height: 30px;
+    }
+
+    .item-1-count {
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: #999999;
+        text-decoration: line-through;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+
+    .item-2-price {
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: #A11715;
+    }
+
+    .item-2-price-image {
+        width: 180px;
+        height: 180px;
+    }
+    @media (max-width: 996px) {
+        .md-mt-40:not(:first-child) {
+            margin-top: 40px;
+        }
+
+        .re-doctor {
+            display: none;
+        }
+
+        .item-2-price-image {
+            width: 160px;
+            height: 160px;
+        }
+    }
+
+    .text-ellipsis{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+<!--footer-->
+<%- include("./footer.html") %>
+<%- help.jsIncludeTag('main') %>
+</body>
 
 </html>

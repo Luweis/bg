@@ -151,9 +151,9 @@ router.get("/doctor", async ctx => {
     }
   });
 
-  return ctx.render("consultDoctor", {
-    helpers: utils,
-    doctors: data["resultBodyObject"]["rows"] || [],
+  return ctx.render('consultDoctor', {
+    // helpers: utils,
+    doctors: data['resultBodyObject']['rows'] || [],
     current: 1,
     activeItem,
     help,
@@ -241,9 +241,16 @@ router.get("/article/:id", async ctx => {
       })
     }
   });
+<<<<<<< HEAD
   return ctx.render("articleDetail", {
     ats: article["resultBodyObject"],
     index: -1
+=======
+  return ctx.render('articleDetail', {
+    ats: article['resultBodyObject'],
+    index: -1,
+    help
+>>>>>>> 2d0b749b960bfd07690af8a01f00c3910cf66746
   });
 });
 
@@ -367,20 +374,32 @@ router.get("/disease/:id", async ctx => {
 });
 
 //健康商城
+<<<<<<< HEAD
 router.get("/mall", async ctx => {
   const param = utils.getParam(ctx.url);
+=======
+router.get('/mall',async (ctx) =>{
+  const param = utils.getParam(ctx.url)
+
+>>>>>>> 2d0b749b960bfd07690af8a01f00c3910cf66746
   const resp = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
     config: {
       body: JSON.stringify({})
     }
   });
+<<<<<<< HEAD
   const insurances = resp["resultBodyObject"]["surgeryInsuranceList"] || [];
   const equipments = resp["resultBodyObject"]["equipmentList"] || [];
+=======
+
+  const insurances = resp['resultBodyObject']['surgeryInsuranceList'] || []
+  const equipments  = resp['resultBodyObject']['equipmentList'] || []
+>>>>>>> 2d0b749b960bfd07690af8a01f00c3910cf66746
 
   return ctx.render("mall", {
     helpers: utils,
-    index: 7,
+    index: 6,
     help,
     insurances,
     equipments
@@ -426,7 +445,8 @@ router.get("/health", async ctx => {
       "西京鼓楼医院"
     ],
     index: 4,
-    hl: healthAll
+    hl: healthAll,
+    help
   });
 });
 
@@ -482,9 +502,16 @@ router.get("/download", async ctx => {
   });
 });
 
+<<<<<<< HEAD
 router.get("/sorry", async ctx => {
   return ctx.render("sorry", {
     index: -1
+=======
+router.get('/sorry', async (ctx) => {
+  return ctx.render('sorry', {
+    index: -1,
+    help
+>>>>>>> 2d0b749b960bfd07690af8a01f00c3910cf66746
   });
 });
 
