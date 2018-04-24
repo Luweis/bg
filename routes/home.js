@@ -420,7 +420,7 @@ router.get('/health', async (ctx) => {
       healthAll = [...healthAll, ...health];
     }
   }
-  
+
   return ctx.render('health', {
     hos: [
       '北京人民解放军总医院', '北京积水潭医院', '北京协和医院',
