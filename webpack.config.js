@@ -11,7 +11,6 @@ const filename = env === 'development' ? '[name]' : '[name].[hash]';
 
 module.exports = {
   mode: env,
-  devtool: 'cheap-module-eval-source-map',
   entry: {
     main: path.resolve('./assets/js/index'),
     doctors: path.resolve('./assets/js/consultDoctor'),
@@ -86,10 +85,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `${filename}.css`,
       chunkFilename: `${filename}.css`,
-    }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
     }),
   ]
 };
