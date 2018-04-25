@@ -1,29 +1,30 @@
-const router = require('koa-router')();
-const process = require('process');
-const http = require('../assets/utils');
-const utils = require('../utils');
-const help = require('../utils/help.js');
+const router = require("koa-router")();
+const process = require("process");
+const http = require("../assets/utils");
+const utils = require("../utils");
+const help = require("../utils/help.js");
+var cache = {};
 function activeItem(index, current) {
-  index !== current? 'test': '';
+  index !== current ? "test" : "";
 }
 
-function check(data, tip='暂无' ) {
- return data? data : tip;
+function check(data, tip = "暂无") {
+  return data ? data : tip;
 }
 
-
-const currentEnv = process.env.NODE_ENV === 'development'? 'dev' : 'pro';
+const currentEnv = process.env.NODE_ENV === "development" ? "dev" : "pro";
 
 const env = {
   dev: {
-    controllerBaseUrl: 'http://wechat.test.drbugu.com/test/drbugu/mainSite/door/api/',
-    siteBaseUrl: 'http://wechat.test.drbugu.com/'
+    controllerBaseUrl:
+      "http://wechat.test.drbugu.com/test/drbugu/mainSite/door/api/",
+    siteBaseUrl: "http://wechat.test.drbugu.com/"
   },
   pro: {
-    controllerBaseUrl: 'https://www.drbugu.com/drbugu/mainSite/door/api/',
-    siteBaseUrl: 'https://www.drbugu.com/'
+    controllerBaseUrl: "https://www.drbugu.com/drbugu/mainSite/door/api/",
+    siteBaseUrl: "https://www.drbugu.com/"
   }
-}
+};
 
 const baseApi = env[currentEnv].controllerBaseUrl;
 
@@ -34,16 +35,15 @@ function doctors(keyWord) {
     config: {
       body: JSON.stringify({
         keyWord
-      }),
+      })
     }
-  })
+  });
 }
 
-//主页
-router.get('/', async (ctx) => {
- const banners = await http({
-   url: `${baseApi}index/getBannerResources`
- });
+async function home(ctx) {
+  const banners = await http({
+    url: `${baseApi}index/getBannerResources`
+  });
   const docs = await http({
     url: `${baseApi}consultDoctor/getRecommendDoctor`,
     config: {
@@ -57,7 +57,7 @@ router.get('/', async (ctx) => {
     url: `${baseApi}operationOrderController/getConsultDoctor`,
     config: {
       body: JSON.stringify({
-        pageSize: 4,
+        pageSize: 4
       })
     }
   });
@@ -67,26 +67,25 @@ router.get('/', async (ctx) => {
     config: {
       body: JSON.stringify({
         pageSize: 4,
-        lastArticleCreateTimestamp: 0,
+        lastArticleCreateTimestamp: 0
       })
     }
-
   });
 
   const ques = await http({
     url: `${baseApi}questionController/queryRelatedQuestionList`,
     config: {
-      body:JSON.stringify({
+      body: JSON.stringify({
         size: 4
       })
     }
-  })
+  });
 
   const goods = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
     config: {
       body: JSON.stringify({
-        size: 4,
+        size: 4
       })
     }
   });
@@ -95,8 +94,8 @@ router.get('/', async (ctx) => {
     url: `${baseApi}diseaseController/getIllnessList`,
     config: {
       body: JSON.stringify({
-        pageSize: 4,
-      }),
+        pageSize: 4
+      })
     }
   });
 
@@ -105,33 +104,47 @@ router.get('/', async (ctx) => {
     url: `${baseApi}questionController/getQuestionList`,
     config: {
       body: JSON.stringify({
-        keyWord: '',
-        pageCount:1
+        keyWord: "",
+        pageCount: 1
       })
     }
   });
-
- return ctx.render('index', {
-   helpers: utils,
-   banners: banners['resultBodyObject'] || [],
-   docs: docs['resultBodyObject']['rows'],
-   yy: docyy['resultBodyObject'].rows,
-   hl: health['resultBodyObject'].rows,
-   gds: goods['resultBodyObject']['equipmentList'], // 商品
-   surgeryInsuranceList: goods['resultBodyObject']['surgeryInsuranceList'] , //保险
-   ques, // 问答
-   dis: disa['resultBodyObject'],
-   qa: answer['resultBodyObject'].rows || [],
-   help,
-   index: 0,
- });
+  let params = {
+    helpers: utils,
+    banners: banners["resultBodyObject"] || [],
+    docs: docs["resultBodyObject"]["rows"],
+    yy: docyy["resultBodyObject"].rows,
+    hl: health["resultBodyObject"].rows,
+    gds: goods["resultBodyObject"]["equipmentList"], // 商品
+    surgeryInsuranceList: goods["resultBodyObject"]["surgeryInsuranceList"], //保险
+    ques, // 问答
+    dis: disa["resultBodyObject"],
+    qa: answer["resultBodyObject"].rows || [],
+    help,
+    index: 0
+  };
+  cache[ctx.url] = params;
+  let html = ctx.render("index", params);
+  console.log("异步更新数据");
+  return html;
+}
+//主页
+router.get("/", async ctx => {
+  let params = cache[ctx.url];
+  if (params) {
+    home(ctx);
+    console.log("读取缓存数据");
+    return ctx.render("index", params);
+  } else {
+    await home(ctx);
+  }
 });
 
 //医生列表页面
-router.get('/doctor', async (ctx) => {
+router.get("/doctor", async ctx => {
   const data = await http({
     url: `${baseApi}consultDoctor/getRecommendDoctor`,
-    config:{
+    config: {
       body: JSON.stringify({
         pageSize: 30
       })
@@ -144,45 +157,43 @@ router.get('/doctor', async (ctx) => {
     current: 1,
     activeItem,
     help,
-    index: 1,
-  })
+    index: 1
+  });
 });
 
 // 医生搜索页面结果页面
- router.get('/doctor/search', async (ctx) =>{
+router.get("/doctor/search", async ctx => {
+  const params = ctx.query || {};
+  let doctorTypeList;
+  if (params.searchType === "surgery") {
+    doctorTypeList = [1, 3];
+  } else {
+    doctorTypeList = [2, 3];
+  }
 
-   const params = ctx.query || {};
-   let doctorTypeList;
-   if (params.searchType === 'surgery'){
-     doctorTypeList = [1,3];
-   }else {
-     doctorTypeList = [2,3];
-   }
+  const doctors = await http({
+    url: `${baseApi}operationOrderController/getConsultDoctor`,
+    config: {
+      body: JSON.stringify({
+        doctorTypeList,
+        pageIndex: params.page || 1,
+        pageSize: 10,
+        query: params.query
+      })
+    }
+  });
 
-   const doctors = await http({
-     url: `${baseApi}operationOrderController/getConsultDoctor`,
-     config:{
-       body: JSON.stringify({
-         doctorTypeList,
-         pageIndex: params.page || 1,
-         pageSize: 10,
-         query: params.query
-       })
-     }
-   });
-
-   return ctx.render('searchDoctor', {
-     doctors: doctors['resultBodyObject']['rows'],
-     total: doctors['resultBodyObject'].total,
-     help,
-     index: -1,
-   });
- });
+  return ctx.render("searchDoctor", {
+    doctors: doctors["resultBodyObject"]["rows"],
+    total: doctors["resultBodyObject"].total,
+    help,
+    index: -1
+  });
+});
 
 //医生详情页
-router.get('/doctor/:id',async (ctx) => {
-
-  const id = ctx.url.split('/')[2];
+router.get("/doctor/:id", async ctx => {
+  const id = ctx.url.split("/")[2];
 
   const doc = await http({
     url: `${baseApi}doctorHomePageController/initDoctorData`,
@@ -193,45 +204,41 @@ router.get('/doctor/:id',async (ctx) => {
     }
   });
 
-  return ctx.render('doctorHomePage', {
-    doctorDetail: doc['resultBodyObject']['doctorDetail'],
-    relatedDocotrs: doc['resultBodyObject']['relatedDocotrs'],
+  return ctx.render("doctorHomePage", {
+    doctorDetail: doc["resultBodyObject"]["doctorDetail"],
+    relatedDocotrs: doc["resultBodyObject"]["relatedDocotrs"],
     check,
     help,
-    index: -1,
+    index: -1
   });
-
 });
 
-
 //预约列表页面
-router.get('/doctor-yy', async (ctx) => {
-
+router.get("/doctor-yy", async ctx => {
   const doctors = await http({
     url: `${baseApi}operationOrderController/getConsultDoctor`,
     config: {
       body: JSON.stringify({
-        pageSize: 20,
+        pageSize: 20
       })
     }
   });
-  return ctx.render('operationOrder', {
+  return ctx.render("operationOrder", {
     help,
     index: 2,
-    doctors: doctors['resultBodyObject'].rows
-  })
+    doctors: doctors["resultBodyObject"].rows
+  });
 });
 
-
 //文章详情
-router.get('/article/:id',async (ctx) =>{
-  const id = ctx.url.split('/')[2];
+router.get("/article/:id", async ctx => {
+  const id = ctx.url.split("/")[2];
   const article = await http({
     url: `${baseApi}articleDetail/getArticleDetail`,
     config: {
       body: JSON.stringify({
-        id: id,
-      }),
+        id: id
+      })
     }
   });
   return ctx.render('articleDetail', {
@@ -241,20 +248,18 @@ router.get('/article/:id',async (ctx) =>{
   });
 });
 
-
 //经典问答
-router.get('/interlocution',async (ctx) =>{
-
-  let keyWord = ctx.query.keyWord || '';
-  keyWord = decodeURIComponent(keyWord)
+router.get("/interlocution", async ctx => {
+  let keyWord = ctx.query.keyWord || "";
+  keyWord = decodeURIComponent(keyWord);
 
   const qa = await http({
     url: `${baseApi}questionController/getQuestionList`,
     config: {
       body: JSON.stringify({
         keyWord: keyWord,
-        pageCount:1
-      }),
+        pageCount: 1
+      })
     }
   });
 
@@ -262,28 +267,28 @@ router.get('/interlocution',async (ctx) =>{
     url: `${baseApi}diseaseController/searchIllness`,
     config: {
       body: JSON.stringify({
-        keyWord: keyWord,
-      }),
+        keyWord: keyWord
+      })
     }
   });
 
   const doctor = doctors(keyWord);
 
-  return ctx.render('interlocution', {
+  return ctx.render("interlocution", {
     helpers: utils,
     index: 3,
     help,
-    qa: qa['resultBodyObject']["rows"] || [],
-    doctor:  doctor['resultBodyObject'] && doctor['resultBodyObject'].rows || [],
-    diseases: diseases['resultBodyObject'] || [],
-    keyWord,
+    qa: qa["resultBodyObject"]["rows"] || [],
+    doctor:
+      (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
+    diseases: diseases["resultBodyObject"] || [],
+    keyWord
   });
 });
 
 //疾病库
-router.get('/disease',async (ctx) =>{
-
-  let keyWord = ctx.query.keyWord || '';
+router.get("/disease", async ctx => {
+  let keyWord = ctx.query.keyWord || "";
 
   keyWord = decodeURIComponent(keyWord);
 
@@ -294,7 +299,7 @@ router.get('/disease',async (ctx) =>{
     config: {
       body: JSON.stringify({
         keyWord
-      }),
+      })
     }
   });
 
@@ -304,30 +309,30 @@ router.get('/disease',async (ctx) =>{
     config: {
       body: JSON.stringify({
         keyWord
-      }),
+      })
     }
-  })
+  });
 
-  return ctx.render('jibinku', {
+  return ctx.render("jibinku", {
     helpers: utils,
     index: 5,
     help,
     keyWord,
-    diseases: resp['resultBodyObject'],
-    doctor: doctor['resultBodyObject'] && doctor['resultBodyObject'].rows || []
+    diseases: resp["resultBodyObject"],
+    doctor:
+      (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || []
   });
 });
 
 // 疾病详情
-router.get('/disease/:id',async (ctx) =>{
-
-  const id = ctx.url.split('/')[2] || 1;
+router.get("/disease/:id", async ctx => {
+  const id = ctx.url.split("/")[2] || 1;
   const resp = await http({
     url: `${baseApi}diseaseController/getDataById`,
     config: {
       body: JSON.stringify({
         id
-      }),
+      })
     }
   });
 
@@ -335,7 +340,7 @@ router.get('/disease/:id',async (ctx) =>{
     url: `${baseApi}operationOrderController/getConsultDoctor`,
     config: {
       body: JSON.stringify({
-        pageSize: 4,
+        pageSize: 4
       })
     }
   });
@@ -345,19 +350,20 @@ router.get('/disease/:id',async (ctx) =>{
     url: `${baseApi}questionController/getQuestionList`,
     config: {
       body: JSON.stringify({
-        keyWord: '',
-        pageCount:1
+        keyWord: "",
+        pageCount: 1
       })
     }
   });
 
-  return ctx.render('illnessDetail', {
+  return ctx.render("illnessDetail", {
     helpers: utils,
     index: -1,
     help,
-    diseases: resp['resultBodyObject'] || [],
-    doctor: doctor['resultBodyObject'] && doctor['resultBodyObject'].rows || [],
-    qa: answer['resultBodyObject'].rows || [],
+    diseases: resp["resultBodyObject"] || [],
+    doctor:
+      (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
+    qa: answer["resultBodyObject"].rows || []
   });
 });
 
@@ -371,14 +377,14 @@ router.get('/mall',async (ctx) =>{
   const resp = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
     config: {
-      body: JSON.stringify({}),
+      body: JSON.stringify({})
     }
   });
 
   const insurances = resp['resultBodyObject']['surgeryInsuranceList'] || []
   const equipments  = resp['resultBodyObject']['equipmentList'] || []
 
-  return ctx.render('mall', {
+  return ctx.render("mall", {
     helpers: utils,
     index: 6,
     help,
@@ -419,17 +425,24 @@ router.get('/health', async (ctx) => {
   health = health['resultBodyObject'].rows;
   if (page === 1){
     healthAll = health;
-  }else {
-    if (health.length > 0){
+  } else {
+    if (health.length > 0) {
       healthAll = [...healthAll, ...health];
     }
   }
 
-  return ctx.render('health', {
+  return ctx.render("health", {
     hos: [
-      '北京人民解放军总医院', '北京积水潭医院', '北京协和医院',
-      '上海市第六人民医院', '第四军医大学西京医院', '四川大学华西医院',
-      '第二军医大学长征医院', '北京大学人民医院', '西京鼓楼医院'],
+      "北京人民解放军总医院",
+      "北京积水潭医院",
+      "北京协和医院",
+      "上海市第六人民医院",
+      "第四军医大学西京医院",
+      "四川大学华西医院",
+      "第二军医大学长征医院",
+      "北京大学人民医院",
+      "西京鼓楼医院"
+    ],
     index: 4,
     hl: healthAll,
     dis: resp['resultBodyObject'] || [],
@@ -438,51 +451,54 @@ router.get('/health', async (ctx) => {
 });
 
 //商品详情
-router.get('/mall/:type/:id',async (ctx) =>{
-  const id = ctx.url.split('/')[3] || '';
-  const type = ctx.url.split('/')[2] || '';
-  const url = type == 'insurance' ? 'healthyMallDetailController/getInsuranceDetail' : 'healthyMallDetailController/getEquipmentDetail'
+router.get("/mall/:type/:id", async ctx => {
+  const id = ctx.url.split("/")[3] || "";
+  const type = ctx.url.split("/")[2] || "";
+  const url =
+    type == "insurance"
+      ? "healthyMallDetailController/getInsuranceDetail"
+      : "healthyMallDetailController/getEquipmentDetail";
   const resp = await http({
     url: `${baseApi}${url}`,
     config: {
       body: JSON.stringify({
-        id:id
-      }),
+        id: id
+      })
     }
   });
-  return ctx.render('mallDetail', {
+  return ctx.render("mallDetail", {
     helpers: utils,
     index: 7,
     help,
-    model:resp['resultBodyObject']
+    model: resp["resultBodyObject"]
   });
 });
 
 //购买商品
-router.get('/buy',async (ctx) =>{
-  const id = ctx.url.split('/').pop() || '';
-  return ctx.render('buy', {
+router.get("/buy", async ctx => {
+  const id = ctx.url.split("/").pop() || "";
+  return ctx.render("buy", {
     helpers: utils,
     index: -1,
-    help,
+    help
   });
 });
 
 //关于我们
-router.get('/about-us',async (ctx) =>{
-  return ctx.render('aboutUs', {
+router.get("/about-us", async ctx => {
+  return ctx.render("aboutUs", {
     helpers: utils,
     index: 8,
-    help,
+    help
   });
 });
 
 //App下载
-router.get('/download',async (ctx) =>{
-  return ctx.render('download', {
+router.get("/download", async ctx => {
+  return ctx.render("download", {
     helpers: utils,
     index: 9,
-    help,
+    help
   });
 });
 
