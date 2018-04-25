@@ -9,7 +9,6 @@ var doctorTypeEnum = {
 };
 
 
-
 const block = $(function () {
 
    $('#searchDoctorInput').on('keydown', function () {
