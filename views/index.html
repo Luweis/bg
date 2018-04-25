@@ -144,7 +144,7 @@
                             <% qa.forEach(function(item){ %>
                             <div class="bg-answer">
                                 <span class="ques-tip">问</span>
-                                <span class="font-size-base padd-lf-15px"><%= item.questionData.diseaseDesc %></span>
+                                <span class="font-size-base padd-lf-20"><%= item.questionData.diseaseDesc %></span>
                             </div>
                             <% (item.answerDatas || []).forEach(function(answer){ %>
                             <div class="clearfix answer-card">
@@ -200,7 +200,7 @@
                     <!--保险-->
                     <% surgeryInsuranceList.forEach(function(sur, index){ %>
                     <% if (index>4) return %>
-                    <div class="clearfix margin-top-20">
+                    <div class="clearfix cell">
                         <a href="/mall/insurance/<%= sur.id %>">
                         <img src="<%= sur.imgUrl %>" alt="" class="left" style="height: 90px;width: 90px">
                         <div class="left padd-lf-15px">
@@ -218,7 +218,7 @@
                     <!--护具-->
                     <% gds.forEach(function(g, index){ %>
                     <% if (index>4) return %>
-                    <div class="clearfix margin-top-20">
+                    <div class="clearfix cell">
                         <a href="/mall/equipment/<%= g.id %>">
                             <img src="<%= g.imgUrl %>" alt="" class="left" style="height: 90px;width: 90px">
                             <div class="left padd-lf-15px">
@@ -242,7 +242,7 @@
                     </div>
 
                     <% hl.forEach(function(h){ %>
-                    <div class="clearfix margin-top-20">
+                    <div class="clearfix cell">
                         <a href="./article/<%= h.id %>" class="normal-a">
                             <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
                             <div class="left padd-lf-15px bg-news">
@@ -292,6 +292,9 @@
 
     .padd-lf-15px{
         padding-left: 15px;
+    }
+    .padd-lf-20{
+        padding-left: 20px;
     }
 
     .mg-top-10{
@@ -493,6 +496,15 @@
 
     .bg-news{
         width: calc(100% - 90px);
+    }
+
+    .cell{
+        padding: 25px 0;
+        border-bottom: 1px dashed #E7E7E7;
+    }
+
+    .cell:last-child{
+        border-bottom: none;
     }
 </style>
 

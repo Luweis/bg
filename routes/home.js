@@ -364,6 +364,9 @@ router.get('/disease/:id',async (ctx) =>{
 //健康商城
 router.get('/mall',async (ctx) =>{
   const param = utils.getParam(ctx.url)
+  const banners = await http({
+    url: `${baseApi}index/getBannerResources`
+  });
 
   const resp = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
@@ -381,6 +384,7 @@ router.get('/mall',async (ctx) =>{
     help,
     insurances,
     equipments,
+    banners: banners['resultBodyObject']
   });
 });
 

@@ -4,17 +4,32 @@
 <%- include("./head.html") %>
 <div class="bg-main">
     <div class="container">
-        <img class="shop_banner" src="/assets/images/shop_banner.png" alt="">
+        <div class="bg-swiper" style="position: relative">
+            <img src="/assets/images/shop_banner.png" alt="" style="width: 100%;">
+            <div style="position: absolute;height: 100%; width: 100%; top: 0;left: 0">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <% banners.forEach(function(b){ %>
+                        <div class="swiper-slide">
+                            <img class="swiper-img full" src="<%= b.resourceUrl %>" alt="">
+                        </div>
+                        <% }) %>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+        </div>
         <div>
             <!-- 健康保险 -->
             <div class="margin-top-20">
                 <div class="bg-line"></div>
                 <h1 class="item-title">健康保险</h1>
             </div>
-            <div class="margin-top-20 row">
+            <div class="margin-top-30 row">
                 <% insurances.forEach(function(item){ %>
                 <a href="./mall/insurance/<%= item.id %>" class="normal-a">
-                    <div class="col-md-6 col-xs-12 clearfix" style="margin-bottom: 20px">
+                    <div class="col-md-6 col-xs-12 clearfix" style="margin-bottom: 30px">
                         <img src="<%= item.imgUrl %>" alt="保险图片" class=" item-1-price-image left"
                              style="height: 120px;width: 150px">
                         <div class="left padding-lr-10">
@@ -28,7 +43,7 @@
                             <div class="item-1-count">已售
                                 <%= item.sales %>份
                             </div>
-                            <a href="./buy" class="buy-btn">立即购买</a>
+                            <a href="/buy" class="buy-btn">立即购买</a>
                         </div>
                     </div>
                 </a>
@@ -58,7 +73,7 @@
                             <span class="item-1-count right" style="text-decoration: none">已售<%= item.sales %>份</span>
                         </div>
                     </a>
-                        <a href="" class="buy-btn">立即购买</a>
+                        <a href="/buy" class="buy-btn">立即购买</a>
                     </div>
                 </div>
                 <% }) %>
@@ -80,6 +95,11 @@
         text-decoration: none;
     }
 
+
+    .margin-top-30{
+        margin-top: 30px;
+    }
+
     .normal-a {
         color: black;
     }
@@ -87,11 +107,6 @@
     .normal-a:hover {
         text-decoration: none;
         color: black;
-    }
-
-    .shop_banner {
-        width: 100%;
-        height: auto;
     }
 
     .bg-main {
@@ -191,10 +206,23 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    .full{
+        width: 100%;
+        height: 100%;
+    }
 </style>
 <!--footer-->
 <%- include("./footer.html") %>
-<%- help.jsIncludeTag('main') %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.min.js"></script>
+<script>
+  var mySwiper = new Swiper('.swiper-container', {
+    autoplay: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  })
+</script>
 </body>
 
 </html>
