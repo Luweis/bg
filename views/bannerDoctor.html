@@ -1,4 +1,4 @@
-<div class="swiper-container consultDoctor-recommend-doctor container">
+<div class="swiper-container consultDoctor-recommend-doctor ">
     <div class="swiper-wrapper" id="consultDoctorSwiperWrapper">
         <% for(var i = 0, l = Math.ceil(doctors.length / 4); i < l; i++) {%>
         <div class="swiper-slide">
@@ -6,9 +6,8 @@
 
                 <% for(var j = 0; j < 4; j++ ){ %>
                 <% if (i * 4 + j  < doctors.length) { %>
-                <a class="consultDoctor-recommend-doctor-item col-md-6"
-                   href="./doctor/<%= doctors[i*4+j].id%>" target="_blank" >
-                    <div class="row">
+                <div class="consultDoctor-recommend-doctor-item col-md-6">
+                    <a class="row"  href="./doctor/<%= doctors[i*4+j].id%>" target="_blank" >
                         <div class="consultDoctor-recommend-doctor-head-wrap col-xs-3">
                             <img src="<%=  doctors[i*4+j].iconUrl %>" class="consultDoctor-recommend-doctor-head img-responsive center-block">
                             <div class="consultDoctor-recommend-doctor-appointment-button center-block">点我咨询</div>
@@ -24,8 +23,8 @@
                                     class="consultDoctor-recommend-doctor-expert"><%=  doctors[i*4+j].expertDisease %></span>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
                 <% }%>
 
                 <% } %>

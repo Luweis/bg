@@ -17,7 +17,7 @@
                                 <div class="input-group">
                                     <input id="bg-search" type="text" class="form-control search-input" value="<%= keyWord %>" placeholder="搜索问题关键词">
                                     <span class="input-group-btn">
-                                        <button class="search-button" type="button">
+                                        <button style="border: none" class="search-button" type="button">
                                             <img src="/assets/images/search.png" style="width: 20px;height: 20px;" alt="搜索">
                                         </button>
                                     </span>
@@ -263,10 +263,11 @@
                 .search-input {
                     background: #FFFFFF;
                     border: 1px solid #E7E7E7;
-                    border-radius: 5px;
+                    border-radius: 0;
                     height: 34px;
                     display: inline-block;
-                    margin: 20px auto
+                    margin: 20px auto;
+                    outline: none;
                 }
 
                 .search-button {

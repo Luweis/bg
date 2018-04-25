@@ -1,4 +1,4 @@
-import 'jquery';
+import $ from 'jquery';
 import '../public/js/bootstrap.min'
 import './form';
 

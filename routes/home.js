@@ -241,16 +241,10 @@ router.get("/article/:id", async ctx => {
       })
     }
   });
-<<<<<<< HEAD
-  return ctx.render("articleDetail", {
-    ats: article["resultBodyObject"],
-    index: -1
-=======
   return ctx.render('articleDetail', {
     ats: article['resultBodyObject'],
     index: -1,
     help
->>>>>>> 2d0b749b960bfd07690af8a01f00c3910cf66746
   });
 });
 
@@ -374,28 +368,17 @@ router.get("/disease/:id", async ctx => {
 });
 
 //健康商城
-<<<<<<< HEAD
-router.get("/mall", async ctx => {
-  const param = utils.getParam(ctx.url);
-=======
 router.get('/mall',async (ctx) =>{
   const param = utils.getParam(ctx.url)
-
->>>>>>> 2d0b749b960bfd07690af8a01f00c3910cf66746
   const resp = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
     config: {
       body: JSON.stringify({})
     }
   });
-<<<<<<< HEAD
-  const insurances = resp["resultBodyObject"]["surgeryInsuranceList"] || [];
-  const equipments = resp["resultBodyObject"]["equipmentList"] || [];
-=======
 
   const insurances = resp['resultBodyObject']['surgeryInsuranceList'] || []
   const equipments  = resp['resultBodyObject']['equipmentList'] || []
->>>>>>> 2d0b749b960bfd07690af8a01f00c3910cf66746
 
   return ctx.render("mall", {
     helpers: utils,
@@ -409,7 +392,8 @@ router.get('/mall',async (ctx) =>{
 //布骨健康
 
 let healthAll = [];
-router.get("/health", async ctx => {
+router.get('/health', async (ctx) => {
+
   const page = ctx.query.page || 1;
 
   let health = await http({
@@ -423,8 +407,18 @@ router.get("/health", async ctx => {
     }
   });
 
-  health = health["resultBodyObject"].rows;
-  if (page === 1) {
+
+  const resp = await http({
+    url: `${baseApi}diseaseController/getIllnessList`,
+    config: {
+      body: JSON.stringify({
+        pageSize: 20
+      }),
+    }
+  });
+
+  health = health['resultBodyObject'].rows;
+  if (page === 1){
     healthAll = health;
   } else {
     if (health.length > 0) {
@@ -446,6 +440,7 @@ router.get("/health", async ctx => {
     ],
     index: 4,
     hl: healthAll,
+    dis: resp['resultBodyObject'] || [],
     help
   });
 });
@@ -502,16 +497,10 @@ router.get("/download", async ctx => {
   });
 });
 
-<<<<<<< HEAD
-router.get("/sorry", async ctx => {
-  return ctx.render("sorry", {
-    index: -1
-=======
 router.get('/sorry', async (ctx) => {
   return ctx.render('sorry', {
     index: -1,
     help
->>>>>>> 2d0b749b960bfd07690af8a01f00c3910cf66746
   });
 });
 
