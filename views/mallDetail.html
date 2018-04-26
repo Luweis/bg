@@ -1,116 +1,131 @@
 <html lang="en">
 <%- include('./link.html') %>
-    <body>
-        <%- include("./head.html") %>
-            <div class="bg-main">
-                <div class="container">
-                        <img class="shop_banner" src="/assets/images/shop_banner.png" alt="">
-                        <div class="content">
-                                <div class="col-xs-12 col-sm-8 col-md-6" style="margin: 20px auto">
-                                        <img src="<%= model.imgUrl %>" alt="保险图片"  class="shop_des_image">
-                                        <div class="padding-lr-10" style="margin-bottom:20px">
-                                            <div class="item-1-title"><%= model.title %></div>
-                                            <h3 class="item-1-price">¥<%= model.price %>
-                                                <small class="item-1-small"> 元起</small>
-                                            </h3>
-                                            <div class="item-1-count">已售<%= model.sales %>份</div>
-                                            <a href="../../buy" class="buy-btn">立即购买</a>
-                                        </div>
-                                        <% model.detailResourceList.forEach(function(item){ %>
-                                            <div>
-                                                <img class="shop_des_image" src="<%= item.resourceUrl %>" alt="">
-                                            </div>
-                                         <% }) %>
-                            </div>
-                        </div>
+<body>
+<%- include("./head.html") %>
+<div class="bg-main">
+    <div class="container">
+
+        <!--banner-->
+        <%-include('./banner')%>
+
+        <div class="content">
+            <div class="col-xs-12 col-sm-8 col-md-6" style="margin: 20px auto">
+                <img src="<%= model.imgUrl %>" alt="保险图片" class="shop_des_image">
+                <div class="padding-lr-10" style="margin-bottom:20px">
+                    <div class="item-1-title"><%= model.title %></div>
+                    <h3 class="item-1-price">¥<%= model.price %>
+                        <small class="item-1-small"> 元起</small>
+                    </h3>
+                    <div class="item-1-count">已售<%= model.sales %>份</div>
+                    <a href="../../buy" class="buy-btn">立即购买</a>
+                </div>
+                <% model.detailResourceList.forEach(function(item){ %>
+                <div>
+                    <img class="shop_des_image" src="<%= item.resourceUrl %>" alt="">
+                </div>
+                <% }) %>
             </div>
-            <style>
-                .shop_banner {
-                    width: 100%;
-                    height: auto;
-                }
-                .shop_des_image{
-                    width: 100%;
-                    height: auto;
-                }
+        </div>
+    </div>
+</div>
+<style>
+    .shop_banner {
+        width: 100%;
+        height: auto;
+    }
 
-                .bg-main {
-                    margin-top: 30px;
-                    margin-bottom: 30px;
-                }
-                .content {
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                    padding-top: 40px;
-                    padding-bottom: 40px;
-                }
+    .shop_des_image {
+        width: 100%;
+        height: auto;
+    }
 
-                .bg-line {
-                    position: relative;
-                    height: 1px;
-                    background-color: #E7E7E7;
-                }
+    .bg-main {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
 
-                .bg-line:before {
-                    content: '';
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    display: inline-block;
-                    background-color: #A11715;
-                    height: 100%;
-                    width: 95px;
-                }
+    .content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
 
-                .item-title {
-                    font-family: PingFangSC-Medium;
-                    font-size: 24px;
-                    color: #000000;
-                    padding: 10px 0;
-                }
+    .bg-line {
+        position: relative;
+        height: 1px;
+        background-color: #E7E7E7;
+    }
 
-                .buy-btn {
-                    display: inline-block;
-                    background-color: #A11715;
-                    color: white;
-                    padding: 6px 20px;
-                    border-radius: 2px;
-                }
+    .bg-line:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        background-color: #A11715;
+        height: 100%;
+        width: 95px;
+    }
 
-                .item-1-title {
-                    font-family: PingFangSC-Medium;
-                    font-size: 16px;
-                    color: #000000;
-                    line-height: 22px;
-                }
+    .item-title {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #000000;
+        padding: 10px 0;
+    }
 
-                .item-1-price {
-                    font-family: PingFangSC-Medium;
-                    font-size: 24px;
-                    color: #A11715;
-                    line-height: 33px;
-                }
+    .buy-btn {
+        display: inline-block;
+        background-color: #A11715;
+        color: white;
+        padding: 6px 20px;
+        border-radius: 2px;
+    }
 
-                .item-1-small {
-                    font-family: PingFangSC-Medium;
-                    font-size: 12px;
-                    color: #A11715;
-                    line-height: 30px;
-                }
+    .item-1-title {
+        font-family: PingFangSC-Medium;
+        font-size: 16px;
+        color: #000000;
+        line-height: 22px;
+    }
 
-                .item-1-count {
-                    font-family: PingFangSC-Regular;
-                    font-size: 13px;
-                    color: #999999;
-                    line-height: 25px;
-                    margin-bottom: 10px;
-                }
-            </style>
-            <!--footer-->
-            <%- include("./footer.html") %>
-            <%- help.jsIncludeTag('main') %>
-    </body>
+    .item-1-price {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #A11715;
+        line-height: 33px;
+    }
+
+    .item-1-small {
+        font-family: PingFangSC-Medium;
+        font-size: 12px;
+        color: #A11715;
+        line-height: 30px;
+    }
+
+    .item-1-count {
+        font-family: PingFangSC-Regular;
+        font-size: 13px;
+        color: #999999;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+</style>
+<!--footer-->
+<%- include("./footer.html") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.min.js"></script>
+<script>
+  var mySwiper = new Swiper('.swiper-container', {
+    autoplay: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  })
+</script>
+</body>
 </html>

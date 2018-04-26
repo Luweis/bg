@@ -4,22 +4,9 @@
 <%- include("./head.html") %>
 <div class="bg-main">
     <div class="container">
-        <div class="bg-swiper" style="position: relative">
-            <img src="/assets/images/shop_banner.png" alt="" style="width: 100%;">
-            <div style="position: absolute;height: 100%; width: 100%; top: 0;left: 0">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <% banners.forEach(function(b){ %>
-                        <div class="swiper-slide">
-                            <img class="swiper-img full" src="<%= b.resourceUrl %>" alt="">
-                        </div>
-                        <% }) %>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
 
-        </div>
+        <%- include('./banner')%>
+
         <div>
             <!-- 健康保险 -->
             <div class="margin-top-20">

@@ -168,7 +168,7 @@ router.get("/doctor", async ctx => {
     activeItem,
     help,
     index: 1,
-    links,    
+    links,
   });
 });
 
@@ -222,7 +222,7 @@ router.get("/doctor/:id", async ctx => {
     check,
     help,
     index: -1,
-    links
+    links,
   });
 });
 
@@ -384,10 +384,10 @@ router.get("/disease/:id", async ctx => {
 
 //健康商城
 router.get('/mall',async (ctx) =>{
-  const param = utils.getParam(ctx.url)
-  const banners = await http({
-    url: `${baseApi}index/getBannerResources`
-  });
+
+  // const banners = await http({
+  //   url: `${baseApi}index/getBannerResources`
+  // });
 
   const resp = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
@@ -406,7 +406,11 @@ router.get('/mall',async (ctx) =>{
     help,
     insurances,
     equipments,
-    banners: banners['resultBodyObject']
+    banners: [{
+      resourceUrl: '/assets/images/mall_detail_1.jpg'
+    },{
+      resourceUrl: '/assets/images/shop_banner.png'
+    }]
   });
 });
 
@@ -480,7 +484,12 @@ router.get("/mall/:type/:id", async ctx => {
     index: 7,
     links,
     help,
-    model: resp["resultBodyObject"]
+    model: resp["resultBodyObject"],
+    banners: [{
+      resourceUrl: '/assets/images/mall_detail_1.jpg'
+    },{
+      resourceUrl: '/assets/images/shop_banner.png'
+    }]
   });
 });
 

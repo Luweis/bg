@@ -1,358 +1,358 @@
 
-a:hover{
-  color: black;
-  text-decoration: none;
-}
-.pad-15{
-  padding: 15px !important;
-}
-.image-head{
-  width: 45px;
-  height: 45px;
-}
+/*a:hover{*/
+  /*color: black;*/
+  /*text-decoration: none;*/
+/*}*/
+/*.pad-15{*/
+  /*padding: 15px !important;*/
+/*}*/
+/*.image-head{*/
+  /*width: 45px;*/
+  /*height: 45px;*/
+/*}*/
 
-.question-btn{
-  display: inline-block;
-  padding: 3px 13px;
-  border-radius: 15px;
-  background-color: red;
-  color: white;
-}
+/*.question-btn{*/
+  /*display: inline-block;*/
+  /*padding: 3px 13px;*/
+  /*border-radius: 15px;*/
+  /*background-color: red;*/
+  /*color: white;*/
+/*}*/
 
-.ques-des{
-  padding-left: 10px;
-  width: calc(100% - 45px);
-}
+/*.ques-des{*/
+  /*padding-left: 10px;*/
+  /*width: calc(100% - 45px);*/
+/*}*/
 
-.padding-clear{
-  padding: 0 !important;
-}
+/*.padding-clear{*/
+  /*padding: 0 !important;*/
+/*}*/
 
-.search-card h2 {
-  font-size: 16px;
-}
+/*.search-card h2 {*/
+  /*font-size: 16px;*/
+/*}*/
 
-.search-card a{
-  display: inline-block;
-  padding: 14px;
-}
+/*.search-card a{*/
+  /*display: inline-block;*/
+  /*padding: 14px;*/
+/*}*/
 
-.search-bar{
-  display: inline-block;
-  border: 1px solid gray;
-  border-radius: 20px;
-  width: 300px;
-  height: 32px;
-}
+/*.search-bar{*/
+  /*display: inline-block;*/
+  /*border: 1px solid gray;*/
+  /*border-radius: 20px;*/
+  /*width: 300px;*/
+  /*height: 32px;*/
+/*}*/
 
-.search-bar img{
-  height: 20px;
-}
+/*.search-bar img{*/
+  /*height: 20px;*/
+/*}*/
 
-.text-black{
-  color: black;
-}
+/*.text-black{*/
+  /*color: black;*/
+/*}*/
 
-/* banner */
+/*!* banner *!*/
 
-.index-banner-wrap {
-  margin-top: 24px;
-}
+/*.index-banner-wrap {*/
+  /*margin-top: 24px;*/
+/*}*/
 
-.index-swiper-pagination {
-  text-align: right;
-}
+/*.index-swiper-pagination {*/
+  /*text-align: right;*/
+/*}*/
 
-.index-banner-right-item {
-  background: #e3e3e3;
-  cursor: pointer;
-}
+/*.index-banner-right-item {*/
+  /*background: #e3e3e3;*/
+  /*cursor: pointer;*/
+/*}*/
 
-.index-banner-swiper .swiper-wrapper, .index-banner-swiper .swiper-slide{
-  height:auto;
-}
+/*.index-banner-swiper .swiper-wrapper, .index-banner-swiper .swiper-slide{*/
+  /*height:auto;*/
+/*}*/
 
-.index-banner-swiper img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+/*.index-banner-swiper img {*/
+  /*display: block;*/
+  /*width: 100%;*/
+  /*height: auto;*/
+/*}*/
 
-.index-banner-right-icon {
-  display: block;
-  max-height: 48px;
-  margin: 56px auto;
-}
+/*.index-banner-right-icon {*/
+  /*display: block;*/
+  /*max-height: 48px;*/
+  /*margin: 56px auto;*/
+/*}*/
 
-.index-banner-right-text {
-  font: 24px/30px "微软雅黑";
-  color: #db4754;
-  padding: 44px 0;
-}
+/*.index-banner-right-text {*/
+  /*font: 24px/30px "微软雅黑";*/
+  /*color: #db4754;*/
+  /*padding: 44px 0;*/
+/*}*/
 
-.index-banner-right-text-small {
-  font-weight: 200;
-  font-size: 16px;
-  margin-top: 10px;
-}
+/*.index-banner-right-text-small {*/
+  /*font-weight: 200;*/
+  /*font-size: 16px;*/
+  /*margin-top: 10px;*/
+/*}*/
 
-.ques-des-p{
-  margin-top: 10px;
-}
+/*.ques-des-p{*/
+  /*margin-top: 10px;*/
+/*}*/
 
-/*  content  */
+/*!*  content  *!*/
 
-.index-content {
-  margin-top: 42px;
-  padding-bottom: 100px;
-}
+/*.index-content {*/
+  /*margin-top: 42px;*/
+  /*padding-bottom: 100px;*/
+/*}*/
 
-.index-content-title {
-  width: 100%;
-  height: 42px;
-  font: 22px/30px "微软雅黑";
-  color: #474747;
-  border-bottom: 1px solid #f9f9f9;
-}
-
-
-/*  article  */
-
-.index-article {
-  padding: 18px 0;
-  border-bottom: 1px solid #f9f9f9;
-  cursor: pointer;
-}
-
-.index-article:hover {
-  background: #f6f6f6;
-}
-
-.index-article:hover .index-article-title {
-  color: #db4754;
-}
-
-.index-article-pic-wrap {
-  position: relative;
-}
-
-.index-article-pic {
-  width: 100%;
-}
-
-.index-article-tag {
-  width: 73px;
-  height: 24px;
-  font: 12px/24px "微软雅黑";
-  color: #ffffff;
-  text-align: center;
-  border-radius: 18px;
-  background: rgba(102, 102, 102, 0.9);
-  position: absolute;
-  left: 25px;
-  top: 15px;
-}
-
-.index-article-text {
-  font: 14px/18px "微软雅黑";
-  color: #7f7f7f;
-  padding-top:20px;
-  padding-left: 20px;
-}
-
-.index-article-title {
-  width: 100%;
-  font-size: 22px;
-  line-height: 33px;
-  color: #3e3e3e;
-}
-
-.index-article-desc {
-  min-height:54px;
-  font-weight: 200;
-  margin: 12px 0 34px;
-}
-
-.index-article-info {
-  font-size: 16px;
-}
-
-.index-article-readCount {
-  float: right;
-  font-weight: 100;
-}
-
-.index-article-loadMore {
-  margin-top: 58px;
-}
-
-.index-article-loadMore-button {
-  color: #db4754;
-  border-color: #db4754;
-}
-
-.index-recommend-doctor {
-  margin-top: 20px;
-  cursor:pointer;
-}
-
-.index-recommend-doctor:hover .index-recommend-doctor-info, .index-recommend-doctor:hover .index-recommend-doctor-title{
-  color:#db4754!important;
-}
-
-.index-recommend-title {
-  /*font-size: 18px;*/
-}
-
-.index-recommend-doctor-head {
-  max-width:50px;
-  border-radius: 50%;
-}
-
-.index-recommend-doctor-info {
-  font: 14px/20px "微软雅黑";
-  color: #7f7f7f;
-}
-
-.index-recommend-doctor-title{
-  height:22px;
-  line-height:24px;
-  color:#4e4141;
-}
-
-.index-recommend-doctor-name{
-  font-size:16px;
-  line-height:22px;
-}
-
-.index-recommend-doctor-form {
-  margin-top:3px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.index-recommend-hospital-list-wrap{
-  margin-top:50px;
-}
-
-.index-recommend-hospital{
-  margin-top:20px;
-  cursor:pointer;
-}
-
-.index-recommend-hospital:hover .index-recommend-hospital-info{
-  color:#db4754!important;
-}
-
-.index-recommend-hospital-head{
-  max-width:50px;
-}
-
-.index-recommend-hospital-info{
-  color:#4e4141;
-}
-
-.index-recommend-hospital-name{
-  font:16px/20px "微软雅黑";
-  margin-top:10px;
-}
-
-.index-recommend-hospital-rank{
-  font:12px/17px "微软雅黑";
-  margin-top:6px;
-}
+/*.index-content-title {*/
+  /*width: 100%;*/
+  /*height: 42px;*/
+  /*font: 22px/30px "微软雅黑";*/
+  /*color: #474747;*/
+  /*border-bottom: 1px solid #f9f9f9;*/
+/*}*/
 
 
-/* ===media=== */
+/*!*  article  *!*/
 
-@media (max-width: 1200px) {
-  /* banner */
-  .index-banner-right-icon {
-    margin: 41px auto;
-  }
-  .index-banner-right-text {
-    padding: 29px 0;
-  }
-}
+/*.index-article {*/
+  /*padding: 18px 0;*/
+  /*border-bottom: 1px solid #f9f9f9;*/
+  /*cursor: pointer;*/
+/*}*/
 
-@media (max-width: 991px) {
-  /* banner */
-  .index-banner-right-icon {
-    margin: 24px auto;
-  }
-  .index-banner-right-text {
-    padding: 13px 0;
-  }
-}
+/*.index-article:hover {*/
+  /*background: #f6f6f6;*/
+/*}*/
 
-@media (max-width: 768px) {
-  /* banner */
-  .index-banner-right-icon {
-    max-height: 36px;
-    margin: 20px auto 10px;
-  }
-  .index-banner-right-text {
-    padding: 10px 0;
-    text-align: center;
-  }
-  .index-banner-right-text {
-    font-size: 16px;
-    line-height: 20px;
-  }
-  .index-banner-right-text-small {
-    font-size: 14px;
-  }
-  .index-banner-right-item {
-    border-radius: 10px;
-  }
-  .index-banner-right {
-    margin: 10px auto;
-  }
-  .index-banner-swiper .swiper-slide {
-    min-height: 0;
-  }
-  /*  article  */
-  .index-article-pic {
-    margin: 0 auto;
-  }
-  .index-article-text {
-    font: 14px/16px "微软雅黑";
-    color: #7f7f7f;
-    padding-top:0;
-    padding-left: 10px;
-  }
-  .index-article-title {
-    font-size: 18px;
-    line-height: 20px;
-  }
-  .index-article-desc {
-    min-height:48px;
-    font-weight: 200;
-    margin: 5px 0;
-  }
-  .index-article-info{
-    font-size:14px;
-    line-height:16px;
-  }
-  .index-article-loadMore{
-    margin-top:35px;
-  }
-  .index-article-tag {
-    width: 73px;
-    height: 20px;
-    font: 10px/20px "微软雅黑";
-    color: #ffffff;
-    text-align: center;
-    border-radius: 18px;
-    background: rgba(102, 102, 102, 0.9);
-    position: absolute;
-    left: 25px;
-    top: 10px;
-  }
+/*.index-article:hover .index-article-title {*/
+  /*color: #db4754;*/
+/*}*/
 
-  /*  recommend  */
-  .index-recommend-wrap{
-    padding-top:40px;
-  }
-}
+/*.index-article-pic-wrap {*/
+  /*position: relative;*/
+/*}*/
+
+/*.index-article-pic {*/
+  /*width: 100%;*/
+/*}*/
+
+/*.index-article-tag {*/
+  /*width: 73px;*/
+  /*height: 24px;*/
+  /*font: 12px/24px "微软雅黑";*/
+  /*color: #ffffff;*/
+  /*text-align: center;*/
+  /*border-radius: 18px;*/
+  /*background: rgba(102, 102, 102, 0.9);*/
+  /*position: absolute;*/
+  /*left: 25px;*/
+  /*top: 15px;*/
+/*}*/
+
+/*.index-article-text {*/
+  /*font: 14px/18px "微软雅黑";*/
+  /*color: #7f7f7f;*/
+  /*padding-top:20px;*/
+  /*padding-left: 20px;*/
+/*}*/
+
+/*.index-article-title {*/
+  /*width: 100%;*/
+  /*font-size: 22px;*/
+  /*line-height: 33px;*/
+  /*color: #3e3e3e;*/
+/*}*/
+
+/*.index-article-desc {*/
+  /*min-height:54px;*/
+  /*font-weight: 200;*/
+  /*margin: 12px 0 34px;*/
+/*}*/
+
+/*.index-article-info {*/
+  /*font-size: 16px;*/
+/*}*/
+
+/*.index-article-readCount {*/
+  /*float: right;*/
+  /*font-weight: 100;*/
+/*}*/
+
+/*.index-article-loadMore {*/
+  /*margin-top: 58px;*/
+/*}*/
+
+/*.index-article-loadMore-button {*/
+  /*color: #db4754;*/
+  /*border-color: #db4754;*/
+/*}*/
+
+/*.index-recommend-doctor {*/
+  /*margin-top: 20px;*/
+  /*cursor:pointer;*/
+/*}*/
+
+/*.index-recommend-doctor:hover .index-recommend-doctor-info, .index-recommend-doctor:hover .index-recommend-doctor-title{*/
+  /*color:#db4754!important;*/
+/*}*/
+
+/*.index-recommend-title {*/
+  /*!*font-size: 18px;*!*/
+/*}*/
+
+/*.index-recommend-doctor-head {*/
+  /*max-width:50px;*/
+  /*border-radius: 50%;*/
+/*}*/
+
+/*.index-recommend-doctor-info {*/
+  /*font: 14px/20px "微软雅黑";*/
+  /*color: #7f7f7f;*/
+/*}*/
+
+/*.index-recommend-doctor-title{*/
+  /*height:22px;*/
+  /*line-height:24px;*/
+  /*color:#4e4141;*/
+/*}*/
+
+/*.index-recommend-doctor-name{*/
+  /*font-size:16px;*/
+  /*line-height:22px;*/
+/*}*/
+
+/*.index-recommend-doctor-form {*/
+  /*margin-top:3px;*/
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
+  /*white-space: nowrap;*/
+/*}*/
+
+/*.index-recommend-hospital-list-wrap{*/
+  /*margin-top:50px;*/
+/*}*/
+
+/*.index-recommend-hospital{*/
+  /*margin-top:20px;*/
+  /*cursor:pointer;*/
+/*}*/
+
+/*.index-recommend-hospital:hover .index-recommend-hospital-info{*/
+  /*color:#db4754!important;*/
+/*}*/
+
+/*.index-recommend-hospital-head{*/
+  /*max-width:50px;*/
+/*}*/
+
+/*.index-recommend-hospital-info{*/
+  /*color:#4e4141;*/
+/*}*/
+
+/*.index-recommend-hospital-name{*/
+  /*font:16px/20px "微软雅黑";*/
+  /*margin-top:10px;*/
+/*}*/
+
+/*.index-recommend-hospital-rank{*/
+  /*font:12px/17px "微软雅黑";*/
+  /*margin-top:6px;*/
+/*}*/
+
+
+/*!* ===media=== *!*/
+
+/*@media (max-width: 1200px) {*/
+  /*!* banner *!*/
+  /*.index-banner-right-icon {*/
+    /*margin: 41px auto;*/
+  /*}*/
+  /*.index-banner-right-text {*/
+    /*padding: 29px 0;*/
+  /*}*/
+/*}*/
+
+/*@media (max-width: 991px) {*/
+  /*!* banner *!*/
+  /*.index-banner-right-icon {*/
+    /*margin: 24px auto;*/
+  /*}*/
+  /*.index-banner-right-text {*/
+    /*padding: 13px 0;*/
+  /*}*/
+/*}*/
+
+/*@media (max-width: 768px) {*/
+  /*!* banner *!*/
+  /*.index-banner-right-icon {*/
+    /*max-height: 36px;*/
+    /*margin: 20px auto 10px;*/
+  /*}*/
+  /*.index-banner-right-text {*/
+    /*padding: 10px 0;*/
+    /*text-align: center;*/
+  /*}*/
+  /*.index-banner-right-text {*/
+    /*font-size: 16px;*/
+    /*line-height: 20px;*/
+  /*}*/
+  /*.index-banner-right-text-small {*/
+    /*font-size: 14px;*/
+  /*}*/
+  /*.index-banner-right-item {*/
+    /*border-radius: 10px;*/
+  /*}*/
+  /*.index-banner-right {*/
+    /*margin: 10px auto;*/
+  /*}*/
+  /*.index-banner-swiper .swiper-slide {*/
+    /*min-height: 0;*/
+  /*}*/
+  /*!*  article  *!*/
+  /*.index-article-pic {*/
+    /*margin: 0 auto;*/
+  /*}*/
+  /*.index-article-text {*/
+    /*font: 14px/16px "微软雅黑";*/
+    /*color: #7f7f7f;*/
+    /*padding-top:0;*/
+    /*padding-left: 10px;*/
+  /*}*/
+  /*.index-article-title {*/
+    /*font-size: 18px;*/
+    /*line-height: 20px;*/
+  /*}*/
+  /*.index-article-desc {*/
+    /*min-height:48px;*/
+    /*font-weight: 200;*/
+    /*margin: 5px 0;*/
+  /*}*/
+  /*.index-article-info{*/
+    /*font-size:14px;*/
+    /*line-height:16px;*/
+  /*}*/
+  /*.index-article-loadMore{*/
+    /*margin-top:35px;*/
+  /*}*/
+  /*.index-article-tag {*/
+    /*width: 73px;*/
+    /*height: 20px;*/
+    /*font: 10px/20px "微软雅黑";*/
+    /*color: #ffffff;*/
+    /*text-align: center;*/
+    /*border-radius: 18px;*/
+    /*background: rgba(102, 102, 102, 0.9);*/
+    /*position: absolute;*/
+    /*left: 25px;*/
+    /*top: 10px;*/
+  /*}*/
+
+  /*!*  recommend  *!*/
+  /*.index-recommend-wrap{*/
+    /*padding-top:40px;*/
+  /*}*/
+/*}*/
