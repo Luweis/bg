@@ -68,8 +68,8 @@
         top: 10px;
     }
 
-    .operationOrder-form-warn{
-        border-color:#db4754;
+    .operationOrder-form-warn {
+        border-color: #db4754;
     }
 
     @media (max-width: 991px) {
@@ -98,17 +98,17 @@
 
 <!--main-->
 <div class="common-main container operationOrder-content">
-    <div class="operationOrder-title text-center">查找您要预约的手术医生</div>
-    <div class="operationOrder-title-small text-center">手术预约热线：400-6882-120</div>
+    <div class="operationOrder-title text-center yy-nav-title">查找您要预约的手术医生</div>
+    <div class="operationOrder-title-small text-center yy-nav-des">手术预约热线：400-6882-120</div>
     <div class="operationOrder-search center-block row">
         <label class="operationOrder-search-input-wrap col-sm-6 col-md-8 col-lg-8">
             <input id="operationOrderSearch" class="operationOrder-search-input" type="text" placeholder="搜索医院、医生、科室">
         </label>
         <div class="operationOrder-search-button-wrap col-sm-3 col-md-2 col-lg-2">
-            <div class="operationOrder-search-button">搜索</div>
+            <div class="operationOrder-search-button bg-positive">搜索</div>
         </div>
         <div class="operationOrder-search-button-wrap col-sm-3 col-md-2 col-lg-2">
-            <div class="operationOrder-book-button">快速预约</div>
+            <div class="operationOrder-book-button bg-positive">快速预约</div>
         </div>
     </div>
     <div class="operationOrder-recommend-doctor-wrap">
@@ -116,22 +116,65 @@
             全国三甲医院名医主刀
         </div>
 
-         <!--图片轮播banner-->
+        <!--图片轮播banner-->
         <%- include('./bannerDoctor')%>
 
+        <!--<div class="row">-->
+            <!--<div class="col-xs-12 col-md-6 col-lg-4">-->
+                <!--<div>-->
+                    <!--<img class="yy-card" src="http://secure.bone1.resource.drbugu.com/upload/user/BG201609272216201512707.jpg" alt="">-->
+                    <!--<h3>朱晓宣</h3>-->
+                    <!--<div>骨科综合 <span>主任医师</span></div>-->
+                    <!--<p>上海交通大学医学院附属第九人民医院北部院区</p>-->
+                    <!--<p>擅长：呼吸系统疾病、慢性阻塞性肺疾病、肺心病、肺部感染、气道炎症、哮…</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
     </div>
-    <div class="operationOrder-intro row">
-        <div class="operationOrder-intro-title row text-center">业务介绍</div>
-        <div class="operationOrder-intro-text row">
-            <p>做骨科手术，就找布骨医生</p>
-            <p>布骨医生帮助您"做手术找专家，就近选择医院，快速安排手术"</p>
-            <p>布骨医生汇聚全国知名三甲医院权威专家，您可以通过官网或微信服务号"布骨健康"在线预约您想选择的医院、医生，或者选择快速预约由布骨医生帮您匹配合适的专家，也可以通过400 6882 120，致电布骨医生客服，布骨医生会在第一时间解决您的住院手术难题。</p>
+
+    <!--业务介绍-->
+    <div class="yy-des">
+        <h1 class="yy-des-h">业务介绍</h1>
+        <div class="flex margin-top-40">
+            <div class="yy-left-des flex-auto">
+                <div>做骨科手术，就找布骨医生</div>
+                <div style="padding: 30px 0">布骨医生帮助您 "做手术找专家，就近选择医院，快速安排手术"</div>
+                <p>布骨医生汇聚全国知名三甲医院权威专家，您可以通过官网或微信服务号
+                    "布骨健康" 在线预约您想选择的医院、医生，或者选择快速预约由布骨医生帮您匹配合适的专家，
+                    也可以通过 400-6882-120，致电布骨医生客服，布骨医生会在第一时间解决您的住院手术难题。</p>
+            </div>
+            <img class="left yy-right-img" src="/assets/images/yy-lc-des.png" alt="">
         </div>
     </div>
-    <div class="operationOrder-intro row">
-        <div class="operationOrder-intro-title row text-center">预约手术流程</div>
-        <div class="operationOrder-intro-text row">
-            <p>患者在线或电话预约手术——了解患者病情——专家面诊——预约病床——本地或异地手术</p>
+
+      <!--预约手术流程-->
+    <div class="yy-des">
+        <h1 class="yy-des-h">预约手术流程</h1>
+        <div class="flex margin-top-40">
+            <div class="flex-auto">
+                <div>
+                    <div class="yy-shoushu-h">患者在线或电话预约手术</div>
+                    <img class="yy-down-img" src="/assets/images/down.png" alt="">
+                </div>
+                <div>
+                    <div class="yy-shoushu-h">了解患者病情</div>
+                    <img class="yy-down-img" src="/assets/images/down.png" alt="">
+                </div>
+                <div>
+                    <div class="yy-shoushu-h">专家面诊</div>
+                    <img class="yy-down-img" src="/assets/images/down.png" alt="">
+                </div>
+                <div>
+                    <div class="yy-shoushu-h">预约病床</div>
+                    <img class="yy-down-img" src="/assets/images/down.png" alt="">
+                </div>
+                <div>
+                    <div class="yy-shoushu-h">本地或异地手术</div>
+                </div>
+            </div>
+            <img class="left yy-right-img" src="/assets/images/yy-shoushu.png" alt="">
         </div>
     </div>
 
@@ -201,8 +244,8 @@
                 top: 10px;
             }
 
-            .operationOrder-form-warn{
-                border-color:#db4754;
+            .operationOrder-form-warn {
+                border-color: #db4754;
             }
 
             @media (max-width: 991px) {
@@ -230,7 +273,8 @@
 
 
         </style>
-        <div class="modal  fade" id="operationModal" tabindex="-1" role="dialog" aria-labelledby="operationModalLabel">
+        <div class="modal  fade" id="operationModal" tabindex="-1" role="dialog"
+             aria-labelledby="operationModalLabel">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -246,7 +290,8 @@
                                         <label for="patientName"
                                                class="col-xs-4 col-md-2 operationOrder-form-label-img">姓名：</label>
                                         <div class="col-xs-6 col-md-6">
-                                            <input type="text" class="form-control yy-must"  id="patientName" placeholder="请填写真实姓名"
+                                            <input type="text" class="form-control yy-must" id="patientName"
+                                                   placeholder="请填写真实姓名"
                                                    required="required"/>
                                         </div>
                                     </div>
@@ -254,46 +299,55 @@
                                         <label for="phoneNo"
                                                class="col-xs-4 col-md-2 operationOrder-form-label-img">手机号码：</label>
                                         <div class="col-xs-6 col-md-6">
-                                            <input type="text" class="form-control" id="phoneNo" placeholder="请填写手机号码"
-                                                   required="required" />
+                                            <input type="text" class="form-control" id="phoneNo"
+                                                   placeholder="请填写手机号码"
+                                                   required="required"/>
                                         </div>
-                                        <div class="col-xs-2 col-md-2 operationOrderForm-btn-wrap"><input id="getVerifyNoButton"
-                                                                                                          type="button"
-                                                                                                          class="btn btn-danger center-block"
-                                                                                                          value="获取验证码">
+                                        <div class="col-xs-2 col-md-2 operationOrderForm-btn-wrap"><input
+                                                id="getVerifyNoButton"
+                                                type="button"
+                                                class="btn btn-danger center-block"
+                                                value="获取验证码">
                                         </div>
                                     </div>
                                     <div class="form-group row-margin">
-                                        <label for="verifyNo" class="col-xs-4 col-md-2 operationOrder-form-label">验证码：</label>
+                                        <label for="verifyNo"
+                                               class="col-xs-4 col-md-2 operationOrder-form-label">验证码：</label>
                                         <div class="col-xs-6 col-md-6">
-                                            <input type="text" class="form-control" id="verifyNo" placeholder="请填写验证码"/>
+                                            <input type="text" class="form-control" id="verifyNo"
+                                                   placeholder="请填写验证码"/>
                                         </div>
                                     </div>
                                     <div class="form-group row-margin">
                                         <label for="doctorName"
                                                class="col-xs-4 col-md-2 operationOrder-form-label">医生名称：</label>
                                         <div class="col-xs-6 col-md-6">
-                                            <input type="text" class="form-control" id="doctorName" placeholder="请填写医生名称"/>
+                                            <input type="text" class="form-control" id="doctorName"
+                                                   placeholder="请填写医生名称"/>
                                         </div>
                                     </div>
                                     <div class="form-group row-margin">
                                         <label for="hospitalName"
                                                class="col-xs-4 col-md-2 operationOrder-form-label">医院名称：</label>
                                         <div class="col-xs-6 col-md-6">
-                                            <input type="text" class="form-control" id="hospitalName" placeholder="请填写医院名称"/>
+                                            <input type="text" class="form-control" id="hospitalName"
+                                                   placeholder="请填写医院名称"/>
                                         </div>
                                     </div>
                                     <div class="form-group row-margin">
-                                        <label for="depName" class="col-xs-4 col-md-2 operationOrder-form-label">科室名称：</label>
+                                        <label for="depName"
+                                               class="col-xs-4 col-md-2 operationOrder-form-label">科室名称：</label>
                                         <div class="col-xs-6 col-md-6">
-                                            <input type="text" class="form-control" id="depName" placeholder="请填写科室名称"/>
+                                            <input type="text" class="form-control" id="depName"
+                                                   placeholder="请填写科室名称"/>
                                         </div>
                                     </div>
                                     <div class="form-group row-margin">
                                         <label for="diseaseDiagnosis"
                                                class="col-xs-4 col-md-2 operationOrder-form-label-img">疾病诊断：</label>
                                         <div class="col-xs-6 col-md-6">
-                                            <input type="text" class="form-control yy-must" id="diseaseDiagnosis" placeholder="请填写疾病诊断"
+                                            <input type="text" class="form-control yy-must" id="diseaseDiagnosis"
+                                                   placeholder="请填写疾病诊断"
                                                    required="required"/>
                                         </div>
                                     </div>
@@ -310,7 +364,8 @@
                                     <div class="form-group row-margin">
 
                                         <div class="col-sm-12">
-                                            <input type="button" id="yy-upload-btn" class="btn btn-danger uploadButton"
+                                            <input type="button" id="yy-upload-btn"
+                                                   class="btn btn-danger uploadButton"
                                                    value="上传图片">
                                             <input id="picBaseUrl_art" type="file" multiple
                                                    name="uploadedFileBig"
@@ -331,7 +386,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="yy-cancel-btn" class="btn btn-default" >取消</button>
+                        <button type="button" id="yy-cancel-btn" class="btn btn-default">取消</button>
                         <button type="button" id="submitButton" class="btn btn-primary">提交预约
                         </button>
                     </div>
@@ -340,6 +395,80 @@
         </div>
     </div>
 </div>
+<style>
+
+    @media (max-width: 970px) {
+        .yy-des{
+            display: none;
+        }
+    }
+
+    .flex{
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    .flex-auto{
+        flex: 1;
+    }
+
+    .yy-nav-title{
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #000000;
+        text-align: center;
+    }
+
+    .yy-nav-des{
+        font-family: PingFangSC-Regular;
+        font-size: 13px;
+        color: #999999;
+    }
+
+    .yy-des-h {
+        margin-top: 126px;
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #000000;
+        text-align: center;
+    }
+
+    .yy-left-des {
+        font-family: PingFangSC-Regular;
+        font-size: 16px;
+        color: #333333;
+        line-height: 22px;
+    }
+
+    .yy-right-img {
+        width: 14.8vw;
+        height: 14.8vw;
+        margin-left: 3.4vw;
+        min-width: 60px;
+        min-height: 60px;
+    }
+
+    .yy-shoushu-h{
+        font-family: PingFangSC-Medium;
+        font-size: 16px;
+        color: #A11715;
+        line-height: 22px;
+    }
+
+    .yy-down-img{
+        width: 25px;
+        height: 25px;
+        margin: 10px 0;
+    }
+
+
+    .yy-card{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+</style>
 
 <!--footer-->
 <%- include('./footer.html') %>
