@@ -1,6 +1,5 @@
 <footer >
     <div class="footer-qr">
-
         <div class="container">
             <div class="other-company row">
                 <div class="col-xs-10 col-md-4 text-left md-mt-40">
@@ -37,9 +36,12 @@
                 友情链接:
             </div>
             <div class="footer-link-content">
-                <span>春雨国际</span>  <span class="line">|</span>  <span>春雨港湾</span>  <span class="line">|</span>  <span>山东健康优选</span>  <span class="line">|</span>  <span>有来医生</span>  <span class="line">|</span>  <span>大众养生网</span>  <span class="line">|</span>  <span>春雨医生</span>  <span class="line">|</span>  <span>肿瘤网药智数据</span>  <span class="line">|</span>  <span>健康一线</span>  <span class="line">|</span>  <span>爱爱医医学网</span>  <span class="line">|</span>  <span>爱问医疗</span>  <span class="line">|</span>  <span>健康525</span>  <span class="line">|</span>  <span>心理网</span>  <span class="line">|</span>  <span>网上药店</span>  <span class="line">|</span>  <span>昆山挂号网</span>  <span class="line">|</span>  <span>主妇网</span>  <span class="line">|</span>
-                <span>减肥资讯</span>  <span class="line">|</span>  <span>医药资讯</span>  <span class="line">|</span>  <span>母婴知识</span>  <span class="line">|</span>  <span>妇科疾病</span>  <span class="line">|</span>  <span>网上药店</span>  <span class="line">|</span>  <span>别有病网</span>  <span class="line">|</span>  <span>老中医养生网</span>  <span class="line">|</span>  <span>中国卫生人才网</span>  <span class="line">|</span>  <span>女人志论坛</span>  <span class="line">|</span>  <span>医疗专业人才网</span>  <span class="line">|</span>  <span>隆元康网上药店</span>  <span class="line">|</span>  <span>网上药店</span>  <span class="line">|</span>  <span>问诊吧</span>  <span class="line">|</span>  <span>医药招商</span>  <span class="line">|</span>
-                <span>药品价格</span>  <span class="line">|</span>  <span>315 网 </span>  <span class="line">|</span>  <span>妙手健康网</span>  <span class="line">|</span>  <span>养老院</span>  <span class="line">|</span>  <span>整形问答</span>  <span class="line">|</span>  <span>医药招商网</span>  <span class="line">|</span>  <span>东方虹</span>  <span class="line">|</span>  <span>邻医网</span>  <span class="line">|</span>  <span>更美整形</span>  <span class="line">|</span>  <span>网上挂号</span>  <span class="line">|</span>  <span>恒牛网上药店</span>
+                <% links.forEach(function(h,index){%>
+                   <a href="<%= h.value%>" target="_blank"><%= h.text %></a> 
+                   <% if (index + 1 < links.length) { %>
+                     <span class="line">|</span>
+                   <% } %>
+                <% }) %>
             </div>
         </div>
     </div>
@@ -82,7 +84,9 @@
     .footer-link-title{
         padding-bottom: 10px;
     }
-    .footer-link-content span{
+    .footer-link-content a{
+        font-size: 14px;
+        color: #B8B8B8;
         display: inline-block;
         padding: 4px 0;
     }

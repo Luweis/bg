@@ -24,7 +24,6 @@
                     <div>
                         <div class="bg-usually-bin">常见疾病</div>
                         <div class="bg-jb-class">
-
                             <% dis.forEach(function(item){ %>
                             <a href="/disease/<%=item.id %>"><span><%= item.illnessName %></span></a>
                             <% }) %>
@@ -74,11 +73,11 @@
                         <p>与布骨健康合作的知名医院，帮您恢复健康。</p>
                     </div>
 
-                    <% hos.forEach(function(h, index){%>
+                    <% hos.forEach(function(h){%>
                     <div class="bg-coop-hospital ">
                         <div >
-                            <img src="./assets/images/hospital_<%= index+1 %>.png" alt="">
-                            <%= h %>
+                            <img src="<%= h.value%>"  alt="">
+                            <%= h.text %>
                         </div>
                     </div>
                     <% }) %>

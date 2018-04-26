@@ -4,6 +4,7 @@ const http = require("../assets/utils");
 const utils = require("../utils");
 const help = require("../utils/help.js");
 var cache = {};
+var links = []
 function activeItem(index, current) {
   index !== current ? "test" : "";
 }
@@ -27,7 +28,6 @@ const env = {
 };
 
 const baseApi = env[currentEnv].controllerBaseUrl;
-
 // 获取推荐医生
 function doctors(keyWord) {
   return http({
@@ -81,6 +81,17 @@ async function home(ctx) {
     }
   });
 
+  //友情链接
+  const footer_links = await http({
+    url: `${baseApi}linkQueryController/getLink`,
+    config: {
+      body: JSON.stringify({
+        size: 4
+      })
+    }
+  });
+  links =  footer_links['resultBodyObject']['enumItems'] || []
+
   const goods = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
     config: {
@@ -121,7 +132,8 @@ async function home(ctx) {
     dis: disa["resultBodyObject"],
     qa: answer["resultBodyObject"].rows || [],
     help,
-    index: 0
+    index: 0,
+    links
   };
   cache[ctx.url] = params;
   let html = ctx.render("index", params);
@@ -155,7 +167,8 @@ router.get("/doctor", async ctx => {
     current: 1,
     activeItem,
     help,
-    index: 1
+    index: 1,
+    links,    
   });
 });
 
@@ -185,7 +198,8 @@ router.get("/doctor/search", async ctx => {
     doctors: doctors["resultBodyObject"]["rows"],
     total: doctors["resultBodyObject"].total,
     help,
-    index: -1
+    index: -1,
+    links,
   });
 });
 
@@ -207,7 +221,8 @@ router.get("/doctor/:id", async ctx => {
     relatedDocotrs: doc["resultBodyObject"]["relatedDocotrs"],
     check,
     help,
-    index: -1
+    index: -1,
+    links
   });
 });
 
@@ -224,6 +239,7 @@ router.get("/doctor-yy", async ctx => {
   return ctx.render("operationOrder", {
     help,
     index: 2,
+    links,
     doctors: doctors["resultBodyObject"].rows
   });
 });
@@ -242,6 +258,7 @@ router.get("/article/:id", async ctx => {
   return ctx.render('articleDetail', {
     ats: article['resultBodyObject'],
     index: -1,
+    links,
     help
   });
 });
@@ -275,6 +292,7 @@ router.get("/interlocution", async ctx => {
   return ctx.render("interlocution", {
     helpers: utils,
     index: 3,
+    links,
     help,
     qa: qa["resultBodyObject"]["rows"] || [],
     doctor:
@@ -287,11 +305,8 @@ router.get("/interlocution", async ctx => {
 //疾病库
 router.get("/disease", async ctx => {
   let keyWord = ctx.query.keyWord || "";
-
   keyWord = decodeURIComponent(keyWord);
-
   const param = utils.getParam(ctx.url);
-
   const resp = await http({
     url: `${baseApi}diseaseController/searchIllness`,
     config: {
@@ -314,6 +329,7 @@ router.get("/disease", async ctx => {
   return ctx.render("jibinku", {
     helpers: utils,
     index: 5,
+    links,
     help,
     keyWord,
     diseases: resp["resultBodyObject"],
@@ -357,6 +373,7 @@ router.get("/disease/:id", async ctx => {
   return ctx.render("illnessDetail", {
     helpers: utils,
     index: -1,
+    links,
     help,
     diseases: resp["resultBodyObject"] || [],
     doctor:
@@ -385,6 +402,7 @@ router.get('/mall',async (ctx) =>{
   return ctx.render("mall", {
     helpers: utils,
     index: 6,
+    links,
     help,
     insurances,
     equipments,
@@ -393,12 +411,9 @@ router.get('/mall',async (ctx) =>{
 });
 
 //布骨健康
-
 let healthAll = [];
 router.get('/health', async (ctx) => {
-
   const page = ctx.query.page || 1;
-
   let health = await http({
     url: `${baseApi}index/queryArticleList`,
     config: {
@@ -409,8 +424,6 @@ router.get('/health', async (ctx) => {
       })
     }
   });
-
-
   const resp = await http({
     url: `${baseApi}diseaseController/getIllnessList`,
     config: {
@@ -429,19 +442,17 @@ router.get('/health', async (ctx) => {
     }
   }
 
+  const resp_hos = await http({
+    url: `${baseApi}linkQueryController/getCooperateHospital`,
+    config: {
+      body: JSON.stringify({})
+    }
+  });
+  const hos = resp_hos['resultBodyObject']['enumItems'] || []
   return ctx.render("health", {
-    hos: [
-      "北京人民解放军总医院",
-      "北京积水潭医院",
-      "北京协和医院",
-      "上海市第六人民医院",
-      "第四军医大学西京医院",
-      "四川大学华西医院",
-      "第二军医大学长征医院",
-      "北京大学人民医院",
-      "西京鼓楼医院"
-    ],
+    hos: hos,
     index: 4,
+    links,
     hl: healthAll,
     dis: resp['resultBodyObject'] || [],
     help
@@ -467,6 +478,7 @@ router.get("/mall/:type/:id", async ctx => {
   return ctx.render("mallDetail", {
     helpers: utils,
     index: 7,
+    links,
     help,
     model: resp["resultBodyObject"]
   });
@@ -478,6 +490,7 @@ router.get("/buy", async ctx => {
   return ctx.render("buy", {
     helpers: utils,
     index: -1,
+    links,
     help
   });
 });
@@ -487,6 +500,7 @@ router.get("/about-us", async ctx => {
   return ctx.render("aboutUs", {
     helpers: utils,
     index: 8,
+    links,
     help
   });
 });
@@ -496,6 +510,7 @@ router.get("/download", async ctx => {
   return ctx.render("download", {
     helpers: utils,
     index: 9,
+    links,
     help
   });
 });
@@ -503,6 +518,7 @@ router.get("/download", async ctx => {
 router.get('/sorry', async (ctx) => {
   return ctx.render('sorry', {
     index: -1,
+    links,
     help
   });
 });
