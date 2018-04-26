@@ -125,7 +125,6 @@ async function home(ctx) {
   };
   cache[ctx.url] = params;
   let html = ctx.render("index", params);
-  console.log("异步更新数据");
   return html;
 }
 //主页
@@ -133,7 +132,6 @@ router.get("/", async ctx => {
   let params = cache[ctx.url];
   if (params) {
     home(ctx);
-    console.log("读取缓存数据");
     return ctx.render("index", params);
   } else {
     await home(ctx);
