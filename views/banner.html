@@ -1,5 +1,5 @@
 <div class="bg-swiper" style="position: relative">
-    <img src="/assets/images/shop_banner.png" alt="" style="width: 100%;opacity: 0">
+    <img src="<%= banners[0].resourceUrl %>" alt="" class="placehold">
     <div style="position: absolute;height: 100%; width: 100%; top: 0;left: 0">
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -18,6 +18,11 @@
 <style>
     .full{
         width: 100%;
-        height: 100%;
+        height: auto;
+    }
+    .placehold{
+        width: 100%;
+        opacity: 0;
+        height: auto;
     }
 </style>
