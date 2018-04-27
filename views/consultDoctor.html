@@ -71,24 +71,27 @@
         <div class="swiper-wrapper">
 
             <% doctors.forEach(function(d,i){%>
-            <% if (i <= 2) {%>
-            <div class="swiper-slide">
+            <% if (i <= 2){ %>
 
-                <div class="yy-banner-card">
-                    <a href="./doctor/<%= d.id%>">
-                        <h3 class="yy-banner-card-h3"><%= d.realName %></h3>
-                        <div class="yy-banner-card-short"><%= d.title %> <span><%=  d.departmentName %></span></div>
-                        <p class="yy-banner-card-short"><%= d.hospitalName %></p>
-                        <p class="yy-banner-card-desc">
-                            擅长：<%= d.expertDisease %>
-                        </p>
-                        <span class="bg-ques-btn">预约手术</span>
-                        <img class="yy-banner-header" src="<%= d.iconUrl %>" alt="">
-                    </a>
+            <div class="swiper-slide">
+                <div class="yy-card-wrap">
+                    <div class="yy-banner-card">
+                        <a href="./doctor/<%= d.id%>">
+                            <h3 class="yy-banner-card-h3"><%= d.realName %></h3>
+                            <div class="yy-banner-card-short"><%= d.title %> <span><%=  d.departmentName %></span></div>
+                            <p class="yy-banner-card-short"><%= d.hospitalName %></p>
+                            <p class="yy-banner-card-desc">
+                                擅长：<%= d.expertDisease %>
+                            </p>
+                            <span class="bg-ques-btn">预约手术</span>
+                            <img class="yy-banner-header" src="<%= d.iconUrl %>" alt="">
+                        </a>
+                    </div>
                 </div>
 
             </div>
             <% } %>
+
             <% }) %>
         </div>
     </div>
@@ -147,6 +150,7 @@
 
     .yy-banner-card {
         margin-right: 3%;
+        transition: all .15s linear;
     }
 
     .yy-banner-header {
@@ -200,6 +204,10 @@
         border-radius: 2px;
         margin-left: 10px;
     }
+    .yy-banner-card:hover{
+        box-shadow: 0 5px 25px 5px rgba(0, 0, 0, 0.14);
+    }
+
     .yy-banner-card:hover .yy-banner-header{
         border: 1px solid  #A11715;
     }
@@ -217,6 +225,10 @@
     }
 
     @media (max-width: 940px) {
+        .consultDoctor-content{
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
         .pc-banner-show {
             display: none;
         }
@@ -230,10 +242,18 @@
             margin-top: 40px;
             margin-bottom: 20px;
             width: 100%;
+            box-shadow: -15px 20px 62px 0 rgba(0,0,0,0.14), 10px 1px 13px 0 rgba(0,0,0,0.14);
+            /*box-shadow: none;*/
         }
+
+        .yy-card-wrap{
+            margin: 0 40px;
+        }
+
         .banner-show{
             margin-top: 20px;
             height: 360px;
+            padding: 0 0;
         }
         .yy-banner-title{
             margin-top: 0;
