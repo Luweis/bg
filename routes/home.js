@@ -479,17 +479,14 @@ router.get("/mall/:type/:id", async ctx => {
       })
     }
   });
+  const model = resp["resultBodyObject"];
   return ctx.render("mallDetail", {
     helpers: utils,
     index: 7,
     links,
     help,
-    model: resp["resultBodyObject"],
-    banners: [{
-      resourceUrl: '/assets/images/mall_detail_1.jpg'
-    },{
-      resourceUrl: '/assets/images/shop_banner.png'
-    }]
+    model,
+    banners: model.productBannerResourcesList || []
   });
 });
 
