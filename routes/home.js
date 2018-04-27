@@ -152,23 +152,28 @@ router.get("/", async ctx => {
 
 //医生列表页面
 router.get("/doctor", async ctx => {
+
+  const page = ctx.query.page || 1;
+
   const data = await http({
     url: `${baseApi}consultDoctor/getRecommendDoctor`,
     config: {
       body: JSON.stringify({
-        pageSize: 30
+        pageSize: 36,
       })
     }
   });
 
+  console.log(page);
   return ctx.render('consultDoctor', {
-    // helpers: utils,
+    helpers: utils,
     doctors: data['resultBodyObject']['rows'] || [],
     current: 1,
     activeItem,
     help,
     index: 1,
     links,
+    page,
   });
 });
 

@@ -294,6 +294,10 @@ a{
 	color: white;
 }
 
+.text-black{
+	color: black;
+}
+
 .margin-top-40{
 	margin-top: 40px;
 }
@@ -310,12 +314,24 @@ a{
 	padding: 0 10px;
 }
 
+.font-size-13{
+	font-size: 13px;
+}
 .font-size-base{
 	font-size: 14px;
 }
 
 .left{
 	float: left;
+}
+
+
+.bg-ques-btn{
+	display: inline-block;
+	background-color: #A11715;
+	color: white;
+	padding: 6px 20px;
+	border-radius: 2px;
 }
 
 /*nav*/
