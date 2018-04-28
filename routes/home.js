@@ -233,6 +233,7 @@ router.get("/doctor/:id", async ctx => {
 
 //预约列表页面
 router.get("/doctor-yy", async ctx => {
+  const page = ctx.query.page? ctx.query.page : 1;
   const doctors = await http({
     url: `${baseApi}operationOrderController/getConsultDoctor`,
     config: {
@@ -245,6 +246,7 @@ router.get("/doctor-yy", async ctx => {
     help,
     index: 2,
     links,
+    page,
     doctors: doctors["resultBodyObject"].rows
   });
 });
