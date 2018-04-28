@@ -238,7 +238,7 @@ router.get("/doctor-yy", async ctx => {
     url: `${baseApi}operationOrderController/getConsultDoctor`,
     config: {
       body: JSON.stringify({
-        pageSize: 20
+        pageSize: 36
       })
     }
   });

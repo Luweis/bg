@@ -16,8 +16,9 @@ $(function () {
         window.location.href = `./doctor/search?query=${encodeURIComponent(searchWord)}&searchType=surgery`
     });
 
-    $('.operationOrder-book-button').on('click', function () {
+    $('.bg-ques-btn').on('click', function (e) {
         showModal();
+      e.preventDefault();
     });
 
 });

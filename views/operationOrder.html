@@ -174,7 +174,7 @@
                             <p class="yy-banner-card-desc">
                                 擅长：<%= d.expertDisease %>
                             </p>
-                            <span class="bg-ques-btn">咨询医生</span>
+                            <span class="bg-ques-btn">预约手术</span>
                             <img class="yy-banner-header" src="<%= d.iconUrl %>" alt="">
                         </a>
                     </div>
@@ -185,6 +185,8 @@
 
             <% }) %>
         </div>
+        <div class="swiper-button-prev swiper-button-black"></div>
+        <div class="swiper-button-next swiper-button-black"></div>
     </div>
     <!--业务介绍-->
     <div class="yy-des">
@@ -268,37 +270,11 @@
                 height: 92px;
             }
 
-            .img-preview {
-                display: block;
-                width: 80px;
-                height: 80px;
-            }
-
-            .img-preview-div {
-                float: left;
-                width: 80px;
-                height: 80px;
-                position: relative;
-                margin: 10px 10px;
-            }
 
             .uploadButton {
                 margin: 0 40px;
             }
 
-            .no-empty {
-                position: absolute;
-                display: block;
-                width: 30px;
-                height: 30px;
-                color: red;
-                right: -25px;
-                top: 10px;
-            }
-
-            .operationOrder-form-warn {
-                border-color: #db4754;
-            }
 
             @media (max-width: 991px) {
                 .operationOrder-form-label-img, .operationOrder-form-label {
@@ -332,7 +308,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title operationOrder-form-title" id="operationModalLabel">填写手术预约单</h4>
+                        <h4 class="modal-title operationOrder-form-title text-color-primary" id="operationModalLabel">填写手术预约单</h4>
                     </div>
                     <div class="modal-body container-fluid">
                         <div class="row">
@@ -358,7 +334,7 @@
                                         <div class="col-xs-2 col-md-2 operationOrderForm-btn-wrap"><input
                                                 id="getVerifyNoButton"
                                                 type="button"
-                                                class="btn btn-danger center-block"
+                                                class="btn btn-danger center-block bg-ques-btn"
                                                 value="获取验证码">
                                         </div>
                                     </div>
@@ -417,7 +393,7 @@
 
                                         <div class="col-sm-12">
                                             <input type="button" id="yy-upload-btn"
-                                                   class="btn btn-danger uploadButton"
+                                                   class="btn btn-danger uploadButton bg-positive"
                                                    value="上传图片">
                                             <input id="picBaseUrl_art" type="file" multiple
                                                    name="uploadedFileBig"
@@ -433,7 +409,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="qrcode-img"><img src="/assets/images/boneService.png"></div>
-                                <div class="qrcode-desc">扫一扫关注布骨健康在手机端预约</div>
+                                <div class="qrcode-desc text-color-primary">扫一扫关注布骨健康在手机端预约</div>
                             </div>
                         </div>
                     </div>
@@ -514,12 +490,6 @@
         margin: 10px 0;
     }
 
-
-    .yy-card{
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-    }
     .inline-flex {
         display: inline-flex;
         width: 50%;
@@ -535,7 +505,6 @@
         box-sizing: border-box;
 
     }
-
     .yy-search-btn {
         width: 50px;
         height: 35px;
@@ -543,7 +512,6 @@
         border-bottom-right-radius: 2px;
         border-top-right-radius: 2px;
     }
-
     .yy-search-btn > img {
         width: 16px;
         height: 16px;
@@ -551,7 +519,7 @@
 
     .banner-show {
         display: flex;
-        justify-content: flex-start;
+        justify-content:  space-between;
         flex-wrap: wrap;
         margin-top: 80px;
         padding: 0 34px
@@ -559,7 +527,7 @@
 
     .yy-banner-card {
         position: relative;
-        flex: 0 0 30%;
+        flex: 0 0 27%;
         background: #FFFFFF;
         box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.14);
         text-align: center;
@@ -567,8 +535,6 @@
         padding: 0 32px;
         margin-bottom: 100px;
     }
-
-
     .yy-banner-card {
         margin-right: 3%;
         transition: all .15s linear;
@@ -646,10 +612,6 @@
     }
 
     @media (max-width: 940px) {
-        .consultDoctor-content{
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
         .pc-banner-show {
             display: none;
         }
@@ -666,7 +628,6 @@
             box-shadow: -15px 20px 62px 0 rgba(0,0,0,0.14), 10px 1px 13px 0 rgba(0,0,0,0.14);
             /*box-shadow: none;*/
         }
-
         .yy-card-wrap{
             margin: 0 40px;
         }
@@ -690,11 +651,41 @@
 <%- help.jsIncludeTag('operation') %>
 
 <script>
+  var pre = document.querySelector('.pre-page');
+  var next = document.querySelector('.next-page');
+  var dalegate = document.querySelector('.yy-page-p');
+
+  var currentPage = +document.querySelector('.yy-page.active').innerText;
+
+  if (currentPage === 1) {
+    pre.style.display = 'none';
+  } else if (currentPage === 6) {
+    next.style.display = 'none'
+  }
+
+  pre && pre.addEventListener('click', function () {
+    location.href = `/doctor-yy?page=${+currentPage - 1}`
+  });
+
+  next && next.addEventListener('click', function () {
+    location.href = `/doctor-yy?page=${+currentPage + 1}`
+  });
+
+  dalegate.addEventListener('click', function (e) {
+    if (e.target.className.indexOf('n-page') !== -1) {
+      if (e.target.innerText == currentPage) return;
+      location.href = `/doctor-yy?page=${e.target.innerText}`
+    }
+  });
+
+</script>
+
+<script>
   var mySwiper = new Swiper('.swiper-container', {
     autoplay: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
     },
   })
 </script>
