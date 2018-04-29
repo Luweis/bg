@@ -162,7 +162,6 @@
         <div class="swiper-wrapper">
 
             <% doctors.forEach(function(d,i){%>
-            <% if (i <= 2){ %>
 
             <div class="swiper-slide">
                 <div class="yy-card-wrap">
@@ -181,9 +180,8 @@
                 </div>
 
             </div>
-            <% } %>
-
             <% }) %>
+
         </div>
         <div class="swiper-button-prev swiper-button-black"></div>
         <div class="swiper-button-next swiper-button-black"></div>
@@ -641,6 +639,9 @@
             margin-top: 0;
             border-top: 16px solid #eeeeee;
             padding-top: 20px;
+        }
+        .yy-banner-card:hover .yy-banner-header{
+            border: none;
         }
     }
 </style>
