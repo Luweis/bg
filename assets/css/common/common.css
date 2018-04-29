@@ -394,3 +394,15 @@ a:hover{
 .margin-top-40{
 	margin-top: 40px;
 }
+
+.font-size-large{
+	font-size: 16px;
+}
+
+.padd-lf-20{
+	padding-left: 20px;
+}
+
+.padd-tb-5{
+	padding: 4px 0;
+}

@@ -33,7 +33,7 @@
                             <img src="/assets/images/bg-question.png" alt="" class="left">
                             <div class="left desc">
                                 <h3 class="title">免费向全国近2000家医院的⼏万名医⽣生咨询</h3>
-                                <a href="./doctor" class="bg-ques-btn bg-mt-16">免费问医生</a>
+                                <a href="/download?home" class="bg-ques-btn bg-mt-16">免费问医生</a>
                             </div>
                         </div>
                     </div>
@@ -102,14 +102,16 @@
                         <img id="yy-search-btn" class="search-btn" src="/assets/images/bg-search-btn.png" alt="" style="margin-left: -6px">
                     </div>
 
-                    <div class="bg-ques-card row">
+                    <div class="bg-ques-card row" id="yy-home-card">
 
                         <% yy.forEach(function(y){ %>
                         <div class="col-md-6 ">
                             <div class="clearfix card">
                                 <div class="bg-ques-card-head left">
-                                    <img src="<%= y.iconUrl %>" alt="">
-                                    <a href="./doctor/<%= y.id %>" class="bg-ques-search-btn bg-mt-16 ">点我咨询</a>
+                                    <a href="./doctor/<%= y.id %>">
+                                        <img src="<%= y.iconUrl %>" alt="">
+                                    </a>
+                                    <span href="./doctor/<%= y.id %>" class="bg-ques-search-btn bg-mt-16 home-yy-shoushu">预约手术</span>
                                 </div>
                                 <div class="bg-ques-card-content left">
                                     <div>
@@ -139,39 +141,7 @@
                         <p>专家答疑，从专业角度解决您的困扰。</p>
                     </div>
 
-                    <div class="bg-answer-ques">
-                        <div class="bg-classic-ques">
-                            <% qa.forEach(function(item){ %>
-                            <div class="bg-answer">
-                                <span class="ques-tip">问</span>
-                                <span class="font-size-base padd-lf-20"><%= item.questionData.diseaseDesc %></span>
-                            </div>
-                            <% (item.answerDatas || []).forEach(function(answer){ %>
-                            <div class="clearfix answer-card">
-                                <span class="ques-tip left">答</span>
-                                <div class="col-xs-10 col-md-7">
-                                    <div class="clearfix card border-card">
-                                        <div class="bg-ques-card-head left">
-                                            <img src="/assets/images/head.png" alt="">
-                                        </div>
-                                        <div class="bg-ques-card-content left">
-                                            <div>
-                                                <span class="name"><%= answer.name %></span>
-                                                <span><%= answer.department %></span>
-                                                <span><%= answer.jobTitle %></span>
-                                            </div>
-                                            <div class="padd-tb-10 ">
-                                                <%= answer.hospital %>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="bg-answer-ques-detail"><%= answer.content %></p>
-                                </div>
-                            </div>
-                            <% }) %>
-                            <% }) %>
-                        </div>
-                    </div>
+                    <%- include('./ques-answer')%>
                 </div>
 
                 <div class="bg-ques-doctor margin-top-40">
@@ -269,6 +239,7 @@
         </div>
     </div>
 </main>
+<%- include('./modal')%>
 
 <style>
     a:hover{
@@ -293,9 +264,7 @@
     .padd-lf-15px{
         padding-left: 15px;
     }
-    .padd-lf-20{
-        padding-left: 20px;
-    }
+
 
     .mg-top-10{
         padding-top: 10px;
@@ -411,11 +380,13 @@
         border: 1px solid #E7E7E7;
         margin-bottom: 16px;
     }
+
     .bg-ques-card-head img{
         display: block;
         width: 60px;
         height: 60px;
     }
+
     .bg-ques-card-content{
         color: #8C8C8C;
     }
@@ -445,6 +416,10 @@
         border-radius: 2px;
     }
 
+    .ques-tip-des:hover{
+        color: #A11715;
+    }
+
     .ques-tip:before{
         content: '';
         display: inline-block;
@@ -457,10 +432,17 @@
     .bg-answer{
         padding: 20px 0;
     }
+
+    /*注意只有首页才会多行省略*/
     .card + .bg-answer-ques-detail{
         font-family: PingFangSC-Regular;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
         font-size: 14px;
         color: #545454;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical
     }
 
     .answer-card{
@@ -503,9 +485,11 @@
 
 <!--footer-->
 <%- include("./footer.html") %>
+<%- help.jsIncludeTag('operation') %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.min.js"></script>
 <script>
   const search = document.querySelector('#doc-search-value');
+  // const delegate = document.querySelector('#yy-home-card');
   const btn = document.querySelector('#doc-search-btn');
   btn.addEventListener('click', function () {
     location.href = '/doctor/search?query=' + search.value;
@@ -524,7 +508,14 @@
       clickable: true,
     },
   })
-
+  //
+  // delegate.addEventListener('click', function (e) {
+  //   var className = e.target.className;
+  //   if (className.indexOf('home-yy-shoushu') !== -1){
+  //     console.log('--');
+  //   }
+  // });
 </script>
+
 </body>
 </html>

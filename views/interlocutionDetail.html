@@ -1,0 +1,282 @@
+<html lang="en">
+<%- include('./link.html') %>
+<body>
+<%- include("./head.html") %>
+<div class="bg-main">
+    <div class="container">
+        <div class="bg-ques-doctor margin-top-30 col-md-7">
+            <!-- 经典问答 -->
+            <div class="margin-top-30">
+                <div>
+                    <div class="bg-line"></div>
+                    <h1 class="title">经典问答
+                    </h1>
+                    <p>专家答疑，从专业角度解决您的困扰。</p>
+                </div>
+                <div class="bg-answer-ques">
+                    <div class="bg-classic-ques">
+                        <% qa.forEach(function(item){ %>
+                        <div class="bg-answer">
+                            <span class="ques-tip">问</span>
+                            <span class="font-size-base padd-lf-15px"><%= item.questionData.diseaseDesc %></span>
+                        </div>
+                        <% (item.answerDatas || []).forEach(function(answer){ %>
+                        <div class="clearfix answer-card">
+                            <span class="ques-tip left">答</span>
+                            <div class="col-xs-10 col-md-7">
+                                <div class="clearfix card border-card">
+                                    <div class="bg-ques-card-head left">
+                                        <a href="/doctor/<%= answer.doctorId%>">
+                                            <img src="<%= answer.headUrl%>" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="bg-ques-card-content left">
+                                        <div>
+                                            <span class="name"><%= answer.name %></span>
+                                            <span><%= answer.department %></span>
+                                            <span><%= answer.jobTitle %></span>
+                                        </div>
+                                        <div class="padd-tb-10 ">
+                                            <%= answer.hospital %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="bg-answer-ques-detail"><%= answer.content %></p>
+                            </div>
+                        </div>
+                        <% }) %>
+                        <% }) %>
+                    </div>
+                </div>
+
+                <!--相关文章推荐-->
+
+                <div style="margin-top: 40px;">
+                    <h3 class="title">相关文章阅读</h3>
+                   <%    if (ats.length > 0) { %>
+
+                    <% ats.forEach(function(at){ %>
+                    <div class="font-size-base">
+                        <a class="tuijian" href="/article/<%= at.id %>"><%= at.title %></a>
+                    </div>
+                    <% })%>
+
+                   <%  } else{ %>
+
+                    <div>未找到相关数据</div>
+
+                    <% } %>
+
+                </div>
+                <!--相关问答内容-->
+                <div style="padding: 40px 0">
+                    <h3 class="title">相关问答</h3>
+                    <%    if (ats.length > 0) { %>
+                    <% relateAnswers.forEach(function(ras){ %>
+                    <div class="font-size-base">
+                        <a class="tuijian" href="/interlocution/<%= ras.id %>"><%= at.title %></a>
+                    </div>
+                    <% })%>
+
+
+                    <%  } else{ %>
+
+                    <div>未找到相关数据</div>
+
+                    <% } %>
+                </div>
+
+            </div>
+        </div>
+        <!-- 推荐医生 -->
+        <div class="col-md-5 re-doctor">
+            <div class="bg-ques-doctor">
+                <div>
+                    <div class="bg-line"></div>
+                    <h1 class="title">推荐医生
+                        <a href="/doctor"> <span>更多></span></a>
+                    </h1>
+                    <p>为您推荐骨科手术领域的专家</p>
+                </div>
+                <%- include('./recommend-doctor')%>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<style>
+
+    .mobile-bar li {
+        flex: 0 0 25%;
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #2E2E2E;
+    }
+
+    .mobile-bar li>a {
+        font-size: 14px;
+        color: white;
+    }
+
+    .mobile-bar li>a:hover {
+        text-decoration: none;
+    }
+
+    .padd-lf-15px {
+        padding-left: 15px;
+    }
+
+    .bg-main {
+        margin-top: 30px;
+    }
+
+    .bg-line {
+        position: relative;
+        height: 1px;
+        background-color: #E7E7E7;
+    }
+
+    .bg-line:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        background-color: #A11715;
+        height: 100%;
+        width: 95px;
+    }
+
+
+    .bg-ques-card-content {
+        padding-left: 15px;
+        width: calc(100% - 60px);
+    }
+
+    .bg-ques-card-content .has-line {
+        border-bottom: 1px solid #E7E7E7;
+    }
+
+    .bg-ques-doctor .title {
+        position: relative;
+        font-size: 24px;
+        color: black;
+        padding: 10px 0;
+        font-family: 'PingFangSC-Medium';
+    }
+
+    .bg-ques-doctor .title span {
+        font-size: 14px;
+        color: #B8B8B8;
+        position: absolute;
+        right: 0;
+    }
+
+    .bg-ques-doctor p {
+        color: #B8B8B8;
+        font-size: 14px;
+    }
+
+    .bg-search-bar .search {
+        width: 70%;
+        height: 34px;
+        padding: 0 10px;
+    }
+
+    .bg-search-bar .search-btn {
+        height: 34px;
+    }
+
+    .border-card,
+    .bg-ques-card .card {
+        background-color: #F8F8F8;
+        padding: 16px;
+        border-radius: 4px;
+        border: 1px solid #E7E7E7;
+        margin-bottom: 16px;
+    }
+
+    .bg-ques-card-head img {
+        display: block;
+        width: 60px;
+        height: 60px;
+    }
+
+    .bg-ques-card-content {
+        color: #8C8C8C;
+    }
+
+    .padd-tb-10 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .bg-ques-card-content span.name {
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+        text-align: center;
+    }
+
+    .bg-ques-card-content span {
+        padding-right: 10px;
+    }
+
+    .ques-tip {
+        position: relative;
+        display: inline-block;
+        background-color: #A11715;
+        padding: 0px 4px;
+        color: white;
+        border-radius: 2px;
+    }
+
+    .ques-tip:before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        bottom: -10px;
+        right: 5px;
+        border: 5px solid;
+        border-color: #A11715 transparent transparent transparent;
+    }
+
+    .bg-answer {
+        padding: 20px 0;
+    }
+
+    .card+.bg-answer-ques-detail {
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #545454;
+    }
+
+    .answer-card {
+        padding-bottom: 20px;
+    }
+
+    @media (max-width: 996px) {
+        .md-mt-40:not(:first-child) {
+            margin-top: 40px;
+        }
+        .re-doctor {
+            display: none;
+        }
+    }
+
+    .tuijian{
+        display: inline-block;
+        padding: 5px 0;
+    }
+    .tuijian:hover{
+        color: #A11715;
+    }
+</style>
+<!--footer-->
+<%- include("./footer.html") %>
+</body>
+
+</html>

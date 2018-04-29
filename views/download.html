@@ -5,11 +5,40 @@
     <%- include("./head.html") %>
 <!--main-->
 <div class="common-main container download-container">
-    <div class="row">
-        <img class="img-responsive" src="/assets/images/download.png">
+    <div class="text-center">
+        <div class="normal">
+            <h4 class="down-title">扫码立即下载APP</h4>
+        </div>
+        <div class="home-down margin-top-40">
+            <h1 class="down-title padd-tb-6"> 温馨提示</h1>
+            <div class="padd-tb-6">因医生回复消息有可能迟缓</div>
+            <div class="padd-tb-6 font-size-large">请用手机微信</div>
+            <div class="padd-tb-6 font-size-large">扫描下方二维码</div>
+            <div class="padd-tb-6">手机端方便随时随地接受信息</div>
+        </div>
+        <img  src="/assets/images/download.png" />
     </div>
 </div>
+    <style>
+        .down-title{
+            font-size: 20px;
+            padding: 30px 0;
+        }
+
+        .padd-tb-6{
+            padding: 6px 0;
+        }
+    </style>
 <!--footer-->
 <%- include("./footer.html") %>
+
+    <script>
+       var isFromeHome = location.search;
+        if (isFromeHome){
+         document.querySelector('.normal').style.display = 'none';
+        }else{
+         document.querySelector('.home-down').style.display = 'none';
+       }
+    </script>
 </body>
 </html>
