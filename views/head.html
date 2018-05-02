@@ -4,10 +4,20 @@
             <span class="col-xs-4 col-md-6 header-top-content">Hi,欢迎访问布骨医生官方网站</span>
             <ul class="col-xs-8 col-md-6">
                 <div class="flex">
-                    <li class=" header-top-content"><a href="/sorry">布骨康复医疗中心</a></li>
-                    <li class=" header-top-content"><a href="/about-us">加入我们</a></li>
-                    <li class=" header-top-content"><a href="/about-us">联系我们</a></li>
-                    <li class=" header-top-content"><a href="/download">布骨医生App</a></li>
+                    <li class="header-top-content">
+                        <a href="/sorry">布骨康复医疗中心</a>
+                    </li>
+                    <li class="header-top-content">
+                        <a href="/about-us">加入我们</a>
+                    </li>
+                    <li class="header-top-content">
+                        <a href="/about-us">联系我们</a>
+                    </li>
+                    <li class="header-top-content">
+                        <a href="/download">
+                            <img src="/assets/images/mobile_button.png" alt="提示" class="image_app_icon"/> 布骨医生App
+                        </a>
+                    </li>
                 </div>
             </ul>
         </div>
@@ -19,61 +29,103 @@
                     <img src="/assets/images/logo.png" alt="" class="header-logo">
                 </div>
                 <nav class="flex col-md-9 flex-end nav-hide">
-                    <li class="<%= index === 0? 'active': null %>"><a href="/">首页</a></li>
-                    <li class="<%= index === 1? 'active': null %>"><a href="/doctor">咨询医生</a></li>
-                    <li class="<%= index === 2? 'active': null %>"><a href="/doctor-yy">预约手术</a></li>
-                    <li class="<%= index === 3? 'active': null %>"><a href="/interlocution">经典问答</a></li>
-                    <li class="<%= index === 4? 'active': null %>"><a href="/health">布骨健康</a></li>
-                    <li class="<%= index === 5? 'active': null %>"><a href="/disease">疾病库</a></li>
-                    <li class="<%= index === 6? 'active': null %>"><a href="/mall">健康商城</a></li>
+                    <li class="<%= index === 0? 'active': null %>">
+                        <a href="/">首页</a>
+                    </li>
+                    <li class="<%= index === 1? 'active': null %>">
+                        <a href="/doctor">咨询医生</a>
+                    </li>
+                    <li class="<%= index === 2? 'active': null %>">
+                        <a href="/doctor-yy">预约手术</a>
+                    </li>
+                    <li class="<%= index === 3? 'active': null %>">
+                        <a href="/interlocution">经典问答</a>
+                    </li>
+                    <li class="<%= index === 4? 'active': null %>">
+                        <a href="/health">布骨健康</a>
+                    </li>
+                    <li class="<%= index === 5? 'active': null %>">
+                        <a href="/disease">疾病库</a>
+                    </li>
+                    <li class="<%= index === 6? 'active': null %>">
+                        <a href="/mall">健康商城</a>
+                    </li>
                 </nav>
                 <img id="open-menu" class="head-menu" src="/assets/images/head-menu.png" alt="" />
-                <img id="close-menu" class="head-menu " src="/assets/images/close.png"/>
+                <img id="close-menu" class="head-menu " src="/assets/images/close.png" />
             </div>
         </div>
     </div>
     <div class="mobile-bar-wrap">
         <ul class="mobile-bar">
-            <li class="active"><a href="/">首页</a></li>
-            <li><a href="/doctor">咨询医生</a></li>
-            <li><a href="/doctor-yy">预约手术</a></li>
-            <li><a href="/interlocution">经典问答</a></li>
-            <li><a href="/health">布骨健康</a></li>
-            <li><a href="/disease">疾病库</a></li>
-            <li><a href="/mall">健康商城</a></li>
+            <li class="active">
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="/doctor">咨询医生</a>
+            </li>
+            <li>
+                <a href="/doctor-yy">预约手术</a>
+            </li>
+            <li>
+                <a href="/interlocution">经典问答</a>
+            </li>
+            <li>
+                <a href="/health">布骨健康</a>
+            </li>
+            <li>
+                <a href="/disease">疾病库</a>
+            </li>
+            <li>
+                <a href="/mall">健康商城</a>
+            </li>
         </ul>
     </div>
 </header>
 <style>
-    a{
-        color: black;
-    }
-    a:hover{
+    a {
         color: black;
     }
 
-    .relative{
+    a:hover {
+        color: black;
+    }
+
+    .image_app_icon {
+        width: 10;
+        height: 16;
+        margin-right: 5
+    }
+
+    .relative {
         position: relative;
     }
-    .header-top-content{
+
+    .header-top-content {
         padding: 12px 15px;
         font-size: 13px;
         color: #B8B8B8;
+        height: 40px;
     }
+
     .header-top-content a {
         color: #B8B8B8;
     }
-    .header-top-content a:hover{
+
+    .header-top-content a:hover {
         text-decoration: none;
     }
-    .bg-header .flex{
+
+    .bg-header .flex {
         display: flex;
         justify-content: space-around
     }
-    .bg-header-nav .flex-end{
+
+    .bg-header-nav .flex-end {
         justify-content: flex-end;
     }
-    .bg-header-nav{
+
+    .bg-header-nav {
         background-color: #A11715;
         color: white;
         font-size: 18px;
@@ -82,34 +134,38 @@
     }
 
     @media (max-width: 1200px) {
-        .bg-header-nav .nav-hide{
+        .bg-header-nav .nav-hide {
             display: none;
         }
 
-        .head-log-content{
+        .head-log-content {
             text-align: center;
         }
 
     }
+
     .bg-header-nav a {
         display: inline-block;
         color: white;
         padding: 23px 25px;
     }
-    .bg-header-nav li.active{
-        background-color:rgba(0,0,0,0.15);
+
+    .bg-header-nav li.active {
+        background-color: rgba(0, 0, 0, 0.15);
     }
-    .bg-header-nav a:hover{
+
+    .bg-header-nav a:hover {
         text-decoration: none;
     }
-    .header-logo{
+
+    .header-logo {
         margin: 19px 0;
         height: 34px;
     }
 
 
     @media (max-width: 993px) {
-        .header-top{
+        .header-top {
             display: none;
         }
 
@@ -122,19 +178,21 @@
     }
 
     /*.close #open-menu{*/
-        /*display: inline-block;*/
+
+    /*display: inline-block;*/
+
     /*}*/
 
     @media (min-width: 992px) {
-        .head-menu{
+        .head-menu {
             display: none !important;
         }
-        .mobile-bar-wrap > .mobile-bar{
+        .mobile-bar-wrap>.mobile-bar {
             display: none !important;
         }
     }
 
-    .mobile-bar{
+    .mobile-bar {
         position: absolute;
         display: flex;
         width: 100%;
@@ -153,55 +211,56 @@
         border: 1px solid #2E2E2E;
     }
 
-    .mobile-bar li > a {
+    .mobile-bar li>a {
         font-size: 14px;
         color: white;
     }
 
-    .mobile-bar li > a:hover{
+    .mobile-bar li>a:hover {
         text-decoration: none;
     }
 
     /*打开遮罩层*/
 
+    .open-modal #open-menu {
+        display: none;
+    }
 
-        .open-modal #open-menu{
-            display: none;
-        }
-        .open-modal #close-menu{
-            display: inline-block ;
-        }
+    .open-modal #close-menu {
+        display: inline-block;
+    }
 
-        .close-modal #open-menu{
-            display: inline-block;
-        }
-        .close-modal #close-menu{
-            display: none;
-        }
+    .close-modal #open-menu {
+        display: inline-block;
+    }
 
-    .open-modal + .mobile-bar-wrap > .mobile-bar{
+    .close-modal #close-menu {
+        display: none;
+    }
+
+    .open-modal+.mobile-bar-wrap>.mobile-bar {
         display: flex;
     }
 
-    .close-modal + .mobile-bar-wrap > .mobile-bar{
+    .close-modal+.mobile-bar-wrap>.mobile-bar {
         display: none;
     }
 </style>
 
 <script>
-   const openMenu = document.querySelector('#open-menu');
-   const closeMenu = document.querySelector('#close-menu');
-   const bar = document.querySelector('.mobile-bar');
-   const navBar = document.querySelector('.bg-header-nav');
+    const openMenu = document.querySelector('#open-menu');
+    const closeMenu = document.querySelector('#close-menu');
+    const bar = document.querySelector('.mobile-bar');
+    const navBar = document.querySelector('.bg-header-nav');
 
-   openMenu.addEventListener('click', function () {
-     const cn = navBar.className;
-     navBar.className = cn.replace(/close-modal/, '' ).replace('open-modal', '') + 'open-modal';
-   });
-   closeMenu.addEventListener('click', function () {
+    openMenu.addEventListener('click', function () {
+        const cn = navBar.className;
+        navBar.className = cn.replace(/close-modal/, '').replace('open-modal', '') + 'open-modal';
+    });
+    closeMenu.addEventListener('click', function () {
 
-     const cn = navBar.className;
-     navBar.className = cn.replace(/open-modal/, '' ).replace('close-modal', '') + 'close-modal';
-   });
+        const cn = navBar.className;
+        navBar.className = cn.replace(/open-modal/, '').replace('close-modal', '') + 'close-modal';
+    });
 
 </script>

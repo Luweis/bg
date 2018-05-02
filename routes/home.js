@@ -303,7 +303,6 @@ router.get("/interlocution", async ctx => {
   });
 
   const doctor = doctors(keyWord);
-
   return ctx.render("interlocution", {
     helpers: utils,
     index: 3,
@@ -321,11 +320,8 @@ router.get("/interlocution", async ctx => {
 //经典问答详情
 router.get("/interlocution/:id", async ctx => {
   let keyWord = ctx.query.keyWord || "";
-
   keyWord = decodeURIComponent(keyWord);
-
   const ats = await aboutAts(keyWord);
-
   const relateAnswers = await http({
     url: `${baseApi}questionController/queryRelatedQuestionList`,
     config: {

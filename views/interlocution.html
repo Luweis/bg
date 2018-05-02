@@ -24,7 +24,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- 经典问答 -->
                         <div class="margin-top-30">
                             <div>
@@ -43,36 +42,36 @@
                                         </a>
                                         </div>
                                         <% (item.answerDatas || []).forEach(function(answer){ %>
-                                        <div class="clearfix answer-card">
-                                            <span class="ques-tip left">答</span>
-                                            <div class="col-xs-10 col-md-7">
-                                                <div class="clearfix card border-card">
-                                                    <div class="bg-ques-card-head left">
-                                                        <a href="/doctor/<%= answer.doctorId%>">
-                                                            <img src="<%= answer.headUrl%>" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="bg-ques-card-content left">
-                                                        <div>
-                                                            <span class="name"><%= answer.name %></span>
-                                                            <span><%= answer.department %></span>
-                                                            <span><%= answer.jobTitle %></span>
+                                            <% if (keyWord.length  > 1) { %>
+                                                <div class="clearfix answer-card">
+                                                    <span class="ques-tip left">答</span>
+                                                    <div class="col-xs-10 col-md-7">
+                                                        <div class="clearfix card border-card">
+                                                            <div class="bg-ques-card-head left">
+                                                                <a href="/doctor/<%= answer.doctorId%>">
+                                                                    <img src="<%= answer.headUrl%>" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="bg-ques-card-content left">
+                                                                <div>
+                                                                    <span class="name"><%= answer.name %></span>
+                                                                    <span><%= answer.department %></span>
+                                                                    <span><%= answer.jobTitle %></span>
+                                                                </div>
+                                                                <div class="padd-tb-10 ">
+                                                                        <%= answer.hospital %>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="padd-tb-10 ">
-                                                                <%= answer.hospital %>
-                                                        </div>
+                                                        <p class="bg-answer-ques-detail"><%= answer.content %></p>
                                                     </div>
                                                 </div>
-                                                <p class="bg-answer-ques-detail"><%= answer.content %></p>
-                                            </div>
-                                        </div>
+                                              <% }%>
                                         <% }) %>
                                     <% }) %>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                     <!-- 推荐医生 -->
                     <div class="col-md-5 re-doctor">
