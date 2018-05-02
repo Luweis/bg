@@ -238,7 +238,7 @@ router.get("/doctor-yy", async ctx => {
     url: `${baseApi}operationOrderController/getConsultDoctor`,
     config: {
       body: JSON.stringify({
-        pageSize: 20
+        pageSize: 36
       })
     }
   });
@@ -270,9 +270,26 @@ router.get("/article/:id", async ctx => {
   });
 });
 
+
+const aboutAts = (keyWord) => {
+ return http({
+    url: `${baseApi}questionController/queryRelatedArticle`,
+    config: {
+      body: JSON.stringify({
+        keyWord,
+        pageCount:5,
+      })
+    }
+  })
+}
+
+
+
 //经典问答
 router.get("/interlocution", async ctx => {
+
   let keyWord = ctx.query.keyWord || "";
+
   keyWord = decodeURIComponent(keyWord);
 
   const qa = await http({
@@ -281,15 +298,6 @@ router.get("/interlocution", async ctx => {
       body: JSON.stringify({
         keyWord: keyWord,
         pageCount: 1
-      })
-    }
-  });
-
-  const diseases = await http({
-    url: `${baseApi}diseaseController/searchIllness`,
-    config: {
-      body: JSON.stringify({
-        keyWord: keyWord
       })
     }
   });
@@ -304,9 +312,56 @@ router.get("/interlocution", async ctx => {
     qa: qa["resultBodyObject"]["rows"] || [],
     doctor:
       (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
-    diseases: diseases["resultBodyObject"] || [],
-    keyWord
+    keyWord,
+
   });
+});
+
+
+//经典问答详情
+router.get("/interlocution/:id", async ctx => {
+  let keyWord = ctx.query.keyWord || "";
+
+  keyWord = decodeURIComponent(keyWord);
+
+  const ats = await aboutAts(keyWord);
+
+  const relateAnswers = await http({
+    url: `${baseApi}questionController/queryRelatedQuestionList`,
+    config: {
+      body: JSON.stringify({
+        keyWord,
+        pageCount: 5,
+      })
+    }
+  });
+
+  const qa = await http({
+    url: `${baseApi}questionController/getQuestionList`,
+    config: {
+      body: JSON.stringify({
+        keyWord: keyWord,
+        pageCount: 1
+      })
+    }
+  });
+
+  const first =  (qa["resultBodyObject"]["rows"][0]);
+  const doctor = doctors(keyWord);
+
+  return ctx.render("interlocutionDetail", {
+    helpers: utils,
+    index: 3,
+    links,
+    help,
+    qa: [first] || [],
+    doctor:
+    (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
+    keyWord,
+    ats: ats['resultBodyObject'], // 相关文章
+    relateAnswers: relateAnswers['resultBodyObject']
+  });
+
 });
 
 //疾病库

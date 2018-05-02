@@ -47,7 +47,7 @@
                 <p class="yy-banner-card-desc">
                     擅长：<%= doctors[i*4+j].expertDisease %>
                 </p>
-                <span class="bg-ques-btn">预约手术</span>
+                <span class="bg-ques-btn">咨询医生</span>
                 <img class="yy-banner-header" src="<%= doctors[i*4+j].iconUrl %>" alt="">
             </a>
         </div>
@@ -71,7 +71,6 @@
         <div class="swiper-wrapper">
 
             <% doctors.forEach(function(d,i){%>
-            <% if (i <= 2){ %>
 
             <div class="swiper-slide">
                 <div class="yy-card-wrap">
@@ -90,10 +89,12 @@
                 </div>
 
             </div>
-            <% } %>
 
             <% }) %>
         </div>
+
+        <div class="swiper-button-prev swiper-button-black"></div>
+        <div class="swiper-button-next swiper-button-black"></div>
     </div>
 
 </div>
@@ -130,7 +131,7 @@
 
     .banner-show {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         flex-wrap: wrap;
         margin-top: 80px;
         padding: 0 34px
@@ -138,7 +139,7 @@
 
     .yy-banner-card {
         position: relative;
-        flex: 0 0 30%;
+        flex: 0 0 27%;
         background: #FFFFFF;
         box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.14);
         text-align: center;

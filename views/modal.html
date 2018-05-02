@@ -1,0 +1,129 @@
+<div class="modal  fade" id="operationModal" tabindex="-1" role="dialog"
+     aria-labelledby="operationModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title operationOrder-form-title text-color-primary" id="operationModalLabel">填写手术预约单</h4>
+            </div>
+            <div class="modal-body container-fluid">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <form class="form-horizontal">
+                            <div class="form-group row-margin">
+                                <label for="patientName"
+                                       class="col-xs-4 col-md-2 operationOrder-form-label-img">姓名：</label>
+                                <div class="col-xs-6 col-md-6">
+                                    <input type="text" class="form-control yy-must" id="patientName"
+                                           placeholder="请填写真实姓名"
+                                           required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group row-margin">
+                                <label for="phoneNo"
+                                       class="col-xs-4 col-md-2 operationOrder-form-label-img">手机号码：</label>
+                                <div class="col-xs-6 col-md-6">
+                                    <input type="text" class="form-control" id="phoneNo"
+                                           placeholder="请填写手机号码"
+                                           required="required"/>
+                                </div>
+                                <div class="col-xs-3 col-md-2 operationOrderForm-btn-wrap"><input
+                                        id="getVerifyNoButton"
+                                        type="button"
+                                        class="btn btn-danger center-block bg-ques-btn"
+                                        value="获取验证码">
+                                </div>
+                            </div>
+                            <div class="form-group row-margin">
+                                <label for="verifyNo"
+                                       class="col-xs-4 col-md-2 operationOrder-form-label">验证码：</label>
+                                <div class="col-xs-6 col-md-6">
+                                    <input type="text" class="form-control" id="verifyNo"
+                                           placeholder="请填写验证码"/>
+                                </div>
+                            </div>
+                            <div class="form-group row-margin">
+                                <label for="doctorName"
+                                       class="col-xs-4 col-md-2 operationOrder-form-label">医生名称：</label>
+                                <div class="col-xs-6 col-md-6">
+                                    <input type="text" class="form-control" id="doctorName"
+                                           placeholder="请填写医生名称"/>
+                                </div>
+                            </div>
+                            <div class="form-group row-margin">
+                                <label for="hospitalName"
+                                       class="col-xs-4 col-md-2 operationOrder-form-label">医院名称：</label>
+                                <div class="col-xs-6 col-md-6">
+                                    <input type="text" class="form-control" id="hospitalName"
+                                           placeholder="请填写医院名称"/>
+                                </div>
+                            </div>
+                            <div class="form-group row-margin">
+                                <label for="depName"
+                                       class="col-xs-4 col-md-2 operationOrder-form-label">科室名称：</label>
+                                <div class="col-xs-6 col-md-6">
+                                    <input type="text" class="form-control" id="depName"
+                                           placeholder="请填写科室名称"/>
+                                </div>
+                            </div>
+                            <div class="form-group row-margin">
+                                <label for="diseaseDiagnosis"
+                                       class="col-xs-4 col-md-2 operationOrder-form-label-img">疾病诊断：</label>
+                                <div class="col-xs-6 col-md-6">
+                                    <input type="text" class="form-control yy-must" id="diseaseDiagnosis"
+                                           placeholder="请填写疾病诊断"
+                                           required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group row-margin">
+                                <label for="diseaseDesc"
+                                       class="col-xs-4 col-md-2 operationOrder-form-label">病情描述：</label>
+                                <div class="col-xs-6 col-md-6">
+                                    <textarea class="form-control yy-must" id="diseaseDesc"
+                                              placeholder="请详细描述您的需求，最多1000字"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal" method="post" id="imageForm">
+                            <div class="form-group row-margin">
+
+                                <div class="col-sm-12">
+                                    <input type="button" id="yy-upload-btn"
+                                           class="btn btn-danger uploadButton bg-positive"
+                                           value="上传图片">
+                                    <input id="picBaseUrl_art" type="file" multiple
+                                           name="uploadedFileBig"
+                                           style="display: none"
+                                    >
+                                    <label>上传疼痛部位、检查报告、其他病情资料，方便医生为您确诊</label>
+                                </div>
+
+                                <div id="preview_big_art" class="col-sm-12"
+                                     style="display: none;margin: 0px 50px"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="qrcode-img"><img src="/assets/images/boneService.png"></div>
+                        <div class="qrcode-desc text-color-primary">扫一扫关注布骨健康在手机端预约</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="yy-cancel-btn" class="btn btn-default">取消</button>
+                <button type="button" id="submitButton" class="btn btn-primary">提交预约
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    @media (max-width: 400px) {
+        .operationOrderForm-btn-wrap{
+            float: right;
+            right: 109px;
+            margin-top: 20px;
+        }
+    }
+</style>

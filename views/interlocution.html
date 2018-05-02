@@ -11,6 +11,7 @@
                             <h1 class="title">筛选问答</h1>
                             <p class="item-des">通过筛选，查找相似的病情。</p>
                         </div>
+
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="input-group">
@@ -23,17 +24,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- 常见疾病 -->
-                        <div>
-                            <div>
-                                <span class="title" style="color: #A11715;font-size: 16px;">常见疾病</span>
-                            </div>
-                            <div style="margin: 20px 0">
-                                    <% diseases.forEach(function(item){ %>
-                                        <a href="/disease/<%= item.id %>" class="bg-jbk"> <%= item.illnessName %></a>
-                                     <% }) %>
-                            </div>
-                        </div>
+
                         <!-- 经典问答 -->
                         <div class="margin-top-30">
                             <div>
@@ -47,7 +38,9 @@
                                 <% qa.forEach(function(item){ %>
                                     <div class="bg-answer">
                                             <span class="ques-tip">问</span>
-                                            <span class="font-size-base padd-lf-15px"><%= item.questionData.diseaseDesc %></span>
+                                        <a href="/interlocution/1?keyWord=<%= item.questionData.diseaseDesc%>">
+                                            <span class="font-size-base padd-lf-15px ques-tip-des"><%= item.questionData.diseaseDesc %></span>
+                                        </a>
                                         </div>
                                         <% (item.answerDatas || []).forEach(function(answer){ %>
                                         <div class="clearfix answer-card">
@@ -55,7 +48,9 @@
                                             <div class="col-xs-10 col-md-7">
                                                 <div class="clearfix card border-card">
                                                     <div class="bg-ques-card-head left">
-                                                        <img src="/assets/images/head.png" alt="">
+                                                        <a href="/doctor/<%= answer.doctorId%>">
+                                                            <img src="<%= answer.headUrl%>" alt="">
+                                                        </a>
                                                     </div>
                                                     <div class="bg-ques-card-content left">
                                                         <div>
@@ -76,6 +71,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                     <!-- 推荐医生 -->
                     <div class="col-md-5 re-doctor">
@@ -95,26 +92,6 @@
             </div>
             </div>
             <style>
-                .normal-a {
-                    color: black;
-                }
-
-                .normal-a:hover {
-                    color: black;
-                }
-
-                .margin-top-40 {
-                    margin-top: 40px;
-                }
-
-                .mobile-bar {
-                    position: absolute;
-                    display: flex;
-                    width: 100%;
-                    z-index: 100;
-                    background-color: #222;
-                    flex-wrap: wrap;
-                }
 
                 .mobile-bar li {
                     flex: 0 0 25%;
@@ -138,10 +115,6 @@
                     padding-left: 15px;
                 }
 
-                .mg-top-10 {
-                    padding-top: 10px;
-                }
-
                 .bg-main {
                     margin-top: 30px;
                 }
@@ -161,20 +134,6 @@
                     background-color: #A11715;
                     height: 100%;
                     width: 95px;
-                }
-
-
-                .bg-ques-search-btn {
-                    display: inline-block;
-                    border: 1px solid #A11715;
-                    padding: 3px 5px;
-                    color: #A11715;
-                    border-radius: 2px;
-                }
-
-                .bg-ques-search-btn:hover {
-                    text-decoration: none;
-                    color: #A11715;
                 }
 
                 .bg-ques-card-content {
@@ -204,10 +163,6 @@
                 .bg-ques-doctor p {
                     color: #B8B8B8;
                     font-size: 14px;
-                }
-
-                .bg-search-bar {
-                    padding: 20px 0;
                 }
 
                 .bg-search-bar .search {
@@ -288,24 +243,8 @@
                     padding-bottom: 20px;
                 }
 
-                .bg-jbk {
-                    font-family: PingFangSC-Regular;
-                    font-size: 14px;
-                    color: #545454;
-                    line-height: 28px;
-                    margin-right: 12px;
-                }
-
-                .doctor-name {
-                    font-family: PingFangSC-Regular;
-                    font-size: 16px;
-                    color: #000000;
-                }
-
-                .doctor-des {
-                    font-family: PingFangSC-Regular;
-                    font-size: 12px;
-                    color: #999999;
+                .ques-tip-des:hover{
+                    color: #A11715;
                 }
 
                 .search-input {
@@ -332,12 +271,6 @@
                     color: #999999;
                 }
 
-                .item-more {
-                    font-family: PingFangSC-Regular;
-                    font-size: 13px;
-                    color: #999999;
-                    text-align: center;
-                }
 
                 @media (max-width: 996px) {
                     .md-mt-40:not(:first-child) {
@@ -348,6 +281,7 @@
                     }
                 }
             </style>
+
             <!--footer-->
             <%- include("./footer.html") %>
     <script>
