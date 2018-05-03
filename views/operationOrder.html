@@ -173,7 +173,7 @@
                             <p class="yy-banner-card-desc">
                                 擅长：<%= d.expertDisease %>
                             </p>
-                            <span class="bg-ques-btn">预约手术</span>
+                            <span class="bg-ques-btn yy-bg-ques-btn">预约手术</span>
                             <img class="yy-banner-header" src="<%= d.iconUrl %>" alt="">
                         </a>
                     </div>
@@ -507,6 +507,7 @@
         width: 50px;
         height: 35px;
         background-color: #9f1a1c;
+        border: none;
         border-bottom-right-radius: 2px;
         border-top-right-radius: 2px;
     }
@@ -652,6 +653,11 @@
 <%- help.jsIncludeTag('operation') %>
 
 <script>
+
+    document.querySelector('.yy-search-btn').addEventListener('click', function () {
+      location.href = `/doctor/search?searchType=surgery&query=${document.querySelector('#consultDoctorSearch').value}`
+    });
+
   var pre = document.querySelector('.pre-page');
   var next = document.querySelector('.next-page');
   var dalegate = document.querySelector('.yy-page-p');

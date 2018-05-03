@@ -7,7 +7,7 @@ $('.operationOrder-search-button').on('click', function () {
   window.location.href = `./doctor/search?query=${encodeURIComponent(searchWord)}&searchType=surgery`
 });
 
-$('.bg-ques-btn').on('click', function (e) {
+$('.yy-bg-ques-btn').on('click', function (e) {
   showModal();
   e.preventDefault();
 });
