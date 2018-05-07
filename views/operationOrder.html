@@ -3,8 +3,6 @@
 <body>
 <!--header-->
 <%- include('./head.html') %>
-
-
 <!--main-->
 <div class="common-main container">
     <div class="operationOrder-title text-center yy-nav-title">查找您要预约的手术医生</div>
@@ -16,7 +14,7 @@
                    type="search"
                    class="yy-search-input"
                    placeholder="搜索医院、医⽣生、科室、城市、疾病"
-            />
+                   value="<%= query%>"/>
             <button class="yy-search-btn">
                 <img src="/assets/images/search.png" alt="">
             </button>
@@ -29,7 +27,7 @@
 
     <!--医生展示区域-->
     <% for(var i = 0, l = Math.ceil(doctors.length / 6); i < l; i++) {%>
-
+        
     <% if (i+1 == page) { %>
 
     <div class="banner-show pc-banner-show">
@@ -67,11 +65,8 @@
     <% } %>
 
     <div class="banner-show mobile-banner-show swiper-container">
-
         <div class="swiper-wrapper">
-
             <% doctors.forEach(function(d,i){%>
-
             <div class="swiper-slide">
                 <div class="yy-card-wrap">
                     <div class="yy-banner-card">
@@ -87,10 +82,8 @@
                         </a>
                     </div>
                 </div>
-
             </div>
             <% }) %>
-
         </div>
         <div class="swiper-button-prev swiper-button-black"></div>
         <div class="swiper-button-next swiper-button-black"></div>
@@ -660,15 +653,14 @@
 <%- help.jsIncludeTag('operation') %>
 
 <script>
-
-    document.querySelector('.yy-search-btn').addEventListener('click', function () {
-      location.href = `/doctor/search?searchType=surgery&query=${document.querySelector('#consultDoctorSearch').value}`
-    });
+// var query =`&query=${document.querySelector('#consultDoctorSearch').value` 
+ document.querySelector('.yy-search-btn').addEventListener('click', function () {
+    location.href = `/doctor-yy?type=surgery&query=${document.querySelector('#consultDoctorSearch').value}`
+ });
 
   var pre = document.querySelector('.pre-page');
   var next = document.querySelector('.next-page');
   var dalegate = document.querySelector('.yy-page-p');
-
   var currentPage = +document.querySelector('.yy-page.active').innerText;
 
   if (currentPage === 1) {
@@ -678,17 +670,17 @@
   }
 
   pre && pre.addEventListener('click', function () {
-    location.href = `/doctor-yy?page=${+currentPage - 1}`
+    location.href = `/doctor-yy?page=${+currentPage - 1}&query=${document.querySelector('#consultDoctorSearch').value}`
   });
 
   next && next.addEventListener('click', function () {
-    location.href = `/doctor-yy?page=${+currentPage + 1}`
+    location.href = `/doctor-yy?page=${+currentPage + 1}&query=${document.querySelector('#consultDoctorSearch').value}`
   });
 
   dalegate.addEventListener('click', function (e) {
     if (e.target.className.indexOf('n-page') !== -1) {
       if (e.target.innerText == currentPage) return;
-      location.href = `/doctor-yy?page=${e.target.innerText}`
+      location.href = `/doctor-yy?page=${e.target.innerText}&query=${document.querySelector('#consultDoctorSearch').value}`
     }
   });
 

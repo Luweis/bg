@@ -72,7 +72,6 @@
         <div class="col-sm-11 col-sm-offset-3 related-doctor doctorHomePage-padding-xs-0">相关医生</div>
         <% relatedDocotrs.forEach(function(doc){ %>
         <div class="col-sm-9 col-sm-offset-3 doctorHomePage-padding-xs-0 " data-id="<%= doc.id %>">
-           <div><%= doc.id %></div>
             <a href="./<%= encodeURIComponent(doc.id) %>">
                 <div class="doctorHomePage-related-doctor-list clearfix">
                     <img src="<%= doc.iconUrl %>" class="doctorHomePage-related-doctor-list-img">

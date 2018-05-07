@@ -4,7 +4,7 @@ import './form';
 
 $('.operationOrder-search-button').on('click', function () {
   var searchWord = $('#operationOrderSearch').val();
-  window.location.href = `./doctor/search?query=${encodeURIComponent(searchWord)}&searchType=surgery`
+  window.location.href = `./doctor?query=${encodeURIComponent(searchWord)}&searchType=surgery`
 });
 
 $('.yy-bg-ques-btn').on('click', function (e) {

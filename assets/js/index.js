@@ -12,12 +12,12 @@ import '../css/articleDetail.css';
 
 $('#doc-search-btn').on('click', function () {
   const search = $('#doc-search-value').val();
-  location.href = `./doctor/search?query=${search}`
+  location.href = `./doctor?query=${search}`
 });
 
 $('#yy-search-btn').on('click', function () {
   const search = $('#yy-search-value').val();
-  location.href = `./doctor/search?searchType=surgery&query=${search}`
+  location.href = `./doctor-yy?type=surgery&query=${search}`
 });
 
 

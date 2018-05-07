@@ -16,6 +16,7 @@
                    type="search"
                    class="yy-search-input"
                    placeholder="搜索医院、医⽣生、科室、城市、疾病"
+                   value="<%= query %>"
             />
             <button class="yy-search-btn">
                 <img src="/assets/images/search.png" alt="">
@@ -53,7 +54,6 @@
         </div>
         <% } %>
         <% } %>
-
         <div class="yy-page-p">
             <button class="yy-page pre-page">&lt;</button>
             <% [1,2,3,4,5,6].forEach(function(item){ %>
@@ -313,7 +313,7 @@
   const search = document.querySelector('#consultDoctorSearch');
   const btn = document.querySelector('.yy-search-btn');
   btn.addEventListener('click', function () {
-    location.href = '/doctor/search?query=' + search.value;
+    location.href = '/doctor?query=' + search.value;
   });
 
 </script>
