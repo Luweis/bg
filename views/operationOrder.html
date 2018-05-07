@@ -32,8 +32,11 @@
 
     <% if (i+1 == page) { %>
 
-    <div class="banner-show pc-banner-show">
-
+    <div class="banner-show pc-banner-show" style="position: relative">
+        <div class="swiper-button-prev swiper-button-black " tabindex="0" role="button"
+             aria-label="Previous slide" aria-disabled="false"></div>
+        <div class="swiper-button-next swiper-button-black " tabindex="0" role="button" aria-label="Next slide"
+             aria-disabled="false"></div>
         <% for(var j = 0; j < 6; j++ ){ %>
 
         <% if (i * 6 + j < doctors.length) { %>
@@ -110,7 +113,7 @@
         </div>
     </div>
 
-      <!--预约手术流程-->
+    <!--预约手术流程-->
     <div class="yy-des">
         <h1 class="yy-des-h">预约手术流程</h1>
         <div class="flex margin-top-40">
@@ -177,11 +180,9 @@
                 height: 92px;
             }
 
-
             .uploadButton {
                 margin: 0 40px;
             }
-
 
             @media (max-width: 991px) {
                 .operationOrder-form-label-img, .operationOrder-form-label {
@@ -215,7 +216,8 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title operationOrder-form-title text-color-primary" id="operationModalLabel">填写手术预约单</h4>
+                        <h4 class="modal-title operationOrder-form-title text-color-primary" id="operationModalLabel">
+                            填写手术预约单</h4>
                     </div>
                     <div class="modal-body container-fluid">
                         <div class="row">
@@ -422,38 +424,39 @@
             font-size: 14px;
         }
     }
+
     @media (max-width: 400px) {
-        #getVerifyNoButton{
+        #getVerifyNoButton {
             float: right;
             margin-right: 48px;
         }
     }
 
-
     @media (max-width: 970px) {
-        .yy-des{
+        .yy-des {
             display: none;
         }
     }
 
-    .flex{
+    .flex {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
     }
-    .flex-auto{
+
+    .flex-auto {
         flex: 1;
     }
 
-    .yy-nav-title{
+    .yy-nav-title {
         font-family: PingFangSC-Medium;
         font-size: 24px;
         color: #000000;
         text-align: center;
     }
 
-    .yy-nav-des{
+    .yy-nav-des {
         font-family: PingFangSC-Regular;
         font-size: 13px;
         color: #999999;
@@ -482,14 +485,14 @@
         min-height: 60px;
     }
 
-    .yy-shoushu-h{
+    .yy-shoushu-h {
         font-family: PingFangSC-Medium;
         font-size: 16px;
         color: #A11715;
         line-height: 22px;
     }
 
-    .yy-down-img{
+    .yy-down-img {
         width: 25px;
         height: 25px;
         margin: 10px 0;
@@ -510,6 +513,7 @@
         box-sizing: border-box;
 
     }
+
     .yy-search-btn {
         width: 50px;
         height: 35px;
@@ -518,6 +522,7 @@
         border-bottom-right-radius: 2px;
         border-top-right-radius: 2px;
     }
+
     .yy-search-btn > img {
         width: 16px;
         height: 16px;
@@ -525,10 +530,10 @@
 
     .banner-show {
         display: flex;
-        justify-content:  space-between;
+        justify-content: space-between;
         flex-wrap: wrap;
         margin-top: 80px;
-        padding: 0 34px
+        padding: 0 54px
     }
 
     .yy-banner-card {
@@ -541,8 +546,8 @@
         padding: 0 32px;
         margin-bottom: 100px;
     }
+
     .yy-banner-card {
-        margin-right: 3%;
         transition: all .15s linear;
     }
 
@@ -597,18 +602,20 @@
         border-radius: 2px;
         margin-left: 10px;
     }
-    .yy-banner-card:hover{
+
+    .yy-banner-card:hover {
         box-shadow: 0 5px 25px 5px rgba(0, 0, 0, 0.14);
     }
 
-    .yy-banner-card:hover .yy-banner-header{
-        border: 1px solid  #A11715;
+    .yy-banner-card:hover .yy-banner-header {
+        border: 1px solid #A11715;
     }
-    .yy-banner-card:hover .yy-banner-card-h3{
+
+    .yy-banner-card:hover .yy-banner-card-h3 {
         color: #A11715;
     }
 
-    .mobile-banner-show{
+    .mobile-banner-show {
         display: none;
     }
 
@@ -621,34 +628,40 @@
         .pc-banner-show {
             display: none;
         }
-        .mobile-banner-show{
+
+        .mobile-banner-show {
             display: flex;
         }
-        .searchbar{
+
+        .searchbar {
             padding-bottom: 20px;
         }
-        .yy-banner-card{
+
+        .yy-banner-card {
             margin-top: 40px;
             margin-bottom: 20px;
             width: 100%;
-            box-shadow: -15px 20px 62px 0 rgba(0,0,0,0.14), 10px 1px 13px 0 rgba(0,0,0,0.14);
+            box-shadow: -15px 20px 62px 0 rgba(0, 0, 0, 0.14), 10px 1px 13px 0 rgba(0, 0, 0, 0.14);
             /*box-shadow: none;*/
         }
-        .yy-card-wrap{
+
+        .yy-card-wrap {
             margin: 0 40px;
         }
 
-        .banner-show{
+        .banner-show {
             margin-top: 20px;
             height: 360px;
             padding: 0 0;
         }
-        .yy-banner-title{
+
+        .yy-banner-title {
             margin-top: 0;
             border-top: 16px solid #eeeeee;
             padding-top: 20px;
         }
-        .yy-banner-card:hover .yy-banner-header{
+
+        .yy-banner-card:hover .yy-banner-header {
             border: none;
         }
     }
@@ -660,10 +673,10 @@
 <%- help.jsIncludeTag('operation') %>
 
 <script>
-
-    document.querySelector('.yy-search-btn').addEventListener('click', function () {
-      location.href = `/doctor/search?searchType=surgery&query=${document.querySelector('#consultDoctorSearch').value}`
-    });
+  // var query =`&query=${document.querySelector('#consultDoctorSearch').value`
+  document.querySelector('.yy-search-btn').addEventListener('click', function () {
+    location.href = `/doctor-yy?type=surgery&query=${document.querySelector('#consultDoctorSearch').value}`
+  });
 
   var pre = document.querySelector('.pre-page');
   var next = document.querySelector('.next-page');
@@ -676,14 +689,23 @@
   } else if (currentPage === 6) {
     next.style.display = 'none'
   }
+  p = function (e) {
+    if (currentPage === 1) currentPage = 7;
+    location.href = `/doctor-yy?page=${(+currentPage - 1)}&query=${document.querySelector('#consultDoctorSearch').value}`
+  }
 
-  pre && pre.addEventListener('click', function () {
-    location.href = `/doctor-yy?page=${+currentPage - 1}`
-  });
+  n = function () {
+    if (currentPage === 6) currentPage = 0;
+    location.href = `/doctor-yy?page=${+currentPage + 1}&query=${document.querySelector('#consultDoctorSearch').value}`
+  }
 
-  next && next.addEventListener('click', function () {
-    location.href = `/doctor-yy?page=${+currentPage + 1}`
-  });
+
+  pre && pre.addEventListener('click', p);
+
+  next && next.addEventListener('click', n);
+
+  document.querySelector('.swiper-button-prev') && document.querySelector('.swiper-button-prev').addEventListener('click', p);
+  document.querySelector('.swiper-button-next') && document.querySelector('.swiper-button-next').addEventListener('click', n);
 
   dalegate.addEventListener('click', function (e) {
     if (e.target.className.indexOf('n-page') !== -1) {
@@ -691,6 +713,7 @@
       location.href = `/doctor-yy?page=${e.target.innerText}`
     }
   });
+
 
 </script>
 
