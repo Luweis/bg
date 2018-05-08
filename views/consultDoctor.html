@@ -33,7 +33,11 @@
 
     <% if (i+1 == page) { %>
 
-    <div class="banner-show pc-banner-show">
+    <div class="banner-show pc-banner-show" style="position: relative">
+        <div class="swiper-button-prev swiper-button-black " tabindex="0" role="button"
+             aria-label="Previous slide" aria-disabled="false"></div>
+        <div class="swiper-button-next swiper-button-black " tabindex="0" role="button" aria-label="Next slide"
+             aria-disabled="false"></div>
 
         <% for(var j = 0; j < 6; j++ ){ %>
 
@@ -135,7 +139,7 @@
         justify-content: space-between;
         flex-wrap: wrap;
         margin-top: 80px;
-        padding: 0 34px
+        padding: 0 54px
     }
 
     .yy-banner-card {
@@ -151,7 +155,6 @@
 
 
     .yy-banner-card {
-        margin-right: 3%;
         transition: all .15s linear;
     }
 
@@ -283,19 +286,28 @@
   } else if (currentPage === 6) {
     next.style.display = 'none'
   }
+  p = function (e) {
+    if (currentPage === 1) currentPage = 7;
+    location.href = `/doctor?page=${+currentPage - 1}&query=${search.value}`
+  }
 
-  pre && pre.addEventListener('click', function () {
-    location.href = `/doctor?page=${+currentPage - 1}`
-  });
+  n = function () {
+    if (currentPage === 6) currentPage = 0;
+    location.href = `/doctor?page=${+currentPage + 1}&query=${search.value}`
+  }
 
-  next && next.addEventListener('click', function () {
-    location.href = `/doctor?page=${+currentPage + 1}`
-  });
+
+  pre && pre.addEventListener('click', p);
+
+  next && next.addEventListener('click', n);
+
+  document.querySelector('.swiper-button-prev') && document.querySelector('.swiper-button-prev').addEventListener('click', p);
+  document.querySelector('.swiper-button-next') && document.querySelector('.swiper-button-next').addEventListener('click', n);
 
   dalegate.addEventListener('click', function (e) {
     if (e.target.className.indexOf('n-page') !== -1) {
       if (e.target.innerText == currentPage) return;
-      location.href = `/doctor?page=${e.target.innerText}`
+      location.href = `/doctor?page=${e.target.innerText}&query=${search.value}`
     }
   });
 
