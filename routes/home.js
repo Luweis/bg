@@ -4,7 +4,7 @@ const http = require("../assets/utils");
 const utils = require("../utils");
 const help = require("../utils/help.js");
 var cache = {};
-var common= {};
+var common = {};
 function activeItem(index, current) {
   index !== current ? "test" : "";
 }
@@ -90,7 +90,7 @@ async function home(ctx) {
       })
     }
   });
-  let links = footer_links['resultBodyObject']['enumItems'] || []
+  let links = footer_links["resultBodyObject"]["enumItems"] || [];
 
   //康复中心 关于我们 加入我们
   const top = await http({
@@ -101,10 +101,27 @@ async function home(ctx) {
       })
     }
   });
-  let tops=  top['resultBodyObject']['enumItems'] || []
-  common['joinUs']  = tops[0] || {}
-  common['aboutUs'] = tops[1] || {}
-  common['links']   = links
+  let tops = top["resultBodyObject"]["enumItems"] || [];
+
+  common["joinUs"] =
+    tops
+      .filter(item => {
+        return item.key == "JOINUS";
+      })
+      .pop() || {};
+  common["aboutUs"] =
+    tops
+      .filter(item => {
+        return item.key == "CONTACTUS";
+      })
+      .pop() || {};
+  common["recover_center"] =
+    tops
+      .filter(item => {
+        return item.key == "RECOVERCENTER";
+      })
+      .pop() || {};
+  common["links"] = links;
 
   const goods = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
@@ -147,7 +164,7 @@ async function home(ctx) {
     qa: answer["resultBodyObject"].rows || [],
     help,
     index: 0,
-    common,
+    common
   };
   cache[ctx.url] = params;
   let html = ctx.render("index", params);
@@ -167,29 +184,29 @@ router.get("/", async ctx => {
 //医生列表页面
 router.get("/doctor", async ctx => {
   const page = ctx.query.page || 1;
-  const query = ctx.query.query || '';
+  const query = ctx.query.query || "";
   let doctors = await searchDoctor(ctx);
-  if(!doctors){
+  if (!doctors) {
     doctors = await http({
       url: `${baseApi}consultDoctor/getRecommendDoctor`,
       config: {
         body: JSON.stringify({
-          pageSize: 36,
+          pageSize: 36
         })
       }
     });
   }
-  
-  return ctx.render('consultDoctor', {
+
+  return ctx.render("consultDoctor", {
     helpers: utils,
-    doctors: doctors['resultBodyObject']['rows'] || [],
+    doctors: doctors["resultBodyObject"]["rows"] || [],
     current: 1,
     activeItem,
     help,
     index: 1,
     common,
     page,
-    query,
+    query
   });
 });
 
@@ -197,7 +214,7 @@ router.get("/doctor", async ctx => {
 router.get("/doctor/search", async ctx => {
   const params = ctx.query || {};
   let doctorTypeList;
-  let html = ''
+  let html = "";
   if (params.searchType === "surgery") {
     doctorTypeList = [1, 3];
   } else {
@@ -219,7 +236,7 @@ router.get("/doctor/search", async ctx => {
     total: doctors["resultBodyObject"].total,
     help,
     index: -1,
-    common,
+    common
   });
 });
 
@@ -240,14 +257,14 @@ router.get("/doctor/:id", async ctx => {
     check,
     help,
     index: -1,
-    common,
+    common
   });
 });
 
-function searchDoctor(ctx){
+function searchDoctor(ctx) {
   const query = ctx.query.query;
-  if(!query){
-     return
+  if (!query) {
+    return;
   }
   const params = ctx.query || {};
   let doctorTypeList;
@@ -256,7 +273,7 @@ function searchDoctor(ctx){
   } else {
     doctorTypeList = [2, 3];
   }
-  const doctors =  http({
+  const doctors = http({
     url: `${baseApi}searchDoctorController/queryDoctor`,
     config: {
       body: JSON.stringify({
@@ -267,17 +284,17 @@ function searchDoctor(ctx){
       })
     }
   });
-  return doctors
+  return doctors;
 }
 
 //预约列表页面
 router.get("/doctor-yy", async ctx => {
-  const page = ctx.query.page? ctx.query.page : 1;
-  const query = ctx.query.query || '';
+  const page = ctx.query.page ? ctx.query.page : 1;
+  const query = ctx.query.query || "";
   let doctors = await searchDoctor(ctx);
-  console.log(doctors)
-  if(!doctors){
-     doctors = await http({
+  console.log(doctors);
+  if (!doctors) {
+    doctors = await http({
       url: `${baseApi}operationOrderController/getConsultDoctor`,
       config: {
         body: JSON.stringify({
@@ -292,7 +309,7 @@ router.get("/doctor-yy", async ctx => {
     common,
     page,
     doctors: doctors["resultBodyObject"].rows,
-    query,
+    query
   });
 });
 
@@ -307,33 +324,29 @@ router.get("/article/:id", async ctx => {
       })
     }
   });
-  console.log(article)
-  return ctx.render('articleDetail', {
-    ats: article['resultBodyObject'],
+  console.log(article);
+  return ctx.render("articleDetail", {
+    ats: article["resultBodyObject"],
     index: -1,
     common,
     help
   });
 });
 
-
-const aboutAts = (keyWord) => {
- return http({
+const aboutAts = keyWord => {
+  return http({
     url: `${baseApi}questionController/queryRelatedArticle`,
     config: {
       body: JSON.stringify({
         keyWord,
-        pageCount:5,
+        pageCount: 5
       })
     }
-  })
-}
-
-
+  });
+};
 
 //经典问答
 router.get("/interlocution", async ctx => {
-
   let keyWord = ctx.query.keyWord || "";
 
   keyWord = decodeURIComponent(keyWord);
@@ -357,11 +370,9 @@ router.get("/interlocution", async ctx => {
     qa: qa["resultBodyObject"]["rows"] || [],
     doctor:
       (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
-    keyWord,
-
+    keyWord
   });
 });
-
 
 //经典问答详情
 router.get("/interlocution/:id", async ctx => {
@@ -373,7 +384,7 @@ router.get("/interlocution/:id", async ctx => {
     config: {
       body: JSON.stringify({
         keyWord,
-        pageCount: 5,
+        pageCount: 5
       })
     }
   });
@@ -388,7 +399,7 @@ router.get("/interlocution/:id", async ctx => {
     }
   });
 
-  const first =  (qa["resultBodyObject"]["rows"][0]);
+  const first = qa["resultBodyObject"]["rows"][0];
   const doctor = doctors(keyWord);
 
   return ctx.render("interlocutionDetail", {
@@ -398,17 +409,16 @@ router.get("/interlocution/:id", async ctx => {
     help,
     qa: [first] || [],
     doctor:
-    (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
+      (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
     keyWord,
-    ats: ats['resultBodyObject'], // 相关文章
-    relateAnswers: relateAnswers['resultBodyObject']
+    ats: ats["resultBodyObject"], // 相关文章
+    relateAnswers: relateAnswers["resultBodyObject"]
   });
-
 });
 
 //疾病库
 router.get("/disease", async ctx => {
-  let keyWord = ctx.query.keyWord || "";
+  let keyWord = ctx.query.query || "";
   keyWord = decodeURIComponent(keyWord);
   const param = utils.getParam(ctx.url);
   const resp = await http({
@@ -487,12 +497,7 @@ router.get("/disease/:id", async ctx => {
 });
 
 //健康商城
-router.get('/mall',async (ctx) =>{
-
-  // const banners = await http({
-  //   url: `${baseApi}index/getBannerResources`
-  // });
-
+router.get("/mall", async ctx => {
   const resp = await http({
     url: `${baseApi}healthyMallController/getInitPageData`,
     config: {
@@ -500,8 +505,8 @@ router.get('/mall',async (ctx) =>{
     }
   });
 
-  const insurances = resp['resultBodyObject']['surgeryInsuranceList'] || []
-  const equipments  = resp['resultBodyObject']['equipmentList'] || []
+  const insurances = resp["resultBodyObject"]["surgeryInsuranceList"] || [];
+  const equipments = resp["resultBodyObject"]["equipmentList"] || [];
 
   return ctx.render("mall", {
     helpers: utils,
@@ -510,60 +515,71 @@ router.get('/mall',async (ctx) =>{
     help,
     insurances,
     equipments,
-    banners: [{
-      resourceUrl: '/assets/images/mall_detail_1.jpg'
-    },{
-      resourceUrl: '/assets/images/shop_banner.png'
-    }]
+    banners: [
+      {
+        resourceUrl: "/assets/images/mall_detail_1.jpg"
+      },
+      {
+        resourceUrl: "/assets/images/shop_banner.png"
+      }
+    ]
   });
 });
 
 //布骨健康
 let healthAll = [];
-router.get('/health', async (ctx) => {
+router.get("/health", async ctx => {
   const page = ctx.query.page || 1;
-  let health = await http({
-    url: `${baseApi}index/queryArticleList`,
-    config: {
-      body: JSON.stringify({
-        pageSize: 10,
-        lastArticleCreateTimestamp: new Date().valueOf(),
-        page
-      })
-    }
-  });
+  const query = ctx.query.query;
+  let health = []
+  if (query) {
+    health = await http({
+      url: `${baseApi}articleDetail//queryArticleByKeyLabel`,
+      config: {
+        body: JSON.stringify({
+          pageSize: 100,
+          keyWord: query,
+          pageIndex:1
+        })
+      }
+    });
+    health = health["resultBodyObject"];
+  }else {
+    health = await http({
+      url: `${baseApi}index/queryArticleList`,
+      config: {
+        body: JSON.stringify({
+          pageSize: 100,
+          lastArticleCreateTimestamp: new Date().valueOf(),
+          page
+        })
+      }
+    });
+    health = health["resultBodyObject"].rows;
+  }
   const resp = await http({
-    url: `${baseApi}diseaseController/getIllnessList`,
+    url: `${baseApi}articleDetail/queryArticleLabel`,
     config: {
       body: JSON.stringify({
         pageSize: 20
-      }),
+      })
     }
   });
 
-  health = health['resultBodyObject'].rows;
-  if (page === 1){
+  if (page === 1) {
     healthAll = health;
   } else {
     if (health.length > 0) {
       healthAll = [...healthAll, ...health];
     }
   }
-
-  const resp_hos = await http({
-    url: `${baseApi}linkQueryController/getCooperateHospital`,
-    config: {
-      body: JSON.stringify({})
-    }
-  });
-  const hos = resp_hos['resultBodyObject']['enumItems'] || []
   return ctx.render("health", {
-    hos: hos,
     index: 4,
     common,
     hl: healthAll,
-    dis: resp['resultBodyObject'] || [],
-    help
+    dis: resp["resultBodyObject"] || [],
+    help,
+    query
   });
 });
 
@@ -634,8 +650,8 @@ router.get("/download", async ctx => {
   });
 });
 
-router.get('/sorry', async (ctx) => {
-  return ctx.render('sorry', {
+router.get("/sorry", async ctx => {
+  return ctx.render("sorry", {
     index: -1,
     common,
     help

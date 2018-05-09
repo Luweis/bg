@@ -1,28 +1,28 @@
-<footer >
+<footer>
     <div class="footer-qr">
         <div class="container">
             <div class="other-company row">
                 <div class="col-xs-10 col-md-4 text-left md-mt-40">
-                    <img src="/assets/images/boneService.png" class="left">
+                    <img src="/assets/images/service.jpg" class="left footer-card-image">
                     <div class="left footer-card padding-lr-10">
-                        <h3 class="font-size-base padd-bottom-4">如果您是用户</h3>
-                        <p>微信扫描二维码，立即向全国近2000家医院的数万名专业医生进行咨询。 您也可以在医院就诊后向您的医生索要 二维码添加。</p>
+                        <div class="footer-title padd-bottom-4">如果您是用户</div>
+                        <div class="footer-des">微信扫描二维码，立即向全国近2000家医院的数万名专业医生进行咨询。 您也可以在医院就诊后向您的医生索要 二维码添加。</div>
                     </div>
                 </div>
 
                 <div class="col-xs-10 col-md-4 text-left md-mt-40">
-                    <img src="/assets/images/timg.png" class="left">
+                    <img src="/assets/images/ximalaya.png" class="left footer-card-image">
                     <div class="left footer-card padding-lr-10">
-                        <h3 class="padd-bottom-4"> 如果您是用户</h3>
-                        <p>您也可以下载“喜马拉雅”app，在线收听我们的语音类节目“布骨健康”，30多种常见疾病，专业科普文章每天发送</p>
+                        <div class="footer-title padd-bottom-4">如果您是用户</div>
+                        <div class="footer-des">您也可以下载“喜马拉雅”app，在线收听我们的语音类节目“布骨健康”，30多种常见疾病，专业科普文章每天发送</div>
                     </div>
                 </div>
 
                 <div class="col-xs-10 col-md-4 text-left md-mt-40">
-                    <img src="/assets/images/boneService.png" class="left">
+                    <img src="/assets/images/boneSubscription.png" class="left footer-card-image">
                     <div class="left footer-card padding-lr-10">
-                        <h3 class="font-size-base padd-bottom-4">如果您是医生</h3>
-                        <p>微信扫描二维码，立即下载布骨医生APP，随时随地管理患者，为患者提供全程医疗服务，打造个人IP。</p>
+                        <div class="footer-title font-size-base padd-bottom-4">如果您是医生</div>
+                        <div class="footer-des">微信扫描二维码，立即下载布骨医生APP，随时随地管理患者，为患者提供全程医疗服务，打造个人IP。</div>
                     </div>
                 </div>
 
@@ -37,11 +37,13 @@
             </div>
             <div class="footer-link-content">
                 <% common.links.forEach(function(h,index){%>
-                   <a href="<%= h.value%>" target="_blank"><%= h.text %></a> 
-                   <% if (index + 1 < common.links.length) { %>
-                     <span class="line">|</span>
-                   <% } %>
-                <% }) %>
+                    <a href="<%= h.value%>" target="_blank">
+                        <%= h.text %>
+                    </a>
+                    <% if (index + 1 < common.links.length) { %>
+                        <span class="line">|</span>
+                        <% } %>
+                            <% }) %>
             </div>
         </div>
     </div>
@@ -49,13 +51,13 @@
     <div class="footer-description">
         <div class="container">
             <div>
-                <!-- <a><span>布⻣骨康复医疗中⼼</span></a> -->
+                <a href="/sorry"><span>布⻣骨康复医疗中⼼</span></a>
                 <a href="/join-us"><span>加⼊我们</span></a>
             </div>
             <div>
                 <span>上海灵蛇信息科技有限公司</span>
                 <span>www.drbugu.com</span>
-                <span class="text-gray">Tel: 400-6882-120    021-33555120</span>
+                <span class="text-gray">Tel: 400-6882-120 021-33555120</span>
                 <span class="text-gray">E-mail：bugu@drbugu.com</span>
             </div>
             <div>copyright © 2016 bugu Doctor 沪 ICP 备 16027624 号 沪公网安备 31011202002283 号</div>
@@ -64,50 +66,73 @@
 
 </footer>
 <style>
-    footer{
+    footer {
         font-size: 14px;
         color: #B8B8B8;
         background-color: #F8F8F8;
     }
 
-    .text-gray{
+    .text-gray {
         color: #999;
     }
-    .footer-qr{
+
+    .footer-qr {
         padding: 30px 0;
     }
 
-    .footer-friend{
+    .footer-title {
+        font-family: PingFangSC-Regular;
+        font-size: 16px;
+        color: #333333;
+        text-align: center;
+        float: left;
+    }
+
+    .footer-des {
+        font-family: PingFangSC-Regular;
+        font-size: 13px;
+        color: #999999;
+        float: left;
+
+    }
+
+    .footer-friend {
         padding: 30px 0;
         background-color: #222;
     }
-    .footer-link-title{
+    .footer-card-image{
+        width: 83px;
+        height: 83px;
+    }
+
+    .footer-link-title {
         padding-bottom: 10px;
     }
-    .footer-link-content a{
+
+    .footer-link-content a {
         font-size: 14px;
         color: #B8B8B8;
         display: inline-block;
         padding: 4px 0;
     }
 
-    .footer-link-content .line{
+    .footer-link-content .line {
         padding-left: 5px;
         padding-right: 5px;
     }
 
-    .footer-description{
+    .footer-description {
         padding: 30px 0;
         background-color: #1D1D1D;
-        color: #B8B8B8 ;
+        color: #B8B8B8;
     }
 
-    .footer-description span{
+    .footer-description span {
         display: inline-block;
         padding: 5px 20px 5px 0;
     }
 
-    .footer-description a{
+    .footer-description a {
         color: white;
     }
 </style>

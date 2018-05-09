@@ -44,31 +44,10 @@
                     <% qa.forEach(function(item){ %>
                     <div class="bg-answer">
                         <span class="ques-tip">问</span>
-                        <span class="font-size-base padd-lf-15px"><%= item.questionData.diseaseDesc %></span>
+                        <a href="/interlocution/1?keyWord=<%= item.questionData.diseaseDesc %>">
+                            <span class="font-size-base padd-lf-20 ques-tip-des"><%= item.questionData.diseaseDesc %></span>
+                        </a>
                     </div>
-                    <% (item.answerDatas || []).forEach(function(answer){ %>
-                    <div class="clearfix answer-card">
-                        <span class="ques-tip left">答</span>
-                        <div class="col-xs-10 col-md-7">
-                            <div class="clearfix card border-card">
-                                <div class="bg-ques-card-head left">
-                                    <img src="/assets/images/head.png" alt="">
-                                </div>
-                                <div class="bg-ques-card-content left">
-                                    <div>
-                                        <span class="name"><%= answer.name %></span>
-                                        <span><%= answer.department %></span>
-                                        <span><%= answer.jobTitle %></span>
-                                    </div>
-                                    <div class="padd-tb-10 ">
-                                        <%= answer.hospital %>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="bg-answer-ques-detail"><%= answer.content %></p>
-                        </div>
-                    </div>
-                    <% }) %>
                     <% }) %>
                 </div>
             </div>

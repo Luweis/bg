@@ -1,36 +1,31 @@
 <html lang="en">
-<%- include('./link.html') %>
+    <%- include('./link.html') %>
 <body>
-<%- include("./head.html") %>
-<div class="content">
-<div class="sorry">
-    正在建设中，敬请期待！！！
-</div>
+    <!--header-->
+    <%- include("./head.html") %>
+<!--main-->
+<div class="common-main container">
+        <div class="articleDetail-text">
+            <%- common.recover_center.value %>
+         </div>
 </div>
 <style>
-    .tip-text {
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #A11715;
-        margin-bottom: 20px;
-    }
-    .content {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-    .sorry{
-        text-align: center;
-        font-size: 20px;
-        padding: 60px 0;
-    }
+   .aboutUs-text{
+    font:17px/30px "微软雅黑";
+    color:#686868;
+    margin-top:40px;
+ }
+ .aboutUs-text p{
+    margin:10px 0;
+}
+.aboutUs-title{
+    font:28px/28px "微软雅黑";
+    color:#3e3e3e;
+    margin-top:40px;
+}
 </style>
 <!--footer-->
 <%- include("./footer.html") %>
+<%- help.jsIncludeTag('main') %>
 </body>
-
 </html>

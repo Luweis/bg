@@ -9,21 +9,25 @@
             <div class="col-md-7">
                 <div class="bg-ques-doctor">
                     <div>
-                        <div class="bg-usually-bin">常见疾病</div>
+                        <div class="bg-usually-bin">咨询标签</div>
                         <div class="bg-jb-class">
                             <% dis.forEach(function(item){ %>
-                            <a href="/disease/<%=item.id %>"><span><%= item.illnessName %></span></a>
-                            <% }) %>
+                             <a href="/health?query=<%=item.tagName %>">
+                                <% if(query == item.tagName ){%>
+                                    <span class="bg-jb-class-tag bg-jb-class-tag-active"><%= item.tagName %></span>
+                                    <%}else{%>
+                                    <span class="bg-jb-class-tag"><%= item.tagName %></span>
+                                 <%}%>
+                            </a>
+                            <%})%>
                         </div>
                     </div>
-
                     <div class="bg-ques-doctor" >
                         <div>
                             <div class="bg-line"></div>
                             <h1 class="title">布骨健康</h1>
                             <p>骨健康领域医学资讯、科普</p>
                         </div>
-
                         <% hl.forEach(function(h){ %>
                         <div class="clearfix box">
                             <a href="./article/<%= h.id %>" class="normal-a">
@@ -36,7 +40,7 @@
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <img src="/assets/images/keshi.png" alt="" style="height: 12px; margin-top: 3px;">
-                                            <span>骨科</span>
+                                            <span><%= query || h.tag %></span>
                                         </div>
                                         <div class="col-xs-6">
                                             <img src="/assets/images/ear.png" alt="" style="height: 12px; margin-top: 3px">
@@ -59,21 +63,14 @@
                         <h1 class="title">合作医院</h1>
                         <p>与布骨健康合作的知名医院，帮您恢复健康。</p>
                     </div>
-
-                    <% hos.forEach(function(h){%>
-                    <div class="bg-coop-hospital ">
-                        <div >
-                            <img src="<%= h.value%>"  alt="">
-                            <%= h.text %>
-                        </div>
-                    </div>
-                    <% }) %>
                 </div>
+                <img src="/assets/images/hospital.png" alt="合作医院" class="left" style="height: auto;width: 50%">
             </div>
         </div>
     </div>
 </div>
 <style>
+   
     body{
         height: 100%;
         width: 100%;
@@ -130,7 +127,7 @@
         padding: 10px 0;
         font-family: 'PingFangSC-Medium';
     }
-    .bg-ques-doctor .title span{
+    .bg-ques-doctor .title {
         font-size: 14px;
         color: #B8B8B8;
         position: absolute;
@@ -211,12 +208,15 @@
         font-size: 16px;
         color: #A11715;
     }
-    .bg-jb-class  span{
+    .bg-jb-class-tag{
         display: inline-block;
         font-family: PingFangSC-Regular;
         font-size: 14px;
         color: #333;
         padding: 10px;
+    }
+    .bg-jb-class-tag-active{
+        color: #A11715;
     }
 </style>
 <%- include('./footer')%>
