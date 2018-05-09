@@ -3,8 +3,6 @@
 <body>
 <!--header-->
 <%- include('./head.html') %>
-
-
 <!--main-->
 <div class="common-main container">
     <div class="operationOrder-title text-center yy-nav-title">查找您要预约的手术医生</div>
@@ -16,7 +14,7 @@
                    type="search"
                    class="yy-search-input"
                    placeholder="搜索医院、医⽣生、科室、城市、疾病"
-            />
+                   value="<%= query%>"/>
             <button class="yy-search-btn">
                 <img src="/assets/images/search.png" alt="">
             </button>
@@ -70,11 +68,8 @@
     <% } %>
 
     <div class="banner-show mobile-banner-show swiper-container">
-
         <div class="swiper-wrapper">
-
             <% doctors.forEach(function(d,i){%>
-
             <div class="swiper-slide">
                 <div class="yy-card-wrap">
                     <div class="yy-banner-card">
@@ -90,10 +85,8 @@
                         </a>
                     </div>
                 </div>
-
             </div>
             <% }) %>
-
         </div>
         <div class="swiper-button-prev swiper-button-black"></div>
         <div class="swiper-button-next swiper-button-black"></div>
@@ -673,15 +666,14 @@
 <%- help.jsIncludeTag('operation') %>
 
 <script>
-  // var query =`&query=${document.querySelector('#consultDoctorSearch').value`
-  document.querySelector('.yy-search-btn').addEventListener('click', function () {
+// var query =`&query=${document.querySelector('#consultDoctorSearch').value` 
+ document.querySelector('.yy-search-btn').addEventListener('click', function () {
     location.href = `/doctor-yy?type=surgery&query=${document.querySelector('#consultDoctorSearch').value}`
-  });
+ });
 
   var pre = document.querySelector('.pre-page');
   var next = document.querySelector('.next-page');
   var dalegate = document.querySelector('.yy-page-p');
-
   var currentPage = +document.querySelector('.yy-page.active').innerText;
 
   if (currentPage === 1) {
@@ -710,7 +702,7 @@
   dalegate.addEventListener('click', function (e) {
     if (e.target.className.indexOf('n-page') !== -1) {
       if (e.target.innerText == currentPage) return;
-      location.href = `/doctor-yy?page=${e.target.innerText}`
+      location.href = `/doctor-yy?page=${e.target.innerText}&query=${document.querySelector('#consultDoctorSearch').value}`
     }
   });
 

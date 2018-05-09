@@ -36,9 +36,9 @@
                 友情链接:
             </div>
             <div class="footer-link-content">
-                <% links.forEach(function(h,index){%>
+                <% common.links.forEach(function(h,index){%>
                    <a href="<%= h.value%>" target="_blank"><%= h.text %></a> 
-                   <% if (index + 1 < links.length) { %>
+                   <% if (index + 1 < common.links.length) { %>
                      <span class="line">|</span>
                    <% } %>
                 <% }) %>
@@ -49,8 +49,8 @@
     <div class="footer-description">
         <div class="container">
             <div>
-                <span>布⻣骨康复医疗中⼼</span>
-                <span>加⼊我们</span>
+                <!-- <a><span>布⻣骨康复医疗中⼼</span></a> -->
+                <a href="/join-us"><span>加⼊我们</span></a>
             </div>
             <div>
                 <span>上海灵蛇信息科技有限公司</span>

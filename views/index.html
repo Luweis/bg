@@ -590,13 +590,13 @@
   // const delegate = document.querySelector('#yy-home-card');
   const btn = document.querySelector('#doc-search-btn');
   btn.addEventListener('click', function () {
-    location.href = '/doctor/search?query=' + search.value;
+    location.href = '/doctor?query=' + search.value;
   });
 
   const searchYY = document.querySelector('#yy-search-value');
   const btnYY = document.querySelector('#yy-search-btn');
   btnYY.addEventListener('click', function () {
-    location.href = '/doctor/search?searchType=surgery&query=' + searchYY.value;
+    location.href = '/doctor-yy?searchType=surgery&query=' + searchYY.value;
   });
 
   var mySwiper = new Swiper('.swiper-container', {
