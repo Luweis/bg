@@ -25,6 +25,10 @@ $('.home-yy-shoushu').on('click', function (e) {
   e.preventDefault();
 });
 
+$('#ques-doctor-btn').on('click',function () {
+  $('#queModal').modal().show();
+});
+
 function showModal(realName, department, hospitalName, e) {
   var evt = e ? e : window.event;
   evt.stopPropagation();
