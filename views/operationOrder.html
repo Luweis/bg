@@ -29,32 +29,34 @@
     <% for(var i = 0, l = Math.ceil(doctors.length / 6); i < l; i++) {%>
 
     <% if (i+1 == page) { %>
+    <div class="pc-banner-show">
 
-    <div class="banner-show pc-banner-show" style="position: relative">
-        <div class="swiper-button-prev swiper-button-black " tabindex="0" role="button"
-             aria-label="Previous slide" aria-disabled="false"></div>
-        <div class="swiper-button-next swiper-button-black " tabindex="0" role="button" aria-label="Next slide"
-             aria-disabled="false"></div>
-        <% for(var j = 0; j < 6; j++ ){ %>
 
-        <% if (i * 6 + j < doctors.length) { %>
+        <div class="banner-show" style="position: relative; height: 700px">
+            <div class="swiper-button-prev swiper-button-black " tabindex="0" role="button"
+                 aria-label="Previous slide" aria-disabled="false"></div>
+            <div class="swiper-button-next swiper-button-black " tabindex="0" role="button" aria-label="Next slide"
+                 aria-disabled="false"></div>
+            <% for(var j = 0; j < 6; j++ ){ %>
 
-        <div class="yy-banner-card">
-            <a href="./doctor/<%= doctors[i*4+j].id%>">
-                <h3 class="yy-banner-card-h3"><%= doctors[i*4+j].realName %></h3>
-                <div class="yy-banner-card-short"><%= doctors[i*4+j].title %> <span><%=  doctors[i*4+j].departmentName %></span>
-                </div>
-                <p class="yy-banner-card-short"><%= doctors[i*4+j].hospitalName %></p>
-                <p class="yy-banner-card-desc">
-                    擅长：<%= doctors[i*4+j].expertDisease %>
-                </p>
-                <span class="bg-ques-btn yy-bg-ques-btn">预约手术</span>
-                <img class="yy-banner-header" src="<%= doctors[i*4+j].iconUrl %>" alt="">
-            </a>
+            <% if (i * 6 + j < doctors.length) { %>
+
+            <div class="yy-banner-card">
+                <a href="./doctor/<%= doctors[i*4+j].id%>">
+                    <h3 class="yy-banner-card-h3"><%= doctors[i*4+j].realName %></h3>
+                    <div class="yy-banner-card-short"><%= doctors[i*4+j].title %> <span><%=  doctors[i*4+j].departmentName %></span>
+                    </div>
+                    <p class="yy-banner-card-short"><%= doctors[i*4+j].hospitalName %></p>
+                    <p class="yy-banner-card-desc" style="height: 102px">
+                        擅长：<%= doctors[i*4+j].expertDisease %>
+                    </p>
+                    <span class="bg-ques-btn yy-bg-ques-btn">预约手术</span>
+                    <img class="yy-banner-header" src="<%= doctors[i*4+j].iconUrl %>" alt="">
+                </a>
+            </div>
+            <% } %>
+            <% } %>
         </div>
-        <% } %>
-        <% } %>
-
         <div class="yy-page-p">
             <button class="yy-page pre-page">&lt;</button>
             <% [1,2,3,4,5,6].forEach(function(item){ %>
@@ -69,7 +71,7 @@
 
     <div class="banner-show mobile-banner-show swiper-container">
         <div class="swiper-wrapper">
-            <% doctors.forEach(function(d,i){%>
+            <%doctors && doctors.forEach(function(d,i){%>
             <div class="swiper-slide">
                 <div class="yy-card-wrap">
                     <div class="yy-banner-card">
@@ -544,6 +546,10 @@
         transition: all .15s linear;
     }
 
+    .yy-banner-card:nth-child(1) {
+        margin-bottom: 0;
+    }
+
     .yy-banner-header {
         position: absolute;
         top: 0;
@@ -587,8 +593,8 @@
     .yy-page-p {
         width: 100%;
         text-align: center;
+        margin-top: 60px;
     }
-
     .yy-page {
         width: 32px;
         height: 32px;
@@ -666,10 +672,10 @@
 <%- help.jsIncludeTag('operation') %>
 
 <script>
-// var query =`&query=${document.querySelector('#consultDoctorSearch').value` 
- document.querySelector('.yy-search-btn').addEventListener('click', function () {
+  // var query =`&query=${document.querySelector('#consultDoctorSearch').value`
+  document.querySelector('.yy-search-btn').addEventListener('click', function () {
     location.href = `/doctor-yy?type=surgery&query=${document.querySelector('#consultDoctorSearch').value}`
- });
+  });
 
   var pre = document.querySelector('.pre-page');
   var next = document.querySelector('.next-page');

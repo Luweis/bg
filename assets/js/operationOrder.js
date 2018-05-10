@@ -7,13 +7,21 @@ $('.operationOrder-search-button').on('click', function () {
   window.location.href = `./doctor?query=${encodeURIComponent(searchWord)}&searchType=surgery`
 });
 
+// yy-bg-ques-btn
 $('.yy-bg-ques-btn').on('click', function (e) {
   showModal();
+  var val = $(e.target).siblings('.yy-banner-card-h3').text();
+  $('#doctorName').val(val);
   e.preventDefault();
 });
 
 $('.home-yy-shoushu').on('click', function (e) {
   showModal();
+  var val = $(e.target).parent('.bg-ques-card-head')
+    .siblings('.bg-ques-card-content')
+    .find('.name')
+    .text();
+  $('#doctorName').val(val);
   e.preventDefault();
 });
 
