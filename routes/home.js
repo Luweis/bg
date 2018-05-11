@@ -61,22 +61,23 @@ async function home(ctx) {
       })
     }
   });
-
+  //文章
   const health = await http({
     url: `${baseApi}index/queryArticleList`,
     config: {
       body: JSON.stringify({
-        pageSize: 4,
+        pageSize: 8,
         lastArticleCreateTimestamp: 0
       })
     }
   });
 
+  //问答
   const ques = await http({
     url: `${baseApi}questionController/queryRelatedQuestionList`,
     config: {
       body: JSON.stringify({
-        size: 4
+        size: 5
       })
     }
   });
@@ -86,7 +87,7 @@ async function home(ctx) {
     url: `${baseApi}linkQueryController/getLink`,
     config: {
       body: JSON.stringify({
-        size: 4
+        size: 100
       })
     }
   });
@@ -132,11 +133,12 @@ async function home(ctx) {
     }
   });
 
+  //疾病库
   const disa = await http({
     url: `${baseApi}diseaseController/getIllnessList`,
     config: {
       body: JSON.stringify({
-        pageSize: 4
+        pageSize: 50
       })
     }
   });

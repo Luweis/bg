@@ -19,7 +19,7 @@
                 </div>
                 <% model.detailResourceList.forEach(function(item){ %>
                 <div>
-                    <img class="shop_des_image" src="<%= item.resourceUrl %>" alt="">
+                    <img class="shop_des_image" src="<%= item.resourceUrl %>" alt="<%= item.desc || '描述' %>">
                 </div>
                 <% }) %>
             </div>
