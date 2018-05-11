@@ -325,16 +325,14 @@ a{
 	float: left;
 }
 
+
 .bg-ques-btn{
 	display: inline-block;
 	background-color: #A11715;
 	color: white;
 	border-radius: 2px;
 	width: 110;
-}
-.bg-ques-btn:hover{
-	color: white;
-	text-decoration: none;
+	padding: 6px 18px;
 }
 
 /*nav*/
