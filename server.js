@@ -20,5 +20,5 @@ render(app, {
 });
 
 app.use(homeRouter.routes());
-
-app.listen(3900);
+const process = require("process");
+app.listen(process.env.NODE_ENV === "development" ? 3900 : 4000);

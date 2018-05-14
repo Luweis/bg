@@ -202,6 +202,7 @@ router.get("/doctor", async ctx => {
   return ctx.render("consultDoctor", {
     helpers: utils,
     doctors: doctors["resultBodyObject"]["rows"] || [],
+    total: doctors["resultBodyObject"]["total"] || 0,
     current: 1,
     activeItem,
     help,
@@ -310,7 +311,8 @@ router.get("/doctor-yy", async ctx => {
     index: 2,
     common,
     page,
-    doctors: doctors["resultBodyObject"].rows,
+    doctors: doctors["resultBodyObject"].rows || [],
+    total: doctors["resultBodyObject"].total || 0,
     query
   });
 });
