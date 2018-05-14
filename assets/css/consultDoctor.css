@@ -3,17 +3,7 @@
 .consultDoctor-content{
     padding-bottom:100px;
 }
-.consultDoctor-title {
-    font: 28px/40px "微软雅黑";
-    color: #3e3e3e;
-    margin-top: 67px;
-}
 
-.consultDoctor-title-small {
-    font: 14px/20px "微软雅黑";
-    color: #a6a6a6;
-    margin-top: 10px;
-}
 
 .consultDoctor-search {
     width: 70%;

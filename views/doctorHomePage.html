@@ -1,96 +1,177 @@
 <html lang="en">
 <%- include('./link.html') %>
-<body>
-<!--header-->
-<%- include("./head.html") %>
-<!--main-->
-<div class="common-main container doctorHomePage-container">
-    <div class="margin-top-block"></div>
 
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-sm-3">
-                <img src="<%= doctorDetail.iconUrl %>" class="doctorHomePage-details-headImg" id="doc_iconUrl"/>
-            </div>
-            <div class="col-sm-7">
-                <div class="doctorHomePage-details-title">
-                    <span class="doctorHomePage-details-name" id="docName"><%= doctorDetail.realName %></span>
-                    <span class="doctorHomePage-details-tech-title margin-left-5" id="docTitle"><%= doctorDetail.title %></span>
-                </div>
-                <div class="doctorHomePage-details-introduce">
-                    <span class="doctorHomePage-details-dep" id="doc_departmentName">
-                           <%= check(doctorDetail.departmentName) %>
-                    </span>
-                    <span class="doctorHomePage-details-hos margin-left-5" id="doc_hospitalName">
-                           <%= check(doctorDetail.hospitalName) %>
-                    </span>
-                </div>
-                <div class="doctorHomePage-details-introduce">
-                    <span class="doctorHomePage-details-consulting">门诊时间:</span>
-                    <span class="doctorHomePage-details-consulting-content margin-left-5" id="doc_hospitalSchedule">
-                        <%= check(doctorDetail.hospitalSchedule) %>
-                    </span>
-                </div>
+    <body>
+        <!--header-->
+        <%- include("./head.html") %>
+            <!--main-->
+            <div class="common-main container doctorHomePage-container">
+                <div class="margin-top-block"></div>
 
-                <div class="doctorHomePage-details-introduce">
-                    <span class="doctorHomePage-details-consulting">网上应诊:</span>
-                    <span class="doctorHomePage-details-consulting-content margin-left-5" id="doc_netSchedule">
-                          <%= check(doctorDetail.netSchedule) %>
-                    </span>
-                </div>
-            </div>
-            <% if (doctorDetail.doctorType === "咨询医生" && doctorDetail.binaryCodeUrl){ %>
-            <div class="col-sm-2 doctorHomePage-qrcode-wrap" >
-                <img src="/assets/images/boneService.png" class="doctorHomePage-details-headImg"
-                     id="doc_binaryCodeUrl">
-                <div class="doctorHomePage-details-qrcode-desc">微信扫描二维码立即咨询</div>
-                <div></div>
-            </div>
-            <% } %>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 text-introduce">简介</div>
-            <div class="col-sm-12 text-introduce-content" id="doc_desc">
-                <%= check(doctorDetail.desc) %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 text-introduce">擅长</div>
-            <div class="col-sm-12 text-introduce-content" id="doc_expertDisease">
-                <%= check(doctorDetail.expertDisease) %>
-            </div>
-        </div>
-        <div class="row">
-            <!--<div class="col-sm-12 text-introduce">文章</div>-->
-            <!--<a href='articleDetail.html?id=" + item.id + "' class='col-sm-12 text-introduce-content'>.《" + item.title + "》</a>-->
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="col-sm-11 col-sm-offset-3 related-doctor doctorHomePage-padding-xs-0">相关医生</div>
-        <% relatedDocotrs.forEach(function(doc){ %>
-        <div class="col-sm-9 col-sm-offset-3 doctorHomePage-padding-xs-0 " data-id="<%= doc.id %>">
-            <a href="./<%= encodeURIComponent(doc.id) %>">
-                <div class="doctorHomePage-related-doctor-list clearfix">
-                    <img src="<%= doc.iconUrl %>" class="doctorHomePage-related-doctor-list-img">
-                    <div class="col-xs-9">
-                        <div class="row margin-left-5">
-                            <span class="doctorHomePage-list-doctor-name"><%= doc.realName %></span>
-                            <span class="doctorHomePage-list-doctor-title"><%= doc.title %></span>
+                <div class="col-md-7" style="margin-right: 60">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="<%= doctorDetail.iconUrl %>" class="doctorHomePage-details-headImg" id="doc_iconUrl" />
+                            <% if(type == 'yy'){%>
+                                <div class="bg-ques-btn-yy">预约手术</div>
+                            <%} %>
                         </div>
-                        <div class="row doctorHomePage-list-doctor-dep">
-                            <span><%= doc.departmentName %></span>
-                            <span class="margin-left-5"><%= doc.hospitalName %></span>
+                        <div class="col-sm-7">
+                            <div class="doctorHomePage-details-title">
+                                <span class="doctorHomePage-details-name" id="docName">
+                                    <%= doctorDetail.realName %>
+                                </span>
+                                <span class="doctorHomePage-details-tech-title margin-left-5" id="docTitle">
+                                    <%= doctorDetail.title %>
+                                </span>
+                            </div>
+                            <div class="doctorHomePage-details-introduce">
+                                <span class="doctorHomePage-details-dep" id="doc_departmentName">
+                                    <%= check(doctorDetail.departmentName) %>
+                                </span>
+                                <span class="doctorHomePage-details-hos margin-left-5" id="doc_hospitalName">
+                                    <%= check(doctorDetail.hospitalName) %>
+                                </span>
+                            </div>
+                            <div class="doctorHomePage-details-introduce">
+                                <span class="doctorHomePage-details-consulting">门诊时间:</span>
+                                <span class="doctorHomePage-details-consulting-content margin-left-5" id="doc_hospitalSchedule">
+                                    <%= check(doctorDetail.hospitalSchedule) %>
+                                </span>
+                            </div>
+
+                            <div class="doctorHomePage-details-introduce">
+                                <span class="doctorHomePage-details-consulting">网上应诊:</span>
+                                <span class="doctorHomePage-details-consulting-content margin-left-5" id="doc_netSchedule">
+                                    <%= check(doctorDetail.netSchedule) %>
+                                </span>
+                            </div>
+                        </div>
+                        <% if (doctorDetail.doctorType === "咨询医生" && doctorDetail.binaryCodeUrl){ %>
+                            <div class="col-sm-2 doctorHomePage-qrcode-wrap">
+                                <img src="/assets/images/service.jpg" class="doctorHomePage-details-headImg" id="doc_binaryCodeUrl">
+                                <div class="doctorHomePage-details-qrcode-desc">微信扫描二维码立即咨询</div>
+                                <div></div>
+                            </div>
+                         <% } %>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-introduce">简介</div>
+                        <div class="col-sm-12 text-introduce-content" id="doc_desc">
+                            <%= check(doctorDetail.desc) %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-introduce">擅长</div>
+                        <div class="col-sm-12 text-introduce-content" id="doc_expertDisease">
+                            <%= check(doctorDetail.expertDisease) %>
                         </div>
                     </div>
                 </div>
-            </a>
-        </div>
-        <% }) %>
-    </div>
-    <div id="orderForm"></div>
-</div>
+                <div class="col-md-4 re-doctor">
+                    <div class="bg-ques-doctor">
+                        <div>
+                            <div class="bg-line"></div>
+                            <h1 class="title">推荐医生
+                                <a href="/doctor">
+                                    <span class="item-more">更多></span>
+                                </a>
+                            </h1>
+                            <p>为您推荐骨科手术领域的专家</p>
+                        </div>
+                        <% relatedDocotrs.forEach(function(d){ %>
+                            <div class="clearfix margin-top-20">
+                                <a href="/doctor/<%= d.id%>" class="normal-a">
+                                    <img src="<%= d.iconUrl %>" alt="" class="left img-circle" style="height: 60px;width: 60px;margin-right: 15">
+                                    <div class="left  bg-news">
+                                        <div class="doctor-name">
+                                            <%= d.realName%>
+                                        </div>
+                                        <div class="doctor-des">
+                                            <%=d.departmentName%>
+                                                <%=d.title%>
+                                        </div>
+                                        <div class="doctor-des">
+                                            <%= d.hospitalName%>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+                <div id="orderForm"></div>
+            </div>
+            <style>
+                .bg-ques-btn-yy {
+                    display: inline-block;
+                    background-color: #A11715;
+                    color: white;
+                    border-radius: 2px;
+                    width: 92px;
+                    padding: 6px 10px;
+                    text-align: center;
+                    margin-top: 15px;
+                }
 
-<%- include("./footer.html") %>
-</body>
+                .doctor-name {
+                    font-family: PingFangSC-Regular;
+                    font-size: 16px;
+                    color: #000000;
+                }
+
+                .doctor-des {
+                    font-family: PingFangSC-Regular;
+                    font-size: 12px;
+                    color: #999999;
+                }
+
+                .normal-a {
+                    color: black;
+                }
+
+                .normal-a:hover {
+                    color: black;
+                }
+
+                .bg-ques-doctor .title {
+                    position: relative;
+                    font-size: 24px;
+                    color: black;
+                    padding: 10px 0;
+                    font-family: 'PingFangSC-Medium';
+                }
+
+                .bg-ques-doctor .title span {
+                    font-size: 14px;
+                    color: #B8B8B8;
+                    position: absolute;
+                    right: 0;
+                }
+
+                .bg-ques-doctor p {
+                    color: #B8B8B8;
+                    font-size: 14px;
+                }
+
+                .bg-line {
+                    position: relative;
+                    height: 1px;
+                    background-color: #E7E7E7;
+                }
+
+                .bg-line:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    display: inline-block;
+                    background-color: #A11715;
+                    height: 100%;
+                    width: 95px;
+                }
+            </style>
+            <%- include("./footer.html") %>
+    </body>
+
 </html>

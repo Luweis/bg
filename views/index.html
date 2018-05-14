@@ -1,611 +1,700 @@
 <html lang="en">
 
 <%- include('./link.html') %>
-<body>
-<!--header-->
-<%- include("./head.html") %>
-<!--main-->
-<main class="bg-main">
-    <div class="container">
-        <div class="row">
 
-            <div class="col-md-8">
-                <div class="bg-swiper" style="position: relative">
-                    <img src="<%= banners[0].resourceUrl %>" alt="" style="opacity: 0">
-                    <div style="position: absolute;height: 100%; width: 100%; top: 0;left: 0">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <% banners.forEach(function(b){ %>
-                                <div class="swiper-slide">
-                                    <img class="swiper-img" src="<%= b.resourceUrl %>" alt="">
+    <body>
+        <!--header-->
+        <%- include("./head.html") %>
+            <!--main-->
+            <main class="bg-main">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <div class="bg-swiper" style="position: relative">
+                                <img src="<%= banners[0].resourceUrl %>" alt="" style="opacity: 0">
+                                <div style="position: absolute;height: 100%; width: 100%; top: 0;left: 0">
+                                    <div class="swiper-container">
+                                        <div class="swiper-wrapper">
+                                            <% banners.forEach(function(b){ %>
+                                                <div class="swiper-slide">
+                                                    <img class="swiper-img" src="<%= b.resourceUrl %>" alt="">
+                                                </div>
+                                                <% }) %>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
                                 </div>
-                                <% }) %>
                             </div>
-                            <div class="swiper-pagination"></div>
+                            <div class="bg-convenience-way row">
+                                <div class="col-md-6 md-mt-40">
+                                    <div class="clearfix">
+                                        <img src="/assets/images/bg-question.png" alt="" class="left">
+                                        <div class="left desc">
+                                            <h3 class="title">免费向全国近2000家医院的</h3>
+                                            <h3 class="title" style="margin-top: 5px">⼏万名医⽣生咨询</h3>
+                                            <span class="bg-ques-btn bg-mt-16" id="ques-doctor-btn">免费问医生
+                                                </>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 md-mt-40 clearfix">
+                                    <img src="/assets/images/bg-yysh.png" alt="" class="left">
+                                    <div class="left desc">
+                                        <h3 class="title">全国近1000家三甲医院副主任</h3>
+                                        <h3 class="title" style="margin-top: 5px">医师以上名医主⼑</h3>
+                                        <a class="bg-ques-btn bg-mt-16 home-yy-shoushu">快速预约手术</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--医生推荐页-->
+                            <div class="bg-ques-doctor">
+                                <div>
+                                    <div class="bg-line"></div>
+                                    <h1 class="title">咨询医生
+                                        <a href="./doctor">
+                                            <span>更多></span>
+                                        </a>
+                                    </h1>
+                                    <p>汇聚全国权威医⽣生，只要是⻣骨健康问题，在这⾥里里轻松解决！</p>
+                                </div>
+
+                                <div class="bg-search-bar">
+                                    <input id="doc-search-value" class="search" type="text" placeholder="搜索城市、医院、科室、医生姓名" />
+                                    <img id="doc-search-btn" class="search-btn" src="/assets/images/bg-search-btn.png" alt="" style="margin-left: -6px">
+                                </div>
+
+                                <div class="bg-ques-card row">
+                                    <% docs.forEach(function(y){ %>
+                                        <div class="col-md-6 ">
+                                            <div class="clearfix card">
+                                                <div class="bg-ques-card-head left">
+                                                    <img src="<%= y.iconUrl %>" alt="">
+                                                    <a href="./doctor/<%= y.id %>" class="bg-ques-search-btn bg-mt-16 ">点我咨询</a>
+                                                </div>
+                                                <div class="bg-ques-card-content left">
+                                                    <div>
+                                                        <span class="name">
+                                                            <%= y.realName %>
+                                                        </span>
+                                                        <span>
+                                                            <%= y.departmentName %>
+                                                        </span>
+                                                        <span>
+                                                            <%= y.title %>
+                                                        </span>
+                                                    </div>
+                                                    <div class="padd-tb-10 has-line">
+                                                        <%= y.hospitalName %>
+                                                    </div>
+                                                    <div class="mg-top-10">
+                                                        <%= y.expertDisease %>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                </div>
+
+                            </div>
+
+                            <!--预约手术-->
+                            <div class="bg-ques-doctor margin-top-40">
+                                <div>
+                                    <div class="bg-line"></div>
+                                    <h1 class="title">预约手术
+                                        <a href="./doctor-yy">
+                                            <span>更多></span>
+                                        </a>
+                                    </h1>
+                                    <p>全国近1000家三甲医院，副主任医师以上名医主⼑刀</p>
+                                </div>
+
+                                <div class="bg-search-bar">
+                                    <input id="yy-search-value" class="search" type="text" placeholder="搜索城市、医院、科室、医生姓名" />
+                                    <img id="yy-search-btn" class="search-btn" src="/assets/images/bg-search-btn.png" alt="" style="margin-left: -6px">
+                                </div>
+
+                                <div class="bg-ques-card row" id="yy-home-card">
+
+                                    <% yy.forEach(function(y){ %>
+                                        <div class="col-md-6 ">
+                                            <div class="clearfix card">
+                                                <div class="bg-ques-card-head left">
+                                                    <a href="./doctor/<%= y.id %>">
+                                                        <img src="<%= y.iconUrl %>" alt="">
+                                                    </a>
+                                                    <span href="./doctor/<%= y.id %>" class="bg-ques-search-btn bg-mt-16 home-yy-shoushu">预约手术</span>
+                                                </div>
+                                                <div class="bg-ques-card-content left">
+                                                    <div>
+                                                        <span class="name">
+                                                            <%= y.realName %>
+                                                        </span>
+                                                        <span>
+                                                            <%= y.departmentName %>
+                                                        </span>
+                                                        <span>
+                                                            <%= y.title %>
+                                                        </span>
+                                                    </div>
+                                                    <div class="padd-tb-10 has-line">
+                                                        <%= y.hospitalName %>
+                                                    </div>
+                                                    <div class="mg-top-10">
+                                                        <%= y.expertDisease %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                </div>
+                            </div>
+
+                            <div class="bg-ques-doctor margin-top-40">
+                                <div>
+                                    <div class="bg-line"></div>
+                                    <h1 class="title">经典问答
+                                        <a href="/interlocution">
+                                            <span>更多></span>
+                                        </a>
+                                    </h1>
+                                    <p>专家答疑，从专业角度解决您的困扰。</p>
+                                </div>
+                                <%- include('./ques-answer')%>
+                            </div>
+
+                            <div class="bg-ques-doctor margin-top-40">
+                                <div>
+                                    <div class="bg-line"></div>
+                                    <h1 class="title">疾病库
+                                        <a href="/disease">
+                                            <span>更多></span>
+                                        </a>
+                                    </h1>
+                                    <p>⻣骨健康垂直领域疾病库多达1000多种。</p>
+                                </div>
+                                <div style="margin: 20px 0">
+                                    <% dis.forEach(function(d){%>
+                                        <a href="/disease/<%= d.id %>">
+                                            <span class="bg-jbk">
+                                                <%= d.illnessName %>
+                                            </span>
+                                        </a>
+                                        <% }) %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="bg-ques-doctor">
+                                <div>
+                                    <div class="bg-line"></div>
+                                    <h1 class="title">布骨商城
+                                        <a href="/mall">
+                                            <span>更多></span>
+                                        </a>
+                                    </h1>
+                                    <p>专业骨科⽀具矫形器、运动康复器器材商城</p>
+                                </div>
+                                <!--保险-->
+                                <% surgeryInsuranceList.forEach(function(sur, index){ %>
+                                    <% if (index>4) return %>
+                                        <div class="clearfix cell">
+                                            <a href="/mall/insurance/<%= sur.id %>">
+                                                <img src="<%= sur.imgUrl %>" alt="" class="left" style="height: 90px;width: 90px">
+                                                <div class="left padd-lf-15px">
+                                                    <div class="font-size-base">
+                                                        <%= sur.title %>
+                                                    </div>
+                                                    <div class="padd-tb-10">
+                                                        <span class="bg-shop-price">¥
+                                                            <%= sur.purchasingPrice  %>
+                                                        </span>
+                                                        <span class="bg-shop-price-old">¥
+                                                            <%= sur.price %>
+                                                        </span>
+                                                    </div>
+                                                    <a href="/buy" class="bg-ques-btn">立即购买</a>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <% }) %>
+
+                                            <!--护具-->
+                                            <% gds.forEach(function(g, index){ %>
+                                                <% if (index>4) return %>
+                                                    <div class="clearfix cell">
+                                                        <a href="/mall/equipment/<%= g.id %>">
+                                                            <img src="<%= g.imgUrl %>" alt="" class="left" style="height: 90px;width: 90px">
+                                                            <div class="left padd-lf-15px">
+                                                                <div class="font-size-base">
+                                                                    <%= g.title %>
+                                                                </div>
+                                                                <div class="padd-tb-10">
+                                                                    <span class="bg-shop-price">¥
+                                                                        <%= g.purchasingPrice %>
+                                                                    </span>
+                                                                    <span class="bg-shop-price-old">¥
+                                                                        <%= g.price %>
+                                                                    </span>
+                                                                </div>
+                                                                <a href="/buy" class="bg-ques-btn">立即购买</a>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <% }) %>
+                            </div>
+
+                            <div class="bg-ques-doctor" style="margin: 40px 0">
+                                <div>
+                                    <div class="bg-line"></div>
+                                    <h1 class="title">布骨健康
+                                        <a href="/health">
+                                            <span>更多></span>
+                                        </a>
+                                    </h1>
+                                    <p>骨健康领域最新资讯及健康科普文章</p>
+                                </div>
+                                <% hl.forEach(function(h){ %>
+                                    <div class="clearfix cell">
+                                        <a href="./article/<%= h.id %>" class="normal-a">
+                                            <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
+                                            <div class="left padd-lf-15px bg-news">
+                                                <div class="font-size-base">
+                                                    <%= h.title %>
+                                                </div>
+                                                <div class="padd-tb-10 multiLineText3 line-count">
+                                                    <%= h.desc%>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <img src="/assets/images/keshi.png" alt="" style="height: 12px; margin-top: 3px;">
+                                                        <span>
+                                                            <%= h.tag %>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <img src="/assets/images/ear.png" alt="" style="height: 12px; margin-top: 3px">
+                                                        <span>
+                                                            <%= h.readCount %>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <% }) %>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-convenience-way row">
-                    <div class="col-md-6 md-mt-40">
-                        <div class="clearfix">
-                            <img src="/assets/images/bg-question.png" alt="" class="left">
-                            <div class="left desc">
-                                <h3 class="title">免费向全国近2000家医院的⼏万名医⽣生咨询</h3>
-                                <span  class="bg-ques-btn bg-mt-16" id="ques-doctor-btn">免费问医生</>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 md-mt-40 clearfix">
-                        <img src="/assets/images/bg-yysh.png" alt="" class="left">
-                        <div class="left desc">
-                            <h3 class="title">全国近1000家三甲医院副主任医师以上名医主⼑</h3>
-                            <a class="bg-ques-btn bg-mt-16 home-yy-shoushu">快速预约手术</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!--医生推荐页-->
-                <div class="bg-ques-doctor">
-                    <div>
-                        <div class="bg-line"></div>
-                        <h1 class="title">咨询医生 <a href="./doctor"><span>更多></span></a></h1>
-                        <p>汇聚全国权威医⽣生，只要是⻣骨健康问题，在这⾥里里轻松解决！</p>
-                    </div>
-
-                    <div class="bg-search-bar">
-                        <input id="doc-search-value" class="search" type="text" placeholder="搜索城市、医院、科室、医生姓名"/>
-                        <img id="doc-search-btn" class="search-btn" src="/assets/images/bg-search-btn.png" alt="" style="margin-left: -6px">
-                    </div>
-
-                    <div class="bg-ques-card row">
-                        <% docs.forEach(function(y){ %>
-                        <div class="col-md-6 ">
-                            <div class="clearfix card">
-                                <div class="bg-ques-card-head left">
-                                    <img src="<%= y.iconUrl %>" alt="">
-                                    <a href="./doctor/<%= y.id %>" class="bg-ques-search-btn bg-mt-16 ">点我咨询</a>
-                                </div>
-                                <div class="bg-ques-card-content left">
-                                    <div>
-                                        <span class="name"><%= y.realName %></span>
-                                        <span><%= y.departmentName %></span>
-                                        <span><%= y.title %></span>
-                                    </div>
-                                    <div class="padd-tb-10 has-line">
-                                        <%= y.hospitalName %>
-                                    </div>
-                                    <div class="mg-top-10">
-                                        <%= y.expertDisease %>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <% }) %>
-                    </div>
-
-                </div>
-
-                <!--预约手术-->
-                <div class="bg-ques-doctor margin-top-40">
-                    <div>
-                        <div class="bg-line"></div>
-                        <h1 class="title">预约手术 <a href="./doctor-yy"><span>更多></span></a></h1>
-                        <p>全国近1000家三甲医院，副主任医师以上名医主⼑刀</p>
-                    </div>
-
-                    <div class="bg-search-bar">
-                        <input id="yy-search-value" class="search" type="text" placeholder="搜索城市、医院、科室、医生姓名" />
-                        <img id="yy-search-btn" class="search-btn" src="/assets/images/bg-search-btn.png" alt="" style="margin-left: -6px">
-                    </div>
-
-                    <div class="bg-ques-card row" id="yy-home-card">
-
-                        <% yy.forEach(function(y){ %>
-                        <div class="col-md-6 ">
-                            <div class="clearfix card">
-                                <div class="bg-ques-card-head left">
-                                    <a href="./doctor/<%= y.id %>">
-                                        <img src="<%= y.iconUrl %>" alt="">
-                                    </a>
-                                    <span href="./doctor/<%= y.id %>" class="bg-ques-search-btn bg-mt-16 home-yy-shoushu">预约手术</span>
-                                </div>
-                                <div class="bg-ques-card-content left">
-                                    <div>
-                                        <span class="name"><%= y.realName %></span>
-                                        <span><%= y.departmentName %></span>
-                                        <span><%= y.title %></span>
-                                    </div>
-                                    <div class="padd-tb-10 has-line">
-                                        <%= y.hospitalName %>
-                                    </div>
-                                    <div class="mg-top-10">
-                                        <%= y.expertDisease %>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <% }) %>
-                    </div>
-                </div>
-
-                <div class="bg-ques-doctor margin-top-40">
-                    <div>
-                        <div class="bg-line"></div>
-                        <h1 class="title">经典问答 <a href="/interlocution"><span>更多></span></a></h1>
-                        <p>专家答疑，从专业角度解决您的困扰。</p>
-                    </div>
-                    <%- include('./ques-answer')%>
-                </div>
-
-                <div class="bg-ques-doctor margin-top-40">
-                    <div>
-                        <div class="bg-line"></div>
-                        <h1 class="title">疾病库 <a href="/disease"><span>更多></span></a></h1>
-                        <p>⻣骨健康垂直领域疾病库多达1000多种。</p>
-                    </div>
-                    <div style="margin: 20px 0">
-                        <% dis.forEach(function(d){%>
-                        <a href="/disease/<%= d.id %>">
-                            <span class="bg-jbk"><%= d.illnessName %></span>
-                        </a>
-                      <% }) %>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="bg-ques-doctor">
-                    <div>
-                        <div class="bg-line"></div>
-                        <h1 class="title">布骨商城<a href="/mall"><span>更多></span></a></h1>
-                        <p>专业⻣骨科⽀支具、康复器器材商城</p>
-                    </div>
-                    <!--保险-->
-                    <% surgeryInsuranceList.forEach(function(sur, index){ %>
-                    <% if (index>4) return %>
-                    <div class="clearfix cell">
-                        <a href="/mall/insurance/<%= sur.id %>">
-                        <img src="<%= sur.imgUrl %>" alt="" class="left" style="height: 90px;width: 90px">
-                        <div class="left padd-lf-15px">
-                            <div class="font-size-base"><%= sur.title %></div>
-                            <div class="padd-tb-10">
-                                <span class="bg-shop-price">¥<%= sur.purchasingPrice  %></span>
-                                <span class="bg-shop-price-old">¥<%= sur.price %></span>
-                            </div>
-                            <a href="/buy" class="bg-ques-btn">立即购买</a>
-                        </div>
-                        </a>
-                    </div>
-                    <% }) %>
-
-                    <!--护具-->
-                    <% gds.forEach(function(g, index){ %>
-                    <% if (index>4) return %>
-                    <div class="clearfix cell">
-                        <a href="/mall/equipment/<%= g.id %>">
-                            <img src="<%= g.imgUrl %>" alt="" class="left" style="height: 90px;width: 90px">
-                            <div class="left padd-lf-15px">
-                                <div class="font-size-base"><%= g.title %></div>
-                                <div class="padd-tb-10">
-                                    <span class="bg-shop-price">¥<%= g.purchasingPrice %></span>
-                                    <span class="bg-shop-price-old">¥<%= g.price %></span>
-                                </div>
-                                <a href="/buy" class="bg-ques-btn">立即购买</a>
-                            </div>
-                        </a>
-                    </div>
-                    <% }) %>
-                </div>
-
-                <div class="bg-ques-doctor" style="margin: 40px 0">
-                    <div>
-                        <div class="bg-line"></div>
-                        <h1 class="title">布骨健康<a href="/health"><span>更多></span></a></h1>
-                        <p>骨健康领域医学资讯、科普</p>
-                    </div>
-                    <% hl.forEach(function(h){ %>
-                    <div class="clearfix cell">
-                        <a href="./article/<%= h.id %>" class="normal-a">
-                            <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
-                            <div class="left padd-lf-15px bg-news">
-                                <div class="font-size-base"><%= h.title %></div>
-                                <div class="padd-tb-10">
-                                    <%= h.desc%>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <img src="/assets/images/keshi.png" alt="" style="height: 12px; margin-top: 3px;">
-                                        <span><%= h.tag %></span>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <img src="/assets/images/ear.png" alt="" style="height: 12px; margin-top: 3px">
-                                        <span><%= h.readCount %></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <% }) %>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-<%- include('./queModal/index.html')%>
-
-<%- include('./modal')%>
-
-<style>
-    a:hover{
-        text-decoration: none;
-    }
-    .normal-a{
-        color: black;
-    }
-    .normal-a:hover{
-        color: black;
-    }
-     .margin-top-40{
-         margin-top: 40px;
-     }
-
-    @media (max-width: 996px) {
-        .md-mt-40:not(:first-child){
-            margin-top: 40px;
-        }
-    }
-
-    .padd-lf-15px{
-        padding-left: 15px;
-    }
-
-
-    .mg-top-10{
-        padding-top: 10px;
-    }
-    .bg-main{
-        margin-top: 30px;
-    }
-    .bg-line{
-        position: relative;
-        height: 1px;
-        background-color: #E7E7E7;
-    }
-    .bg-line:before{
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: inline-block;
-        background-color: #A11715;
-        height: 100%;
-        width: 95px;
-    }
-    .bg-swiper img{
-        width: 100%;
-    }
-    .bg-ques-btn:hover{
-	    color: white;
-	    text-decoration: none;
-    }
-
-    .bg-convenience-way{
-        padding: 50px 0;
-    }
-    .bg-convenience-way img{
-        width: 60px;
-    }
-
-    .bg-convenience-way .title{
-        font-size: 14px;
-        color: #545454;
-    }
-
-    .bg-convenience-way .desc{
-        width: calc(100% - 60px);
-        padding-left: 16px;
-    }
-
-
-    .bg-ques-search-btn{
-        display: inline-block;
-        border: 1px solid #A11715;
-        padding: 3px 5px;
-        color: #A11715;
-        border-radius: 2px;
-    }
-    .bg-ques-search-btn:hover{
-        text-decoration: none;
-        color: #A11715;
-    }
-
-    .bg-ques-btn:hover{
-	    color: white;
-	    text-decoration: none;
-    }
-    .bg-mt-16{
-        margin-top: 16px;
-    }
-
-    .bg-ques-card-content{
-        padding-left: 15px;
-        width: calc(100% - 60px);
-    }
-
-    .bg-ques-card-content .has-line{
-        border-bottom: 1px solid #E7E7E7;
-    }
-
-    .bg-ques-doctor .title{
-        position: relative;
-        font-size: 24px;
-        color: black;
-        padding: 10px 0;
-        font-family: 'PingFangSC-Medium';
-    }
-    .bg-ques-doctor .title span{
-        font-size: 14px;
-        color: #B8B8B8;
-        position: absolute;
-        right: 0;
-    }
-
-    .bg-ques-doctor p {
-        color: #B8B8B8;
-        font-size: 14px;
-    }
-
-    .bg-search-bar{
-        padding: 20px 0;
-    }
-
-    .bg-search-bar .search{
-        width: 70%;
-        height: 34px;
-        padding: 0 10px;
-        border: 1px solid #E7E7E7;
-        border-radius: 0;
-    }
-    .bg-search-bar .search-btn{
-        height: 34px;
-    }
-
-    .border-card, .bg-ques-card .card {
-        background-color: #F8F8F8;
-        padding: 16px;
-        border-radius: 4px;
-        border: 1px solid #E7E7E7;
-        margin-bottom: 16px;
-    }
-
-    .bg-ques-card-head img{
-        display: block;
-        width: 60px;
-        height: 60px;
-    }
-
-    .bg-ques-card-content{
-        color: #8C8C8C;
-    }
-
-    .padd-tb-10 {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    .bg-ques-card-content span.name{
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: #545454;
-        text-align: center;
-    }
-
-    .bg-ques-card-content span{
-        padding-right: 10px;
-    }
-
-    .ques-tip{
-        position: relative;
-        display: inline-block;
-        background-color: #A11715;
-        padding: 0px 4px;
-        color: white;
-        border-radius: 2px;
-    }
-
-    .ques-tip-des:hover{
-        color: #A11715;
-    }
-
-    .ques-tip:before{
-        content: '';
-        display: inline-block;
-        position: absolute;
-        bottom: -10px;
-        right: 5px;
-        border: 5px solid;
-        border-color: #A11715 transparent transparent transparent;
-    }
-    .bg-answer{
-        padding: 20px 0;
-    }
-
-    /*注意只有首页才会多行省略*/
-    .card + .bg-answer-ques-detail{
-        font-family: PingFangSC-Regular;
-        -webkit-line-clamp: 2;
-        display: -webkit-box;
-        font-size: 14px;
-        color: #545454;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-box-orient: vertical
-    }
-
-    .answer-card{
-        padding-bottom: 20px;
-    }
-
-    .bg-jbk{
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: #545454;
-        line-height: 28px;
-        margin-right: 12px;
-    }
-
-    .bg-shop-price{
-        font-size: 16px;
-        color: #A11715;
-        padding-right: 10px;
-    }
-
-    .bg-shop-price-old{
-        text-decoration: line-through;
-        font-size: 13px;
-        color: #B8B8B8;
-    }
-
-    .bg-news{
-        width: calc(100% - 90px);
-    }
-
-    .cell{
-        padding: 25px 0;
-        border-bottom: 1px dashed #E7E7E7;
-    }
-
-    .cell:last-child{
-        border-bottom: none;
-    }
-
-    .row-margin {
-        margin: 10px 10px;
-    }
-
-    .operationOrder-form-label {
-        height: 28px;
-        text-align: left;
-        margin-left: 50px;
-        font-size: 16px;
-        line-height: 28px;
-    }
-
-    .operationOrder-form-label-img {
-        height: 28px;
-        margin-left: 50px;
-        text-align: left;
-        font-size: 16px;
-        line-height: 28px;
-        background: url("/assets/images/bitian@3x.png") no-repeat left center;
-        background-size: 10px 10px;
-    }
-
-    .qrcode-desc {
-        font-size: 12px;
-        color: #db4754;
-        text-align: center;
-        line-height: 28px;
-    }
-
-    .qrcode-img {
-        display: block;
-        margin: 0 auto;
-        width: 92px;
-        height: 92px;
-    }
-
-    .img-preview {
-        display: block;
-        width: 80px;
-        height: 80px;
-    }
-
-    .img-preview-div {
-        float: left;
-        width: 80px;
-        height: 80px;
-        position: relative;
-        margin: 10px 10px;
-    }
-
-    .uploadButton {
-        margin: 0 40px;
-    }
-
-    .no-empty {
-        position: absolute;
-        display: block;
-        width: 30px;
-        height: 30px;
-        color: red;
-        right: -25px;
-        top: 10px;
-    }
-
-    .operationOrder-form-warn {
-        border-color: #db4754;
-    }
-
-    @media (max-width: 991px) {
-        .operationOrder-form-label-img, .operationOrder-form-label {
-            margin-left: 30px;
-        }
-
-        .operationOrderForm-btn-wrap {
-            width: 100%;
-            padding-top: 10px;
-        }
-
-        .uploadButton {
-            display: block;
-            margin: 10px auto;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .operationOrder-form-label-img, .operationOrder-form-label {
-            margin-left: 10px;
-            font-size: 14px;
-        }
-    }
-    @media (max-width: 400px) {
-        #getVerifyNoButton{
-            float: right;
-            margin-right: 48px;
-        }
-    }
-
-</style>
-
-<!--footer-->
-<%- include("./footer.html") %>
-<%- help.jsIncludeTag('operation') %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.min.js"></script>
-<script>
-  const search = document.querySelector('#doc-search-value');
-  // const delegate = document.querySelector('#yy-home-card');
-  const btn = document.querySelector('#doc-search-btn');
-  btn.addEventListener('click', function () {
-    location.href = '/doctor?query=' + search.value;
-  });
-
-  const searchYY = document.querySelector('#yy-search-value');
-  const btnYY = document.querySelector('#yy-search-btn');
-  btnYY.addEventListener('click', function () {
-    location.href = '/doctor-yy?searchType=surgery&query=' + searchYY.value;
-  });
-
-  var mySwiper = new Swiper('.swiper-container', {
-    autoplay: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-  })
-  //
-</script>
-
-</body>
+            </main>
+            <%- include('./queModal/index.html')%>
+                <%- include('./modal')%>
+                    <style>
+                        .multiLineText3 {
+                            word-break: break-all;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            height: 60;
+                            margin-bottom: 10px;
+                            font-family: PingFangSC-Regular;
+                            color: #999999;
+                        }
+
+                        a:hover {
+                            text-decoration: none;
+                        }
+
+                        .normal-a {
+                            color: black;
+                        }
+
+                        .normal-a:hover {
+                            color: black;
+                        }
+
+                        .margin-top-40 {
+                            margin-top: 40px;
+                        }
+
+                        @media (max-width: 996px) {
+                            .md-mt-40:not(:first-child) {
+                                margin-top: 40px;
+                            }
+                        }
+
+                        .padd-lf-15px {
+                            padding-left: 15px;
+                        }
+
+
+                        .mg-top-10 {
+                            padding-top: 10px;
+                        }
+
+                        .bg-main {
+                            margin-top: 30px;
+                        }
+
+                        .bg-line {
+                            position: relative;
+                            height: 1px;
+                            background-color: #E7E7E7;
+                        }
+
+                        .bg-line:before {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            display: inline-block;
+                            background-color: #A11715;
+                            height: 100%;
+                            width: 95px;
+                        }
+
+                        .bg-swiper img {
+                            width: 100%;
+                        }
+
+                        .bg-ques-btn:hover {
+                            color: white;
+                            text-decoration: none;
+                        }
+
+                        .bg-convenience-way {
+                            padding: 50px 0;
+                        }
+
+                        .bg-convenience-way img {
+                            width: 60px;
+                        }
+
+                        .bg-convenience-way .title {
+                            font-size: 14px;
+                            color: #545454;
+                        }
+
+                        .bg-convenience-way .desc {
+                            width: calc(100% - 60px);
+                            padding-left: 16px;
+                        }
+
+
+                        .bg-ques-search-btn {
+                            display: inline-block;
+                            border: 1px solid #A11715;
+                            padding: 3px 5px;
+                            color: #A11715;
+                            border-radius: 2px;
+                        }
+
+                        .bg-ques-search-btn:hover {
+                            text-decoration: none;
+                            color: #A11715;
+                        }
+
+                        .bg-ques-btn:hover {
+                            color: white;
+                            text-decoration: none;
+                        }
+
+                        .bg-mt-16 {
+                            margin-top: 16px;
+                        }
+
+                        .bg-ques-card-content {
+                            padding-left: 15px;
+                            width: calc(100% - 60px);
+                        }
+
+                        .bg-ques-card-content .has-line {
+                            border-bottom: 1px solid #E7E7E7;
+                        }
+
+                        .bg-ques-doctor .title {
+                            position: relative;
+                            font-size: 24px;
+                            color: black;
+                            padding: 10px 0;
+                            font-family: 'PingFangSC-Medium';
+                        }
+
+                        .bg-ques-doctor .title span {
+                            font-size: 14px;
+                            color: #B8B8B8;
+                            position: absolute;
+                            right: 0;
+                        }
+
+                        .bg-ques-doctor p {
+                            color: #B8B8B8;
+                            font-size: 14px;
+                        }
+
+                        .bg-search-bar {
+                            padding: 20px 0;
+                        }
+
+                        .bg-search-bar .search {
+                            width: 70%;
+                            height: 34px;
+                            padding: 0 10px;
+                            border: 1px solid #E7E7E7;
+                            border-radius: 0;
+                        }
+
+                        .bg-search-bar .search-btn {
+                            height: 34px;
+                        }
+
+                        .border-card,
+                        .bg-ques-card .card {
+                            background-color: #F8F8F8;
+                            padding: 16px;
+                            border-radius: 4px;
+                            border: 1px solid #E7E7E7;
+                            margin-bottom: 16px;
+                        }
+
+                        .bg-ques-card-head img {
+                            display: block;
+                            width: 60px;
+                            height: 60px;
+                        }
+
+                        .bg-ques-card-content {
+                            color: #8C8C8C;
+                        }
+
+                        .padd-tb-10 {
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                        }
+
+                        .bg-ques-card-content span.name {
+                            font-family: PingFangSC-Regular;
+                            font-size: 14px;
+                            color: #545454;
+                            text-align: center;
+                        }
+
+                        .bg-ques-card-content span {
+                            padding-right: 10px;
+                        }
+
+                        .ques-tip {
+                            position: relative;
+                            display: inline-block;
+                            background-color: #A11715;
+                            padding: 0px 4px;
+                            color: white;
+                            border-radius: 2px;
+                        }
+
+                        .ques-tip-des:hover {
+                            color: #A11715;
+                        }
+
+                        .ques-tip:before {
+                            content: '';
+                            display: inline-block;
+                            position: absolute;
+                            bottom: -10px;
+                            right: 5px;
+                            border: 5px solid;
+                            border-color: #A11715 transparent transparent transparent;
+                        }
+
+                        .bg-answer {
+                            padding: 20px 0;
+                        }
+
+                        /*注意只有首页才会多行省略*/
+
+                        .card+.bg-answer-ques-detail {
+                            font-family: PingFangSC-Regular;
+                            -webkit-line-clamp: 2;
+                            display: -webkit-box;
+                            font-size: 14px;
+                            color: #545454;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            -webkit-box-orient: vertical
+                        }
+
+                        .answer-card {
+                            padding-bottom: 20px;
+                        }
+
+                        .bg-jbk {
+                            font-family: PingFangSC-Regular;
+                            font-size: 14px;
+                            color: #545454;
+                            line-height: 28px;
+                            margin-right: 12px;
+                        }
+
+                        .bg-shop-price {
+                            font-size: 16px;
+                            color: #A11715;
+                            padding-right: 10px;
+                        }
+
+                        .bg-shop-price-old {
+                            text-decoration: line-through;
+                            font-size: 13px;
+                            color: #B8B8B8;
+                        }
+
+                        .bg-news {
+                            width: calc(100% - 90px);
+                        }
+
+                        .cell {
+                            padding: 25px 0;
+                            border-bottom: 1px dashed #E7E7E7;
+                        }
+
+                        .cell:last-child {
+                            border-bottom: none;
+                        }
+
+                        .row-margin {
+                            margin: 10px 10px;
+                        }
+
+                        .operationOrder-form-label {
+                            height: 28px;
+                            text-align: left;
+                            margin-left: 50px;
+                            font-size: 16px;
+                            line-height: 28px;
+                        }
+
+                        .operationOrder-form-label-img {
+                            height: 28px;
+                            margin-left: 50px;
+                            text-align: left;
+                            font-size: 16px;
+                            line-height: 28px;
+                            background: url("/assets/images/bitian@3x.png") no-repeat left center;
+                            background-size: 10px 10px;
+                        }
+
+                        .qrcode-desc {
+                            font-size: 12px;
+                            color: #db4754;
+                            text-align: center;
+                            line-height: 28px;
+                        }
+
+                        .qrcode-img {
+                            display: block;
+                            margin: 0 auto;
+                            width: 92px;
+                            height: 92px;
+                        }
+
+                        .img-preview {
+                            display: block;
+                            width: 80px;
+                            height: 80px;
+                        }
+
+                        .img-preview-div {
+                            float: left;
+                            width: 80px;
+                            height: 80px;
+                            position: relative;
+                            margin: 10px 10px;
+                        }
+
+                        .uploadButton {
+                            margin: 0 40px;
+                        }
+
+                        .no-empty {
+                            position: absolute;
+                            display: block;
+                            width: 30px;
+                            height: 30px;
+                            color: red;
+                            right: -25px;
+                            top: 10px;
+                        }
+
+                        .operationOrder-form-warn {
+                            border-color: #db4754;
+                        }
+
+                        @media (max-width: 991px) {
+                            .operationOrder-form-label-img,
+                            .operationOrder-form-label {
+                                margin-left: 30px;
+                            }
+
+                            .operationOrderForm-btn-wrap {
+                                width: 100%;
+                                padding-top: 10px;
+                            }
+
+                            .uploadButton {
+                                display: block;
+                                margin: 10px auto;
+                            }
+                        }
+
+                        @media (max-width: 768px) {
+                            .operationOrder-form-label-img,
+                            .operationOrder-form-label {
+                                margin-left: 10px;
+                                font-size: 14px;
+                            }
+                        }
+
+                        @media (max-width: 400px) {
+                            #getVerifyNoButton {
+                                float: right;
+                                margin-right: 48px;
+                            }
+                        }
+                    </style>
+
+                    <!--footer-->
+                    <%- include("./footer.html") %>
+                        <%- help.jsIncludeTag('operation') %>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.min.js"></script>
+                            <script>
+                                const search = document.querySelector('#doc-search-value');
+                                // const delegate = document.querySelector('#yy-home-card');
+                                const btn = document.querySelector('#doc-search-btn');
+                                btn.addEventListener('click', function () {
+                                    location.href = '/doctor?query=' + search.value;
+                                });
+
+                                const searchYY = document.querySelector('#yy-search-value');
+                                const btnYY = document.querySelector('#yy-search-btn');
+                                btnYY.addEventListener('click', function () {
+                                    location.href = '/doctor-yy?searchType=surgery&query=' + searchYY.value;
+                                });
+
+                                var mySwiper = new Swiper('.swiper-container', {
+                                    autoplay: true,
+                                    pagination: {
+                                        el: '.swiper-pagination',
+                                        clickable: true,
+                                    },
+                                })
+                                //
+                            </script>
+
+    </body>
+
 </html>

@@ -246,6 +246,7 @@ router.get("/doctor/search", async ctx => {
 //医生详情页
 router.get("/doctor/:id", async ctx => {
   const id = ctx.url.split("/")[2];
+  const type = ctx.query.type || '';
   const doc = await http({
     url: `${baseApi}doctorHomePageController/initDoctorData`,
     config: {
@@ -260,7 +261,8 @@ router.get("/doctor/:id", async ctx => {
     check,
     help,
     index: -1,
-    common
+    common,
+    type
   });
 });
 
@@ -534,14 +536,14 @@ router.get("/mall", async ctx => {
 let healthAll = [];
 router.get("/health", async ctx => {
   const page = ctx.query.page || 1;
-  const query = ctx.query.query;
+  const query = ctx.query.query || '';
   let health = []
   if (query) {
     health = await http({
       url: `${baseApi}articleDetail//queryArticleByKeyLabel`,
       config: {
         body: JSON.stringify({
-          pageSize: 100,
+          pageSize: 1000,
           keyWord: query,
           pageIndex:1
         })
@@ -553,7 +555,7 @@ router.get("/health", async ctx => {
       url: `${baseApi}index/queryArticleList`,
       config: {
         body: JSON.stringify({
-          pageSize: 100,
+          pageSize: 1000,
           lastArticleCreateTimestamp: new Date().valueOf(),
           page
         })
@@ -561,15 +563,21 @@ router.get("/health", async ctx => {
     });
     health = health["resultBodyObject"].rows;
   }
-  const resp = await http({
-    url: `${baseApi}articleDetail/queryArticleLabel`,
-    config: {
-      body: JSON.stringify({
-        pageSize: 20
-      })
-    }
-  });
-
+  let tags = []
+  if(query){
+    tags = [{'tagName':query}]
+  }else{
+    const resp = await http({
+      url: `${baseApi}articleDetail/queryArticleLabel`,
+      config: {
+        body: JSON.stringify({
+          pageSize: 50
+        })
+      }
+    });
+    tags = resp["resultBodyObject"] || []
+  }
+  
   if (page === 1) {
     healthAll = health;
   } else {
@@ -581,7 +589,7 @@ router.get("/health", async ctx => {
     index: 4,
     common,
     hl: healthAll,
-    dis: resp["resultBodyObject"] || [],
+    dis: tags,
     help,
     query
   });
