@@ -27,7 +27,12 @@ $('.home-yy-shoushu').on('click', function (e) {
 
 $('#ques-doctor-btn').on('click',function () {
   $('#queModal').modal().show();
+  
 });
+
+$('.home-page-detail').on('click',function () {
+  $('#operationModal').modal().show();
+})
 
 function showModal(realName, department, hospitalName, e) {
   var evt = e ? e : window.event;
@@ -37,3 +42,5 @@ function showModal(realName, department, hospitalName, e) {
   $('#hospitalName').val(hospitalName);
   $("#operationModal").modal().show()
 }
+
+
