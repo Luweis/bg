@@ -13,7 +13,7 @@ function check(data, tip = "暂无") {
   return data ? data : tip;
 }
 
-const currentEnv = process.env.NODE_ENV === "development" ? "dev" : "pro";
+const currentEnv = process.env.NODE_ENV === "development" ? "pro" : "dev";
 
 const env = {
   dev: {
@@ -297,7 +297,6 @@ router.get("/doctor-yy", async ctx => {
   const page = ctx.query.page ? ctx.query.page : 1;
   const query = ctx.query.query || "";
   let doctors = await searchDoctor(ctx);
-  console.log(doctors);
   if (!doctors) {
     doctors = await http({
       url: `${baseApi}operationOrderController/getConsultDoctor`,
@@ -330,7 +329,7 @@ router.get("/article/:id", async ctx => {
       })
     }
   });
-  console.log(article);
+
   return ctx.render("articleDetail", {
     ats: article["resultBodyObject"],
     index: -1,
@@ -577,7 +576,7 @@ router.get("/health", async ctx => {
     });
     tags = resp["resultBodyObject"] || []
   }
-  
+
   if (page === 1) {
     healthAll = health;
   } else {

@@ -16,9 +16,11 @@
                 <div class="bg-answer-ques">
                     <div class="bg-classic-ques">
                         <% qa.forEach(function(item){ %>
-                        <div class="bg-answer">
-                            <span class="ques-tip">问</span>
-                            <span class="font-size-base padd-lf-15px"><%= item.questionData.diseaseDesc %></span>
+                        <div class="bg-answer row">
+                            <div class="col-xs-1" style="max-width: 20px">
+                                <span class="ques-tip">问</span>
+                            </div>
+                            <span class="col-xs-10 font-size-base padd-lf-15px"><%= item.questionData.diseaseDesc %></span>
                         </div>
                         <% (item.answerDatas || []).forEach(function(answer){ %>
                         <div class="clearfix answer-card">

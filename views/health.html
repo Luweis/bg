@@ -270,7 +270,7 @@
                     const search = document.querySelector('#search-doc');
                     const btn = document.querySelector('.search-btn');
 
-                    btn.addEventListener('click', function () {
+                    btn && btn.addEventListener('click', function () {
                         const url = '/doctor/search?query=' + encodeURIComponent(search.value);
                         location.href = url;
                     });
