@@ -1,258 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./link.html') %>
-<body>
-<%- include('./head.html') %>
-<div class="bg-main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="bg-ques-doctor">
-                    <div>
-                        <div class="bg-usually-bin">咨询标签</div>
-                        <div class="bg-jb-class">
-                            <% dis.forEach(function(item){ %>
-                             <a href="/health?query=<%=item.tagName %>">
-                                <% if(query == item.tagName ){%>
-                                    <span class="bg-jb-class-tag bg-jb-class-tag-active"><%= item.tagName %></span>
-                                    <%}else{%>
-                                    <span class="bg-jb-class-tag"><%= item.tagName %></span>
-                                 <%}%>
-                            </a>
-                            <%})%>
-                        </div>
-                    </div>
-                    <div class="bg-ques-doctor" >
-                        <div>
-                            <div class="bg-line"></div>
-                            <h1 class="title">布骨健康</h1>
-                            <p>骨健康领域医学资讯、科普</p>
-                        </div>
-                        <% hl.forEach(function(h){ %>
-                        <div class="clearfix box">
-                            <a href="./article/<%= h.id %>" class="normal-a">
-                                <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
-                                <div class="left padd-lf-15px bg-news">
-                                    <div class="font-size-base"><%= h.title %></div>
-                                    <div class="padd-tb-10">
-                                        <%= h.desc%>
+
+    <body>
+        <%- include('./head.html') %>
+            <div class="bg-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="bg-ques-doctor">
+                                <div>
+                                    <div class="bg-usually-bin">文章标签</div>
+                                    <div class="bg-jb-class">
+                                        <% dis.forEach(function(item){ %>
+                                            <a href="/health?query=<%=item.tagName %>">
+                                                <% if(query == item.tagName ){%>
+                                                    <span class="bg-jb-class-tag bg-jb-class-tag-active">
+                                                        <%= item.tagName %>
+                                                    </span>
+                                                    <%}else{%>
+                                                        <span class="bg-jb-class-tag">
+                                                            <%= item.tagName %>
+                                                        </span>
+                                                        <%}%>
+                                            </a>
+                                            <%})%>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <img src="/assets/images/keshi.png" alt="" style="height: 12px; margin-top: 3px;">
-                                            <span><%= query || h.tag %></span>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <img src="/assets/images/ear.png" alt="" style="height: 12px; margin-top: 3px">
-                                            <span><%= h.readCount %></span>
-                                        </div>
-                                    </div>
+                                            <% if(query.length > 0){%>
+                                                <h5 style="margin-bottom:15px">为您找到相关的搜索结果<%= hl.length %>条</h5>
+                                            <%}%>
                                 </div>
-                            </a>
+                                <div class="bg-ques-doctor">
+                                    <div>
+                                        <div class="bg-line"></div>
+                                        <h1 class="title">布骨健康</h1>
+                                        <p>骨健康领域最新资讯及健康科普文章</p>
+                                    </div>
+                                    <% hl.forEach(function(h){ %>
+                                        <div class="clearfix box">
+                                            <a href="./article/<%= h.id %>" class="normal-a">
+                                                <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
+                                                <div class="left padd-lf-15px bg-news">
+                                                    <div class="font-size-base">
+                                                        <%= h.title %>
+                                                    </div>
+                                                    <div class="padd-tb-10 multiLineText3">
+                                                        <%= h.desc%>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <img src="/assets/images/keshi.png" alt="" style="height: 12px; margin-top: 3px;">
+                                                            <span>
+                                                                <%= query || h.tag %>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <img src="/assets/images/ear.png" alt="" style="height: 12px; margin-top: 3px">
+                                                            <span>
+                                                                <%= h.readCount %>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <% }) %>
+                                </div>
+
+                            </div>
                         </div>
-                        <% }) %>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col-md-5">
-                <div class="bg-ques-doctor">
-                    <div>
-                        <div class="bg-line"></div>
-                        <h1 class="title">合作医院</h1>
-                        <p>与布骨健康合作的知名医院，帮您恢复健康。</p>
+                        <div class="col-md-4">
+                            <div class="bg-ques-doctor">
+                                <div>
+                                    <div class="bg-line"></div>
+                                    <h1 class="title">合作医院</h1>
+                                    <p>与布骨健康合作的知名医院，帮您恢复健康。</p>
+                                </div>
+                            </div>
+                            <img src="/assets/images/hospital.png" alt="合作医院" class="left" style="height: auto;width: 50%">
+                        </div>
                     </div>
                 </div>
-                <img src="/assets/images/hospital.png" alt="合作医院" class="left" style="height: auto;width: 50%">
             </div>
-        </div>
-    </div>
-</div>
-<style>
-   
-    body{
-        height: 100%;
-        width: 100%;
-    }
-    .padd-lf-15px{
-        padding-left: 15px;
-    }
-    .bg-main{
-        margin-top: 30px;
-    }
+            <style>
+                .multiLineText3 {
+                    word-break: break-all;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    height: 60;
+                    margin-bottom: 10px;
+                    font-family: PingFangSC-Regular;
+                    font-size: 13px;
+                    color: #999999;
+                }
 
-    .bg-line{
-        position: relative;
-        height: 1px;
-        background-color: #E7E7E7;
-    }
-    .bg-line:before{
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: inline-block;
-        background-color: #A11715;
-        height: 100%;
-        width: 95px;
-    }
-    .bg-swiper img{
-        width: 100%;
-    }
+                body {
+                    height: 100%;
+                    width: 100%;
+                }
 
-    .bg-convenience-way img{
-        width: 60px;
-    }
+                .padd-lf-15px {
+                    padding-left: 15px;
+                }
 
-    .bg-convenience-way .title{
-        font-size: 14px;
-        color: #545454;
-    }
+                .bg-main {
+                    margin-top: 30px;
+                }
 
-    .bg-convenience-way .desc{
-        width: calc(100% - 60px);
-        padding-left: 16px;
-    }
+                .bg-line {
+                    position: relative;
+                    height: 1px;
+                    background-color: #E7E7E7;
+                }
+
+                .bg-line:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    display: inline-block;
+                    background-color: #A11715;
+                    height: 100%;
+                    width: 95px;
+                }
+
+                .bg-swiper img {
+                    width: 100%;
+                }
+
+                .bg-convenience-way img {
+                    width: 60px;
+                }
+
+                .bg-convenience-way .title {
+                    font-size: 14px;
+                    color: #545454;
+                }
+
+                .bg-convenience-way .desc {
+                    width: calc(100% - 60px);
+                    padding-left: 16px;
+                }
 
 
-    .bg-ques-card-content .has-line{
-        border-bottom: 1px solid #E7E7E7;
-    }
+                .bg-ques-card-content .has-line {
+                    border-bottom: 1px solid #E7E7E7;
+                }
 
-    .bg-ques-doctor .title{
-        position: relative;
-        font-size: 24px;
-        color: black;
-        padding: 10px 0;
-        font-family: 'PingFangSC-Medium';
-    }
-    .bg-ques-doctor .title {
-        font-size: 14px;
-        color: #B8B8B8;
-        position: absolute;
-        right: 0;
-    }
+                .bg-ques-doctor .title {
+                    position: relative;
+                    font-size: 24px;
+                    color: black;
+                    padding: 10px 0;
+                    font-family: 'PingFangSC-Medium';
+                }
 
-    .bg-ques-doctor p {
-        color: #B8B8B8;
-        font-size: 14px;
-    }
+                .bg-ques-doctor .title span {
+                    font-size: 14px;
+                    color: #B8B8B8;
+                    position: absolute;
+                    right: 0;
+                }
 
-    .bg-search-bar{
-        padding: 20px 0;
-    }
+                .bg-ques-doctor p {
+                    color: #B8B8B8;
+                    font-size: 14px;
+                }
 
-    .bg-search-bar .search{
-        width: 70%;
-        height: 34px;
-        padding: 0 10px;
-        border: 1px solid #E7E7E7;
-        border-radius: 0;
-    }
-    .bg-search-bar .search-btn{
-        height: 34px;
-    }
 
-    .bg-ques-card-head img{
-        display: block;
-        width: 60px;
-        height: 60px;
-    }
+                .bg-search-bar {
+                    padding: 20px 0;
+                }
 
-    .padd-tb-10 {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
+                .bg-search-bar .search {
+                    width: 70%;
+                    height: 34px;
+                    padding: 0 10px;
+                    border: 1px solid #E7E7E7;
+                    border-radius: 0;
+                }
 
-    .bg-ques-card-content span.name{
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: #545454;
-        text-align: center;
-    }
+                .bg-search-bar .search-btn {
+                    height: 34px;
+                }
 
-    .bg-ques-card-content span{
-        padding-right: 10px;
-    }
+                .bg-ques-card-head img {
+                    display: block;
+                    width: 60px;
+                    height: 60px;
+                }
 
-    .bg-news{
-        width: calc(100% - 90px);
-    }
+                .padd-tb-10 {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
 
-    .bg-coop-hospital{
-        margin-top: 30px;
-    }
+                .bg-ques-card-content span.name {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #545454;
+                    text-align: center;
+                }
 
-    .bg-coop-hospital  img{
-        height: 50px;
-        vertical-align: middle;
-    }
+                .bg-ques-card-content span {
+                    padding-right: 10px;
+                }
 
-    .bg-coop-hospital > div{
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #000000;
-    }
+                .bg-news {
+                    width: calc(100% - 90px);
+                }
 
-    .box{
-        padding: 40px 0;
-        border-bottom: 1px solid #E7E7E7;
-    }
+                .bg-coop-hospital {
+                    margin-top: 30px;
+                }
 
-    .box:first-child{
-        border-top: 1px solid #E7E7E7;
-    }
-    .bg-usually-bin{
-        font-family: PingFangSC-Semibold;
-        font-size: 16px;
-        color: #A11715;
-    }
-    .bg-jb-class-tag{
-        display: inline-block;
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: #333;
-        padding: 10px;
-    }
-    .bg-jb-class-tag-active{
-        color: #A11715;
-    }
-</style>
-<%- include('./footer')%>
-<script>
+                .bg-coop-hospital img {
+                    height: 50px;
+                    vertical-align: middle;
+                }
 
-    function getParams() {
-     var search = location.search.replace(/^\?/, '');
-      search = decodeURIComponent(search).replace(/&&/g, '&').split('&');
-      const params = {}
-      for (var i = 0, len = search.length; i < len; i++) {
-        const item = search[i].split('=');
-        params[item[0]] = item[1]
-        return params;
-      }
-    }
+                .bg-coop-hospital>div {
+                    font-family: PingFangSC-Regular;
+                    font-size: 16px;
+                    color: #000000;
+                }
 
-    const search = document.querySelector('#search-doc');
-    const btn = document.querySelector('.search-btn');
+                .box {
+                    padding: 40px 0;
+                    border-bottom: 1px solid #E7E7E7;
+                }
 
-    btn.addEventListener('click', function () {
-      const url = '/doctor/search?query='+ encodeURIComponent(search.value);
-      location.href = url;
-    });
+                .box:first-child {
+                    border-top: 1px solid #E7E7E7;
+                }
 
-    const el = document.documentElement;
-    document.addEventListener('scroll', function () {
+                .bg-usually-bin {
+                    font-family: PingFangSC-Semibold;
+                    font-size: 16px;
+                    color: #A11715;
+                }
 
-      if ((el.scrollTop + el.clientHeight) === el.scrollHeight){
-        const currentPage = getParams().page || 1;
-        location.href = `./health?page=${+currentPage+1}`
-      }
-    });
+                .bg-jb-class-tag {
+                    display: inline-block;
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #333;
+                    padding: 10px;
+                }
 
-    const currentPage = getParams().page || 1;
+                .bg-jb-class-tag-active {
+                    color: #A11715;
+                }
+            </style>
+            <%- include('./footer')%>
+                <script>
+                    function getParams() {
+                        var search = location.search.replace(/^\?/, '');
+                        search = decodeURIComponent(search).replace(/&&/g, '&').split('&');
+                        const params = {}
+                        for (var i = 0, len = search.length; i < len; i++) {
+                            const item = search[i].split('=');
+                            params[item[0]] = item[1]
+                            return params;
+                        }
+                    }
 
-    document.documentElement.scrollTo(0, 171*10*(currentPage-1));
-</script>
-</body>
+                    const search = document.querySelector('#search-doc');
+                    const btn = document.querySelector('.search-btn');
+
+                    btn.addEventListener('click', function () {
+                        const url = '/doctor/search?query=' + encodeURIComponent(search.value);
+                        location.href = url;
+                    });
+
+                    const el = document.documentElement;
+                    document.addEventListener('scroll', function () {
+
+                        if ((el.scrollTop + el.clientHeight) === el.scrollHeight) {
+                            const currentPage = getParams().page || 1;
+                            location.href = `./health?page=${+currentPage+1}`
+                        }
+                    });
+
+                    const currentPage = getParams().page || 1;
+
+                    document.documentElement.scrollTo(0, 171 * 10 * (currentPage - 1));
+                </script>
+    </body>
+
 </html>

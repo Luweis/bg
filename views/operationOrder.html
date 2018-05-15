@@ -13,12 +13,17 @@
             <input id="consultDoctorSearch"
                    type="search"
                    class="yy-search-input"
-                   placeholder="搜索医院、医⽣生、科室、城市、疾病"
+                   placeholder="搜索城市、医院、科室、医生姓名"
                    value="<%= query%>"/>
             <button class="yy-search-btn">
                 <img src="/assets/images/search.png" alt="">
             </button>
         </div>
+        <% if (query.length > 0) { %>
+            <div class="inline-flex" style="margin-top: 5px">
+                为您找到相关结果<%= total %>条
+            </div>
+        <% }%>
     </div>
 
     <div class="yy-banner-title text-center">
@@ -312,7 +317,7 @@
                                 </form>
                             </div>
                             <div class="col-sm-2">
-                                <div class="qrcode-img"><img src="/assets/images/boneService.png"></div>
+                                <div class="qrcode-img"><img src="/assets/images/service.jpg" style="width: 80;height: 80;"></div>
                                 <div class="qrcode-desc text-color-primary">扫一扫关注布骨健康在手机端预约</div>
                             </div>
                         </div>
@@ -446,8 +451,8 @@
 
     .yy-nav-title {
         font-family: PingFangSC-Medium;
-        font-size: 24px;
-        color: #000000;
+font-size: 24px;
+color: #000000;
         text-align: center;
     }
 
@@ -579,7 +584,7 @@
         font-family: PingFangSC-Regular;
         font-size: 12px;
         color: #999999;
-        padding: 8px 0;
+        padding: 8 0 0 0;
     }
 
     .yy-banner-card-desc {
@@ -588,6 +593,7 @@
         color: #333333;
         text-align: left;
         padding-bottom: 30px;
+        margin-top: 8px
     }
 
     .yy-page-p {

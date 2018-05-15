@@ -61,22 +61,23 @@ async function home(ctx) {
       })
     }
   });
-
+  //文章
   const health = await http({
     url: `${baseApi}index/queryArticleList`,
     config: {
       body: JSON.stringify({
-        pageSize: 4,
+        pageSize: 8,
         lastArticleCreateTimestamp: 0
       })
     }
   });
 
+  //问答
   const ques = await http({
     url: `${baseApi}questionController/queryRelatedQuestionList`,
     config: {
       body: JSON.stringify({
-        size: 4
+        size: 5
       })
     }
   });
@@ -86,7 +87,7 @@ async function home(ctx) {
     url: `${baseApi}linkQueryController/getLink`,
     config: {
       body: JSON.stringify({
-        size: 4
+        size: 100
       })
     }
   });
@@ -132,11 +133,12 @@ async function home(ctx) {
     }
   });
 
+  //疾病库
   const disa = await http({
     url: `${baseApi}diseaseController/getIllnessList`,
     config: {
       body: JSON.stringify({
-        pageSize: 4
+        pageSize: 50
       })
     }
   });
@@ -200,6 +202,7 @@ router.get("/doctor", async ctx => {
   return ctx.render("consultDoctor", {
     helpers: utils,
     doctors: doctors["resultBodyObject"]["rows"] || [],
+    total: doctors["resultBodyObject"]["total"] || 0,
     current: 1,
     activeItem,
     help,
@@ -243,6 +246,7 @@ router.get("/doctor/search", async ctx => {
 //医生详情页
 router.get("/doctor/:id", async ctx => {
   const id = ctx.url.split("/")[2];
+  const type = ctx.query.type || '';
   const doc = await http({
     url: `${baseApi}doctorHomePageController/initDoctorData`,
     config: {
@@ -257,7 +261,8 @@ router.get("/doctor/:id", async ctx => {
     check,
     help,
     index: -1,
-    common
+    common,
+    type
   });
 });
 
@@ -308,7 +313,8 @@ router.get("/doctor-yy", async ctx => {
     index: 2,
     common,
     page,
-    doctors: doctors["resultBodyObject"].rows,
+    doctors: doctors["resultBodyObject"].rows || [],
+    total: doctors["resultBodyObject"].total || 0,
     query
   });
 });
@@ -530,14 +536,14 @@ router.get("/mall", async ctx => {
 let healthAll = [];
 router.get("/health", async ctx => {
   const page = ctx.query.page || 1;
-  const query = ctx.query.query;
+  const query = ctx.query.query || '';
   let health = []
   if (query) {
     health = await http({
       url: `${baseApi}articleDetail//queryArticleByKeyLabel`,
       config: {
         body: JSON.stringify({
-          pageSize: 100,
+          pageSize: 1000,
           keyWord: query,
           pageIndex:1
         })
@@ -549,7 +555,7 @@ router.get("/health", async ctx => {
       url: `${baseApi}index/queryArticleList`,
       config: {
         body: JSON.stringify({
-          pageSize: 100,
+          pageSize: 1000,
           lastArticleCreateTimestamp: new Date().valueOf(),
           page
         })
@@ -557,15 +563,21 @@ router.get("/health", async ctx => {
     });
     health = health["resultBodyObject"].rows;
   }
-  const resp = await http({
-    url: `${baseApi}articleDetail/queryArticleLabel`,
-    config: {
-      body: JSON.stringify({
-        pageSize: 20
-      })
-    }
-  });
-
+  let tags = []
+  if(query){
+    tags = [{'tagName':query}]
+  }else{
+    const resp = await http({
+      url: `${baseApi}articleDetail/queryArticleLabel`,
+      config: {
+        body: JSON.stringify({
+          pageSize: 50
+        })
+      }
+    });
+    tags = resp["resultBodyObject"] || []
+  }
+  
   if (page === 1) {
     healthAll = health;
   } else {
@@ -577,7 +589,7 @@ router.get("/health", async ctx => {
     index: 4,
     common,
     hl: healthAll,
-    dis: resp["resultBodyObject"] || [],
+    dis: tags,
     help,
     query
   });

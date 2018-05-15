@@ -15,11 +15,11 @@
                         <small class="item-1-small"> 元起</small>
                     </h3>
                     <div class="item-1-count">已售<%= model.sales %>份</div>
-                    <a href="../../buy" class="buy-btn">立即购买</a>
+                    <a href="../../buy" class="bg-ques-btn">立即购买</a>
                 </div>
                 <% model.detailResourceList.forEach(function(item){ %>
                 <div>
-                    <img class="shop_des_image" src="<%= item.resourceUrl %>" alt="">
+                    <img class="shop_des_image" src="<%= item.resourceUrl %>" alt="<%= item.desc || '描述' %>">
                 </div>
                 <% }) %>
             </div>
@@ -27,6 +27,10 @@
     </div>
 </div>
 <style>
+    .bg-ques-btn:hover{
+	    color: white;
+	    text-decoration: none;
+    }
     .shop_banner {
         width: 100%;
         height: auto;
