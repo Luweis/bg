@@ -10,10 +10,10 @@
 
                 <div class="col-md-7" style="margin-right: 60px">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 doctor-home-head">
                             <img src="<%= doctorDetail.iconUrl %>" class="doctorHomePage-details-headImg" id="doc_iconUrl" />
                             <% if(type == 'yy'){%>
-                                <div class="bg-ques-btn-yy yy-bg-ques-btn">预约手术</div>
+                                <div class="bg-ques-btn-yy" id="doctor-home-detail">预约手术</div>
                             <%} %>
                         </div>
                         <div class="col-sm-7">
@@ -170,8 +170,17 @@
                     height: 100%;
                     width: 95px;
                 }
+
+                @media (max-width: 768px) {
+                    .doctor-home-head{
+                        text-align: center;
+                    }
+                }
+
             </style>
             <%- include("./footer.html") %>
+        <%- include('./modal') %>
+        <%- help.jsIncludeTag('operation') %>
     </body>
 
 </html>
