@@ -42,11 +42,8 @@
                  aria-label="Previous slide" aria-disabled="false"></div>
             <div class="swiper-button-next swiper-button-black " tabindex="0" role="button" aria-label="Next slide"
                  aria-disabled="false"></div>
-
             <% for(var j = 0; j < 6; j++ ){ %>
-
             <% if (i * 6 + j < doctors.length) { %>
-
             <div class="yy-banner-card">
                 <a href="./doctor/<%= doctors[i*4+j].id%>">
                     <h3 class="yy-banner-card-h3"><%= doctors[i*4+j].realName %></h3>
@@ -72,15 +69,10 @@
         </div>
     </div>
     <% } %>
-
     <% } %>
-
     <div class="banner-show mobile-banner-show swiper-container">
-
         <div class="swiper-wrapper">
-
             <% doctors.forEach(function(d,i){%>
-
             <div class="swiper-slide">
                 <div class="yy-card-wrap">
                     <div class="yy-banner-card">
@@ -96,12 +88,9 @@
                         </a>
                     </div>
                 </div>
-
             </div>
-
             <% }) %>
         </div>
-
         <div class="swiper-button-prev swiper-button-black"></div>
         <div class="swiper-button-next swiper-button-black"></div>
     </div>

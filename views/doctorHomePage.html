@@ -13,7 +13,7 @@
                         <div class="col-sm-3">
                             <img src="<%= doctorDetail.iconUrl %>" class="doctorHomePage-details-headImg" id="doc_iconUrl" />
                             <% if(type == 'yy'){%>
-                                <div class="bg-ques-btn-yy">预约手术</div>
+                                <div class="bg-ques-btn-yy yy-bg-ques-btn">预约手术</div>
                             <%} %>
                         </div>
                         <div class="col-sm-7">
@@ -81,7 +81,7 @@
                         </div>
                         <% relatedDocotrs.forEach(function(d){ %>
                             <div class="clearfix margin-top-20">
-                                <a href="/doctor/<%= d.id%>" class="normal-a">
+                                <a href="/doctor/<%= d.id%>?type=<%= type %>" class="normal-a">
                                     <img src="<%= d.iconUrl %>" alt="" class="left img-circle" style="height: 60px;width: 60px;margin-right: 15">
                                     <div class="left  bg-news">
                                         <div class="doctor-name">
@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="doctor-des">
                                             <%=d.departmentName%>
-                                                <%=d.title%>
+                                            <%=d.title%>
                                         </div>
                                         <div class="doctor-des">
                                             <%= d.hospitalName%>

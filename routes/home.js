@@ -245,7 +245,7 @@ router.get("/doctor/search", async ctx => {
 
 //医生详情页
 router.get("/doctor/:id", async ctx => {
-  const id = ctx.url.split("/")[2];
+  const id   = ctx.url.split("/")[2].split('?')[0];
   const type = ctx.query.type || '';
   const doc = await http({
     url: `${baseApi}doctorHomePageController/initDoctorData`,

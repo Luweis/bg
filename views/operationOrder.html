@@ -32,22 +32,17 @@
 
     <!--医生展示区域-->
     <% for(var i = 0, l = Math.ceil(doctors.length / 6); i < l; i++) {%>
-
     <% if (i+1 == page) { %>
     <div class="pc-banner-show">
-
-
         <div class="banner-show" style="position: relative; height: 700px">
             <div class="swiper-button-prev swiper-button-black " tabindex="0" role="button"
                  aria-label="Previous slide" aria-disabled="false"></div>
             <div class="swiper-button-next swiper-button-black " tabindex="0" role="button" aria-label="Next slide"
                  aria-disabled="false"></div>
             <% for(var j = 0; j < 6; j++ ){ %>
-
             <% if (i * 6 + j < doctors.length) { %>
-
             <div class="yy-banner-card">
-                <a href="./doctor/<%= doctors[i*4+j].id%>">
+                <a href="./doctor/<%= doctors[i*4+j].id%>?type=yy">
                     <h3 class="yy-banner-card-h3"><%= doctors[i*4+j].realName %></h3>
                     <div class="yy-banner-card-short"><%= doctors[i*4+j].title %> <span><%=  doctors[i*4+j].departmentName %></span>
                     </div>
@@ -71,9 +66,7 @@
         </div>
     </div>
     <% } %>
-
     <% } %>
-
     <div class="banner-show mobile-banner-show swiper-container">
         <div class="swiper-wrapper">
             <%doctors && doctors.forEach(function(d,i){%>

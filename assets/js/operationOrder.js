@@ -9,6 +9,7 @@ $('.operationOrder-search-button').on('click', function () {
 
 // yy-bg-ques-btn
 $('.yy-bg-ques-btn').on('click', function (e) {
+  console.log('yyyyyyyyy')
   showModal();
   var dcotor = $(e.target).siblings('.yy-banner-card-h3').text();
   var depName = $(e.target).siblings('.yy-banner-card-short').find('span').text();
@@ -20,6 +21,7 @@ $('.yy-bg-ques-btn').on('click', function (e) {
 });
 
 $('.home-yy-shoushu').on('click', function (e) {
+  console.log('yyyyyyyyy')
   showModal()
   var $paraent = $(e.target).parent('.bg-ques-card-head')
     .siblings('.bg-ques-card-content')

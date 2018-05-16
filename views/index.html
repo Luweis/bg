@@ -111,22 +111,19 @@
                                     </h1>
                                     <p>全国近1000家三甲医院，副主任医师以上名医主⼑刀</p>
                                 </div>
-
                                 <div class="bg-search-bar">
                                     <input id="yy-search-value" class="search" type="text" placeholder="搜索城市、医院、科室、医生姓名" />
                                     <img id="yy-search-btn" class="search-btn" src="/assets/images/bg-search-btn.png" alt="" style="margin-left: -6px">
                                 </div>
-
                                 <div class="bg-ques-card row" id="yy-home-card">
-
                                     <% yy.forEach(function(y){ %>
                                         <div class="col-md-6 ">
                                             <div class="clearfix card">
                                                 <div class="bg-ques-card-head left">
-                                                    <a href="./doctor/<%= y.id %>">
+                                                    <a href="./doctor/<%= y.id %>?type=yy">
                                                         <img src="<%= y.iconUrl %>" alt="">
                                                     </a>
-                                                    <span href="./doctor/<%= y.id %>" class="bg-ques-search-btn bg-mt-16 home-yy-shoushu">预约手术</span>
+                                                    <span href="./doctor/<%= y.id %>?type=yy" class="bg-ques-search-btn bg-mt-16 home-yy-shoushu">预约手术</span>
                                                 </div>
                                                 <div class="bg-ques-card-content left">
                                                     <div>
