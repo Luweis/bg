@@ -27,7 +27,7 @@
                                             <%})%>
                                     </div>
                                             <% if(query.length > 0){%>
-                                                <h5 style="margin-bottom:15px">为您找到相关的搜索结果<%= hl.length %>条</h5>
+                                                <h5 style="margin-bottom:15px">为您找到以下相关资讯文章</h5>
                                             <%}%>
                                 </div>
                                 <div class="bg-ques-doctor">
@@ -41,7 +41,7 @@
                                             <a href="./article/<%= h.id %>" class="normal-a">
                                                 <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
                                                 <div class="left padd-lf-15px bg-news">
-                                                    <div class="font-size-base">
+                                                    <div class="font-size-base multiLineText2">
                                                         <%= h.title %>
                                                     </div>
                                                     <div class="padd-tb-10 multiLineText3">
@@ -94,6 +94,15 @@
                     font-family: PingFangSC-Regular;
                     font-size: 13px;
                     color: #999999;
+                }
+                .multiLineText2 {
+                    word-break: break-all;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    height: 40;
+                    font-family: PingFangSC-Regular;
                 }
 
                 body {

@@ -194,7 +194,7 @@
                                             <span>更多></span>
                                         </a>
                                     </h1>
-                                    <p>专业骨科⽀具矫形器、运动康复器器材商城</p>
+                                    <p>专业骨科⽀具矫形器、运动康复器材商城</p>
                                 </div>
                                 <!--保险-->
                                 <% surgeryInsuranceList.forEach(function(sur, index){ %>
@@ -260,7 +260,7 @@
                                         <a href="./article/<%= h.id %>" class="normal-a">
                                             <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
                                             <div class="left padd-lf-15px bg-news">
-                                                <div class="font-size-base">
+                                                <div class="font-size-base multiLineText2">
                                                     <%= h.title %>
                                                 </div>
                                                 <div class="padd-tb-10 multiLineText3 line-count">
@@ -303,6 +303,15 @@
                             font-family: PingFangSC-Regular;
                             color: #999999;
                         }
+                        .multiLineText2 {
+                    word-break: break-all;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    height: 40;
+                    font-family: PingFangSC-Regular;
+                }
 
                         a:hover {
                             text-decoration: none;
