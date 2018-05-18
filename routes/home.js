@@ -28,8 +28,8 @@ const env = {
 
 const baseApi = env[currentEnv].controllerBaseUrl;
 // 获取推荐医生
-function doctors(keyWord) {
-  return http({
+function doctors(keyWord){
+  const doctors =  http({
     url: `${baseApi}operationOrderController/getConsultDoctor`,
     config: {
       body: JSON.stringify({
@@ -38,6 +38,7 @@ function doctors(keyWord) {
       })
     }
   });
+ return  doctors
 }
 
 async function home(ctx) {
@@ -333,8 +334,7 @@ router.get("/interlocution", async ctx => {
       })
     }
   });
-
-  const doctor = doctors(keyWord);
+  const doctor = await doctors(keyWord);
   return ctx.render("interlocution", {
     helpers: utils,
     index: 3,
@@ -373,8 +373,7 @@ router.get("/interlocution/:id", async ctx => {
     }
   });
   const first = qa["resultBodyObject"]["rows"][0];
-  const doctor = doctors("");
-  console.log('relateAnswers',relateAnswers)
+  const doctor = await doctors("");
   return ctx.render("interlocutionDetail", {
     helpers: utils,
     index: 3,
