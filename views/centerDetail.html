@@ -1,0 +1,31 @@
+<html lang="en">
+    <%- include('./link.html') %>
+<body>
+    <!--header-->
+    <%- include("./head.html") %>
+<!--main-->
+<div class="common-main container">
+        <div class="articleDetail-text">
+            <%- content %>
+        </div>
+</div>
+<style>
+   .aboutUs-text{
+    font:17px/30px "微软雅黑";
+    color:#686868;
+    margin-top:40px;
+ }
+ .aboutUs-text p{
+    margin:10px 0;
+}
+.aboutUs-title{
+    font:28px/28px "微软雅黑";
+    color:#3e3e3e;
+    margin-top:40px;
+}
+</style>
+<!--footer-->
+<%- include("./footer.html") %>
+<%- help.jsIncludeTag('main') %>
+</body>
+</html>

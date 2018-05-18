@@ -13,8 +13,7 @@ function check(data, tip = "暂无") {
   return data ? data : tip;
 }
 
-const currentEnv = process.env.NODE_ENV === "development" ? "pro" : "dev";
-
+const currentEnv = process.env.NODE_ENV === "development" ? "dev" : "pro";
 const env = {
   dev: {
     controllerBaseUrl:
@@ -34,7 +33,8 @@ function doctors(keyWord) {
     url: `${baseApi}operationOrderController/getConsultDoctor`,
     config: {
       body: JSON.stringify({
-        keyWord
+        keyWord,
+        pageSize:8,
       })
     }
   });
@@ -92,36 +92,6 @@ async function home(ctx) {
     }
   });
   let links = footer_links["resultBodyObject"]["enumItems"] || [];
-
-  //康复中心 关于我们 加入我们
-  const top = await http({
-    url: `${baseApi}linkQueryController/getAboutUsInfo`,
-    config: {
-      body: JSON.stringify({
-        size: 4
-      })
-    }
-  });
-  let tops = top["resultBodyObject"]["enumItems"] || [];
-
-  common["joinUs"] =
-    tops
-      .filter(item => {
-        return item.key == "JOINUS";
-      })
-      .pop() || {};
-  common["aboutUs"] =
-    tops
-      .filter(item => {
-        return item.key == "CONTACTUS";
-      })
-      .pop() || {};
-  common["recover_center"] =
-    tops
-      .filter(item => {
-        return item.key == "RECOVERCENTER";
-      })
-      .pop() || {};
   common["links"] = links;
 
   const goods = await http({
@@ -229,7 +199,7 @@ router.get("/doctor/search", async ctx => {
       body: JSON.stringify({
         doctorTypeList,
         pageIndex: params.page || 1,
-        pageSize: 10,
+        pageSize: 8,
         query: params.query
       })
     }
@@ -353,9 +323,7 @@ const aboutAts = keyWord => {
 //经典问答
 router.get("/interlocution", async ctx => {
   let keyWord = ctx.query.keyWord || "";
-
   keyWord = decodeURIComponent(keyWord);
-
   const qa = await http({
     url: `${baseApi}questionController/getQuestionList`,
     config: {
@@ -383,17 +351,6 @@ router.get("/interlocution", async ctx => {
 router.get("/interlocution/:id", async ctx => {
   let keyWord = ctx.query.keyWord || "";
   keyWord = decodeURIComponent(keyWord);
-  const ats = await aboutAts(keyWord);
-  const relateAnswers = await http({
-    url: `${baseApi}questionController/queryRelatedQuestionList`,
-    config: {
-      body: JSON.stringify({
-        keyWord,
-        pageCount: 5
-      })
-    }
-  });
-
   const qa = await http({
     url: `${baseApi}questionController/getQuestionList`,
     config: {
@@ -403,18 +360,29 @@ router.get("/interlocution/:id", async ctx => {
       })
     }
   });
-
+  const ats = await aboutAts("");
+  //相关问答
+  const relateAnswers = await http({
+    url: `${baseApi}questionController/queryRelatedQuestionList`,
+    config: {
+      body: JSON.stringify({
+        // keyWord,
+        pageCount: 1,
+        pageSize:8,
+      })
+    }
+  });
   const first = qa["resultBodyObject"]["rows"][0];
-  const doctor = doctors(keyWord);
-
+  const doctor = doctors("");
+  console.log('relateAnswers',relateAnswers)
   return ctx.render("interlocutionDetail", {
     helpers: utils,
     index: 3,
     common,
     help,
-    qa: [first] || [],
+    qa:[first] || [],
     doctor:
-      (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
+(doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
     keyWord,
     ats: ats["resultBodyObject"], // 相关文章
     relateAnswers: relateAnswers["resultBodyObject"]
@@ -440,7 +408,8 @@ router.get("/disease", async ctx => {
     url: `${baseApi}operationOrderController/getConsultDoctor`,
     config: {
       body: JSON.stringify({
-        keyWord
+        keyWord,
+        pageSize: 8
       })
     }
   });
@@ -632,25 +601,6 @@ router.get("/buy", async ctx => {
   });
 });
 
-//关于我们
-router.get("/about-us", async ctx => {
-  return ctx.render("aboutUs", {
-    helpers: utils,
-    index: 8,
-    common,
-    help
-  });
-});
-//加入我们
-router.get("/join-us", async ctx => {
-  return ctx.render("joinUs", {
-    helpers: utils,
-    index: 8,
-    common,
-    help
-  });
-});
-
 //App下载
 router.get("/download", async ctx => {
   return ctx.render("download", {
@@ -669,4 +619,47 @@ router.get("/sorry", async ctx => {
   });
 });
 
+
+async function center(ctx,type){
+  const resp = await http({
+    url: `${baseApi}healthyController/queryHealthyCenter`,
+    config: {
+      body: JSON.stringify({
+        "articleType":type
+      })
+    }
+  });
+  return ctx.render("centerList", {
+    index: -1,
+    common,
+    help,
+    list:resp['resultBodyObject']['rows'] || []
+  });
+}
+
+router.get("/healthy-center", async ctx => {
+  await center(ctx,10)
+});
+
+router.get("/join-us", async ctx => {
+  await center(ctx,11)
+});
+
+router.get("/center/:id", async ctx => {
+  const id   = ctx.url.split("/")[2].split('?')[0];
+  const resp = await http({
+    url: `${baseApi}healthyController/getHealthyCenterDetail`,
+    config: {
+      body: JSON.stringify({
+        "id":2251,
+      })
+    }
+  });
+  return ctx.render("centerDetail", {
+    index: -1,
+    common,
+    help,
+    content:resp['resultBodyObject']['content'] 
+  });
+});
 module.exports = router;

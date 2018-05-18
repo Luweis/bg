@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./link.html') %>
+
+    <body>
+        <%- include('./head.html') %>
+            <div class="bg-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="bg-ques-doctor">
+                                <div class="bg-ques-doctor">
+                                    <% list.forEach(function(h){ %>
+                                        <div class="clearfix box">
+                                            <a href="./center/<%= h.id %>" class="normal-a">
+                                                <img src="<%= h.thumbnailUrl %>" alt="" class="left" style="height: 90px;width: 90px">
+                                                <div class="left padd-lf-15px bg-news">
+                                                    <div class="font-size-base multiLineText2">
+                                                        <%= h.title %>
+                                                    </div>
+                                                    <div class="padd-tb-10 multiLineText3">
+                                                        <%= h.desc%>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <% }) %>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .multiLineText3 {
+                    word-break: break-all;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    height: 60;
+                    margin-bottom: 10px;
+                    font-family: PingFangSC-Regular;
+                    font-size: 13px;
+                    color: #999999;
+                }
+                .multiLineText2 {
+                    word-break: break-all;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    height: 40;
+                    font-family: PingFangSC-Regular;
+                }
+
+                body {
+                    height: 100%;
+                    width: 100%;
+                }
+
+                .padd-lf-15px {
+                    padding-left: 15px;
+                }
+
+                .bg-main {
+                    margin-top: 30px;
+                }
+
+                .bg-line {
+                    position: relative;
+                    height: 1px;
+                    background-color: #E7E7E7;
+                }
+
+                .bg-line:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    display: inline-block;
+                    background-color: #A11715;
+                    height: 100%;
+                    width: 95px;
+                }
+
+                .bg-swiper img {
+                    width: 100%;
+                }
+
+                .bg-convenience-way img {
+                    width: 60px;
+                }
+
+                .bg-convenience-way .title {
+                    font-size: 14px;
+                    color: #545454;
+                }
+
+                .bg-convenience-way .desc {
+                    width: calc(100% - 60px);
+                    padding-left: 16px;
+                }
+
+
+                .bg-ques-card-content .has-line {
+                    border-bottom: 1px solid #E7E7E7;
+                }
+
+                .bg-ques-doctor .title {
+                    position: relative;
+                    font-size: 24px;
+                    color: black;
+                    padding: 10px 0;
+                    font-family: 'PingFangSC-Medium';
+                }
+
+                .bg-ques-doctor .title span {
+                    font-size: 14px;
+                    color: #B8B8B8;
+                    position: absolute;
+                    right: 0;
+                }
+
+                .bg-ques-doctor p {
+                    color: #B8B8B8;
+                    font-size: 14px;
+                }
+
+
+                .bg-search-bar {
+                    padding: 20px 0;
+                }
+
+                .bg-search-bar .search {
+                    width: 70%;
+                    height: 34px;
+                    padding: 0 10px;
+                    border: 1px solid #E7E7E7;
+                    border-radius: 0;
+                }
+
+                .bg-search-bar .search-btn {
+                    height: 34px;
+                }
+
+                .bg-ques-card-head img {
+                    display: block;
+                    width: 60px;
+                    height: 60px;
+                }
+
+                .padd-tb-10 {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+
+                .bg-ques-card-content span.name {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #545454;
+                    text-align: center;
+                }
+
+                .bg-ques-card-content span {
+                    padding-right: 10px;
+                }
+
+                .bg-news {
+                    width: calc(100% - 90px);
+                }
+
+                .bg-coop-hospital {
+                    margin-top: 30px;
+                }
+
+                .bg-coop-hospital img {
+                    height: 50px;
+                    vertical-align: middle;
+                }
+
+                .bg-coop-hospital>div {
+                    font-family: PingFangSC-Regular;
+                    font-size: 16px;
+                    color: #000000;
+                }
+
+                .box {
+                    padding: 40px 0;
+                    border-bottom: 1px solid #E7E7E7;
+                }
+
+                .box:first-child {
+                    border-top: 1px solid #E7E7E7;
+                }
+
+                .bg-usually-bin {
+                    font-family: PingFangSC-Semibold;
+                    font-size: 16px;
+                    color: #A11715;
+                }
+
+                .bg-jb-class-tag {
+                    display: inline-block;
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #333;
+                    padding: 10px;
+                }
+
+                .bg-jb-class-tag-active {
+                    color: #A11715;
+                }
+            </style>
+            <%- include('./footer')%>                
+    </body>
+
+</html>
