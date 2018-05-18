@@ -45,13 +45,13 @@
             <div class="margin-top-20">
                 <% equipments.forEach(function(item){ %>
                 <div class="col-md-3 col-sm-4 col-xs-6 " style="margin-bottom: 56px">
-                    <a href="./mall/equipment/55" class="normal-a">
+                    <a href="./mall/equipment/<%= item.id %>" class="normal-a">
                     <img  src="<%= item.imgUrl %>" alt="保险图片"
                          class="item-2-price-image">
                     </a>
 
                     <div style="margin-top: 10px; width: 180px">
-                        <a href="./mall/equipment/55" class="normal-a">
+                        <a href="./mall/equipment/<%= item.id %>" class="normal-a">
                         <div class="item-1-title text-ellipsis">
                             <%= item.title %>
                         </div>
