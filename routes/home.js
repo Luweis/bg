@@ -650,7 +650,7 @@ router.get("/center/:id", async ctx => {
     url: `${baseApi}healthyController/getHealthyCenterDetail`,
     config: {
       body: JSON.stringify({
-        "id":2251,
+        id,
       })
     }
   });
