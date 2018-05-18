@@ -49,7 +49,7 @@
                         </div>
                         <% if (doctorDetail.doctorType === "咨询医生" && doctorDetail.binaryCodeUrl){ %>
                             <div class="col-sm-2 doctorHomePage-qrcode-wrap">
-                                <img src="/assets/images/service.jpg" class="doctorHomePage-details-headImg" id="doc_binaryCodeUrl">
+                                <img src="<%= doctorDetail.binaryCodeUrl %>" class="doctorHomePage-details-headImg" id="doc_binaryCodeUrl">
                                 <div class="doctorHomePage-details-qrcode-desc">微信扫描二维码立即咨询</div>
                                 <div></div>
                             </div>
