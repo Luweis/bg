@@ -489,6 +489,8 @@ router.get("/disease/:id", async ctx => {
     }
   });
 
+  console.log(resp["resultBodyObject"]);
+
   return ctx.render("illnessDetail", {
     helpers: utils,
     index: -1,

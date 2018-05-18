@@ -25,7 +25,7 @@
                         <% (item.answerDatas || []).forEach(function(answer){ %>
                         <div class="clearfix answer-card">
                             <span class="ques-tip left">答</span>
-                            <div class="col-xs-10 col-md-7">
+                            <div class="col-xs-10">
                                 <div class="clearfix card border-card">
                                     <div class="bg-ques-card-head left">
                                         <a href="/doctor/<%= answer.doctorId%>">
@@ -55,15 +55,17 @@
 
                 <div style="margin-top: 40px;">
                     <h3 class="title">相关文章阅读</h3>
-                   <%    if (ats.length > 0) { %>
+                    <ul>
+                        <% if (ats.length > 0) { %>
 
-                    <% ats.forEach(function(at){ %>
-                    <div class="font-size-base">
-                        <a class="tuijian" href="/article/<%= at.id %>"><%= at.title %></a>
-                    </div>
+                        <% ats.forEach(function(at){ %>
+                        <li class="actical-title">
+                            <a class="tuijian font-size-base" href="/article/<%= at.id %>"><%= at.title %></a>
+                        </li>
+                    </ul>
                     <% })%>
 
-                   <%  } else{ %>
+                    <% } else{ %>
 
                     <div>未找到相关数据</div>
 
@@ -73,15 +75,18 @@
                 <!--相关问答内容-->
                 <div style="padding: 40px 0">
                     <h3 class="title">相关问答</h3>
-                    <%    if (ats.length > 0) { %>
-                    <% relateAnswers.forEach(function(ras){ %>
-                    <div class="font-size-base">
-                        <a class="tuijian" href="/interlocution/<%= ras.id %>"><%= at.title %></a>
-                    </div>
+                    <ul>
+                        <% if (ats.length > 0) { %>
+                        <% relateAnswers.forEach(function(ras){ %>
+                        <li class="actical-title">
+                            <a class="tuijian font-size-base" href="/interlocution/<%= ras.id %>"><%= at.title %></a>
+                        </li>
+
+                    </ul>
                     <% })%>
 
 
-                    <%  } else{ %>
+                    <% } else{ %>
 
                     <div>未找到相关数据</div>
 
@@ -118,12 +123,12 @@
         border: 1px solid #2E2E2E;
     }
 
-    .mobile-bar li>a {
+    .mobile-bar li > a {
         font-size: 14px;
         color: white;
     }
 
-    .mobile-bar li>a:hover {
+    .mobile-bar li > a:hover {
         text-decoration: none;
     }
 
@@ -151,7 +156,6 @@
         height: 100%;
         width: 95px;
     }
-
 
     .bg-ques-card-content {
         padding-left: 15px;
@@ -250,7 +254,7 @@
         padding: 20px 0;
     }
 
-    .card+.bg-answer-ques-detail {
+    .card + .bg-answer-ques-detail {
         font-family: PingFangSC-Regular;
         font-size: 14px;
         color: #545454;
@@ -260,20 +264,39 @@
         padding-bottom: 20px;
     }
 
+    .actical-title {
+        position: relative;
+    }
+
+    .actical-title::before {
+        position: absolute;
+        top: 12px;
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background-color: #A11715;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
     @media (max-width: 996px) {
         .md-mt-40:not(:first-child) {
             margin-top: 40px;
         }
+
         .re-doctor {
             display: none;
         }
     }
 
-    .tuijian{
+    .tuijian {
         display: inline-block;
         padding: 5px 0;
+        margin-left: 20px;
     }
-    .tuijian:hover{
+
+    .tuijian:hover {
         color: #A11715;
     }
 </style>

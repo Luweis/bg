@@ -7,46 +7,56 @@
     <div class="container">
         <div class="bg-ques-doctor margin-top-30 col-md-8">
             <!-- 搜索 -->
-            <div class="bg-head-title" ><%= diseases.illnessName%></div>
+            <div class="bg-head-title"><%= diseases.illnessName%></div>
             <nav class="bg-na-dis">
                 <a class="active" data-index="0">介绍</a>
-                <a  data-index="1">病因</a>
-                <a  data-index="2">症状</a>
-                <a  data-index="3">检查</a>
-                <a  data-index="4">预防</a>
-                <a  data-index="5">鉴别诊断</a>
-                <a  data-index="6">并发症</a>
+                <a data-index="1">病因</a>
+                <a data-index="2">症状</a>
+                <a data-index="3">检查</a>
+                <a data-index="4">预防</a>
+                <a data-index="5">鉴别诊断</a>
+                <a data-index="6">并发症</a>
+                <a data-index="7">治疗</a>
             </nav>
-           <div class="bg-dis-content">
-            <div class="show">
-                <%- diseases.introduce %>
-            </div>
-            <div class="hide">
-                <%- diseases.reason %>
-            </div>
-            <div class="hide">
-                <%- diseases.check %>
-            </div>
-            <div class="hide">
-                <%- diseases.symptom %>
-            </div>
-            <div class="hide">
-                <%- diseases.introduce %>
-            </div>
+            <div class="bg-dis-content font-size-base">
+                <div class="show">
+                    <%- diseases.introduce %>
+                </div>
+                <div class="hide">
+                    <%- diseases.reason %>
+                </div>
+                <div class="hide">
+                    <%- diseases.symptom %>
+                </div>
+                <div class="hide">
+                    <%- diseases.check %>
+                </div>
+                <div class="hide">
+                    <%- diseases.precaution %>
+                </div>
 
-            <div class="hide">
-                <%- diseases.complication %>
+                <div class="hide">
+                    <%- diseases.antidiastole %>
+                </div>
+                <div class="hide">
+                    <%- diseases.complication %>
+                </div>
+                <div class="hide">
+                    <%- diseases.treat %>
+                </div>
             </div>
-           </div>
 
             <div class="bg-answer-ques">
                 <div class="bg-classic-ques">
                     <% qa.forEach(function(item){ %>
-                    <div class="bg-answer">
-                        <span class="ques-tip">问</span>
-                        <a href="/interlocution/1?keyWord=<%= item.questionData.diseaseDesc %>" >
-                            <span class="font-size-base padd-lf-20 ques-tip-des"><%= item.questionData.diseaseDesc %></span>
+                    <div class="bg-answer row">
+                        <div class="col-xs-1" style="max-width: 25px">
+                            <span class="ques-tip">问</span>
+                        </div>
+                        <a href="/interlocution/1?keyWord=<%= item.questionData.diseaseDesc %>">
+                            <span class="col-xs-10 font-size-base padd-lf-20 ques-tip-des"><%= item.questionData.diseaseDesc %></span>
                         </a>
+
                     </div>
                     <% }) %>
                 </div>
@@ -74,10 +84,10 @@
                                 <%= d.realName%>
                             </div>
                             <div class="doctor-des">
-                               <%=d.departmentName%> <%=d.title%>
+                                <%=d.departmentName%> <%=d.title%>
                             </div>
                             <div class="doctor-des">
-                              <%= d.hospitalName%>
+                                <%= d.hospitalName%>
                             </div>
                         </div>
                     </a>
@@ -90,31 +100,35 @@
 </div>
 </div>
 <style>
-    a:hover{
+    a:hover {
         text-decoration: none;
     }
-    .bg-head-title{
+
+    .bg-head-title {
         font-family: PingFangSC-Medium;
         font-size: 24px;
         color: #000000;
     }
 
-    .bg-na-dis{
+    .bg-na-dis {
         border-bottom: 1px solid #E7E7E7;
     }
 
-    .bg-dis-content{
+    .bg-dis-content {
         padding: 20px 0 30px;
         border-bottom: 1px dashed #E7E7E7;
     }
-    .bg-na-dis a{
+
+    .bg-na-dis a {
+        font-size: 14px;
         padding: 16px;
         display: inline-block;
 
     }
 
-    .bg-na-dis  a.active{
+    .bg-na-dis a.active {
         border-bottom: 1px solid #9d1a1c;
+        color: #9d1a1c;
     }
 
     .normal-a {
@@ -147,12 +161,12 @@
         border: 1px solid #2E2E2E;
     }
 
-    .mobile-bar li>a {
+    .mobile-bar li > a {
         font-size: 14px;
         color: white;
     }
 
-    .mobile-bar li>a:hover {
+    .mobile-bar li > a:hover {
         text-decoration: none;
     }
 
@@ -185,7 +199,6 @@
         height: 100%;
         width: 95px;
     }
-
 
     .bg-ques-search-btn {
         display: inline-block;
@@ -301,7 +314,7 @@
         padding: 20px 0;
     }
 
-    .card+.bg-answer-ques-detail {
+    .card + .bg-answer-ques-detail {
         font-family: PingFangSC-Regular;
         font-size: 14px;
         color: #545454;
@@ -373,6 +386,7 @@
         .md-mt-40:not(:first-child) {
             margin-top: 40px;
         }
+
         .re-doctor {
             display: none;
         }
@@ -382,38 +396,38 @@
 <%- include("./footer.html") %>
 <script>
 
-    function attr (el, attr) {
-      return el.getAttribute(attr);
-    }
-
-var btns = document.querySelectorAll('.bg-na-dis a');
-var content = document.querySelectorAll('.bg-dis-content  > div');
-document.querySelector('.bg-na-dis').addEventListener('click', function (e) {
-  var currentIndex = 0;
-
-  if (e.target.nodeName === 'A') {
-    btns.forEach(function (a, idx) {
-      if (attr(a,'data-index') === attr(e.target, 'data-index')) {
-
-        currentIndex = idx;
-
-       if ( a.className.indexOf('active') === -1) {
-         a.className += ' active';
-       }
-      } else {
-        a.className = a.className.replace('active', '')
-      }
-    });
-
-    content.forEach(function (item, idx) {
-      if (idx === currentIndex) {
-        item.className = item.className.replace('hide', 'show');
-      }else {
-        item.className = item.className.replace('show', 'hide');
-      }
-    });
+  function attr(el, attr) {
+    return el.getAttribute(attr);
   }
-});
+
+  var btns = document.querySelectorAll('.bg-na-dis a');
+  var content = document.querySelectorAll('.bg-dis-content  > div');
+  document.querySelector('.bg-na-dis').addEventListener('click', function (e) {
+    var currentIndex = 0;
+
+    if (e.target.nodeName === 'A') {
+      btns.forEach(function (a, idx) {
+        if (attr(a, 'data-index') === attr(e.target, 'data-index')) {
+
+          currentIndex = idx;
+
+          if (a.className.indexOf('active') === -1) {
+            a.className += ' active';
+          }
+        } else {
+          a.className = a.className.replace('active', '')
+        }
+      });
+
+      content.forEach(function (item, idx) {
+        if (idx === currentIndex) {
+          item.className = item.className.replace('hide', 'show');
+        } else {
+          item.className = item.className.replace('show', 'hide');
+        }
+      });
+    }
+  });
 
 </script>
 </body>
