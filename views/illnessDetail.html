@@ -14,35 +14,34 @@
                 <a data-index="2">症状</a>
                 <a data-index="3">检查</a>
                 <a data-index="4">预防</a>
+                <a data-index="7">治疗</a>
                 <a data-index="5">鉴别诊断</a>
                 <a data-index="6">并发症</a>
-                <a data-index="7">治疗</a>
             </nav>
             <div class="bg-dis-content font-size-base">
                 <div class="show">
-                    <%- diseases.introduce %>
+                    <%- diseases.introduce.replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.reason %>
+                    <%- diseases.reason.replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.symptom %>
+                    <%- diseases.symptom.replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.check %>
+                    <%- diseases.check.replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.precaution %>
-                </div>
-
-                <div class="hide">
-                    <%- diseases.antidiastole %>
+                    <%- diseases.precaution.replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.complication %>
+                    <%- diseases.treat.replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.treat %>
+                    <%- diseases.antidiastole.replace(/\n/g,'<br />') %>
+                </div>
+                <div class="hide">
+                    <%- diseases.complication.replace(/\n/g,'<br />') %>
                 </div>
             </div>
 

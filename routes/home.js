@@ -372,6 +372,7 @@ router.get("/interlocution/:id", async ctx => {
       })
     }
   });
+  console.log(relateAnswers)
   const first = qa["resultBodyObject"]["rows"][0];
   const doctor = await doctors("");
   return ctx.render("interlocutionDetail", {

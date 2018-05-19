@@ -50,24 +50,18 @@
                         <% }) %>
                     </div>
                 </div>
-
                 <!--相关文章推荐-->
-
                 <div style="margin-top: 40px;">
-<<<<<<< HEAD
                     <h3 class="title">相关文章阅读</h3>
                     <ul>
                         <% if (ats.length > 0) { %>
-
                         <% ats.forEach(function(at){ %>
                         <li class="actical-title">
                             <a class="tuijian font-size-base" href="/article/<%= at.id %>"><%= at.title %></a>
                         </li>
                     </ul>
                     <% })%>
-
                     <% } else{ %>
-
                     <div>未找到相关数据</div>
                     <% } %>
                 </div>
@@ -79,15 +73,11 @@
                         <% if (ats.length > 0) { %>
                         <% relateAnswers.forEach(function(ras){ %>
                         <li class="actical-title">
-                            <a class="tuijian font-size-base" href="/interlocution/<%= ras.id %>"><%= at.title %></a>
+                            <a class="tuijian font-size-base" href="/interlocution/<%= ras.id %>"><%= ras.title %></a>
                         </li>
-
                     </ul>
                     <% })%>
-
-
                     <% } else{ %>
-
                     <div>未找到相关数据</div>
                     <% } %>
                 </div>
@@ -302,5 +292,4 @@
 <!--footer-->
 <%- include("./footer.html") %>
 </body>
-
 </html>
