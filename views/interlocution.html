@@ -40,33 +40,6 @@
                                             <span class="col-xs-10 font-size-base padd-lf-15px ques-tip-des"><%= item.questionData.diseaseDesc %></span>
                                         </a>
                                         </div>
-                                        <% (item.answerDatas || []).forEach(function(answer){ %>
-                                            <% if (keyWord.length  > 1) { %>
-                                                <div class="clearfix answer-card">
-                                                    <span class="ques-tip left">答</span>
-                                                    <div class="col-xs-10 col-md-7">
-                                                        <div class="clearfix card border-card">
-                                                            <div class="bg-ques-card-head left">
-                                                                <a href="/doctor/<%= answer.doctorId%>">
-                                                                    <img src="<%= answer.headUrl%>" alt="">
-                                                                </a>
-                                                            </div>
-                                                            <div class="bg-ques-card-content left">
-                                                                <div>
-                                                                    <span class="name"><%= answer.name %></span>
-                                                                    <span><%= answer.department %></span>
-                                                                    <span><%= answer.jobTitle %></span>
-                                                                </div>
-                                                                <div class="padd-tb-10 ">
-                                                                        <%= answer.hospital %>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <p class="bg-answer-ques-detail"><%= answer.content %></p>
-                                                    </div>
-                                                </div>
-                                              <% }%>
-                                        <% }) %>
                                     <% }) %>
                                 </div>
                             </div>
@@ -279,7 +252,6 @@
                     }
                 }
             </style>
-
             <!--footer-->
             <%- include("./footer.html") %>
     <script>

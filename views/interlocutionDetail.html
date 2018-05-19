@@ -67,13 +67,12 @@
                 </div>
                 <!--相关问答内容-->
                 <div style="padding: 40px 0">
-                    
-                    <h3 class="title">相关问答</h3>
+                    <h3 class="title">相关经典问答</h3>
                     <ul>
                         <% if (ats.length > 0) { %>
                         <% relateAnswers.forEach(function(ras){ %>
                         <li class="actical-title">
-                            <a class="tuijian font-size-base" href="/interlocution/<%= ras.id %>"><%= ras.title %></a>
+                            <a class="tuijian font-size-base" href="/interlocution/<%= ras.id %>"><%= ras.content %></a>
                         </li>
                     </ul>
                     <% })%>
