@@ -20,28 +20,28 @@
             </nav>
             <div class="bg-dis-content font-size-base">
                 <div class="show">
-                    <%- diseases.introduce.replace(/\n/g,'<br />') %>
+                    <%- (diseases.introduce || '').replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.reason.replace(/\n/g,'<br />') %>
+                    <%- (diseases.reason || '').replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.symptom.replace(/\n/g,'<br />') %>
+                    <%- (diseases.symptom || '').replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.check.replace(/\n/g,'<br />') %>
+                    <%- (diseases.check || '').replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.precaution.replace(/\n/g,'<br />') %>
+                    <%- (diseases.precaution || '').replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.treat.replace(/\n/g,'<br />') %>
+                    <%- (diseases.treat || '').replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.antidiastole.replace(/\n/g,'<br />') %>
+                    <%- (diseases.antidiastole || '').replace(/\n/g,'<br />') %>
                 </div>
                 <div class="hide">
-                    <%- diseases.complication.replace(/\n/g,'<br />') %>
+                    <%- (diseases.complication || '').replace(/\n/g,'<br />') %>
                 </div>
             </div>
             <div class="bg-answer-ques">
