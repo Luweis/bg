@@ -18,7 +18,7 @@
                 <a data-index="5">鉴别诊断</a>
                 <a data-index="6">并发症</a>
             </nav>
-            <div class="bg-dis-content font-size-base">
+            <div class="bg-dis-content font-size-base col-md-9">
                 <div class="show">
                     <%- (diseases.introduce || '').replace(/\n/g,'<br />') %>
                 </div>
@@ -44,7 +44,7 @@
                     <%- (diseases.complication || '').replace(/\n/g,'<br />') %>
                 </div>
             </div>
-            <div class="bg-answer-ques">
+            <div class="bg-answer-ques col-md-11">
                 <h3 class="title">相关经典问答</h3>
                 <div class="bg-classic-ques">
                     <% qa.forEach(function(item){ %>
@@ -63,7 +63,7 @@
 
         </div>
         <!-- 推荐医生 -->
-        <div class="col-md-4 re-doctor">
+        <div class="col-md-4 re-doctor ">
             <div class="bg-ques-doctor">
                 <div>
                     <div class="bg-line"></div>
