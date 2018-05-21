@@ -372,7 +372,6 @@ router.get("/interlocution/:id", async ctx => {
       })
     }
   });
-  console.log(relateAnswers)
   const first = qa["resultBodyObject"]["rows"][0];
   const doctor = await doctors("");
   return ctx.render("interlocutionDetail", {
@@ -381,8 +380,7 @@ router.get("/interlocution/:id", async ctx => {
     common,
     help,
     qa:[first] || [],
-    doctor:
-(doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
+    doctor:(doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
     keyWord,
     ats: ats["resultBodyObject"], // 相关文章
     relateAnswers: relateAnswers["resultBodyObject"]
@@ -437,29 +435,21 @@ router.get("/disease/:id", async ctx => {
       })
     }
   });
-
-  const doctor = await http({
-    url: `${baseApi}operationOrderController/getConsultDoctor`,
-    config: {
-      body: JSON.stringify({
-        pageSize: 4
-      })
-    }
-  });
+  
+  const keyWord = resp['resultBodyObject'].illnessName || ''
+  const doctor = await doctors(keyWord)
 
   //经典问答
   const answer = await http({
     url: `${baseApi}questionController/getQuestionList`,
     config: {
       body: JSON.stringify({
-        keyWord: "",
-        pageCount: 1
+        keyWord: keyWord,
+        pageCount: 1,
+        pageSize:8
       })
     }
   });
-
-  console.log(resp["resultBodyObject"]);
-
   return ctx.render("illnessDetail", {
     helpers: utils,
     index: -1,

@@ -18,30 +18,30 @@
                 <a data-index="5">鉴别诊断</a>
                 <a data-index="6">并发症</a>
             </nav>
-            <div class="bg-dis-content font-size-base col-md-9">
+            <div class="bg-dis-content font-size-base col-md-9 right">
                 <div class="show">
-                    <%- (diseases.introduce || '').replace(/\n/g,'<br />') %>
+                    <%- helpers.fullChar2halfChar((diseases.introduce || '').replace(/\n/g,'<br />')) %>
                 </div>
                 <div class="hide">
-                    <%- (diseases.reason || '').replace(/\n/g,'<br />') %>
+                    <%- helpers.fullChar2halfChar((diseases.reason || '').replace(/\n/g,'<br />')) %>
                 </div>
                 <div class="hide">
-                    <%- (diseases.symptom || '').replace(/\n/g,'<br />') %>
+                    <%- helpers.fullChar2halfChar((diseases.symptom || '').replace(/\n/g,'<br />')) %>
                 </div>
                 <div class="hide">
-                    <%- (diseases.check || '').replace(/\n/g,'<br />') %>
+                    <%- helpers.fullChar2halfChar((diseases.check || '').replace(/\n/g,'<br />')) %>
                 </div>
                 <div class="hide">
-                    <%- (diseases.precaution || '').replace(/\n/g,'<br />') %>
+                    <%- helpers.fullChar2halfChar((diseases.precaution || '').replace(/\n/g,'<br />')) %>
                 </div>
                 <div class="hide">
-                    <%- (diseases.treat || '').replace(/\n/g,'<br />') %>
+                    <%- helpers.fullChar2halfChar((diseases.treat || '').replace(/\n/g,'<br />')) %>
                 </div>
                 <div class="hide">
-                    <%- (diseases.antidiastole || '').replace(/\n/g,'<br />') %>
+                    <%- helpers.fullChar2halfChar((diseases.antidiastole || '').replace(/\n/g,'<br />')) %>
                 </div>
                 <div class="hide">
-                    <%- (diseases.complication || '').replace(/\n/g,'<br />') %>
+                    <%- helpers.fullChar2halfChar((diseases.complication || '').replace(/\n/g,'<br />')) %>
                 </div>
             </div>
             <div class="bg-answer-ques col-md-11">
@@ -398,18 +398,14 @@
   function attr(el, attr) {
     return el.getAttribute(attr);
   }
-
   var btns = document.querySelectorAll('.bg-na-dis a');
   var content = document.querySelectorAll('.bg-dis-content  > div');
   document.querySelector('.bg-na-dis').addEventListener('click', function (e) {
     var currentIndex = 0;
-
     if (e.target.nodeName === 'A') {
       btns.forEach(function (a, idx) {
         if (attr(a, 'data-index') === attr(e.target, 'data-index')) {
-
           currentIndex = idx;
-
           if (a.className.indexOf('active') === -1) {
             a.className += ' active';
           }
@@ -417,7 +413,6 @@
           a.className = a.className.replace('active', '')
         }
       });
-
       content.forEach(function (item, idx) {
         if (idx === currentIndex) {
           item.className = item.className.replace('hide', 'show');
