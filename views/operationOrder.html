@@ -55,7 +55,7 @@
             <% }) %>
         </div>
     </div>
-    <div class="relative yy-page-p">
+    <div class="relative yy-page-p pc-banner-show">
         <div id="box" class="box"></div>
     </div>
 
@@ -517,7 +517,7 @@ color: #000000;
 
     .banner-show {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         flex-wrap: wrap;
         margin-top: 80px;
         padding: 0 54px
@@ -525,13 +525,14 @@ color: #000000;
 
     .yy-banner-card {
         position: relative;
-        flex: 0 0 27%;
+        flex: 0 27%;
         background: #FFFFFF;
         box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.14);
         text-align: center;
         height: 298px;
         padding: 0 32px;
-        margin-bottom: 100px;
+        margin: 0 3% 100px 3%;
+
     }
 
     .yy-banner-card {
@@ -630,8 +631,7 @@ color: #000000;
         }
 
         .yy-banner-card {
-            margin-top: 40px;
-            margin-bottom: 20px;
+            margin: 40px 0 20px 0;
             width: 100%;
             box-shadow: -15px 20px 62px 0 rgba(0, 0, 0, 0.14), 10px 1px 13px 0 rgba(0, 0, 0, 0.14);
             /*box-shadow: none;*/
