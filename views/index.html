@@ -1,15 +1,13 @@
 <html lang="en">
 
 <%- include('./link.html') %>
-
     <body>
         <!--header-->
         <%- include("./head.html") %>
             <!--main-->
-            <main class="bg-main">
+            <div class="bg-main">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-md-8">
                             <div class="bg-swiper" style="position: relative">
                                 <img src="<%= banners[0].resourceUrl %>" alt="" style="opacity: 0">
@@ -57,7 +55,7 @@
                                             <span>更多></span>
                                         </a>
                                     </h1>
-                                    <p>汇聚全国权威医⽣生，只要是⻣骨健康问题，在这⾥里里轻松解决！</p>
+                                    <p>汇聚全国权威医⽣生，只要是骨健康问题，在这⾥里里轻松解决！</p>
                                 </div>
 
                                 <div class="bg-search-bar">
@@ -97,9 +95,7 @@
                                         </div>
                                         <% }) %>
                                 </div>
-
                             </div>
-
                             <!--预约手术-->
                             <div class="bg-ques-doctor margin-top-40">
                                 <div>
@@ -184,7 +180,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-4">
                             <div class="bg-ques-doctor">
                                 <div>
@@ -198,7 +193,7 @@
                                 </div>
                                 <!--保险-->
                                 <% surgeryInsuranceList.forEach(function(sur, index){ %>
-                                    <% if (index>4) return %>
+                                    <% if (index > 4) return %>
                                         <div class="clearfix cell">
                                             <a href="/mall/insurance/<%= sur.id %>">
                                                 <img src="<%= sur.imgUrl %>" alt="" class="left" style="height: 90px;width: 90px">
@@ -208,7 +203,7 @@
                                                     </div>
                                                     <div class="padd-tb-10">
                                                         <span class="bg-shop-price">¥
-                                                            <%= sur.purchasingPrice  %>
+                                                            <%= sur.price  %>
                                                         </span>
                                                         <span class="bg-shop-price-old">¥
                                                             <%= sur.price %>
@@ -219,7 +214,6 @@
                                             </a>
                                         </div>
                                         <% }) %>
-
                                             <!--护具-->
                                             <% gds.forEach(function(g, index){ %>
                                                 <% if (index>4) return %>
@@ -232,7 +226,7 @@
                                                                 </div>
                                                                 <div class="padd-tb-10">
                                                                     <span class="bg-shop-price">¥
-                                                                        <%= g.purchasingPrice %>
+                                                                        <%= g.price %>
                                                                     </span>
                                                                     <span class="bg-shop-price-old">¥
                                                                         <%= g.price %>
@@ -242,9 +236,8 @@
                                                             </div>
                                                         </a>
                                                     </div>
-                                                    <% }) %>
+                                                 <% }) %>
                             </div>
-
                             <div class="bg-ques-doctor" style="margin: 40px 0">
                                 <div>
                                     <div class="bg-line"></div>
@@ -283,12 +276,12 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <% }) %>
+                                <% }) %>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
             <%- include('./queModal/index.html')%>
                 <%- include('./modal')%>
                     <style>
@@ -640,17 +633,15 @@
                             border-color: #db4754;
                         }
 
-                        @media (max-width: 991px) {
+                        @media (max-width: 996px) {
                             .operationOrder-form-label-img,
                             .operationOrder-form-label {
                                 margin-left: 30px;
                             }
-
                             .operationOrderForm-btn-wrap {
                                 width: 100%;
                                 padding-top: 10px;
                             }
-
                             .uploadButton {
                                 display: block;
                                 margin: 10px auto;
@@ -672,7 +663,6 @@
                             }
                         }
                     </style>
-
                     <!--footer-->
                     <%- include("./footer.html") %>
                         <%- help.jsIncludeTag('operation') %>
@@ -700,7 +690,6 @@
                                 })
                                 //
                             </script>
-
     </body>
 
 </html>
