@@ -46,6 +46,7 @@ function fullChar2halfChar(str) {
   }
   return result;
 }
+
 module.exports = {
   jsIncludeTag: (filePath) => {
     return `<script type="text/javascript" src="${getPath(filePath, 'js')}"></script>`;

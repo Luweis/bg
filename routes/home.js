@@ -5,15 +5,15 @@ const utils = require("../utils");
 const help = require("../utils/help.js");
 var cache = {};
 var common = {};
+
 function activeItem(index, current) {
   index !== current ? "test" : "";
 }
-
 function check(data, tip = "暂无") {
   return data ? data : tip;
 }
 
-const currentEnv = process.env.NODE_ENV === "development" ? "dev" : "pro";
+const currentEnv = process.env.NODE_ENV === "development" ? "pro" : "dev";
 const env = {
   dev: {
     controllerBaseUrl:
@@ -168,6 +168,14 @@ router.get("/doctor", async ctx => {
         })
       }
     });
+
+    // 模拟分页
+    const currentIndex = ctx.query.page? ctx.query.page-1 : 0;
+    const rows  = doctors["resultBodyObject"]["rows"].filter((item, index) =>{
+      return index>=currentIndex && index<= currentIndex+5;
+    });
+    doctors["resultBodyObject"]["rows"] = rows;
+    doctors["resultBodyObject"].total = 36;
   }
 
   return ctx.render("consultDoctor", {
@@ -255,7 +263,7 @@ function searchDoctor(ctx) {
       body: JSON.stringify({
         doctorTypeList,
         pageIndex: params.page || 1,
-        pageSize: 10,
+        pageSize: 6,
         query: params.query
       })
     }
@@ -277,6 +285,13 @@ router.get("/doctor-yy", async ctx => {
         })
       }
     });
+    // 模拟分页
+    const currentIndex = ctx.query.page? ctx.query.page-1 : 0;
+    const rows  = doctors["resultBodyObject"]["rows"].filter((item, index) =>{
+      return index>=currentIndex && index<= currentIndex+5;
+    });
+    doctors["resultBodyObject"]["rows"] = rows;
+    doctors["resultBodyObject"].total = 36;
   }
   return ctx.render("operationOrder", {
     help,
@@ -435,7 +450,7 @@ router.get("/disease/:id", async ctx => {
       })
     }
   });
-  
+
   const keyWord = resp['resultBodyObject'].illnessName || ''
   const doctor = await doctors(keyWord)
 
@@ -651,7 +666,7 @@ router.get("/center/:id", async ctx => {
     index: -1,
     common,
     help,
-    content:resp['resultBodyObject']['content'] 
+    content:resp['resultBodyObject']['content']
   });
 });
 module.exports = router;

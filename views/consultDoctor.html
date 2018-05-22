@@ -23,53 +23,51 @@
             </button>
         </div>
         <% if (query.length > 0) { %>
-            <div class="inline-flex" style="margin-top: 5px">
-                为您找到相关结果<%= total %>条
-            </div>
+        <div class="inline-flex" style="margin-top: 5px">
+            为您找到相关结果<%= total %>条
+        </div>
         <% }%>
     </div>
     <div class="yy-banner-title text-center">
-            汇聚骨健康领域的专业医生
+        汇聚骨健康领域的专业医生
     </div>
     <!--医生展示区域-->
-    <% for(var i = 0, l = Math.ceil(doctors.length / 6); i < l; i++) {%>
-
-    <% if (i+1 == page) { %>
-    <div class="pc-banner-show">
+    <div class="pc-banner-show" data-total="<%= total %>">
 
         <div class="banner-show " style="position: relative; height: 700px">
             <div class="swiper-button-prev swiper-button-black " tabindex="0" role="button"
                  aria-label="Previous slide" aria-disabled="false"></div>
             <div class="swiper-button-next swiper-button-black " tabindex="0" role="button" aria-label="Next slide"
                  aria-disabled="false"></div>
-            <% for(var j = 0; j < 6; j++ ){ %>
-            <% if (i * 6 + j < doctors.length) { %>
+            <% doctors.forEach(function(d){%>
             <div class="yy-banner-card">
-                <a href="./doctor/<%= doctors[i*4+j].id%>">
-                    <h3 class="yy-banner-card-h3"><%= doctors[i*4+j].realName %></h3>
-                    <div class="yy-banner-card-short"><%= doctors[i*4+j].title %> <span><%=  doctors[i*4+j].departmentName %></span>
+                <a href="./doctor/<%= d.id%>">
+                    <h3 class="yy-banner-card-h3"><%= d.realName %></h3>
+                    <div class="yy-banner-card-short"><%= d.title %> <span><%=  d.departmentName %></span>
                     </div>
-                    <p class="yy-banner-card-short"><%= doctors[i*4+j].hospitalName %></p>
+                    <p class="yy-banner-card-short"><%= d.hospitalName %></p>
                     <p class="yy-banner-card-desc" style="height: 102px;">
-                        擅长：<%= doctors[i*4+j].expertDisease %>
+                        擅长：<%= d.expertDisease %>
                     </p>
                     <span class="bg-ques-btn">咨询医生</span>
-                    <img class="yy-banner-header" src="<%= doctors[i*4+j].iconUrl %>" alt="">
+                    <img class="yy-banner-header" src="<%= d.iconUrl %>" alt="">
                 </a>
             </div>
-            <% } %>
-            <% } %>
-        </div>
-        <div class="yy-page-p">
-            <button class="yy-page pre-page">&lt;</button>
-            <% [1,2,3,4,5,6].forEach(function(item){ %>
-            <button class="yy-page n-page <%= page==item? 'active' : '' %>"><%= item%></button>
             <% }) %>
+        </div>
+        <div class="relative yy-page-p">
+            <div id="box" class="box"></div>
+        </div>
+
+        <div class="yy-page-p" style="display: none;">
+            <button class="yy-page pre-page">&lt;</button>
+            <% for(let index = 1; index <= Math.ceil(total/6); index++){ %>
+            <button class="yy-page n-page <%= page==index? 'active' : '' %>"><%= index%></button>
+            <% } %>
             <button class="yy-page next-page">&gt;</button>
         </div>
     </div>
-    <% } %>
-    <% } %>
+
     <div class="banner-show mobile-banner-show swiper-container">
         <div class="swiper-wrapper">
             <% doctors.forEach(function(d,i){%>
@@ -94,22 +92,22 @@
         <div class="swiper-button-prev swiper-button-black"></div>
         <div class="swiper-button-next swiper-button-black"></div>
     </div>
-
 </div>
 
 <style>
 
     .consultDoctor-title {
-    font-family: PingFangSC-Medium;
-    font-size: 24px;
-    color: #000000;
-}
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #000000;
+    }
 
-.consultDoctor-title-small {
-    font-family: PingFangSC-Regular;
-    font-size: 13px;
-    color: #999999;
-}
+    .consultDoctor-title-small {
+        font-family: PingFangSC-Regular;
+        font-size: 13px;
+        color: #999999;
+    }
+
     .inline-flex {
         display: inline-flex;
         width: 50%;
@@ -154,7 +152,7 @@
         background: #FFFFFF;
         box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.14);
         text-align: center;
-        min-height: 298px;
+        height: 298px;
         padding: 0 32px;
         margin-bottom: 100px;
     }
@@ -192,7 +190,7 @@
         font-family: PingFangSC-Regular;
         font-size: 12px;
         color: #999999;
-        padding: 8 0 0 0;
+        padding: 8px 0 0 0;
     }
 
     .yy-banner-card-desc {
@@ -280,52 +278,13 @@
             padding-top: 20px;
         }
     }
+
 </style>
 
 <!--footer-->
 <%- include("./footer.html") %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.min.js"></script>
-
-<script>
-  var pre = document.querySelector('.pre-page');
-  var next = document.querySelector('.next-page');
-  var dalegate = document.querySelector('.yy-page-p');
-
-  var searchs = location.search.split('=');
-  var currentPage = +document.querySelector('.yy-page.active').innerText;
-
-  if (currentPage === 1) {
-    pre.style.display = 'none';
-  } else if (currentPage === 6) {
-    next.style.display = 'none'
-  }
-  p = function (e) {
-    if (currentPage === 1) currentPage = 7;
-    location.href = `/doctor?page=${+currentPage - 1}&query=${search.value}`
-  }
-
-  n = function () {
-    if (currentPage === 6) currentPage = 0;
-    location.href = `/doctor?page=${+currentPage + 1}&query=${search.value}`
-  }
-
-
-  pre && pre.addEventListener('click', p);
-
-  next && next.addEventListener('click', n);
-
-  document.querySelector('.swiper-button-prev') && document.querySelector('.swiper-button-prev').addEventListener('click', p);
-  document.querySelector('.swiper-button-next') && document.querySelector('.swiper-button-next').addEventListener('click', n);
-
-  dalegate.addEventListener('click', function (e) {
-    if (e.target.className.indexOf('n-page') !== -1) {
-      if (e.target.innerText == currentPage) return;
-      location.href = `/doctor?page=${e.target.innerText}&query=${search.value}`
-    }
-  });
-
-</script>
-
+<%- help.jsIncludeTag('paging') %>
 <script>
   var mySwiper = new Swiper('.swiper-container', {
     autoplay: true,
@@ -333,12 +292,6 @@
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-  });
-
-  const search = document.querySelector('#consultDoctorSearch');
-  const btn = document.querySelector('.yy-search-btn');
-  btn.addEventListener('click', function () {
-    location.href = '/doctor?query=' + search.value;
   });
 
 </script>

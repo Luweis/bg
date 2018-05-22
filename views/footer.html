@@ -36,7 +36,7 @@
                 友情链接:
             </div>
             <div class="footer-link-content">
-                <% common.links.forEach(function(h,index){%>
+                <% (common.links || []).forEach(function(h,index){%>
                     <a href="<%= h.value%>" target="_blank">
                         <%= h.text %>
                     </a>

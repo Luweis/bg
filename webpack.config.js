@@ -17,6 +17,7 @@ module.exports = {
     doctor: path.resolve('./assets/js/doctorHomePage'),
     operation: path.resolve('./assets/js/operationOrder'),
     search: path.resolve('./assets/js/searchDoctor'),
+    paging: path.resolve('./assets/js/paging'),
   },
   output: {
     filename: `${filename}.js`,
