@@ -54,17 +54,9 @@
             </div>
             <% }) %>
         </div>
-        <div class="relative yy-page-p">
-            <div id="box" class="box"></div>
-        </div>
-
-        <div class="yy-page-p" style="display: none;">
-            <button class="yy-page pre-page">&lt;</button>
-            <% for(let index = 1; index <= Math.ceil(total/6); index++){ %>
-            <button class="yy-page n-page <%= page==index? 'active' : '' %>"><%= index%></button>
-            <% } %>
-            <button class="yy-page next-page">&gt;</button>
-        </div>
+    </div>
+    <div class="relative yy-page-p">
+        <div id="box" class="box"></div>
     </div>
 
     <div class="banner-show mobile-banner-show swiper-container">
