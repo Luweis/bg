@@ -13,7 +13,7 @@ function check(data, tip = "暂无") {
   return data ? data : tip;
 }
 
-const currentEnv = process.env.NODE_ENV === "development" ? "pro" : "dev";
+const currentEnv = process.env.NODE_ENV === "development" ? "dev" : "pro";
 const env = {
   dev: {
     controllerBaseUrl:
