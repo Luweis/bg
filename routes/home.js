@@ -13,7 +13,7 @@ function check(data, tip = "暂无") {
   return data ? data : tip;
 }
 
-const currentEnv = process.env.NODE_ENV === "development" ? "dev" : "pro";
+const currentEnv = process.env.NODE_ENV === "development" ? "pro" : "pro";
 const env = {
   dev: {
     controllerBaseUrl:
@@ -192,36 +192,6 @@ router.get("/doctor", async ctx => {
   });
 });
 
-// 医生搜索页面结果页面
-router.get("/doctor/search", async ctx => {
-  const params = ctx.query || {};
-  let doctorTypeList;
-  let html = "";
-  if (params.searchType === "surgery") {
-    doctorTypeList = [1, 3];
-  } else {
-    doctorTypeList = [2, 3];
-  }
-  const doctors = await http({
-    url: `${baseApi}operationOrderController/getConsultDoctor`,
-    config: {
-      body: JSON.stringify({
-        doctorTypeList,
-        pageIndex: params.page || 1,
-        pageSize: 8,
-        query: params.query
-      })
-    }
-  });
-  return ctx.render("searchDoctor", {
-    doctors: doctors["resultBodyObject"]["rows"],
-    total: doctors["resultBodyObject"].total,
-    help,
-    index: -1,
-    common
-  });
-});
-
 //医生详情页
 router.get("/doctor/:id", async ctx => {
   const id   = ctx.url.split("/")[2].split('?')[0];
@@ -253,9 +223,9 @@ function searchDoctor(ctx) {
   const params = ctx.query || {};
   let doctorTypeList;
   if (params.searchType === "surgery") {
-    doctorTypeList = [2, 3];
-  } else {
     doctorTypeList = [1, 3];
+  } else {
+    doctorTypeList = [2, 3];
   }
   const doctors = http({
     url: `${baseApi}searchDoctorController/queryDoctor`,
