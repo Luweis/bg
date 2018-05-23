@@ -253,9 +253,9 @@ function searchDoctor(ctx) {
   const params = ctx.query || {};
   let doctorTypeList;
   if (params.searchType === "surgery") {
-    doctorTypeList = [1, 3];
-  } else {
     doctorTypeList = [2, 3];
+  } else {
+    doctorTypeList = [1, 3];
   }
   const doctors = http({
     url: `${baseApi}searchDoctorController/queryDoctor`,
