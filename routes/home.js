@@ -13,7 +13,7 @@ function check(data, tip = "暂无") {
   return data ? data : tip;
 }
 
-const currentEnv = process.env.NODE_ENV === "development" ? "pro" : "pro";
+const currentEnv = process.env.NODE_ENV === "development" ? "dev" : "pro";
 const env = {
   dev: {
     controllerBaseUrl:
@@ -73,15 +73,16 @@ async function home(ctx) {
     }
   });
 
-  //问答
-  const ques = await http({
-    url: `${baseApi}questionController/queryRelatedQuestionList`,
-    config: {
-      body: JSON.stringify({
-        size: 5
-      })
-    }
-  });
+  //推荐问答
+  // const ques = await http({
+  //   url: `${baseApi}questionController/queryRelatedQuestionList`,
+  //   config: {
+  //     body: JSON.stringify({
+  //       pageCount: 1,
+  //       pageSize:8,
+  //     })
+  //   }
+  // });
 
   //友情链接
   const footer_links = await http({
@@ -119,8 +120,8 @@ async function home(ctx) {
     url: `${baseApi}questionController/getQuestionList`,
     config: {
       body: JSON.stringify({
-        keyWord: "",
-        pageCount: 1
+        pageCount: 1,
+        pageSize:5
       })
     }
   });
@@ -132,7 +133,7 @@ async function home(ctx) {
     hl: health["resultBodyObject"].rows,
     gds: goods["resultBodyObject"]["equipmentList"], // 商品
     surgeryInsuranceList: goods["resultBodyObject"]["surgeryInsuranceList"], //保险
-    ques, // 问答
+    // ques, // 问答
     dis: disa["resultBodyObject"],
     qa: answer["resultBodyObject"].rows || [],
     help,
@@ -335,23 +336,22 @@ router.get("/interlocution", async ctx => {
 //经典问答详情
 router.get("/interlocution/:id", async ctx => {
   let keyWord = ctx.query.keyWord || "";
+  const id = ctx.url.split("/")[2] || 1;
   keyWord = decodeURIComponent(keyWord);
   const qa = await http({
-    url: `${baseApi}questionController/getQuestionList`,
+    url: `${baseApi}questionController/getQuestionDetail`,
     config: {
       body: JSON.stringify({
-        keyWord: keyWord,
-        pageCount: 1
+        id
       })
     }
   });
   const ats = await aboutAts("");
-  //相关问答
+  //推荐
   const relateAnswers = await http({
     url: `${baseApi}questionController/queryRelatedQuestionList`,
     config: {
       body: JSON.stringify({
-        // keyWord,
         pageCount: 1,
         pageSize:8,
       })
@@ -364,7 +364,7 @@ router.get("/interlocution/:id", async ctx => {
     index: 3,
     common,
     help,
-    qa:[first] || [],
+    qa:qa["resultBodyObject"] || {},
     doctor:(doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
     keyWord,
     ats: ats["resultBodyObject"], // 相关文章

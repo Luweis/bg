@@ -3,7 +3,7 @@
         <% qa.forEach(function(item){ %>
         <div class="bg-answer row">
             <div class="col-xs-1" style="max-width: 20px;"><span class="ques-tip">问</span></div>
-            <a href="/interlocution/1?keyWord=<%= item.questionData.diseaseDesc %>">
+            <a href="/interlocution/<%= item.questionData.topicId || 1%>">
                 <span class="col-xs-10 font-size-base padd-lf-20 ques-tip-des"><%= item.questionData.diseaseDesc %></span>
             </a>
         </div>
