@@ -9,7 +9,9 @@ const config = {
 
 function http(opt) {
   return fetch(opt.url, Object.assign({ },config, opt.config))
-    .then(response => response.json());
+    .then(response => response.json()).catch(()=>{
+         return {resultBodyObject:{}}
+    });
 }
 
 module.exports = http
