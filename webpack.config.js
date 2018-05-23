@@ -13,7 +13,6 @@ module.exports = {
   mode: env,
   entry: {
     main: path.resolve('./assets/js/index'),
-    doctors: path.resolve('./assets/js/consultDoctor'),
     doctor: path.resolve('./assets/js/doctorHomePage'),
     operation: path.resolve('./assets/js/operationOrder'),
     search: path.resolve('./assets/js/searchDoctor'),
