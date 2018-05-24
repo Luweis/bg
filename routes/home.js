@@ -337,11 +337,10 @@ router.get("/interlocution/:id", async ctx => {
   const ats = await aboutAts("");
   //推荐
   const relateAnswers = await http({
-    url: `${baseApi}questionController/queryRelatedQuestionList`,
+    url: `${baseApi}questionController/getQuestionList`,
     config: {
       body: JSON.stringify({
-        pageCount: 1,
-        pageSize:8,
+        pageCount: 8,
       })
     }
   });
@@ -355,7 +354,7 @@ router.get("/interlocution/:id", async ctx => {
     doctor:(doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
     keyWord,
     ats: ats["resultBodyObject"], // 相关文章
-    relateAnswers: relateAnswers["resultBodyObject"]
+    relateAnswers: relateAnswers["resultBodyObject"].rows
   });
 });
 
