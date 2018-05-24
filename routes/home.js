@@ -73,17 +73,6 @@ async function home(ctx) {
     }
   });
 
-  //推荐问答
-  // const ques = await http({
-  //   url: `${baseApi}questionController/queryRelatedQuestionList`,
-  //   config: {
-  //     body: JSON.stringify({
-  //       pageCount: 1,
-  //       pageSize:8,
-  //     })
-  //   }
-  // });
-
   //友情链接
   const footer_links = await http({
     url: `${baseApi}linkQueryController/getLink`,
@@ -120,8 +109,7 @@ async function home(ctx) {
     url: `${baseApi}questionController/getQuestionList`,
     config: {
       body: JSON.stringify({
-        pageCount: 1,
-        pageSize:5
+        pageCount: 5,
       })
     }
   });
@@ -316,7 +304,7 @@ router.get("/interlocution", async ctx => {
     config: {
       body: JSON.stringify({
         keyWord: keyWord,
-        pageCount: 1
+        pageCount: 8
       })
     }
   });
@@ -429,8 +417,7 @@ router.get("/disease/:id", async ctx => {
     config: {
       body: JSON.stringify({
         keyWord: keyWord,
-        pageCount: 1,
-        pageSize:8
+        pageCount: 8,
       })
     }
   });
