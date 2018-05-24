@@ -357,14 +357,13 @@ router.get("/interlocution/:id", async ctx => {
       })
     }
   });
-  const first = qa["resultBodyObject"]["rows"][0];
   const doctor = await doctors("");
   return ctx.render("interlocutionDetail", {
     helpers: utils,
     index: 3,
     common,
     help,
-    qa:qa["resultBodyObject"] || {},
+    qa:[qa["resultBodyObject"] || {}],
     doctor:(doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
     keyWord,
     ats: ats["resultBodyObject"], // 相关文章
