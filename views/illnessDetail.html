@@ -392,35 +392,36 @@
 </style>
 <!--footer-->
 <%- include("./footer.html") %>
+<%- help.jsIncludeTag('illness') %>
 <script>
 
-  function attr(el, attr) {
-    return el.getAttribute(attr);
-  }
-  var btns = document.querySelectorAll('.bg-na-dis a');
-  var content = document.querySelectorAll('.bg-dis-content  > div');
-  document.querySelector('.bg-na-dis').addEventListener('click', function (e) {
-    var currentIndex = 0;
-    if (e.target.nodeName === 'A') {
-      btns.forEach(function (a, idx) {
-        if (attr(a, 'data-index') === attr(e.target, 'data-index')) {
-          currentIndex = idx;
-          if (a.className.indexOf('active') === -1) {
-            a.className += ' active';
-          }
-        } else {
-          a.className = a.className.replace('active', '')
-        }
-      });
-      content.forEach(function (item, idx) {
-        if (idx === currentIndex) {
-          item.className = item.className.replace('hide', 'show');
-        } else {
-          item.className = item.className.replace('show', 'hide');
-        }
-      });
-    }
-  });
+//  function attr(el, attr) {
+//    return el.getAttribute(attr);
+//  }
+//  var btns = document.querySelectorAll('.bg-na-dis a');
+//  var content = document.querySelectorAll('.bg-dis-content  > div');
+//  document.querySelector('.bg-na-dis').addEventListener('click', function (e) {
+//    var currentIndex = 0;
+//    if (e.target.nodeName === 'A') {
+//      btns.forEach(function (a, idx) {
+//        if (attr(a, 'data-index') === attr(e.target, 'data-index')) {
+//          currentIndex = idx;
+//          if (a.className.indexOf('active') === -1) {
+//            a.className += ' active';
+//          }
+//        } else {
+//          a.className = a.className.replace('active', '')
+//        }
+//      });
+//      content.forEach(function (item, idx) {
+//        if (idx === currentIndex) {
+//          item.className = item.className.replace('hide', 'show');
+//        } else {
+//          item.className = item.className.replace('show', 'hide');
+//        }
+//      });
+//    }
+//  });
 
 </script>
 </body>

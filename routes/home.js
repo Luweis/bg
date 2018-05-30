@@ -161,8 +161,9 @@ router.get("/doctor", async ctx => {
     // 模拟分页
     const currentIndex = ctx.query.page? ctx.query.page-1 : 0;
     const rows  = doctors["resultBodyObject"]["rows"].filter((item, index) =>{
-      return index>=currentIndex && index<= currentIndex+5;
+      return index>=currentIndex*6 && index<= currentIndex*6+5;
     });
+    
     doctors["resultBodyObject"]["rows"] = rows;
     doctors["resultBodyObject"].total = 36;
   }
@@ -247,7 +248,7 @@ router.get("/doctor-yy", async ctx => {
     // 模拟分页
     const currentIndex = ctx.query.page? ctx.query.page-1 : 0;
     const rows  = doctors["resultBodyObject"]["rows"].filter((item, index) =>{
-      return index>=currentIndex && index<= currentIndex+5;
+      return index>=currentIndex*6 && index<= currentIndex*6+5;
     });
     doctors["resultBodyObject"]["rows"] = rows;
     doctors["resultBodyObject"].total = 36;
