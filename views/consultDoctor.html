@@ -46,7 +46,7 @@
                     <div class="yy-banner-card-short"><%= d.title %> <span><%=  d.departmentName %></span>
                     </div>
                     <p class="yy-banner-card-short"><%= d.hospitalName %></p>
-                    <p class="yy-banner-card-desc" style="height: 102px;">
+                    <p class="yy-banner-card-desc multiLineText4">
                         擅长：<%= d.expertDisease %>
                     </p>
                     <span class="bg-ques-btn">咨询医生</span>
@@ -70,7 +70,7 @@
                             <h3 class="yy-banner-card-h3"><%= d.realName %></h3>
                             <div class="yy-banner-card-short"><%= d.title %> <span><%=  d.departmentName %></span></div>
                             <p class="yy-banner-card-short"><%= d.hospitalName %></p>
-                            <p class="yy-banner-card-desc">
+                            <p class="yy-banner-card-desc multiLineText4">
                                 擅长：<%= d.expertDisease %>
                             </p>
                             <span class="bg-ques-btn">咨询医生</span>
@@ -87,7 +87,15 @@
 </div>
 
 <style>
-
+    .multiLineText4 {
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 70;
+        margin-bottom: 40                    
+    }
     .consultDoctor-title {
         font-family: PingFangSC-Medium;
         font-size: 24px;
@@ -113,7 +121,6 @@
         background: #FFFFFF;
         border: 1px solid #E7E7E7;
         box-sizing: border-box;
-
     }
 
     .yy-search-btn {
@@ -182,7 +189,14 @@
         font-family: PingFangSC-Regular;
         font-size: 12px;
         color: #999999;
-        padding: 8px 0 0 0;
+
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-line-clamp:1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 20;
+        margin: 4 0;
     }
 
     .yy-banner-card-desc {
@@ -190,8 +204,8 @@
         font-size: 13px;
         color: #333333;
         text-align: left;
-        padding-bottom: 30px;
-        margin-top: 8px
+        /* padding-bottom: 30px;
+        margin-top: 8px */
     }
 
     .yy-page-p {
@@ -273,9 +287,11 @@
     .relative{
         position: relative;
     }
+
     .fl {
         float: left;
     }
+
     .box {
         height: 40px;
         line-height: 40px;
@@ -285,6 +301,7 @@
         transform: translate(-50%, -50%);
         text-align: center;
     }
+
     .box button {
         padding: 0 10px;
         margin: 0 10px;
@@ -294,6 +311,7 @@
         border: 1px solid #ebebeb;
         background-color: #ffffff;
     }
+
     .box .first-page,
     .box .last-page {
         margin: 0;

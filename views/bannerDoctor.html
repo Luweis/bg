@@ -3,7 +3,6 @@
         <% for(var i = 0, l = Math.ceil(doctors.length / 4); i < l; i++) {%>
         <div class="swiper-slide">
             <div class="row">
-
                 <% for(var j = 0; j < 4; j++ ){ %>
                 <% if (i * 4 + j  < doctors.length) { %>
                 <div class="consultDoctor-recommend-doctor-item col-md-6">
@@ -20,7 +19,7 @@
                                     class="consultDoctor-recommend-doctor-hospital"><%=  doctors[i*4+j].hospitalName %></span>
                             </div>
                             <div class="consultDoctor-recommend-doctor-expert-wrap row"><span>擅长：</span><span
-                                    class="consultDoctor-recommend-doctor-expert"><%=  doctors[i*4+j].expertDisease %></span>
+                                    class="consultDoctor-recommend-doctor-expert multiLineText4"><%=  doctors[i*4+j].expertDisease %></span>
                             </div>
                         </div>
                     </a>
@@ -35,3 +34,13 @@
     <div class="swiper-pagination consultDoctor-swiper-pagination"></div>
 </div>
 
+<style>
+    .multiLineText4 {
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 50;                    
+    }
+</style>
