@@ -37,13 +37,13 @@
             </div>
             <div class="footer-link-content">
                 <% (common.links || []).forEach(function(h,index){%>
-                    <a href="<%= h.value%>" target="_blank">
+                    <a href="<%= h.value%>" target="_blank" rel="nofollow">
                         <%= h.text %>
                     </a>
                     <% if (index + 1 < common.links.length) { %>
                         <span class="line">|</span>
                         <% } %>
-                            <% }) %>
+                      <% }) %>
             </div>
         </div>
     </div>

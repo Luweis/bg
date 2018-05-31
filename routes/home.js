@@ -3,8 +3,13 @@ const process = require("process");
 const http = require("../assets/utils");
 const utils = require("../utils");
 const help = require("../utils/help.js");
-var cache = {};
-var common = {};
+var cache   = {};
+var common  = {};
+var  defineHeader = {
+      title:'在线咨询医生，快速预约手术，骨健康问题就找布骨医生',
+      keywords:'三甲医院手术预约_专家_主任医生手术_床位预约_布谷鸟_布骨医生网',
+      description:'做骨科手术就找布骨医生，权威专家主刀，为您提供疾病咨询、病床预约，手术预约，术后康复等健康服务，只要是骨骼问题，在这里轻松解决！'
+}
 
 function activeItem(index, current) {
   index !== current ? "test" : "";
@@ -124,9 +129,13 @@ async function home(ctx) {
     // ques, // 问答
     dis: disa["resultBodyObject"],
     qa: answer["resultBodyObject"].rows || [],
+    common,
+    head:{       
+       ...defineHeader,    
+    },
     help,
     index: 0,
-    common
+    
   };
   cache[ctx.url] = params;
   let html = ctx.render("index", params);
@@ -174,11 +183,14 @@ router.get("/doctor", async ctx => {
     total: doctors["resultBodyObject"]["total"] || 0,
     current: 1,
     activeItem,
+    common,
+    head:{       
+       ...defineHeader,    
+    },
     help,
     index: 1,
-    common,
     page,
-    query
+    query,
   });
 });
 
@@ -200,7 +212,7 @@ router.get("/doctor/:id", async ctx => {
     check,
     help,
     index: -1,
-    common,
+        common,  head:{...defineHeader,},
     type
   });
 });
@@ -256,7 +268,7 @@ router.get("/doctor-yy", async ctx => {
   return ctx.render("operationOrder", {
     help,
     index: 2,
-    common,
+        common,  head:{...defineHeader,},
     page,
     doctors: doctors["resultBodyObject"].rows || [],
     total: doctors["resultBodyObject"].total || 0,
@@ -279,7 +291,8 @@ router.get("/article/:id", async ctx => {
   return ctx.render("articleDetail", {
     ats: article["resultBodyObject"],
     index: -1,
-    common,
+    common, 
+    head:{...defineHeader,},
     help
   });
 });
@@ -314,6 +327,7 @@ router.get("/interlocution", async ctx => {
     helpers: utils,
     index: 3,
     common,
+    head:{...defineHeader,},
     help,
     qa: qa["resultBodyObject"]["rows"] || [],
     doctor:
@@ -349,7 +363,8 @@ router.get("/interlocution/:id", async ctx => {
   return ctx.render("interlocutionDetail", {
     helpers: utils,
     index: 3,
-    common,
+    common, 
+    head:{...defineHeader,},
     help,
     qa:[qa["resultBodyObject"] || {}],
     doctor:(doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
@@ -388,6 +403,7 @@ router.get("/disease", async ctx => {
     helpers: utils,
     index: 5,
     common,
+    head:{...defineHeader,},
     help,
     keyWord,
     diseases: resp["resultBodyObject"],
@@ -425,6 +441,7 @@ router.get("/disease/:id", async ctx => {
     helpers: utils,
     index: -1,
     common,
+    head:{...defineHeader,},
     help,
     diseases: resp["resultBodyObject"] || [],
     doctor:
@@ -449,6 +466,7 @@ router.get("/mall", async ctx => {
     helpers: utils,
     index: 6,
     common,
+    head:{...defineHeader,},
     help,
     insurances,
     equipments,
@@ -518,7 +536,7 @@ router.get("/health", async ctx => {
   }
   return ctx.render("health", {
     index: 4,
-    common,
+    common,  head:{...defineHeader,},
     hl: healthAll,
     dis: tags,
     help,
@@ -546,7 +564,8 @@ router.get("/mall/:type/:id", async ctx => {
   return ctx.render("mallDetail", {
     helpers: utils,
     index: 7,
-    common,
+    common, 
+    head:{...defineHeader,},
     help,
     model,
     banners: model.productBannerResourcesList || []
@@ -559,7 +578,7 @@ router.get("/buy", async ctx => {
   return ctx.render("buy", {
     helpers: utils,
     index: -1,
-    common,
+    common,  head:{...defineHeader,},
     help
   });
 });
@@ -570,6 +589,7 @@ router.get("/download", async ctx => {
     helpers: utils,
     index: 9,
     common,
+    head:{...defineHeader,},
     help
   });
 });
@@ -577,7 +597,7 @@ router.get("/download", async ctx => {
 router.get("/sorry", async ctx => {
   return ctx.render("sorry", {
     index: -1,
-    common,
+    common,  head:{...defineHeader,},
     help
   });
 });
@@ -595,6 +615,7 @@ async function center(ctx,type){
   return ctx.render("centerList", {
     index: -1,
     common,
+    head:{...defineHeader,},
     help,
     list:resp['resultBodyObject']['rows'] || []
   });
@@ -621,6 +642,7 @@ router.get("/center/:id", async ctx => {
   return ctx.render("centerDetail", {
     index: -1,
     common,
+    head:{...defineHeader,},
     help,
     content:resp['resultBodyObject']['content']
   });
