@@ -276,6 +276,15 @@ router.get("/doctor-yy", async ctx => {
   });
 });
 
+function GetChinese(strValue) {  
+  if(strValue!= null && strValue!= ""){  
+      var reg = /[\u4e00-\u9fa5]/g;   
+      return strValue.match(reg).join("");  
+  }  
+  else  
+      return "";  
+}
+
 //文章详情
 router.get("/article/:id", async ctx => {
   const id = ctx.url.split("/")[2];
@@ -287,12 +296,22 @@ router.get("/article/:id", async ctx => {
       })
     }
   });
-
+  let title = (article["resultBodyObject"] || {}).title || ''
+  title = `${title.substring(0,25)}_骨科疾病知识`
+  let description = (article["resultBodyObject"] || {}).desc || ''
+  let content = (article["resultBodyObject"] || {}).content || ''
+  content = GetChinese(content)
+  description = `${description}${content}`
+  description = `${description.substring(0,100)}`
   return ctx.render("articleDetail", {
     ats: article["resultBodyObject"],
     index: -1,
     common, 
-    head:{...defineHeader,},
+    head:{
+      ...defineHeader,
+      title,
+      description,
+    },
     help
   });
 });
@@ -360,11 +379,25 @@ router.get("/interlocution/:id", async ctx => {
     }
   });
   const doctor = await doctors("");
+
+  let title = (qa["resultBodyObject"] || {}).questionData || ''
+  title = title.content || ''
+  title = `${title.substring(0,25)}_骨科在线咨询`
+
+  let descriptions = (qa["resultBodyObject"] || {}).answerDatas || []
+  let description = ''
+  descriptions.forEach(element => {
+    description =`${description}${element.content}`
+  });
+  description = `${description.substring(0,100)}`
+
   return ctx.render("interlocutionDetail", {
     helpers: utils,
     index: 3,
     common, 
-    head:{...defineHeader,},
+    head:{
+      ...defineHeader,
+    },
     help,
     qa:[qa["resultBodyObject"] || {}],
     doctor:(doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
@@ -647,4 +680,26 @@ router.get("/center/:id", async ctx => {
     content:resp['resultBodyObject']['content']
   });
 });
+
+router.get("/robots.txt", async ctx => {
+  return ctx.render("robots.txt", {
+   
+  });
+});
+
+const host = require('./host.js');
+router.get("/map", async ctx => {
+  const pw = ctx.query.pw || '';
+  if(pw == '123456'){
+    console.log('123456');
+    host.printUrl()
+  }
+  // return ctx.render(nil, {
+   
+  // });
+
+});
+
+
+
 module.exports = router;
