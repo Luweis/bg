@@ -24,10 +24,13 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- 搜索结果 -->
                         <div>
-                            <div class="result-title">以下为常见疾病，点击疾病查看详情</div>
+                                <% if(keyWord){%>
+                                    <div class="result-title">为你找到<%= diseases.length || 0%>种疾病，点击疾病名称查看详情：</div>
+                                <%}else{ %>
+                                    <div class="result-title">以下为常见疾病，点击疾病查看详情</div>
+                                <%}%>
                             <div id="search-result" class="result-item">
                                 <% diseases.forEach(function(item){ %>
                                     <a href="/disease/<%= item.id %>" class="result-item bg-jbk"> <%= item.illnessName%></a>
