@@ -687,17 +687,19 @@ router.get("/robots.txt", async ctx => {
   });
 });
 
-const host = require('./host.js');
+router.get("/sitemap.xml", async ctx => {
+  return ctx.render("sitemap.xml", {
+   
+  });
+});
+
+const map = require('./map.js');
 router.get("/map", async ctx => {
   const pw = ctx.query.pw || '';
   if(pw == '123456'){
     console.log('123456');
-    host.printUrl()
+    map.printUrl()
   }
-  // return ctx.render(nil, {
-   
-  // });
-
 });
 
 
