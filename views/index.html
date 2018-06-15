@@ -15,10 +15,10 @@
                                     <div class="swiper-container">
                                         <div class="swiper-wrapper">
                                             <% banners.forEach(function(b){ %>
-                                                <div class="swiper-slide">
+                                                <a class="swiper-slide" href="<%= b.pointUrl %>">
                                                     <img class="swiper-img" src="<%= b.resourceUrl %>" alt="">
-                                                </div>
-                                                <% }) %>
+                                                </a>
+                                            <% }) %>
                                         </div>
                                         <div class="swiper-pagination"></div>
                                     </div>
