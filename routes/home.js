@@ -131,7 +131,10 @@ async function home(ctx) {
     qa: answer["resultBodyObject"].rows || [],
     common,
     head:{       
-       ...defineHeader,    
+       ...defineHeader,
+       title:'骨科医生咨询_骨科医院预约_骨健康医疗平台-布骨医生 ',
+      keywords:'骨科医生免费咨询,骨科医院预约,骨健康,骨科平台,骨科专科',
+      description:'做骨科手术就找布骨医生，专业的骨健康平台，权威骨科专家主刀，为您提供骨科疾病免费咨询、病床预约，骨科手术预约，术后康复等健康服务，只要是骨骼问题，在这里轻松解决！'
     },
     help,
     index: 0,
@@ -206,13 +209,25 @@ router.get("/doctor/:id", async ctx => {
       })
     }
   });
+  let doc_detail =  doc["resultBodyObject"]["doctorDetail"] || {}
+  let realName = doc_detail.realName || ''
+  let hospitalName = doc_detail.hospitalName || ''
+  let title = doc_detail.title || ''
+  let desc = doc_detail.desc || ''
+  desc = `${desc.substring(0,100)}`
   return ctx.render("doctorHomePage", {
     doctorDetail: doc["resultBodyObject"]["doctorDetail"],
     relatedDocotrs: doc["resultBodyObject"]["relatedDocotrs"],
     check,
     help,
     index: -1,
-        common,  head:{...defineHeader,},
+    common,
+    head:{
+      ...defineHeader,
+      title:`${realName}_${title}_${hospitalName}_布骨医生`,
+      keywords:`${realName}_医生`,
+      description:desc
+    },
     type
   });
 });
@@ -303,6 +318,7 @@ router.get("/article/:id", async ctx => {
   content = GetChinese(content)
   description = `${description}${content}`
   description = `${description.substring(0,100)}`
+  let keywords = (article["resultBodyObject"] || {}).keyword || ''
   return ctx.render("articleDetail", {
     ats: article["resultBodyObject"],
     index: -1,
@@ -311,6 +327,7 @@ router.get("/article/:id", async ctx => {
       ...defineHeader,
       title,
       description,
+      keywords
     },
     help
   });
@@ -446,8 +463,9 @@ router.get("/disease", async ctx => {
 });
 
 // 疾病详情
-router.get("/disease/:id", async ctx => {
+async function diseaseDetail(ctx){
   const id = ctx.url.split("/")[2] || 1;
+  const index = ctx.url.split("/")[3] || 0;
   const resp = await http({
     url: `${baseApi}diseaseController/getDataById`,
     config: {
@@ -456,10 +474,8 @@ router.get("/disease/:id", async ctx => {
       })
     }
   });
-
   const keyWord = resp['resultBodyObject'].illnessName || ''
   const doctor = await doctors(keyWord)
-
   //经典问答
   const answer = await http({
     url: `${baseApi}questionController/getQuestionList`,
@@ -470,17 +486,48 @@ router.get("/disease/:id", async ctx => {
       })
     }
   });
+  let diseases = resp["resultBodyObject"] || {}
+  let illnessName = diseases.illnessName
+  let titles = ['介绍','病因','症状','检查','预防','治疗','鉴别诊断','并发症']
+  let tabarString = titles[index]
+  let t = ''
+  let k = ''
+  let d = ''
+  if(index == 0){
+    t = `【${illnessName}】_${illnessName}的病因症状_检查治疗_布骨医生`
+       k = `${illnessName}病因,${illnessName}症状,${illnessName}检查,${illnessName}治疗方法`
+       d = `布骨医生网向您详细介绍${illnessName}症状,${illnessName}治疗方法,${illnessName}该怎么办等问题,布骨医生的各地好评专家为您提供优质的在线咨询服务.`
+  }else{
+    t = `${illnessName}${tabarString}_布骨医生`
+     k = `${illnessName}${tabarString}`
+     d = `布骨医生网向您详细介绍${illnessName}${tabarString}等问题,布骨医生的各地好评专家为您提供优质的在线咨询服务.`
+  }
+
   return ctx.render("illnessDetail", {
     helpers: utils,
     index: -1,
     common,
-    head:{...defineHeader,},
+    head:{
+      ...defineHeader,
+      title:t,
+      keywords:k,
+      description:d
+    },
     help,
-    diseases: resp["resultBodyObject"] || [],
+    diseases: resp["resultBodyObject"] || {},
     doctor:
       (doctor["resultBodyObject"] && doctor["resultBodyObject"].rows) || [],
-    qa: answer["resultBodyObject"].rows || []
+    qa: answer["resultBodyObject"].rows || [],
+    tabar_index:index
   });
+}
+
+router.get("/disease/:id",async ctx => {
+  await diseaseDetail(ctx)
+})
+
+router.get("/disease/:id/:index", async ctx => {
+   await diseaseDetail(ctx)
 });
 
 //健康商城
@@ -491,10 +538,8 @@ router.get("/mall", async ctx => {
       body: JSON.stringify({})
     }
   });
-
   const insurances = resp["resultBodyObject"]["surgeryInsuranceList"] || [];
   const equipments = resp["resultBodyObject"]["equipmentList"] || [];
-
   return ctx.render("mall", {
     helpers: utils,
     index: 6,

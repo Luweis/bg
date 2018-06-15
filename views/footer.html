@@ -43,7 +43,7 @@
                     <% if (index + 1 < common.links.length) { %>
                         <span class="line">|</span>
                         <% } %>
-                      <% }) %>
+                            <% }) %>
             </div>
         </div>
     </div>
@@ -51,8 +51,12 @@
     <div class="footer-description">
         <div class="container">
             <div>
-                <a href="/healthy-center"><span>布骨康复医疗中⼼</span></a>
-                <a href="/join-us"><span>加⼊我们</span></a>
+                <a href="/healthy-center">
+                    <span>布骨康复医疗中⼼</span>
+                </a>
+                <a href="/join-us">
+                    <span>加⼊我们</span>
+                </a>
             </div>
             <div>
                 <span>上海灵蛇信息科技有限公司</span>
@@ -64,14 +68,36 @@
         </div>
     </div>
 </footer>
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273819601'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273819601%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ca52cf24b219d112a2b9dfb07fc5c24a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
 <style>
     footer {
         font-size: 14px;
         color: #B8B8B8;
         background-color: #F8F8F8;
     }
-
+    
     .text-gray {
         color: #999;
     }
@@ -100,7 +126,8 @@
         padding: 30px 0;
         background-color: #222;
     }
-    .footer-card-image{
+
+    .footer-card-image {
         width: 83px;
         height: 83px;
     }
